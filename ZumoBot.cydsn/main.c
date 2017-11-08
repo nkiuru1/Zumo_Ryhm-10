@@ -33,6 +33,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <math.h>
 #include "Motor.h"
 #include "Ultra.h"
 #include "Nunchuk.h"
@@ -46,6 +47,7 @@
 
 int rread(void);
 
+uint8 const MAX_SPEED = 255;
 /**
  * @file    main.c
  * @brief   
@@ -58,27 +60,64 @@ int main()
 {
     CyGlobalIntEnable; 
     UART_1_Start();
-    ADC_Battery_Start();        
+    ADC_Battery_Start();         
     int16 adcresult =0;
     float vbat = 0.0; 
     printf("\nBoot\n");
-
-    //BatteryLed_Write(1); // Switch led on 
     BatteryLed_Write(0); // Switch led off 
-    //uint8 button;
-    //button = SW1_Read(); // read SW1 on pSoC board
     uint8 button;
+    uint8 leftMotor = 20;
+    uint8 rightMotor = 20;
     int checkVoltage = 5000;
+    uint8 exponent = 5;
+    uint8 turnMult = 20;
+    
+    struct sensors_ ref;
+    CyGlobalIntEnable; 
+    sensor_isr_StartEx(sensor_isr_handler);
+    
+    reflectance_start();
+    //TODO: 1 etusensori näkee viivan.
+    IR_led_Write(1);
     for(;;)
     {
         button = SW1_Read();
         if(button == 0){
             CyDelay(500);
             motor_start();              // motor start
-
-            motor_forward(125,1000); 
-            motor_forward(100,1000);// moving forward
-            motor_turn(125,10,1300);
+            for(;;){
+            reflectance_read(&ref);
+            printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);          
+            motor_turn(leftMotor,rightMotor,1);
+            
+            float leftTemp = pow((float)(((ref.l3 *turnMult + ref.l1)/(float)(ref.r3*turnMult + ref.r1))),exponent);
+            //leftTemp = (leftTemp*15)/(leftTemp+15);
+            if(leftTemp < 1.25){
+                leftTemp /= 2;
+            }else if(leftTemp < 2){
+                leftTemp /= 8;
+            }
+            float motorMultiplierLeft = MAX_SPEED/leftTemp;
+            if(motorMultiplierLeft > MAX_SPEED) motorMultiplierLeft = MAX_SPEED;
+            
+            float rightTemp = pow((float)(((ref.r3 * turnMult + ref.r1)/(float)(ref.l3*turnMult + ref.l1))),exponent);
+            //rightTemp = (rightTemp*15)/(rightTemp+15);
+            if(rightTemp < 1.25){
+                rightTemp /= 2;
+            }
+            else if(rightTemp < 2){
+                rightTemp /= 8;
+            }
+            float motorMultiplierRight = MAX_SPEED/ rightTemp;
+            if(motorMultiplierRight > MAX_SPEED) motorMultiplierRight = MAX_SPEED;
+            
+            leftMotor = motorMultiplierLeft;
+            rightMotor = motorMultiplierRight;
+            printf("left : %f right : %f\n",motorMultiplierLeft ,motorMultiplierRight);
+            }
+            //motor_backward(20,2000); 
+            //motor_forward(255,1000);// moving forward
+            //motor_turn(10,10,1300);
             //motor_forward(75,4500);
             //motor_turn(102,10,1300);
             //motor_forward(75,4500);
