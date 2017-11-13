@@ -84,52 +84,46 @@ int main()
         button = SW1_Read();
         if(button == 0){
             CyDelay(500);
-            motor_start();              // motor start
-            for(;;){
             reflectance_read(&ref);
-            printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);          
-            motor_turn(leftMotor,rightMotor,1);
+            if(ref.l1 > 20000 && ref.l3 > 20000 && ref.r1 > 20000 && ref.r3 > 20000){
+                motor_start();              // motor start
+                for(;;){
+                    reflectance_read(&ref);
+                    //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);          
+                     motor_turn(leftMotor,rightMotor,1);
             
-            float leftTemp = pow((float)(((ref.l3 *turnMult + ref.l1)/(float)(ref.r3*turnMult + ref.r1))),exponent);
-            //leftTemp = (leftTemp*15)/(leftTemp+15);
-            /*if(leftTemp > 1.0 && leftTemp < 1.5){
-                leftTemp *= 100;
-            }else if(leftTemp < 1.75){
-                leftTemp /= 32;
-            }*/
-            float motorSpeedLeft = MAX_SPEED/leftTemp;
-            if(motorSpeedLeft > MAX_SPEED) motorSpeedLeft = MAX_SPEED;
+                    float leftTemp = pow((float)(((ref.l3 *turnMult + ref.l1)/(float)(ref.r3*turnMult + ref.r1))),exponent);
+                    //leftTemp = (leftTemp*15)/(leftTemp+15);
+                    /*if(leftTemp > 1.0 && leftTemp < 1.5){
+                    leftTemp *= 100;
+                     }else if(leftTemp < 1.75){
+                    leftTemp /= 32;
+                    }*/
+                    float motorSpeedLeft = MAX_SPEED/leftTemp;
+                    if(motorSpeedLeft > MAX_SPEED) motorSpeedLeft = MAX_SPEED;
             
-            float rightTemp = pow((float)(((ref.r3 * turnMult + ref.r1)/(float)(ref.l3*turnMult + ref.l1))),exponent);
-            //rightTemp = (rightTemp*15)/(rightTemp+15);
-            /*if(rightTemp > 1.0 && rightTemp < 1.5){
-                rightTemp *= 100;
+                    float rightTemp = pow((float)(((ref.r3 * turnMult + ref.r1)/(float)(ref.l3*turnMult + ref.l1))),exponent);
+                    //rightTemp = (rightTemp*15)/(rightTemp+15);
+                    /*if(rightTemp > 1.0 && rightTemp < 1.5){
+                        rightTemp *= 100;
+                    }
+                    else if(rightTemp < 3){
+                        rightTemp /= 32;
+                    }*/
+                    float motorSpeedRight = MAX_SPEED/ rightTemp;
+                    if(motorSpeedRight > MAX_SPEED) motorSpeedRight = MAX_SPEED;
+            
+                    leftMotor = motorSpeedLeft;
+                    rightMotor = motorSpeedRight;
+                    //printf("left : %f right : %f\n",motorSpeedLeft ,motorSpeedRight);
+                    if(ref.l1 > 20000 && ref.l3 > 20000 && ref.r1 > 20000 && ref.r3 > 20000){
+                        break;
+                    }
+                }
             }
-            else if(rightTemp < 3){
-                rightTemp /= 32;
-            }*/
-            float motorSpeedRight = MAX_SPEED/ rightTemp;
-            if(motorSpeedRight > MAX_SPEED) motorSpeedRight = MAX_SPEED;
-            
-            leftMotor = motorSpeedLeft;
-            rightMotor = motorSpeedRight;
-            //printf("left : %f right : %f\n",motorSpeedLeft ,motorSpeedRight);
-            }
-            //motor_backward(20,2000); 
-            //motor_forward(255,1000);// moving forward
-            //motor_turn(10,10,1300);
-            //motor_forward(75,4500);
-            //motor_turn(102,10,1300);
-            //motor_forward(75,4500);
-            //motor_turn(102,10,1300);
-            //motor_turn(110,50,5000);
-            //motor_forward(200,350);// turn
-            //motor_turn(50,100,3000);     // turn
-            //motor_backward(100,3000);    // movinb backward
-            motor_forward(0,0);
-            motor_stop();               // motor stop
-            
         }
+        motor_forward(0,0);
+        motor_stop();               // motor stop
         
         ADC_Battery_StartConvert();
         if(checkVoltage >= 5000){
