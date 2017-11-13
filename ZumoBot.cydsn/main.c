@@ -69,8 +69,8 @@ int main()
     uint8 leftMotor = 20;
     uint8 rightMotor = 20;
     int checkVoltage = 5000;
-    uint8 exponent = 5;
-    uint8 turnMult = 20;
+    uint8 exponent = 4;
+    uint8 turnMult = 1;
     
     struct sensors_ ref;
     CyGlobalIntEnable; 
@@ -92,28 +92,28 @@ int main()
             
             float leftTemp = pow((float)(((ref.l3 *turnMult + ref.l1)/(float)(ref.r3*turnMult + ref.r1))),exponent);
             //leftTemp = (leftTemp*15)/(leftTemp+15);
-            if(leftTemp < 1.25){
-                leftTemp /= 2;
-            }else if(leftTemp < 2){
-                leftTemp /= 8;
-            }
-            float motorMultiplierLeft = MAX_SPEED/leftTemp;
-            if(motorMultiplierLeft > MAX_SPEED) motorMultiplierLeft = MAX_SPEED;
+            /*if(leftTemp > 1.0 && leftTemp < 1.5){
+                leftTemp *= 100;
+            }else if(leftTemp < 1.75){
+                leftTemp /= 32;
+            }*/
+            float motorSpeedLeft = MAX_SPEED/leftTemp;
+            if(motorSpeedLeft > MAX_SPEED) motorSpeedLeft = MAX_SPEED;
             
             float rightTemp = pow((float)(((ref.r3 * turnMult + ref.r1)/(float)(ref.l3*turnMult + ref.l1))),exponent);
             //rightTemp = (rightTemp*15)/(rightTemp+15);
-            if(rightTemp < 1.25){
-                rightTemp /= 2;
+            /*if(rightTemp > 1.0 && rightTemp < 1.5){
+                rightTemp *= 100;
             }
-            else if(rightTemp < 2){
-                rightTemp /= 8;
-            }
-            float motorMultiplierRight = MAX_SPEED/ rightTemp;
-            if(motorMultiplierRight > MAX_SPEED) motorMultiplierRight = MAX_SPEED;
+            else if(rightTemp < 3){
+                rightTemp /= 32;
+            }*/
+            float motorSpeedRight = MAX_SPEED/ rightTemp;
+            if(motorSpeedRight > MAX_SPEED) motorSpeedRight = MAX_SPEED;
             
-            leftMotor = motorMultiplierLeft;
-            rightMotor = motorMultiplierRight;
-            printf("left : %f right : %f\n",motorMultiplierLeft ,motorMultiplierRight);
+            leftMotor = motorSpeedLeft;
+            rightMotor = motorSpeedRight;
+            //printf("left : %f right : %f\n",motorSpeedLeft ,motorSpeedRight);
             }
             //motor_backward(20,2000); 
             //motor_forward(255,1000);// moving forward
@@ -128,6 +128,7 @@ int main()
             //motor_backward(100,3000);    // movinb backward
             motor_forward(0,0);
             motor_stop();               // motor stop
+            
         }
         
         ADC_Battery_StartConvert();
@@ -143,7 +144,7 @@ int main()
             }
             checkVoltage = 0;
         }
-        if(vbat < 4.0){
+        if(vbat < 0.0){
             break;
         }
         CyDelay(20);
