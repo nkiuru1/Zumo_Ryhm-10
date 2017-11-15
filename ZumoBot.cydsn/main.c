@@ -46,6 +46,8 @@
 #include "Beep.h"
 
 int rread(void);
+void motor_hard_turn_left(uint32 delay);
+void motor_hard_turn_right(uint32 delay);
 
 uint8 const MAX_SPEED = 255;
 uint8 const MIN_SPEED = 25;
@@ -72,7 +74,7 @@ int main()
     uint8 blackLine = 0;
     uint8 lineDelay = 0;
     uint16 l1W,l1B,l3W,l3B,r1W,r1B,r3W,r3B;
-    float expo = 1.25;
+    float expo = 1;
     
     l3W = 4500;
     l3B = 23999;
@@ -93,39 +95,51 @@ int main()
     for(;;)
     {
         button = SW1_Read();
-        reflectance_read(&ref);
+        //reflectance_read(&ref);
         //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);   
         if(button == 0){
             CyDelay(500);
+            motor_start();
             reflectance_read(&ref);
-            if(ref.l3 > 23000 && ref.l1 > 23000 && ref.r1 > 23000 && ref.r3 > 23000){
-                blackLine++;
-                motor_start();              // motor start
+            if(ref.l3 > 22000 && ref.l1 > 22000 && ref.r1 > 22000 && ref.r3 > 22000){
+                blackLine++;               
+                motor_start();
+                motor_forward(255,250);
                 for(;;){
                     reflectance_read(&ref);
-                    printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);          
-                    float l3Scale = 1/(ref.l3 - l3W);
+                    //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);   
+                    
+                    float l3Scale = (float)(1+r3B - ref.r3)/(r3B - r3W);
                     float r1Scale = (((float)ref.l1 - l1W)/(l1B - l1W));
                     float l1Scale = (((float)ref.r1 - r1W)/(r1B - r1W));
-                    float r3Scale = 1/(ref.r3 - r3W);
-                
+                    float r3Scale = (float)(1+l3B - ref.l3)/(l3B - l3W);
+                    printf("r3scale: %f     l3scale: %f\n", r3Scale,l3Scale);
                     float leftMotorSpeed = MAX_SPEED*(pow(l1Scale,expo));
                     if(leftMotorSpeed > MAX_SPEED) leftMotorSpeed = MAX_SPEED;
                     //if(leftMotorSpeed < MIN_SPEED) leftMotorSpeed = MIN_SPEED;
-         
+        
                     float rightMotorSpeed = MAX_SPEED*(pow(r1Scale,expo));
                     if(rightMotorSpeed > MAX_SPEED) rightMotorSpeed = MAX_SPEED;
                     //if(rightMotorSpeed < MIN_SPEED) rightMotorSpeed = MIN_SPEED;
                 
                     if(leftMotorSpeed < rightMotorSpeed) rightMotorSpeed = MAX_SPEED;
                     if(leftMotorSpeed > rightMotorSpeed) leftMotorSpeed = MAX_SPEED;
-                
+                    
                     rightMotor = rightMotorSpeed;
                     leftMotor = leftMotorSpeed;
+                    if(ref.r3 >= r3B-200){
+                        motor_hard_turn_right(1);
+                    }
+                    if(ref.l3 >= l3B-200){
+                        motor_hard_turn_left(1);
+                    }
+                    
                     motor_turn(leftMotor,rightMotor,1);
+                    
+                    
                     lineDelay ++;
                     //printf("left : %hhu right : %hhu\n",leftMotor ,rightMotor);
-                    if(ref.l3 > 23000 && ref.l1 > 23000 && ref.r1 > 23000 && ref.r3 > 23000 && lineDelay > 50){
+                    if(ref.l3 > 22000 && ref.l1 > 22000 && ref.r1 > 22000 && ref.r3 > 22000 && lineDelay > 10){
                         if(blackLine > 2){
                             break;
                         }
@@ -192,6 +206,21 @@ int main()
         CyDelay(delay);
     }
  }   
+
+void motor_hard_turn_right(uint32 delay){
+    MotorDirLeft_Write(0);      // set LeftMotor forward mode
+    MotorDirRight_Write(1);     // set RightMotor back mode
+    PWM_WriteCompare1(255); 
+    PWM_WriteCompare2(50); 
+    CyDelay(delay);
+}
+void motor_hard_turn_left(uint32 delay){
+    MotorDirLeft_Write(1);      // set LeftMotor back mode
+    MotorDirRight_Write(0);     // set RightMotor forward mode
+    PWM_WriteCompare1(50); 
+    PWM_WriteCompare2(255); 
+    CyDelay(delay);
+}
 //*/
 
 
