@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Zumo\ZumoBot\Header Files\cyapicallbacks.h">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Zumo\ZumoBot\Source Files\main.c">
 <ExpandedNodeIds>
 <v>Zumo</v>
 <v>Zumo\ZumoBot</v>
@@ -55,6 +55,11 @@
 <v>Zumo\ZumoBot\Generated_Source\PSoC5</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
+<v>Zumo</v>
+<v>Zumo\ZumoBot</v>
+<v>Zumo\ZumoBot\TopDesign</v>
+<v>Zumo\ZumoBot\ZumoBot.cydwr</v>
+<v>Zumo\ZumoBot\Header Files</v>
 <v>Zumo\ZumoBot\Header Files\Accel_magnet.h</v>
 <v>Zumo\ZumoBot\Header Files\Ambient.h</v>
 <v>Zumo\ZumoBot\Header Files\Beep.h</v>
@@ -75,10 +80,6 @@
 <v>Zumo\ZumoBot\Source Files\IR.c</v>
 <v>Zumo\ZumoBot\Source Files\Magnet.c</v>
 <v>Zumo\ZumoBot\Source Files\main.c</v>
-<v>Zumo\ZumoBot\Source Files\Motor.c</v>
-<v>Zumo\ZumoBot\Source Files\Nunchuk.c</v>
-<v>Zumo\ZumoBot\Source Files\Reflectance.c</v>
-<v>Zumo\ZumoBot\Source Files\Ultra.c</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Zumo\ZumoBot\TopDesign\TopDesign.cysch">
@@ -192,28 +193,6 @@
 <VisibleNodeIds>
 <v>Zumo</v>
 <v>Zumo\ZumoBot</v>
-<v>Zumo\ZumoBot\CortexM3</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541\Debug</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541\Debug\Listing Files\Accel.lst</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_Battery.lst</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_Battery_Bypass.lst</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_Battery_INT.lst</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_Battery_IRQ.lst</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_Battery_PM.lst</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_Battery_theACLK.lst</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541\Debug\Listing Files\Ambient.lst</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541\Debug\Listing Files\Battery_pin.lst</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541\Debug\Listing Files\BatteryLed.lst</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541\Debug\Listing Files\Beep.lst</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541\Debug\Listing Files\Buzzer.lst</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541\Debug\Listing Files\Buzzer_PWM.lst</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541\Debug\Listing Files\Buzzer_PWM_PM.lst</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_2.lst</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
-<v>Zumo\ZumoBot\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -290,7 +269,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="965, 382" SelectedTabbedMdiWindow="27c502b1-ef80-4642-82cb-5da0423a7813"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="2f63bf1a-de2c-4258-af16-0753dacf8461" /><DocumentWindow Key="C:\Users\nikla\Desktop\Zumo01\ZumoBot.cydsn\main.c" Guid="27c502b1-ef80-4642-82cb-5da0423a7813" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="965, 480" SelectedTabbedMdiWindow="2b2e5c8c-c516-471d-890b-a4df7bedef1a"><DocumentWindow Key="C:\Users\nikla\Desktop\Zumo01\ZumoBot.cydsn\main.c" Guid="2b2e5c8c-c516-471d-890b-a4df7bedef1a" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

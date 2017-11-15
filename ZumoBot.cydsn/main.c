@@ -47,7 +47,7 @@
 
 int rread(void);
 
-uint8 const MAX_SPEED = 255;
+uint8 MAX_SPEED = 255;
 /**
  * @file    main.c
  * @brief   
@@ -61,64 +61,63 @@ int main()
     CyGlobalIntEnable; 
     UART_1_Start();
     ADC_Battery_Start();         
-    int16 adcresult =0;
-    float vbat = 0.0; 
     printf("\nBoot\n");
     BatteryLed_Write(0); // Switch led off 
+    
+    int16 adcresult =0;
+    float vbat = 0.0; 
     uint8 button;
     uint8 leftMotor = 20;
     uint8 rightMotor = 20;
     int checkVoltage = 5000;
-    uint8 exponent = 4;
-    uint8 turnMult = 1;
+    int lineDelay = 0;
+    uint8 exponent = 3;
+    uint8 turnMult = 2;
+    bool stop = false;
     
     struct sensors_ ref;
     CyGlobalIntEnable; 
     sensor_isr_StartEx(sensor_isr_handler);
     
     reflectance_start();
-    //TODO: 1 etusensori näkee viivan.
     IR_led_Write(1);
     for(;;)
     {
         button = SW1_Read();
+        //reflectance_read(&ref);
         if(button == 0){
-            CyDelay(500);
             reflectance_read(&ref);
-            if(ref.l1 > 20000 && ref.l3 > 20000 && ref.r1 > 20000 && ref.r3 > 20000){
+            if(ref.l3 > 23000 && ref.l1 > 23000 && ref.r1 > 23000 && ref.r3 > 23000){
+                CyDelay(500);
                 motor_start();              // motor start
-                for(;;){
-                    reflectance_read(&ref);
-                    //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);          
-                     motor_turn(leftMotor,rightMotor,1);
-            
-                    float leftTemp = pow((float)(((ref.l3 *turnMult + ref.l1)/(float)(ref.r3*turnMult + ref.r1))),exponent);
-                    //leftTemp = (leftTemp*15)/(leftTemp+15);
-                    /*if(leftTemp > 1.0 && leftTemp < 1.5){
-                    leftTemp *= 100;
-                     }else if(leftTemp < 1.75){
-                    leftTemp /= 32;
-                    }*/
-                    float motorSpeedLeft = MAX_SPEED/leftTemp;
-                    if(motorSpeedLeft > MAX_SPEED) motorSpeedLeft = MAX_SPEED;
-            
-                    float rightTemp = pow((float)(((ref.r3 * turnMult + ref.r1)/(float)(ref.l3*turnMult + ref.l1))),exponent);
-                    //rightTemp = (rightTemp*15)/(rightTemp+15);
-                    /*if(rightTemp > 1.0 && rightTemp < 1.5){
-                        rightTemp *= 100;
-                    }
-                    else if(rightTemp < 3){
-                        rightTemp /= 32;
-                    }*/
-                    float motorSpeedRight = MAX_SPEED/ rightTemp;
-                    if(motorSpeedRight > MAX_SPEED) motorSpeedRight = MAX_SPEED;
-            
-                    leftMotor = motorSpeedLeft;
-                    rightMotor = motorSpeedRight;
-                    //printf("left : %f right : %f\n",motorSpeedLeft ,motorSpeedRight);
-                    if(ref.l1 > 20000 && ref.l3 > 20000 && ref.r1 > 20000 && ref.r3 > 20000){
-                        break;
-                    }
+            for(;;){
+                reflectance_read(&ref);
+                //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);
+                float leftSensors = (float)((ref.l3 * turnMult) + ref.l1);
+                float rightSensors = (float)((ref.r3 * turnMult) +ref.r1);
+                
+                float leftRatio = leftSensors / rightSensors;
+                leftRatio = pow(leftRatio,exponent);
+                float motorSpeedLeft = MAX_SPEED/leftRatio;
+                if(motorSpeedLeft > MAX_SPEED) motorSpeedLeft = MAX_SPEED;
+        
+                float rightRatio = rightSensors / leftSensors;
+                rightRatio = pow(rightRatio,exponent);
+                float motorSpeedRight = MAX_SPEED/ rightRatio;
+                if(motorSpeedRight > MAX_SPEED) motorSpeedRight = MAX_SPEED;
+                
+                if(motorSpeedRight > motorSpeedLeft) leftMotor = MAX_SPEED;
+                if(motorSpeedLeft > motorSpeedRight) rightMotor = MAX_SPEED;
+           
+                leftMotor = motorSpeedLeft;
+                rightMotor = motorSpeedRight;
+                motor_turn(leftMotor,rightMotor,1);
+                lineDelay++;
+                printf("left : %f right : %f\n",motorSpeedLeft ,motorSpeedRight);
+                if(ref.l3 > 23000 && ref.l1 > 23000 && ref.r1 > 23000 && ref.r3 > 23000 && lineDelay > 2000){
+                    if(stop)break;
+                    stop = true;
+                }
                 }
             }
         }
