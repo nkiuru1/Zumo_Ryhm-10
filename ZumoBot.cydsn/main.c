@@ -48,10 +48,9 @@
 int rread(void);
 
 uint8 const MAX_SPEED = 255;
-uint8 const MIN_SPEED = 50;
+uint8 const MIN_SPEED = 25;
 /**
- * @file    main.c
- * @brief   
+ * @file    main.c * @brief   
  * @details  ** You should enable global interrupt for operating properly. **<br>&nbsp;&nbsp;&nbsp;CyGlobalIntEnable;<br>
 */
 
@@ -70,8 +69,10 @@ int main()
     uint8 leftMotor = 20;
     uint8 rightMotor = 20;
     int checkVoltage = 5000;
+    uint8 blackLine = 0;
+    uint8 lineDelay = 0;
     uint16 l1W,l1B,l3W,l3B,r1W,r1B,r3W,r3B;
-    float expo = 2;
+    float expo = 1.25;
     
     l3W = 4500;
     l3B = 23999;
@@ -93,43 +94,48 @@ int main()
     {
         button = SW1_Read();
         reflectance_read(&ref);
-                printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);   
+        //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);   
         if(button == 0){
             CyDelay(500);
             reflectance_read(&ref);
-    
-            motor_start();              // motor start
-            for(;;){
-                reflectance_read(&ref);
-                printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);          
+            if(ref.l3 > 23000 && ref.l1 > 23000 && ref.r1 > 23000 && ref.r3 > 23000){
+                blackLine++;
+                motor_start();              // motor start
+                for(;;){
+                    reflectance_read(&ref);
+                    printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);          
+                    float l3Scale = 1/(ref.l3 - l3W);
+                    float r1Scale = (((float)ref.l1 - l1W)/(l1B - l1W));
+                    float l1Scale = (((float)ref.r1 - r1W)/(r1B - r1W));
+                    float r3Scale = 1/(ref.r3 - r3W);
                 
-                
-                float l3Scale = 1/(ref.l3 - l3W);
-                float r1Scale = (((float)ref.l1 - l1W)/(l1B - l1W));
-                float l1Scale = (((float)ref.r1 - r1W)/(r1B - r1W));
-                float r3Scale = 1/(ref.r3 - r3W);
-                
-                float leftMotorSpeed = MAX_SPEED*(pow(l1Scale,expo));
-                if(leftMotorSpeed > MAX_SPEED) leftMotorSpeed = MAX_SPEED;
-                //if(leftMotorSpeed < MIN_SPEED) leftMotorSpeed = MIN_SPEED;
+                    float leftMotorSpeed = MAX_SPEED*(pow(l1Scale,expo));
+                    if(leftMotorSpeed > MAX_SPEED) leftMotorSpeed = MAX_SPEED;
+                    //if(leftMotorSpeed < MIN_SPEED) leftMotorSpeed = MIN_SPEED;
          
-                float rightMotorSpeed = MAX_SPEED*(pow(r1Scale,expo));
-                if(rightMotorSpeed > MAX_SPEED) rightMotorSpeed = MAX_SPEED;
-                //if(rightMotorSpeed < MIN_SPEED) rightMotorSpeed = MIN_SPEED;
+                    float rightMotorSpeed = MAX_SPEED*(pow(r1Scale,expo));
+                    if(rightMotorSpeed > MAX_SPEED) rightMotorSpeed = MAX_SPEED;
+                    //if(rightMotorSpeed < MIN_SPEED) rightMotorSpeed = MIN_SPEED;
                 
-                //if(leftMotorSpeed < rightMotorSpeed) rightMotorSpeed = MAX_SPEED;
-                //if(leftMotorSpeed > rightMotorSpeed) leftMotorSpeed = MAX_SPEED;
+                    if(leftMotorSpeed < rightMotorSpeed) rightMotorSpeed = MAX_SPEED;
+                    if(leftMotorSpeed > rightMotorSpeed) leftMotorSpeed = MAX_SPEED;
                 
-                rightMotor = rightMotorSpeed;
-                leftMotor = leftMotorSpeed;
-                motor_turn(leftMotor,rightMotor,1);
-                
-                printf("left : %hhu right : %hhu\n",leftMotor ,rightMotor);
-                  
+                    rightMotor = rightMotorSpeed;
+                    leftMotor = leftMotorSpeed;
+                    motor_turn(leftMotor,rightMotor,1);
+                    lineDelay ++;
+                    //printf("left : %hhu right : %hhu\n",leftMotor ,rightMotor);
+                    if(ref.l3 > 23000 && ref.l1 > 23000 && ref.r1 > 23000 && ref.r3 > 23000 && lineDelay > 50){
+                        if(blackLine > 2){
+                            break;
+                        }
+                        blackLine++;
+                        lineDelay = 0;
+                    }
                 }
                 motor_forward(0,0);
                 motor_stop();               // motor stop
-                
+            }
         }
         
         ADC_Battery_StartConvert();
