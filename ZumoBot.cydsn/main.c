@@ -45,9 +45,22 @@
 #include "Ambient.h"
 #include "Beep.h"
 
+#define MAX_SPEED 255
+#define BASE_SPEED 255
+#define Kp 128
+#define Kd 8
 int rread(void);
+<<<<<<< Updated upstream
 
 uint8 MAX_SPEED = 255;
+=======
+void motor_hard_turn_left(uint32 delay);
+void motor_hard_turn_right(uint32 delay);
+bool checkVoltage();
+void flashLED();
+void calibrate(struct sensors_ ref, float * result);
+
+>>>>>>> Stashed changes
 /**
  * @file    main.c
  * @brief   
@@ -58,22 +71,40 @@ uint8 MAX_SPEED = 255;
 //battery level//
 int main()
 {
+    //Time 00:14:40
     CyGlobalIntEnable; 
     UART_1_Start();
     ADC_Battery_Start();         
     printf("\nBoot\n");
     BatteryLed_Write(0); // Switch led off 
     
+<<<<<<< Updated upstream
     int16 adcresult =0;
+=======
+>>>>>>> Stashed changes
     float vbat = 0.0; 
     uint8 button;
     uint8 leftMotor = 20;
     uint8 rightMotor = 20;
-    int checkVoltage = 5000;
-    int lineDelay = 0;
-    uint8 exponent = 3;
-    uint8 turnMult = 2;
-    bool stop = false;
+=======
+    uint16 checkVoltageDelay = 5000;
+    uint8 blackLine = 0;
+    uint8 lineDelay = 0;
+    uint16 l1W,l1B,l3W,l3B,r1W,r1B,r3W,r3B;
+    float result[5];
+    bool calibrated = false;
+    uint8 leftDir = 1;
+    uint8 rightDir = 1;
+    
+    l3W = 4500;
+    l3B = 23999;
+    l1W = 3000;
+    l1B = 23999;
+    r1W = 3300;
+    r1B = 23999;
+    r3W = 8300;
+    r3B = 23999;
+>>>>>>> Stashed changes
     
     struct sensors_ ref;
     CyGlobalIntEnable; 
@@ -81,69 +112,122 @@ int main()
     
     reflectance_start();
     IR_led_Write(1);
+    
+    float error = 0;
+    float integral = 0;
+    float derivative = 0;
+    float output = 0;
+    float lastError = 0;
     for(;;)
     {
         button = SW1_Read();
         //reflectance_read(&ref);
         if(button == 0){
-            reflectance_read(&ref);
-            if(ref.l3 > 23000 && ref.l1 > 23000 && ref.r1 > 23000 && ref.r3 > 23000){
+
+=======
+            if(!calibrated){
+                calibrate(ref, result);
+                l1W = result[0];
+                r1W = result[1];
+                l3W = result[3];
+                r3W = result[4];
+                calibrated = true;
+                button = 1;
+                //printf("Left 1: %i     Right 1: %i\n", l1W,r1W);
+            }       
+            if(button == 0 && calibrated){
                 CyDelay(500);
-                motor_start();              // motor start
-            for(;;){
-                reflectance_read(&ref);
-                //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);
-                float leftSensors = (float)((ref.l3 * turnMult) + ref.l1);
-                float rightSensors = (float)((ref.r3 * turnMult) +ref.r1);
-                
-                float leftRatio = leftSensors / rightSensors;
-                leftRatio = pow(leftRatio,exponent);
-                float motorSpeedLeft = MAX_SPEED/leftRatio;
-                if(motorSpeedLeft > MAX_SPEED) motorSpeedLeft = MAX_SPEED;
+                motor_start();
+                reflectance_read(&ref);           
+                    motor_start();
+                    for(;;){
+                        reflectance_read(&ref);
+                        //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);  
+                        float l3Scale = (float)l3B/(ref.l3 - l3W);
+                        float r1Scale = (float)r1B/(ref.l1 - l1W);
+                        float l1Scale = (float)l1B/(ref.r1 - r1W);
+                        float r3Scale = (float)r3B/(ref.r3 - r3W);
+                        
+                        error = (r1Scale) - (l1Scale);
+                        float motorSpeed = Kp * error + Kd * (error - lastError);
+                        lastError = error;
+                        
+                        float leftMotorSpeed = BASE_SPEED + motorSpeed;
+                        if(leftMotorSpeed > MAX_SPEED) leftMotorSpeed = MAX_SPEED;
         
-                float rightRatio = rightSensors / leftSensors;
-                rightRatio = pow(rightRatio,exponent);
-                float motorSpeedRight = MAX_SPEED/ rightRatio;
-                if(motorSpeedRight > MAX_SPEED) motorSpeedRight = MAX_SPEED;
+                        float rightMotorSpeed = BASE_SPEED - motorSpeed;
+                        if(rightMotorSpeed > MAX_SPEED) rightMotorSpeed = MAX_SPEED;
                 
-                if(motorSpeedRight > motorSpeedLeft) leftMotor = MAX_SPEED;
-                if(motorSpeedLeft > motorSpeedRight) rightMotor = MAX_SPEED;
-           
-                leftMotor = motorSpeedLeft;
-                rightMotor = motorSpeedRight;
-                motor_turn(leftMotor,rightMotor,1);
-                lineDelay++;
-                printf("left : %f right : %f\n",motorSpeedLeft ,motorSpeedRight);
-                if(ref.l3 > 23000 && ref.l1 > 23000 && ref.r1 > 23000 && ref.r3 > 23000 && lineDelay > 2000){
-                    if(stop)break;
-                    stop = true;
-                }
-                }
+                        //if (rightMotorSpeed < -255) rightMotorSpeed = -255; 
+                        //if (leftMotorSpeed < -255) leftMotorSpeed = -255;
+                    
+                        rightMotor = rightMotorSpeed;
+                        leftMotor = leftMotorSpeed;
+                        if(ref.r3 >= r3B-4000){
+                            rightDir = 1;
+                            rightMotor = 125;
+                        }
+                        if(ref.l3 >= l3B-4000){
+                            leftDir = 1; 
+                            leftMotor = 125;
+                        }
+                        if(ref.r3 < r3B-4000)
+                        {
+                            rightDir = 0;
+                        }
+                        if(ref.l3 < l3B-4000)
+                        {
+                            leftDir = 0;
+                        }
+                        motor_drive(leftDir,rightDir,leftMotor,rightMotor,1);
+
+                        lineDelay ++;
+                        //printf("left : %f   %f    right : %f    %f\n",l1Scale ,l3Scale,r1Scale,r3Scale);
+                        //printf("error: %f       motorSpeed: %f\n", error, motorSpeed);
+                        //printf("L:%i R:%i\n", leftMotorSpeed,rightMotorSpeed);
+                        //checks if passed black line every 20ms
+                        if(ref.l3 > 20000 && ref.l1 > 20000 && ref.r1 > 20000 && ref.r3 > 20000 && lineDelay > 20){
+                            if(blackLine > 2){
+                                break;
+                            }
+                            blackLine++;
+                            lineDelay = 0;
+                        }
+                    }
+                    motor_forward(0,0);
+                    motor_stop();               // motor stop
             }
         }
-        motor_forward(0,0);
-        motor_stop();               // motor stop
-        
-        ADC_Battery_StartConvert();
-        if(checkVoltage >= 5000){
-            if(ADC_Battery_IsEndConversion(ADC_Battery_WAIT_FOR_RESULT)) {   // wait for get ADC converted value
-                adcresult = ADC_Battery_GetResult16();
-                vbat = (float)adcresult/(float)819;
-                vbat *=1.5;
-            
-            // If you want to print value
-            //printf("%d %f\r\n",adcresult, volts);
-                printf("Vbat: %.6f\n", vbat);
+        if(checkVoltageDelay >= 5000){
+            if(!checkVoltage()){
+                break;
+>>>>>>> Stashed changes
             }
-            checkVoltage = 0;
-        }
-        if(vbat < 0.0){
-            break;
+            checkVoltageDelay = 0;
         }
         CyDelay(20);
-        checkVoltage +=20;
-        
+        checkVoltageDelay +=20;
     }
+    flashLED();
+ }   
+
+bool checkVoltage(){
+    uint16 adcresult = 0;
+    float vbat = 0;
+    ADC_Battery_StartConvert();
+    if(ADC_Battery_IsEndConversion(ADC_Battery_WAIT_FOR_RESULT)) {   // wait for get ADC converted value
+        adcresult = ADC_Battery_GetResult16();
+        vbat = (float)adcresult/(float)819;
+        vbat *=1.5;
+        printf("Vbat: %.6f\n", vbat);
+    }
+    if(vbat < 4.000){
+        return false;
+    }
+    return true;
+}
+
+void flashLED(){
     bool on = false;  
     int delay = 475;
     int delaySubtract = 10;
@@ -177,7 +261,49 @@ int main()
         delay-=delaySubtract;
         CyDelay(delay);
     }
+<<<<<<< Updated upstream
  }   
+=======
+}
+
+
+void calibrate(struct sensors_ ref, float *result)
+{
+    float l1[10]={};
+    float r1[10]={};
+    float l3[10]={};
+    float r3[10]={};
+    int timer = 0;
+    int i = 0;
+    
+    while(timer <= 1100)
+    {
+        if(i < 10){
+        reflectance_read(&ref);
+        l1[i] += ref.l1;
+        r1[i] += ref.r1;
+        l3[i] += ref.l3;
+        r3[i] += ref.r3;
+        result[0] += l1[i];
+        result[1] += r1[i];
+        result[2] += l3[i];
+        result[3] += r3[i];
+        printf("line: %i    ", i);
+        printf("l:%f r:%f\n",l1[i],r1[i]);
+        i++;
+        }
+        
+        timer += 100;
+        CyDelay(100);
+        
+    }
+    result[0] /= 10;
+    result[1] /= 10;
+    result[2] /= 10;
+    result[3] /= 10;
+    Beep(25,200);
+}
+>>>>>>> Stashed changes
 //*/
 
 

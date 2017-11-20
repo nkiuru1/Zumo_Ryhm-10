@@ -1,0 +1,34 @@
+--------------- Rebuild Started: 11/20/2017 12:01:00 Project: main.c, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I.\ZumoLibrary -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/main.lst -g -D DEBUG -Wall -ffunction-sections -ffat-lto-objects -Og -c main.c -o .\CortexM3\ARM_GCC_541\Debug\main.o
+main.c: In function 'main':
+main.c:106:11: warning: unused variable 'output' [-Wunused-variable]
+     float output = 0;
+           ^
+main.c:105:11: warning: unused variable 'derivative' [-Wunused-variable]
+     float derivative = 0;
+           ^
+main.c:104:11: warning: unused variable 'integral' [-Wunused-variable]
+     float integral = 0;
+           ^
+main.c:82:40: warning: variable 'r3B' set but not used [-Wunused-but-set-variable]
+     uint16 l1W,l1B,l3W,l3B,r1W,r1B,r3W,r3B;
+                                        ^
+main.c:82:36: warning: variable 'r3W' set but not used [-Wunused-but-set-variable]
+     uint16 l1W,l1B,l3W,l3B,r1W,r1B,r3W,r3B;
+                                    ^
+main.c:82:32: warning: variable 'r1B' set but not used [-Wunused-but-set-variable]
+     uint16 l1W,l1B,l3W,l3B,r1W,r1B,r3W,r3B;
+                                ^
+main.c:82:24: warning: variable 'l3B' set but not used [-Wunused-but-set-variable]
+     uint16 l1W,l1B,l3W,l3B,r1W,r1B,r3W,r3B;
+                        ^
+main.c:82:20: warning: variable 'l3W' set but not used [-Wunused-but-set-variable]
+     uint16 l1W,l1B,l3W,l3B,r1W,r1B,r3W,r3B;
+                    ^
+main.c:82:16: warning: variable 'l1B' set but not used [-Wunused-but-set-variable]
+     uint16 l1W,l1B,l3W,l3B,r1W,r1B,r3W,r3B;
+                ^
+main.c:75:11: warning: unused variable 'vbat' [-Wunused-variable]
+     float vbat = 0.0; 
+           ^
+--------------- Rebuild Succeeded: 11/20/2017 12:01:00 ---------------

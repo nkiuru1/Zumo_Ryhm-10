@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccwX8bEU.s 			page 1
+=======
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 1
+>>>>>>> Stashed changes
 
 
    1              		.syntax unified
@@ -19,6 +23,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccwX8bEU.s 			page 1
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
+<<<<<<< Updated upstream
   19              		.global	__aeabi_i2f
   20              		.global	__aeabi_fdiv
   21              		.global	__aeabi_f2d
@@ -36,6 +41,22 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccwX8bEU.s 			page 1
   33              	main:
   34              	.LFB64:
   35              		.file 1 "main.c"
+=======
+  19              		.global	__aeabi_ui2f
+  20              		.global	__aeabi_fdiv
+  21              		.global	__aeabi_fmul
+  22              		.global	__aeabi_f2d
+  23              		.global	__aeabi_fcmplt
+  24              		.section	.text.checkVoltage,"ax",%progbits
+  25              		.align	2
+  26              		.global	checkVoltage
+  27              		.thumb
+  28              		.thumb_func
+  29              		.type	checkVoltage, %function
+  30              	checkVoltage:
+  31              	.LFB65:
+  32              		.file 1 "main.c"
+>>>>>>> Stashed changes
    1:main.c        **** /**
    2:main.c        **** * @mainpage ZumoBot Project
    3:main.c        **** * @brief    You can make your own ZumoBot with various sensors.
@@ -64,6 +85,9 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccwX8bEU.s 			page 1
   23:main.c        ****     &nbsp;IR LED <br><br><br>
   24:main.c        ****     </p>
   25:main.c        ****     
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 2
+
+
   26:main.c        ****     <p>
   27:main.c        ****     <B>Communication</B><br>
   28:main.c        ****     I2C, UART, Serial<br>
@@ -86,6 +110,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccwX8bEU.s 			page 1
   45:main.c        **** #include "Ambient.h"
   46:main.c        **** #include "Beep.h"
   47:main.c        **** 
+<<<<<<< Updated upstream
   48:main.c        **** int rread(void);
   49:main.c        **** 
   50:main.c        **** uint8 MAX_SPEED = 255;
@@ -3224,3 +3249,4552 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccwX8bEU.s 			page 1
  2356      72697465 
  2356      00
  2357              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+=======
+  48:main.c        **** #define MAX_SPEED 255
+  49:main.c        **** #define BASE_SPEED 255
+  50:main.c        **** #define Kp 128
+  51:main.c        **** #define Kd 8
+  52:main.c        **** int rread(void);
+  53:main.c        **** void motor_hard_turn_left(uint32 delay);
+  54:main.c        **** void motor_hard_turn_right(uint32 delay);
+  55:main.c        **** bool checkVoltage();
+  56:main.c        **** void flashLED();
+  57:main.c        **** void calibrate(struct sensors_ ref, float * result);
+  58:main.c        **** 
+  59:main.c        **** /**
+  60:main.c        ****  * @file    main.c * @brief   
+  61:main.c        ****  * @details  ** You should enable global interrupt for operating properly. **<br>&nbsp;&nbsp;&nbsp;
+  62:main.c        **** */
+  63:main.c        **** 
+  64:main.c        **** 
+  65:main.c        **** //battery level//
+  66:main.c        **** int main()
+  67:main.c        **** {
+  68:main.c        ****     CyGlobalIntEnable; 
+  69:main.c        ****     UART_1_Start();
+  70:main.c        ****     ADC_Battery_Start();         
+  71:main.c        ****     printf("\nBoot\n");
+  72:main.c        ****     BatteryLed_Write(0); // Switch led off 
+  73:main.c        ****     
+  74:main.c        ****     float vbat = 0.0; 
+  75:main.c        ****     uint8 button;
+  76:main.c        ****     uint8 leftMotor = 20;
+  77:main.c        ****     uint8 rightMotor = 20;
+  78:main.c        ****     uint16 checkVoltageDelay = 5000;
+  79:main.c        ****     uint8 blackLine = 0;
+  80:main.c        ****     uint8 lineDelay = 0;
+  81:main.c        ****     uint16 l1W,l1B,l3W,l3B,r1W,r1B,r3W,r3B;
+  82:main.c        ****     float result[5];
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 3
+
+
+  83:main.c        ****     bool calibrated = false;
+  84:main.c        ****     uint8 leftDir = 1;
+  85:main.c        ****     uint8 rightDir = 1;
+  86:main.c        ****     
+  87:main.c        ****     l3W = 4500;
+  88:main.c        ****     l3B = 23999;
+  89:main.c        ****     l1W = 3000;
+  90:main.c        ****     l1B = 23999;
+  91:main.c        ****     r1W = 3300;
+  92:main.c        ****     r1B = 23999;
+  93:main.c        ****     r3W = 8300;
+  94:main.c        ****     r3B = 23999;
+  95:main.c        ****     
+  96:main.c        ****     struct sensors_ ref;
+  97:main.c        ****     CyGlobalIntEnable; 
+  98:main.c        ****     sensor_isr_StartEx(sensor_isr_handler);
+  99:main.c        ****     
+ 100:main.c        ****     reflectance_start();
+ 101:main.c        ****     //TODO: 1 etusensori näkee viivan.
+ 102:main.c        ****     IR_led_Write(1);
+ 103:main.c        ****     
+ 104:main.c        ****     float error = 0;
+ 105:main.c        ****     float integral = 0;
+ 106:main.c        ****     float derivative = 0;
+ 107:main.c        ****     float output = 0;
+ 108:main.c        ****     float lastError = 0;
+ 109:main.c        ****     for(;;)
+ 110:main.c        ****     {
+ 111:main.c        ****         button = SW1_Read();
+ 112:main.c        ****         //reflectance_read(&ref);
+ 113:main.c        ****         //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);   
+ 114:main.c        ****         if(button == 0){
+ 115:main.c        ****             if(!calibrated){
+ 116:main.c        ****                 calibrate(ref, result);
+ 117:main.c        ****                 l1W = result[0];
+ 118:main.c        ****                 r1W = result[1];
+ 119:main.c        ****                 l3W = result[3];
+ 120:main.c        ****                 r3W = result[4];
+ 121:main.c        ****                 calibrated = true;
+ 122:main.c        ****                 button = 1;
+ 123:main.c        ****                 //printf("Left 1: %i     Right 1: %i\n", l1W,r1W);
+ 124:main.c        ****             }       
+ 125:main.c        ****             if(button == 0 && calibrated){
+ 126:main.c        ****                 CyDelay(500);
+ 127:main.c        ****                 motor_start();
+ 128:main.c        ****                 reflectance_read(&ref);           
+ 129:main.c        ****                     motor_start();
+ 130:main.c        ****                     for(;;){
+ 131:main.c        ****                         reflectance_read(&ref);
+ 132:main.c        ****                         //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);  
+ 133:main.c        ****                         float l3Scale = (float)l3B/(ref.l3 - l3W);
+ 134:main.c        ****                         float r1Scale = (float)r1B/(ref.l1 - l1W);
+ 135:main.c        ****                         float l1Scale = (float)l1B/(ref.r1 - r1W);
+ 136:main.c        ****                         float r3Scale = (float)r3B/(ref.r3 - r3W);
+ 137:main.c        ****                         
+ 138:main.c        ****                         error = (r1Scale) - (l1Scale);
+ 139:main.c        ****                         float motorSpeed = Kp * error + Kd * (error - lastError);
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 4
+
+
+ 140:main.c        ****                         lastError = error;
+ 141:main.c        ****                         
+ 142:main.c        ****                         float leftMotorSpeed = BASE_SPEED + motorSpeed;
+ 143:main.c        ****                         if(leftMotorSpeed > MAX_SPEED) leftMotorSpeed = MAX_SPEED;
+ 144:main.c        ****         
+ 145:main.c        ****                         float rightMotorSpeed = BASE_SPEED - motorSpeed;
+ 146:main.c        ****                         if(rightMotorSpeed > MAX_SPEED) rightMotorSpeed = MAX_SPEED;
+ 147:main.c        ****                 
+ 148:main.c        ****                         //if (rightMotorSpeed < -255) rightMotorSpeed = -255; 
+ 149:main.c        ****                         //if (leftMotorSpeed < -255) leftMotorSpeed = -255;
+ 150:main.c        ****                     
+ 151:main.c        ****                         rightMotor = rightMotorSpeed;
+ 152:main.c        ****                         leftMotor = leftMotorSpeed;
+ 153:main.c        ****                         if(ref.r3 >= r3B-4000){
+ 154:main.c        ****                             rightDir = 1;
+ 155:main.c        ****                             rightMotor = 125;
+ 156:main.c        ****                         }
+ 157:main.c        ****                         if(ref.l3 >= l3B-4000){
+ 158:main.c        ****                             leftDir = 1; 
+ 159:main.c        ****                             leftMotor = 125;
+ 160:main.c        ****                         }
+ 161:main.c        ****                         if(ref.r3 < r3B-4000)
+ 162:main.c        ****                         {
+ 163:main.c        ****                             rightDir = 0;
+ 164:main.c        ****                         }
+ 165:main.c        ****                         if(ref.l3 < l3B-4000)
+ 166:main.c        ****                         {
+ 167:main.c        ****                             leftDir = 0;
+ 168:main.c        ****                         }
+ 169:main.c        ****                         motor_drive(leftDir,rightDir,leftMotor,rightMotor,1);
+ 170:main.c        **** 
+ 171:main.c        ****                         lineDelay ++;
+ 172:main.c        ****                         //printf("left : %f   %f    right : %f    %f\n",l1Scale ,l3Scale,r1Scale,r3
+ 173:main.c        ****                         //printf("error: %f       motorSpeed: %f\n", error, motorSpeed);
+ 174:main.c        ****                         //printf("L:%i R:%i\n", leftMotorSpeed,rightMotorSpeed);
+ 175:main.c        ****                         //checks if passed black line every 20ms
+ 176:main.c        ****                         if(ref.l3 > 20000 && ref.l1 > 20000 && ref.r1 > 20000 && ref.r3 > 20000 && 
+ 177:main.c        ****                             if(blackLine > 2){
+ 178:main.c        ****                                 break;
+ 179:main.c        ****                             }
+ 180:main.c        ****                             blackLine++;
+ 181:main.c        ****                             lineDelay = 0;
+ 182:main.c        ****                         }
+ 183:main.c        ****                     }
+ 184:main.c        ****                     motor_forward(0,0);
+ 185:main.c        ****                     motor_stop();               // motor stop
+ 186:main.c        ****             }
+ 187:main.c        ****         }
+ 188:main.c        ****         if(checkVoltageDelay >= 5000){
+ 189:main.c        ****             if(!checkVoltage()){
+ 190:main.c        ****                 break;
+ 191:main.c        ****             }
+ 192:main.c        ****             checkVoltageDelay = 0;
+ 193:main.c        ****         }
+ 194:main.c        ****         CyDelay(20);
+ 195:main.c        ****         checkVoltageDelay +=20;
+ 196:main.c        ****     }
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 5
+
+
+ 197:main.c        ****     flashLED();
+ 198:main.c        ****  }   
+ 199:main.c        **** 
+ 200:main.c        **** bool checkVoltage(){
+  33              		.loc 1 200 0
+  34              		.cfi_startproc
+  35              		@ args = 0, pretend = 0, frame = 0
+  36              		@ frame_needed = 0, uses_anonymous_args = 0
+  37 0000 10B5     		push	{r4, lr}
+  38              		.cfi_def_cfa_offset 8
+  39              		.cfi_offset 4, -8
+  40              		.cfi_offset 14, -4
+  41              	.LVL0:
+ 201:main.c        ****     uint16 adcresult = 0;
+ 202:main.c        ****     float vbat = 0;
+ 203:main.c        ****     ADC_Battery_StartConvert();
+  42              		.loc 1 203 0
+  43 0002 FFF7FEFF 		bl	ADC_Battery_StartConvert
+  44              	.LVL1:
+ 204:main.c        ****     if(ADC_Battery_IsEndConversion(ADC_Battery_WAIT_FOR_RESULT)) {   // wait for get ADC converted 
+  45              		.loc 1 204 0
+  46 0006 0020     		movs	r0, #0
+  47 0008 FFF7FEFF 		bl	ADC_Battery_IsEndConversion
+  48              	.LVL2:
+  49 000c A0B1     		cbz	r0, .L5
+ 205:main.c        ****         adcresult = ADC_Battery_GetResult16();
+  50              		.loc 1 205 0
+  51 000e FFF7FEFF 		bl	ADC_Battery_GetResult16
+  52              	.LVL3:
+ 206:main.c        ****         vbat = (float)adcresult/(float)819;
+  53              		.loc 1 206 0
+  54 0012 80B2     		uxth	r0, r0
+  55 0014 FFF7FEFF 		bl	__aeabi_ui2f
+  56              	.LVL4:
+  57 0018 0D49     		ldr	r1, .L10
+  58 001a FFF7FEFF 		bl	__aeabi_fdiv
+  59              	.LVL5:
+ 207:main.c        ****         vbat *=1.5;
+  60              		.loc 1 207 0
+  61 001e 4FF07F51 		mov	r1, #1069547520
+  62 0022 FFF7FEFF 		bl	__aeabi_fmul
+  63              	.LVL6:
+  64 0026 0446     		mov	r4, r0
+  65              	.LVL7:
+ 208:main.c        ****         printf("Vbat: %.6f\n", vbat);
+  66              		.loc 1 208 0
+  67 0028 FFF7FEFF 		bl	__aeabi_f2d
+  68              	.LVL8:
+  69 002c 0246     		mov	r2, r0
+  70 002e 0B46     		mov	r3, r1
+  71 0030 0848     		ldr	r0, .L10+4
+  72 0032 FFF7FEFF 		bl	printf
+  73              	.LVL9:
+  74 0036 00E0     		b	.L2
+  75              	.LVL10:
+  76              	.L5:
+ 202:main.c        ****     ADC_Battery_StartConvert();
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 6
+
+
+  77              		.loc 1 202 0
+  78 0038 0024     		movs	r4, #0
+  79              	.LVL11:
+  80              	.L2:
+ 209:main.c        ****     }
+ 210:main.c        ****     if(vbat < 4.000){
+  81              		.loc 1 210 0
+  82 003a 4FF08141 		mov	r1, #1082130432
+  83 003e 2046     		mov	r0, r4
+  84 0040 FFF7FEFF 		bl	__aeabi_fcmplt
+  85              	.LVL12:
+  86 0044 08B1     		cbz	r0, .L8
+ 211:main.c        ****         return false;
+  87              		.loc 1 211 0
+  88 0046 0020     		movs	r0, #0
+  89 0048 10BD     		pop	{r4, pc}
+  90              	.LVL13:
+  91              	.L8:
+ 212:main.c        ****     }
+ 213:main.c        ****     return true;
+  92              		.loc 1 213 0
+  93 004a 0120     		movs	r0, #1
+ 214:main.c        **** }
+  94              		.loc 1 214 0
+  95 004c 10BD     		pop	{r4, pc}
+  96              	.LVL14:
+  97              	.L11:
+  98 004e 00BF     		.align	2
+  99              	.L10:
+ 100 0050 00C04C44 		.word	1145880576
+ 101 0054 00000000 		.word	.LC0
+ 102              		.cfi_endproc
+ 103              	.LFE65:
+ 104              		.size	checkVoltage, .-checkVoltage
+ 105              		.section	.text.flashLED,"ax",%progbits
+ 106              		.align	2
+ 107              		.global	flashLED
+ 108              		.thumb
+ 109              		.thumb_func
+ 110              		.type	flashLED, %function
+ 111              	flashLED:
+ 112              	.LFB66:
+ 215:main.c        **** 
+ 216:main.c        **** void flashLED(){
+ 113              		.loc 1 216 0
+ 114              		.cfi_startproc
+ 115              		@ args = 0, pretend = 0, frame = 0
+ 116              		@ frame_needed = 0, uses_anonymous_args = 0
+ 117 0000 70B5     		push	{r4, r5, r6, lr}
+ 118              		.cfi_def_cfa_offset 16
+ 119              		.cfi_offset 4, -16
+ 120              		.cfi_offset 5, -12
+ 121              		.cfi_offset 6, -8
+ 122              		.cfi_offset 14, -4
+ 123              	.LVL15:
+ 217:main.c        ****     bool on = false;  
+ 218:main.c        ****     int delay = 475;
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 7
+
+
+ 219:main.c        ****     int delaySubtract = 10;
+ 124              		.loc 1 219 0
+ 125 0002 0A25     		movs	r5, #10
+ 218:main.c        ****     int delaySubtract = 10;
+ 126              		.loc 1 218 0
+ 127 0004 40F2DB14 		movw	r4, #475
+ 217:main.c        ****     bool on = false;  
+ 128              		.loc 1 217 0
+ 129 0008 0026     		movs	r6, #0
+ 130              	.LVL16:
+ 131              	.L21:
+ 220:main.c        ****     for(;;){
+ 221:main.c        ****         if(!on){
+ 132              		.loc 1 221 0
+ 133 000a 26B9     		cbnz	r6, .L13
+ 222:main.c        ****             BatteryLed_Write(1);
+ 134              		.loc 1 222 0
+ 135 000c 0120     		movs	r0, #1
+ 136 000e FFF7FEFF 		bl	BatteryLed_Write
+ 137              	.LVL17:
+ 223:main.c        ****             on = true;
+ 138              		.loc 1 223 0
+ 139 0012 0126     		movs	r6, #1
+ 140 0014 03E0     		b	.L14
+ 141              	.LVL18:
+ 142              	.L13:
+ 224:main.c        ****         }else{
+ 225:main.c        ****             BatteryLed_Write(0);
+ 143              		.loc 1 225 0
+ 144 0016 0020     		movs	r0, #0
+ 145 0018 FFF7FEFF 		bl	BatteryLed_Write
+ 146              	.LVL19:
+ 226:main.c        ****             on = false;
+ 147              		.loc 1 226 0
+ 148 001c 0026     		movs	r6, #0
+ 149              	.LVL20:
+ 150              	.L14:
+ 227:main.c        ****         }
+ 228:main.c        ****         
+ 229:main.c        ****         if(delay == 0){
+ 151              		.loc 1 229 0
+ 152 001e 0CB9     		cbnz	r4, .L15
+ 230:main.c        ****             delaySubtract = -1;
+ 153              		.loc 1 230 0
+ 154 0020 4FF0FF35 		mov	r5, #-1
+ 155              	.LVL21:
+ 156              	.L15:
+ 231:main.c        ****         }
+ 232:main.c        ****         if(delay > 475){
+ 157              		.loc 1 232 0
+ 158 0024 B4F5EE7F 		cmp	r4, #476
+ 159 0028 00DB     		blt	.L16
+ 233:main.c        ****             delaySubtract = 10;
+ 160              		.loc 1 233 0
+ 161 002a 0A25     		movs	r5, #10
+ 162              	.LVL22:
+ 163              	.L16:
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 8
+
+
+ 234:main.c        ****         }
+ 235:main.c        ****         if(delay < 100 && delaySubtract > 0){
+ 164              		.loc 1 235 0
+ 165 002c 632C     		cmp	r4, #99
+ 166 002e 01DC     		bgt	.L17
+ 167              		.loc 1 235 0 is_stmt 0 discriminator 1
+ 168 0030 002D     		cmp	r5, #0
+ 169 0032 04DC     		bgt	.L24
+ 170              	.L17:
+ 236:main.c        ****             delaySubtract = 1;
+ 237:main.c        ****         }
+ 238:main.c        ****         else if(delay < 200 && delaySubtract > 0){
+ 171              		.loc 1 238 0 is_stmt 1
+ 172 0034 C72C     		cmp	r4, #199
+ 173 0036 05DC     		bgt	.L18
+ 174              		.loc 1 238 0 is_stmt 0 discriminator 1
+ 175 0038 002D     		cmp	r5, #0
+ 176 003a 02DC     		bgt	.L25
+ 177 003c 02E0     		b	.L18
+ 178              	.L24:
+ 236:main.c        ****             delaySubtract = 1;
+ 179              		.loc 1 236 0 is_stmt 1
+ 180 003e 0125     		movs	r5, #1
+ 181              	.LVL23:
+ 182 0040 00E0     		b	.L18
+ 183              	.LVL24:
+ 184              	.L25:
+ 239:main.c        ****             delaySubtract = 3;
+ 185              		.loc 1 239 0
+ 186 0042 0325     		movs	r5, #3
+ 187              	.LVL25:
+ 188              	.L18:
+ 240:main.c        ****         }
+ 241:main.c        ****         if(delay > 200 && delaySubtract < 0){
+ 189              		.loc 1 241 0
+ 190 0044 C82C     		cmp	r4, #200
+ 191 0046 01DD     		ble	.L19
+ 192              		.loc 1 241 0 is_stmt 0 discriminator 1
+ 193 0048 002D     		cmp	r5, #0
+ 194 004a 04DB     		blt	.L26
+ 195              	.L19:
+ 242:main.c        ****             delaySubtract = -10;
+ 243:main.c        ****         }
+ 244:main.c        ****         else if(delay > 100 && delaySubtract < 0){
+ 196              		.loc 1 244 0 is_stmt 1
+ 197 004c 642C     		cmp	r4, #100
+ 198 004e 07DD     		ble	.L20
+ 199              		.loc 1 244 0 is_stmt 0 discriminator 1
+ 200 0050 002D     		cmp	r5, #0
+ 201 0052 05DA     		bge	.L20
+ 202 0054 02E0     		b	.L27
+ 203              	.L26:
+ 242:main.c        ****             delaySubtract = -10;
+ 204              		.loc 1 242 0 is_stmt 1
+ 205 0056 6FF00905 		mvn	r5, #9
+ 206              	.LVL26:
+ 207 005a 01E0     		b	.L20
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 9
+
+
+ 208              	.LVL27:
+ 209              	.L27:
+ 245:main.c        ****             delaySubtract = -5;
+ 210              		.loc 1 245 0
+ 211 005c 6FF00405 		mvn	r5, #4
+ 212              	.LVL28:
+ 213              	.L20:
+ 246:main.c        ****         }
+ 247:main.c        ****         delay-=delaySubtract;
+ 214              		.loc 1 247 0
+ 215 0060 641B     		subs	r4, r4, r5
+ 216              	.LVL29:
+ 248:main.c        ****         CyDelay(delay);
+ 217              		.loc 1 248 0
+ 218 0062 2046     		mov	r0, r4
+ 219 0064 FFF7FEFF 		bl	CyDelay
+ 220              	.LVL30:
+ 249:main.c        ****     }
+ 221              		.loc 1 249 0
+ 222 0068 CFE7     		b	.L21
+ 223              		.cfi_endproc
+ 224              	.LFE66:
+ 225              		.size	flashLED, .-flashLED
+ 226              		.global	__aeabi_i2f
+ 227              		.global	__aeabi_fadd
+ 228 006a 00BF     		.section	.text.calibrate,"ax",%progbits
+ 229              		.align	2
+ 230              		.global	calibrate
+ 231              		.thumb
+ 232              		.thumb_func
+ 233              		.type	calibrate, %function
+ 234              	calibrate:
+ 235              	.LFB67:
+ 250:main.c        **** }
+ 251:main.c        **** 
+ 252:main.c        **** 
+ 253:main.c        **** void calibrate(struct sensors_ ref, float *result)
+ 254:main.c        **** {
+ 236              		.loc 1 254 0
+ 237              		.cfi_startproc
+ 238              		@ args = 0, pretend = 0, frame = 168
+ 239              		@ frame_needed = 0, uses_anonymous_args = 0
+ 240              	.LVL31:
+ 241 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 242              		.cfi_def_cfa_offset 36
+ 243              		.cfi_offset 4, -36
+ 244              		.cfi_offset 5, -32
+ 245              		.cfi_offset 6, -28
+ 246              		.cfi_offset 7, -24
+ 247              		.cfi_offset 8, -20
+ 248              		.cfi_offset 9, -16
+ 249              		.cfi_offset 10, -12
+ 250              		.cfi_offset 11, -8
+ 251              		.cfi_offset 14, -4
+ 252 0004 ADB0     		sub	sp, sp, #180
+ 253              		.cfi_def_cfa_offset 216
+ 254 0006 02AB     		add	r3, sp, #8
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 10
+
+
+ 255 0008 83E80300 		stmia	r3, {r0, r1}
+ 256 000c 1546     		mov	r5, r2
+ 255:main.c        ****     float l1[10]={};
+ 257              		.loc 1 255 0
+ 258 000e 2824     		movs	r4, #40
+ 259 0010 2246     		mov	r2, r4
+ 260              	.LVL32:
+ 261 0012 0021     		movs	r1, #0
+ 262 0014 22A8     		add	r0, sp, #136
+ 263 0016 FFF7FEFF 		bl	memset
+ 264              	.LVL33:
+ 256:main.c        ****     float r1[10]={};
+ 265              		.loc 1 256 0
+ 266 001a 2246     		mov	r2, r4
+ 267 001c 0021     		movs	r1, #0
+ 268 001e 18A8     		add	r0, sp, #96
+ 269 0020 FFF7FEFF 		bl	memset
+ 270              	.LVL34:
+ 257:main.c        ****     float l3[10]={};
+ 271              		.loc 1 257 0
+ 272 0024 2246     		mov	r2, r4
+ 273 0026 0021     		movs	r1, #0
+ 274 0028 0EA8     		add	r0, sp, #56
+ 275 002a FFF7FEFF 		bl	memset
+ 276              	.LVL35:
+ 258:main.c        ****     float r3[10]={};
+ 277              		.loc 1 258 0
+ 278 002e 2246     		mov	r2, r4
+ 279 0030 0021     		movs	r1, #0
+ 280 0032 04A8     		add	r0, sp, #16
+ 281 0034 FFF7FEFF 		bl	memset
+ 282              	.LVL36:
+ 259:main.c        ****     int timer = 0;
+ 260:main.c        ****     int i = 0;
+ 283              		.loc 1 260 0
+ 284 0038 0027     		movs	r7, #0
+ 259:main.c        ****     int timer = 0;
+ 285              		.loc 1 259 0
+ 286 003a 3C46     		mov	r4, r7
+ 261:main.c        ****     
+ 262:main.c        ****     while(timer <= 1100)
+ 287              		.loc 1 262 0
+ 288 003c 5FE0     		b	.L30
+ 289              	.LVL37:
+ 290              	.L32:
+ 263:main.c        ****     {
+ 264:main.c        ****         if(i < 10){
+ 291              		.loc 1 264 0
+ 292 003e 092F     		cmp	r7, #9
+ 293 0040 59DC     		bgt	.L31
+ 265:main.c        ****         reflectance_read(&ref);
+ 294              		.loc 1 265 0
+ 295 0042 02A8     		add	r0, sp, #8
+ 296 0044 FFF7FEFF 		bl	reflectance_read
+ 297              	.LVL38:
+ 266:main.c        ****         l1[i] += ref.l1;
+ 298              		.loc 1 266 0
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 11
+
+
+ 299 0048 2CAB     		add	r3, sp, #176
+ 300 004a 03EB8706 		add	r6, r3, r7, lsl #2
+ 301 004e BDF80A00 		ldrh	r0, [sp, #10]
+ 302 0052 FFF7FEFF 		bl	__aeabi_i2f
+ 303              	.LVL39:
+ 304 0056 56F8281C 		ldr	r1, [r6, #-40]	@ float
+ 305 005a FFF7FEFF 		bl	__aeabi_fadd
+ 306              	.LVL40:
+ 307 005e 8046     		mov	r8, r0
+ 308 0060 46F8280C 		str	r0, [r6, #-40]	@ float
+ 267:main.c        ****         r1[i] += ref.r1;
+ 309              		.loc 1 267 0
+ 310 0064 BDF80C00 		ldrh	r0, [sp, #12]
+ 311 0068 FFF7FEFF 		bl	__aeabi_i2f
+ 312              	.LVL41:
+ 313 006c 56F8501C 		ldr	r1, [r6, #-80]	@ float
+ 314 0070 FFF7FEFF 		bl	__aeabi_fadd
+ 315              	.LVL42:
+ 316 0074 8246     		mov	r10, r0
+ 317 0076 46F8500C 		str	r0, [r6, #-80]	@ float
+ 268:main.c        ****         l3[i] += ref.l3;
+ 318              		.loc 1 268 0
+ 319 007a BDF80800 		ldrh	r0, [sp, #8]
+ 320 007e FFF7FEFF 		bl	__aeabi_i2f
+ 321              	.LVL43:
+ 322 0082 56F8781C 		ldr	r1, [r6, #-120]	@ float
+ 323 0086 FFF7FEFF 		bl	__aeabi_fadd
+ 324              	.LVL44:
+ 325 008a 8346     		mov	fp, r0
+ 326 008c 46F8780C 		str	r0, [r6, #-120]	@ float
+ 269:main.c        ****         r3[i] += ref.r3;
+ 327              		.loc 1 269 0
+ 328 0090 BDF80E00 		ldrh	r0, [sp, #14]
+ 329 0094 FFF7FEFF 		bl	__aeabi_i2f
+ 330              	.LVL45:
+ 331 0098 56F8A01C 		ldr	r1, [r6, #-160]	@ float
+ 332 009c FFF7FEFF 		bl	__aeabi_fadd
+ 333              	.LVL46:
+ 334 00a0 8146     		mov	r9, r0
+ 335 00a2 46F8A00C 		str	r0, [r6, #-160]	@ float
+ 270:main.c        ****         result[0] += l1[i];
+ 336              		.loc 1 270 0
+ 337 00a6 4146     		mov	r1, r8
+ 338 00a8 2868     		ldr	r0, [r5]	@ float
+ 339 00aa FFF7FEFF 		bl	__aeabi_fadd
+ 340              	.LVL47:
+ 341 00ae 2860     		str	r0, [r5]	@ float
+ 271:main.c        ****         result[1] += r1[i];
+ 342              		.loc 1 271 0
+ 343 00b0 5146     		mov	r1, r10
+ 344 00b2 6868     		ldr	r0, [r5, #4]	@ float
+ 345 00b4 FFF7FEFF 		bl	__aeabi_fadd
+ 346              	.LVL48:
+ 347 00b8 6860     		str	r0, [r5, #4]	@ float
+ 272:main.c        ****         result[2] += l3[i];
+ 348              		.loc 1 272 0
+ 349 00ba 5946     		mov	r1, fp
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 12
+
+
+ 350 00bc A868     		ldr	r0, [r5, #8]	@ float
+ 351 00be FFF7FEFF 		bl	__aeabi_fadd
+ 352              	.LVL49:
+ 353 00c2 A860     		str	r0, [r5, #8]	@ float
+ 273:main.c        ****         result[3] += r3[i];
+ 354              		.loc 1 273 0
+ 355 00c4 4946     		mov	r1, r9
+ 356 00c6 E868     		ldr	r0, [r5, #12]	@ float
+ 357 00c8 FFF7FEFF 		bl	__aeabi_fadd
+ 358              	.LVL50:
+ 359 00cc E860     		str	r0, [r5, #12]	@ float
+ 274:main.c        ****         printf("line: %i    ", i);
+ 360              		.loc 1 274 0
+ 361 00ce 3946     		mov	r1, r7
+ 362 00d0 1A48     		ldr	r0, .L34
+ 363 00d2 FFF7FEFF 		bl	printf
+ 364              	.LVL51:
+ 275:main.c        ****         printf("l:%f r:%f\n",l1[i],r1[i]);
+ 365              		.loc 1 275 0
+ 366 00d6 4046     		mov	r0, r8
+ 367 00d8 FFF7FEFF 		bl	__aeabi_f2d
+ 368              	.LVL52:
+ 369 00dc 8046     		mov	r8, r0
+ 370 00de 8946     		mov	r9, r1
+ 371 00e0 5046     		mov	r0, r10
+ 372 00e2 FFF7FEFF 		bl	__aeabi_f2d
+ 373              	.LVL53:
+ 374 00e6 CDE90001 		strd	r0, [sp]
+ 375 00ea 4246     		mov	r2, r8
+ 376 00ec 4B46     		mov	r3, r9
+ 377 00ee 1448     		ldr	r0, .L34+4
+ 378 00f0 FFF7FEFF 		bl	printf
+ 379              	.LVL54:
+ 276:main.c        ****         i++;
+ 380              		.loc 1 276 0
+ 381 00f4 0137     		adds	r7, r7, #1
+ 382              	.LVL55:
+ 383              	.L31:
+ 277:main.c        ****         }
+ 278:main.c        ****         
+ 279:main.c        ****         timer += 100;
+ 384              		.loc 1 279 0
+ 385 00f6 6434     		adds	r4, r4, #100
+ 386              	.LVL56:
+ 280:main.c        ****         CyDelay(100);
+ 387              		.loc 1 280 0
+ 388 00f8 6420     		movs	r0, #100
+ 389 00fa FFF7FEFF 		bl	CyDelay
+ 390              	.LVL57:
+ 391              	.L30:
+ 262:main.c        ****     {
+ 392              		.loc 1 262 0
+ 393 00fe 40F24C43 		movw	r3, #1100
+ 394 0102 9C42     		cmp	r4, r3
+ 395 0104 9BDD     		ble	.L32
+ 281:main.c        ****         
+ 282:main.c        ****     }
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 13
+
+
+ 283:main.c        ****     result[0] /= 10;
+ 396              		.loc 1 283 0
+ 397 0106 0F49     		ldr	r1, .L34+8
+ 398 0108 2868     		ldr	r0, [r5]	@ float
+ 399 010a FFF7FEFF 		bl	__aeabi_fdiv
+ 400              	.LVL58:
+ 401 010e 2860     		str	r0, [r5]	@ float
+ 284:main.c        ****     result[1] /= 10;
+ 402              		.loc 1 284 0
+ 403 0110 0C49     		ldr	r1, .L34+8
+ 404 0112 6868     		ldr	r0, [r5, #4]	@ float
+ 405 0114 FFF7FEFF 		bl	__aeabi_fdiv
+ 406              	.LVL59:
+ 407 0118 6860     		str	r0, [r5, #4]	@ float
+ 285:main.c        ****     result[2] /= 10;
+ 408              		.loc 1 285 0
+ 409 011a 0A49     		ldr	r1, .L34+8
+ 410 011c A868     		ldr	r0, [r5, #8]	@ float
+ 411 011e FFF7FEFF 		bl	__aeabi_fdiv
+ 412              	.LVL60:
+ 413 0122 A860     		str	r0, [r5, #8]	@ float
+ 286:main.c        ****     result[3] /= 10;
+ 414              		.loc 1 286 0
+ 415 0124 0749     		ldr	r1, .L34+8
+ 416 0126 E868     		ldr	r0, [r5, #12]	@ float
+ 417 0128 FFF7FEFF 		bl	__aeabi_fdiv
+ 418              	.LVL61:
+ 419 012c E860     		str	r0, [r5, #12]	@ float
+ 287:main.c        ****     Beep(25,200);
+ 420              		.loc 1 287 0
+ 421 012e C821     		movs	r1, #200
+ 422 0130 1920     		movs	r0, #25
+ 423 0132 FFF7FEFF 		bl	Beep
+ 424              	.LVL62:
+ 288:main.c        **** }
+ 425              		.loc 1 288 0
+ 426 0136 2DB0     		add	sp, sp, #180
+ 427              		.cfi_def_cfa_offset 36
+ 428              		@ sp needed
+ 429 0138 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 430              	.LVL63:
+ 431              	.L35:
+ 432              		.align	2
+ 433              	.L34:
+ 434 013c 0C000000 		.word	.LC1
+ 435 0140 1C000000 		.word	.LC2
+ 436 0144 00002041 		.word	1092616192
+ 437              		.cfi_endproc
+ 438              	.LFE67:
+ 439              		.size	calibrate, .-calibrate
+ 440              		.global	__aeabi_f2uiz
+ 441              		.global	__aeabi_fsub
+ 442              		.global	__aeabi_fcmpgt
+ 443              		.section	.text.main,"ax",%progbits
+ 444              		.align	2
+ 445              		.global	main
+ 446              		.thumb
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 14
+
+
+ 447              		.thumb_func
+ 448              		.type	main, %function
+ 449              	main:
+ 450              	.LFB64:
+  67:main.c        ****     CyGlobalIntEnable; 
+ 451              		.loc 1 67 0
+ 452              		.cfi_startproc
+ 453              		@ args = 0, pretend = 0, frame = 56
+ 454              		@ frame_needed = 0, uses_anonymous_args = 0
+ 455 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 456              		.cfi_def_cfa_offset 36
+ 457              		.cfi_offset 4, -36
+ 458              		.cfi_offset 5, -32
+ 459              		.cfi_offset 6, -28
+ 460              		.cfi_offset 7, -24
+ 461              		.cfi_offset 8, -20
+ 462              		.cfi_offset 9, -16
+ 463              		.cfi_offset 10, -12
+ 464              		.cfi_offset 11, -8
+ 465              		.cfi_offset 14, -4
+ 466 0004 91B0     		sub	sp, sp, #68
+ 467              		.cfi_def_cfa_offset 104
+  68:main.c        ****     UART_1_Start();
+ 468              		.loc 1 68 0
+ 469              		.syntax unified
+ 470              	@ 68 "main.c" 1
+ 471 0006 62B6     		CPSIE   i
+ 472              	@ 0 "" 2
+  69:main.c        ****     ADC_Battery_Start();         
+ 473              		.loc 1 69 0
+ 474              		.thumb
+ 475              		.syntax unified
+ 476 0008 FFF7FEFF 		bl	UART_1_Start
+ 477              	.LVL64:
+  70:main.c        ****     printf("\nBoot\n");
+ 478              		.loc 1 70 0
+ 479 000c FFF7FEFF 		bl	ADC_Battery_Start
+ 480              	.LVL65:
+  71:main.c        ****     BatteryLed_Write(0); // Switch led off 
+ 481              		.loc 1 71 0
+ 482 0010 7D48     		ldr	r0, .L58
+ 483 0012 FFF7FEFF 		bl	puts
+ 484              	.LVL66:
+  72:main.c        ****     
+ 485              		.loc 1 72 0
+ 486 0016 0020     		movs	r0, #0
+ 487 0018 FFF7FEFF 		bl	BatteryLed_Write
+ 488              	.LVL67:
+  97:main.c        ****     sensor_isr_StartEx(sensor_isr_handler);
+ 489              		.loc 1 97 0
+ 490              		.syntax unified
+ 491              	@ 97 "main.c" 1
+ 492 001c 62B6     		CPSIE   i
+ 493              	@ 0 "" 2
+  98:main.c        ****     
+ 494              		.loc 1 98 0
+ 495              		.thumb
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 15
+
+
+ 496              		.syntax unified
+ 497 001e 7B48     		ldr	r0, .L58+4
+ 498 0020 FFF7FEFF 		bl	sensor_isr_StartEx
+ 499              	.LVL68:
+ 100:main.c        ****     //TODO: 1 etusensori näkee viivan.
+ 500              		.loc 1 100 0
+ 501 0024 FFF7FEFF 		bl	reflectance_start
+ 502              	.LVL69:
+ 102:main.c        ****     
+ 503              		.loc 1 102 0
+ 504 0028 0120     		movs	r0, #1
+ 505 002a FFF7FEFF 		bl	IR_led_Write
+ 506              	.LVL70:
+ 108:main.c        ****     for(;;)
+ 507              		.loc 1 108 0
+ 508 002e 4FF00008 		mov	r8, #0
+  85:main.c        ****     
+ 509              		.loc 1 85 0
+ 510 0032 0127     		movs	r7, #1
+  84:main.c        ****     uint8 rightDir = 1;
+ 511              		.loc 1 84 0
+ 512 0034 0497     		str	r7, [sp, #16]
+  83:main.c        ****     uint8 leftDir = 1;
+ 513              		.loc 1 83 0
+ 514 0036 0023     		movs	r3, #0
+ 515 0038 0793     		str	r3, [sp, #28]
+  91:main.c        ****     r1B = 23999;
+ 516              		.loc 1 91 0
+ 517 003a 40F6E44B 		movw	fp, #3300
+  89:main.c        ****     l1B = 23999;
+ 518              		.loc 1 89 0
+ 519 003e 40F6B83A 		movw	r10, #3000
+  80:main.c        ****     uint16 l1W,l1B,l3W,l3B,r1W,r1B,r3W,r3B;
+ 520              		.loc 1 80 0
+ 521 0042 1C46     		mov	r4, r3
+  79:main.c        ****     uint8 lineDelay = 0;
+ 522              		.loc 1 79 0
+ 523 0044 0693     		str	r3, [sp, #24]
+  78:main.c        ****     uint8 blackLine = 0;
+ 524              		.loc 1 78 0
+ 525 0046 41F28833 		movw	r3, #5000
+ 526 004a 0593     		str	r3, [sp, #20]
+ 527              	.LVL71:
+ 528              	.L50:
+ 111:main.c        ****         //reflectance_read(&ref);
+ 529              		.loc 1 111 0
+ 530 004c FFF7FEFF 		bl	SW1_Read
+ 531              	.LVL72:
+ 114:main.c        ****             if(!calibrated){
+ 532              		.loc 1 114 0
+ 533 0050 0346     		mov	r3, r0
+ 534 0052 0028     		cmp	r0, #0
+ 535 0054 40F0C380 		bne	.L37
+ 115:main.c        ****                 calibrate(ref, result);
+ 536              		.loc 1 115 0
+ 537 0058 079A     		ldr	r2, [sp, #28]
+ 538 005a 8AB9     		cbnz	r2, .L38
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 16
+
+
+ 116:main.c        ****                 l1W = result[0];
+ 539              		.loc 1 116 0
+ 540 005c 0BAA     		add	r2, sp, #44
+ 541 005e 09AB     		add	r3, sp, #36
+ 542 0060 93E80300 		ldmia	r3, {r0, r1}
+ 543              	.LVL73:
+ 544 0064 FFF7FEFF 		bl	calibrate
+ 545              	.LVL74:
+ 117:main.c        ****                 r1W = result[1];
+ 546              		.loc 1 117 0
+ 547 0068 0B98     		ldr	r0, [sp, #44]	@ float
+ 548 006a FFF7FEFF 		bl	__aeabi_f2uiz
+ 549              	.LVL75:
+ 550 006e 1FFA80FA 		uxth	r10, r0
+ 551              	.LVL76:
+ 118:main.c        ****                 l3W = result[3];
+ 552              		.loc 1 118 0
+ 553 0072 0C98     		ldr	r0, [sp, #48]	@ float
+ 554 0074 FFF7FEFF 		bl	__aeabi_f2uiz
+ 555              	.LVL77:
+ 556 0078 1FFA80FB 		uxth	fp, r0
+ 557              	.LVL78:
+ 121:main.c        ****                 button = 1;
+ 558              		.loc 1 121 0
+ 559 007c 0123     		movs	r3, #1
+ 560 007e 0793     		str	r3, [sp, #28]
+ 561              	.LVL79:
+ 562              	.L38:
+ 125:main.c        ****                 CyDelay(500);
+ 563              		.loc 1 125 0
+ 564 0080 002B     		cmp	r3, #0
+ 565 0082 40F0AC80 		bne	.L37
+ 125:main.c        ****                 CyDelay(500);
+ 566              		.loc 1 125 0 is_stmt 0 discriminator 1
+ 567 0086 079B     		ldr	r3, [sp, #28]
+ 568              	.LVL80:
+ 569 0088 002B     		cmp	r3, #0
+ 570 008a 00F0A880 		beq	.L37
+ 126:main.c        ****                 motor_start();
+ 571              		.loc 1 126 0 is_stmt 1
+ 572 008e 4FF4FA70 		mov	r0, #500
+ 573 0092 FFF7FEFF 		bl	CyDelay
+ 574              	.LVL81:
+ 127:main.c        ****                 reflectance_read(&ref);           
+ 575              		.loc 1 127 0
+ 576 0096 FFF7FEFF 		bl	motor_start
+ 577              	.LVL82:
+ 128:main.c        ****                     motor_start();
+ 578              		.loc 1 128 0
+ 579 009a 09A8     		add	r0, sp, #36
+ 580 009c FFF7FEFF 		bl	reflectance_read
+ 581              	.LVL83:
+ 129:main.c        ****                     for(;;){
+ 582              		.loc 1 129 0
+ 583 00a0 FFF7FEFF 		bl	motor_start
+ 584              	.LVL84:
+ 585 00a4 01E0     		b	.L39
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 17
+
+
+ 586              	.LVL85:
+ 587              	.L46:
+ 588 00a6 DDF80C80 		ldr	r8, [sp, #12]	@ float
+ 589              	.LVL86:
+ 590              	.L39:
+ 591              	.LBB2:
+ 131:main.c        ****                         //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);  
+ 592              		.loc 1 131 0
+ 593 00aa 09A8     		add	r0, sp, #36
+ 594 00ac FFF7FEFF 		bl	reflectance_read
+ 595              	.LVL87:
+ 133:main.c        ****                         float r1Scale = (float)r1B/(ref.l1 - l1W);
+ 596              		.loc 1 133 0
+ 597 00b0 BDF82450 		ldrh	r5, [sp, #36]
+ 134:main.c        ****                         float l1Scale = (float)l1B/(ref.r1 - r1W);
+ 598              		.loc 1 134 0
+ 599 00b4 BDF82600 		ldrh	r0, [sp, #38]
+ 600 00b8 CAEB0000 		rsb	r0, r10, r0
+ 601 00bc FFF7FEFF 		bl	__aeabi_i2f
+ 602              	.LVL88:
+ 603 00c0 0146     		mov	r1, r0
+ 604 00c2 5348     		ldr	r0, .L58+8
+ 605 00c4 FFF7FEFF 		bl	__aeabi_fdiv
+ 606              	.LVL89:
+ 607 00c8 8146     		mov	r9, r0
+ 608              	.LVL90:
+ 135:main.c        ****                         float r3Scale = (float)r3B/(ref.r3 - r3W);
+ 609              		.loc 1 135 0
+ 610 00ca BDF82800 		ldrh	r0, [sp, #40]
+ 611              	.LVL91:
+ 612 00ce CBEB0000 		rsb	r0, fp, r0
+ 613 00d2 FFF7FEFF 		bl	__aeabi_i2f
+ 614              	.LVL92:
+ 615 00d6 0146     		mov	r1, r0
+ 616 00d8 4D48     		ldr	r0, .L58+8
+ 617 00da FFF7FEFF 		bl	__aeabi_fdiv
+ 618              	.LVL93:
+ 136:main.c        ****                         
+ 619              		.loc 1 136 0
+ 620 00de BDF82A60 		ldrh	r6, [sp, #42]
+ 138:main.c        ****                         float motorSpeed = Kp * error + Kd * (error - lastError);
+ 621              		.loc 1 138 0
+ 622 00e2 0146     		mov	r1, r0
+ 623 00e4 4846     		mov	r0, r9
+ 624              	.LVL94:
+ 625 00e6 FFF7FEFF 		bl	__aeabi_fsub
+ 626              	.LVL95:
+ 627 00ea 0390     		str	r0, [sp, #12]	@ float
+ 628              	.LVL96:
+ 139:main.c        ****                         lastError = error;
+ 629              		.loc 1 139 0
+ 630 00ec 4FF08641 		mov	r1, #1124073472
+ 631 00f0 FFF7FEFF 		bl	__aeabi_fmul
+ 632              	.LVL97:
+ 633 00f4 8146     		mov	r9, r0
+ 634              	.LVL98:
+ 635 00f6 4146     		mov	r1, r8
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 18
+
+
+ 636 00f8 0398     		ldr	r0, [sp, #12]	@ float
+ 637 00fa FFF7FEFF 		bl	__aeabi_fsub
+ 638              	.LVL99:
+ 639 00fe 4FF08241 		mov	r1, #1090519040
+ 640 0102 FFF7FEFF 		bl	__aeabi_fmul
+ 641              	.LVL100:
+ 642 0106 0146     		mov	r1, r0
+ 643 0108 4846     		mov	r0, r9
+ 644 010a FFF7FEFF 		bl	__aeabi_fadd
+ 645              	.LVL101:
+ 646 010e 8046     		mov	r8, r0
+ 647              	.LVL102:
+ 142:main.c        ****                         if(leftMotorSpeed > MAX_SPEED) leftMotorSpeed = MAX_SPEED;
+ 648              		.loc 1 142 0
+ 649 0110 4049     		ldr	r1, .L58+12
+ 650 0112 FFF7FEFF 		bl	__aeabi_fadd
+ 651              	.LVL103:
+ 652 0116 8146     		mov	r9, r0
+ 653              	.LVL104:
+ 143:main.c        ****         
+ 654              		.loc 1 143 0
+ 655 0118 3E49     		ldr	r1, .L58+12
+ 656 011a FFF7FEFF 		bl	__aeabi_fcmpgt
+ 657              	.LVL105:
+ 658 011e 08B1     		cbz	r0, .L40
+ 659 0120 DFF8F090 		ldr	r9, .L58+12
+ 660              	.LVL106:
+ 661              	.L40:
+ 145:main.c        ****                         if(rightMotorSpeed > MAX_SPEED) rightMotorSpeed = MAX_SPEED;
+ 662              		.loc 1 145 0
+ 663 0124 4146     		mov	r1, r8
+ 664 0126 3B48     		ldr	r0, .L58+12
+ 665 0128 FFF7FEFF 		bl	__aeabi_fsub
+ 666              	.LVL107:
+ 667 012c 8046     		mov	r8, r0
+ 668              	.LVL108:
+ 146:main.c        ****                 
+ 669              		.loc 1 146 0
+ 670 012e 3949     		ldr	r1, .L58+12
+ 671 0130 FFF7FEFF 		bl	__aeabi_fcmpgt
+ 672              	.LVL109:
+ 673 0134 08B1     		cbz	r0, .L41
+ 674 0136 DFF8DC80 		ldr	r8, .L58+12
+ 675              	.LVL110:
+ 676              	.L41:
+ 151:main.c        ****                         leftMotor = leftMotorSpeed;
+ 677              		.loc 1 151 0
+ 678 013a 4046     		mov	r0, r8
+ 679 013c FFF7FEFF 		bl	__aeabi_f2uiz
+ 680              	.LVL111:
+ 681 0140 5FFA80F8 		uxtb	r8, r0
+ 682              	.LVL112:
+ 152:main.c        ****                         if(ref.r3 >= r3B-4000){
+ 683              		.loc 1 152 0
+ 684 0144 4846     		mov	r0, r9
+ 685 0146 FFF7FEFF 		bl	__aeabi_f2uiz
+ 686              	.LVL113:
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 19
+
+
+ 687 014a C2B2     		uxtb	r2, r0
+ 688              	.LVL114:
+ 153:main.c        ****                             rightDir = 1;
+ 689              		.loc 1 153 0
+ 690 014c 44F61E63 		movw	r3, #19998
+ 691 0150 9E42     		cmp	r6, r3
+ 692 0152 02DD     		ble	.L42
+ 154:main.c        ****                             rightMotor = 125;
+ 693              		.loc 1 154 0
+ 694 0154 0127     		movs	r7, #1
+ 695              	.LVL115:
+ 155:main.c        ****                         }
+ 696              		.loc 1 155 0
+ 697 0156 4FF07D08 		mov	r8, #125
+ 698              	.LVL116:
+ 699              	.L42:
+ 157:main.c        ****                             leftDir = 1; 
+ 700              		.loc 1 157 0
+ 701 015a 44F61E63 		movw	r3, #19998
+ 702 015e 9D42     		cmp	r5, r3
+ 703 0160 02DD     		ble	.L43
+ 158:main.c        ****                             leftMotor = 125;
+ 704              		.loc 1 158 0
+ 705 0162 0123     		movs	r3, #1
+ 706 0164 0493     		str	r3, [sp, #16]
+ 707              	.LVL117:
+ 159:main.c        ****                         }
+ 708              		.loc 1 159 0
+ 709 0166 7D22     		movs	r2, #125
+ 710              	.LVL118:
+ 711              	.L43:
+ 161:main.c        ****                         {
+ 712              		.loc 1 161 0
+ 713 0168 44F61E63 		movw	r3, #19998
+ 714 016c 9E42     		cmp	r6, r3
+ 715 016e 00DC     		bgt	.L44
+ 163:main.c        ****                         }
+ 716              		.loc 1 163 0
+ 717 0170 0027     		movs	r7, #0
+ 718              	.LVL119:
+ 719              	.L44:
+ 165:main.c        ****                         {
+ 720              		.loc 1 165 0
+ 721 0172 44F61E63 		movw	r3, #19998
+ 722 0176 9D42     		cmp	r5, r3
+ 723 0178 01DC     		bgt	.L45
+ 167:main.c        ****                         }
+ 724              		.loc 1 167 0
+ 725 017a 0023     		movs	r3, #0
+ 726 017c 0493     		str	r3, [sp, #16]
+ 727              	.LVL120:
+ 728              	.L45:
+ 169:main.c        **** 
+ 729              		.loc 1 169 0
+ 730 017e 0123     		movs	r3, #1
+ 731 0180 0093     		str	r3, [sp]
+ 732 0182 4346     		mov	r3, r8
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 20
+
+
+ 733 0184 3946     		mov	r1, r7
+ 734 0186 0498     		ldr	r0, [sp, #16]
+ 735 0188 FFF7FEFF 		bl	motor_drive
+ 736              	.LVL121:
+ 171:main.c        ****                         //printf("left : %f   %f    right : %f    %f\n",l1Scale ,l3Scale,r1Scale,r3
+ 737              		.loc 1 171 0
+ 738 018c 0134     		adds	r4, r4, #1
+ 739              	.LVL122:
+ 740 018e E4B2     		uxtb	r4, r4
+ 741              	.LVL123:
+ 176:main.c        ****                             if(blackLine > 2){
+ 742              		.loc 1 176 0
+ 743 0190 BDF82420 		ldrh	r2, [sp, #36]
+ 744 0194 44F62063 		movw	r3, #20000
+ 745 0198 9A42     		cmp	r2, r3
+ 746 019a 84D9     		bls	.L46
+ 176:main.c        ****                             if(blackLine > 2){
+ 747              		.loc 1 176 0 is_stmt 0 discriminator 1
+ 748 019c BDF82620 		ldrh	r2, [sp, #38]
+ 749 01a0 9A42     		cmp	r2, r3
+ 750 01a2 80D9     		bls	.L46
+ 176:main.c        ****                             if(blackLine > 2){
+ 751              		.loc 1 176 0 discriminator 2
+ 752 01a4 BDF82820 		ldrh	r2, [sp, #40]
+ 753 01a8 9A42     		cmp	r2, r3
+ 754 01aa 7FF67CAF 		bls	.L46
+ 176:main.c        ****                             if(blackLine > 2){
+ 755              		.loc 1 176 0 discriminator 3
+ 756 01ae BDF82A20 		ldrh	r2, [sp, #42]
+ 757 01b2 9A42     		cmp	r2, r3
+ 758 01b4 7FF677AF 		bls	.L46
+ 176:main.c        ****                             if(blackLine > 2){
+ 759              		.loc 1 176 0 discriminator 4
+ 760 01b8 142C     		cmp	r4, #20
+ 761 01ba 7FF674AF 		bls	.L46
+ 177:main.c        ****                                 break;
+ 762              		.loc 1 177 0 is_stmt 1
+ 763 01be 069B     		ldr	r3, [sp, #24]
+ 764 01c0 022B     		cmp	r3, #2
+ 765 01c2 04D8     		bhi	.L47
+ 180:main.c        ****                             lineDelay = 0;
+ 766              		.loc 1 180 0
+ 767 01c4 0133     		adds	r3, r3, #1
+ 768 01c6 DBB2     		uxtb	r3, r3
+ 769 01c8 0693     		str	r3, [sp, #24]
+ 770              	.LVL124:
+ 181:main.c        ****                         }
+ 771              		.loc 1 181 0
+ 772 01ca 0024     		movs	r4, #0
+ 773 01cc 6BE7     		b	.L46
+ 774              	.LVL125:
+ 775              	.L47:
+ 776              	.LBE2:
+ 184:main.c        ****                     motor_stop();               // motor stop
+ 777              		.loc 1 184 0
+ 778 01ce 0021     		movs	r1, #0
+ 779 01d0 0846     		mov	r0, r1
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 21
+
+
+ 780 01d2 FFF7FEFF 		bl	motor_forward
+ 781              	.LVL126:
+ 185:main.c        ****             }
+ 782              		.loc 1 185 0
+ 783 01d6 FFF7FEFF 		bl	motor_stop
+ 784              	.LVL127:
+ 785              	.LBB3:
+ 140:main.c        ****                         
+ 786              		.loc 1 140 0
+ 787 01da DDF80C80 		ldr	r8, [sp, #12]	@ float
+ 788              	.LVL128:
+ 789              	.L37:
+ 790              	.LBE3:
+ 188:main.c        ****             if(!checkVoltage()){
+ 791              		.loc 1 188 0
+ 792 01de 41F28733 		movw	r3, #4999
+ 793 01e2 059A     		ldr	r2, [sp, #20]
+ 794 01e4 9A42     		cmp	r2, r3
+ 795 01e6 04D9     		bls	.L48
+ 189:main.c        ****                 break;
+ 796              		.loc 1 189 0
+ 797 01e8 FFF7FEFF 		bl	checkVoltage
+ 798              	.LVL129:
+ 799 01ec 48B1     		cbz	r0, .L49
+ 192:main.c        ****         }
+ 800              		.loc 1 192 0
+ 801 01ee 0023     		movs	r3, #0
+ 802 01f0 0593     		str	r3, [sp, #20]
+ 803              	.LVL130:
+ 804              	.L48:
+ 194:main.c        ****         checkVoltageDelay +=20;
+ 805              		.loc 1 194 0
+ 806 01f2 1420     		movs	r0, #20
+ 807 01f4 FFF7FEFF 		bl	CyDelay
+ 808              	.LVL131:
+ 195:main.c        ****     }
+ 809              		.loc 1 195 0
+ 810 01f8 059B     		ldr	r3, [sp, #20]
+ 811 01fa 1433     		adds	r3, r3, #20
+ 812 01fc 9BB2     		uxth	r3, r3
+ 813 01fe 0593     		str	r3, [sp, #20]
+ 814              	.LVL132:
+ 196:main.c        ****     flashLED();
+ 815              		.loc 1 196 0
+ 816 0200 24E7     		b	.L50
+ 817              	.L49:
+ 197:main.c        ****  }   
+ 818              		.loc 1 197 0
+ 819 0202 FFF7FEFF 		bl	flashLED
+ 820              	.LVL133:
+ 821              	.L59:
+ 822 0206 00BF     		.align	2
+ 823              	.L58:
+ 824 0208 28000000 		.word	.LC3
+ 825 020c 00000000 		.word	sensor_isr_handler
+ 826 0210 007EBB46 		.word	1186692608
+ 827 0214 00007F43 		.word	1132396544
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 22
+
+
+ 828              		.cfi_endproc
+ 829              	.LFE64:
+ 830              		.size	main, .-main
+ 831              		.section	.text._write,"ax",%progbits
+ 832              		.align	2
+ 833              		.global	_write
+ 834              		.thumb
+ 835              		.thumb_func
+ 836              		.type	_write, %function
+ 837              	_write:
+ 838              	.LFB68:
+ 289:main.c        **** //*/
+ 290:main.c        **** 
+ 291:main.c        **** 
+ 292:main.c        **** /*//ultra sonic sensor//
+ 293:main.c        **** int main()
+ 294:main.c        **** {
+ 295:main.c        ****     CyGlobalIntEnable; 
+ 296:main.c        ****     UART_1_Start();
+ 297:main.c        ****     Ultra_Start();                          // Ultra Sonic Start function
+ 298:main.c        ****     while(1) {
+ 299:main.c        ****         //If you want to print out the value  
+ 300:main.c        ****         printf("distance = %5.0f\r\n", Ultra_GetDistance());
+ 301:main.c        ****         CyDelay(1000);
+ 302:main.c        ****     }
+ 303:main.c        **** }   
+ 304:main.c        **** //*/
+ 305:main.c        **** 
+ 306:main.c        **** 
+ 307:main.c        **** /*//nunchuk//
+ 308:main.c        **** int main()
+ 309:main.c        **** {
+ 310:main.c        ****     CyGlobalIntEnable; 
+ 311:main.c        ****     UART_1_Start();
+ 312:main.c        ****   
+ 313:main.c        ****     nunchuk_start();
+ 314:main.c        ****     nunchuk_init();
+ 315:main.c        ****     
+ 316:main.c        ****     for(;;)
+ 317:main.c        ****     {    
+ 318:main.c        ****         nunchuk_read();
+ 319:main.c        ****     }
+ 320:main.c        **** }   
+ 321:main.c        **** //*/
+ 322:main.c        **** 
+ 323:main.c        **** 
+ 324:main.c        **** /*//IR receiver//
+ 325:main.c        **** int main()
+ 326:main.c        **** {
+ 327:main.c        ****     CyGlobalIntEnable; 
+ 328:main.c        ****     UART_1_Start();
+ 329:main.c        ****     
+ 330:main.c        ****     unsigned int IR_val; 
+ 331:main.c        ****     
+ 332:main.c        ****     for(;;)
+ 333:main.c        ****     {
+ 334:main.c        ****        IR_val = get_IR();
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 23
+
+
+ 335:main.c        ****        printf("%x\r\n\n",IR_val);
+ 336:main.c        ****     }    
+ 337:main.c        ****  }   
+ 338:main.c        **** //*/
+ 339:main.c        **** 
+ 340:main.c        **** 
+ 341:main.c        **** /*//Ambient light sensor//
+ 342:main.c        **** int main()
+ 343:main.c        **** {
+ 344:main.c        ****     CyGlobalIntEnable; 
+ 345:main.c        ****     UART_1_Start();
+ 346:main.c        ****     
+ 347:main.c        ****     I2C_Start();
+ 348:main.c        ****     
+ 349:main.c        ****     I2C_write(0x29,0x80,0x00);          // set to power down
+ 350:main.c        ****     I2C_write(0x29,0x80,0x03);          // set to power on
+ 351:main.c        ****     
+ 352:main.c        ****     for(;;)
+ 353:main.c        ****     {    
+ 354:main.c        ****         uint8 Data0Low,Data0High,Data1Low,Data1High;
+ 355:main.c        ****         Data0Low = I2C_read(0x29,CH0_L);
+ 356:main.c        ****         Data0High = I2C_read(0x29,CH0_H);
+ 357:main.c        ****         Data1Low = I2C_read(0x29,CH1_L);
+ 358:main.c        ****         Data1High = I2C_read(0x29,CH1_H);
+ 359:main.c        ****         
+ 360:main.c        ****         uint8 CH0, CH1;
+ 361:main.c        ****         CH0 = convert_raw(Data0Low,Data0High);      // combine Data0
+ 362:main.c        ****         CH1 = convert_raw(Data1Low,Data1High);      // combine Data1
+ 363:main.c        **** 
+ 364:main.c        ****         double Ch0 = CH0;
+ 365:main.c        ****         double Ch1 = CH1;
+ 366:main.c        ****         
+ 367:main.c        ****         double data = 0;
+ 368:main.c        ****         data = getLux(Ch0,Ch1);
+ 369:main.c        ****         
+ 370:main.c        ****         // If you want to print out data
+ 371:main.c        ****         //printf("%lf\r\n",data);    
+ 372:main.c        ****     }    
+ 373:main.c        ****  }   
+ 374:main.c        **** //*/
+ 375:main.c        **** 
+ 376:main.c        **** 
+ 377:main.c        **** /*//accelerometer//
+ 378:main.c        **** int main()
+ 379:main.c        **** {
+ 380:main.c        ****     CyGlobalIntEnable; 
+ 381:main.c        ****     UART_1_Start();
+ 382:main.c        ****   
+ 383:main.c        ****     I2C_Start();
+ 384:main.c        ****   
+ 385:main.c        ****     uint8 X_L_A, X_H_A, Y_L_A, Y_H_A, Z_L_A, Z_H_A;
+ 386:main.c        ****     int16 X_AXIS_A, Y_AXIS_A, Z_AXIS_A;
+ 387:main.c        ****     
+ 388:main.c        ****     I2C_write(ACCEL_MAG_ADDR, ACCEL_CTRL1_REG, 0x37);           // set accelerometer & magnetometer
+ 389:main.c        ****     I2C_write(ACCEL_MAG_ADDR, ACCEL_CTRL7_REG, 0x22);
+ 390:main.c        ****     
+ 391:main.c        ****     
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 24
+
+
+ 392:main.c        ****     for(;;)
+ 393:main.c        ****     {
+ 394:main.c        ****         //print out accelerometer output
+ 395:main.c        ****         X_L_A = I2C_read(ACCEL_MAG_ADDR, OUT_X_L_A);
+ 396:main.c        ****         X_H_A = I2C_read(ACCEL_MAG_ADDR, OUT_X_H_A);
+ 397:main.c        ****         X_AXIS_A = convert_raw(X_L_A, X_H_A);
+ 398:main.c        ****         
+ 399:main.c        ****         Y_L_A = I2C_read(ACCEL_MAG_ADDR, OUT_Y_L_A);
+ 400:main.c        ****         Y_H_A = I2C_read(ACCEL_MAG_ADDR, OUT_Y_H_A);
+ 401:main.c        ****         Y_AXIS_A = convert_raw(Y_L_A, Y_H_A);
+ 402:main.c        ****         
+ 403:main.c        ****         Z_L_A = I2C_read(ACCEL_MAG_ADDR, OUT_Z_L_A);
+ 404:main.c        ****         Z_H_A = I2C_read(ACCEL_MAG_ADDR, OUT_Z_H_A);
+ 405:main.c        ****         Z_AXIS_A = convert_raw(Z_L_A, Z_H_A);
+ 406:main.c        ****         
+ 407:main.c        ****         printf("ACCEL: %d %d %d %d %d %d \r\n", X_L_A, X_H_A, Y_L_A, Y_H_A, Z_L_A, Z_H_A);
+ 408:main.c        ****         value_convert_accel(X_AXIS_A, Y_AXIS_A, Z_AXIS_A);
+ 409:main.c        ****         printf("\n");
+ 410:main.c        ****         
+ 411:main.c        ****         CyDelay(50);
+ 412:main.c        ****     }
+ 413:main.c        **** }   
+ 414:main.c        **** //*/
+ 415:main.c        **** 
+ 416:main.c        **** 
+ 417:main.c        **** /*//reflectance//
+ 418:main.c        **** int main()
+ 419:main.c        **** {
+ 420:main.c        ****     struct sensors_ ref;
+ 421:main.c        ****     struct sensors_ dig;
+ 422:main.c        ****     CyGlobalIntEnable; 
+ 423:main.c        ****     UART_1_Start();
+ 424:main.c        ****   
+ 425:main.c        ****     sensor_isr_StartEx(sensor_isr_handler);
+ 426:main.c        ****     
+ 427:main.c        ****     reflectance_start();
+ 428:main.c        **** 
+ 429:main.c        ****     IR_led_Write(1);
+ 430:main.c        ****     for(;;)
+ 431:main.c        ****     {
+ 432:main.c        ****         reflectance_read(&ref);
+ 433:main.c        ****         printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);       //print out each period o
+ 434:main.c        ****         reflectance_digital(&dig);      //print out 0 or 1 according to results of reflectance peri
+ 435:main.c        ****         printf("%d %d %d %d \r\n", dig.l3, dig.l1, dig.r1, dig.r3);        //print out 0 or 1 accor
+ 436:main.c        ****         
+ 437:main.c        ****         CyDelay(500);
+ 438:main.c        ****     }
+ 439:main.c        **** }   
+ 440:main.c        **** //*/
+ 441:main.c        **** 
+ 442:main.c        ****  /* //motor//
+ 443:main.c        **** int main()
+ 444:main.c        **** {
+ 445:main.c        ****     CyGlobalIntEnable; 
+ 446:main.c        ****     UART_1_Start();
+ 447:main.c        **** 
+ 448:main.c        ****     motor_start();              // motor start
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 25
+
+
+ 449:main.c        **** 
+ 450:main.c        ****     motor_forward(100,2000);     // moving forward
+ 451:main.c        ****     motor_turn(200,50,2000);     // turn
+ 452:main.c        ****     motor_turn(50,200,2000);     // turn
+ 453:main.c        ****     motor_backward(100,2000);    // movinb backward
+ 454:main.c        ****        
+ 455:main.c        ****     motor_stop();               // motor stop
+ 456:main.c        ****     
+ 457:main.c        ****     for(;;)
+ 458:main.c        ****     {
+ 459:main.c        **** 
+ 460:main.c        ****     }
+ 461:main.c        **** }
+ 462:main.c        **** //*/
+ 463:main.c        ****     
+ 464:main.c        **** 
+ 465:main.c        **** /*//gyroscope//
+ 466:main.c        **** int main()
+ 467:main.c        **** {
+ 468:main.c        ****     CyGlobalIntEnable; 
+ 469:main.c        ****     UART_1_Start();
+ 470:main.c        ****   
+ 471:main.c        ****     I2C_Start();
+ 472:main.c        ****   
+ 473:main.c        ****     uint8 X_L_G, X_H_G, Y_L_G, Y_H_G, Z_L_G, Z_H_G;
+ 474:main.c        ****     int16 X_AXIS_G, Y_AXIS_G, Z_AXIS_G;
+ 475:main.c        ****     
+ 476:main.c        ****     I2C_write(GYRO_ADDR, GYRO_CTRL1_REG, 0x0F);             // set gyroscope into active mode
+ 477:main.c        ****     I2C_write(GYRO_ADDR, GYRO_CTRL4_REG, 0x30);             // set full scale selection to 2000dps 
+ 478:main.c        ****     
+ 479:main.c        ****     for(;;)
+ 480:main.c        ****     {
+ 481:main.c        ****         //print out gyroscope output
+ 482:main.c        ****         X_L_G = I2C_read(GYRO_ADDR, OUT_X_AXIS_L);
+ 483:main.c        ****         X_H_G = I2C_read(GYRO_ADDR, OUT_X_AXIS_H);
+ 484:main.c        ****         X_AXIS_G = convert_raw(X_H_G, X_L_G);
+ 485:main.c        ****         
+ 486:main.c        ****         
+ 487:main.c        ****         Y_L_G = I2C_read(GYRO_ADDR, OUT_Y_AXIS_L);
+ 488:main.c        ****         Y_H_G = I2C_read(GYRO_ADDR, OUT_Y_AXIS_H);
+ 489:main.c        ****         Y_AXIS_G = convert_raw(Y_H_G, Y_L_G);
+ 490:main.c        ****         
+ 491:main.c        ****         
+ 492:main.c        ****         Z_L_G = I2C_read(GYRO_ADDR, OUT_Z_AXIS_L);
+ 493:main.c        ****         Z_H_G = I2C_read(GYRO_ADDR, OUT_Z_AXIS_H);
+ 494:main.c        ****         Z_AXIS_G = convert_raw(Z_H_G, Z_L_G);
+ 495:main.c        ****      
+ 496:main.c        ****         // If you want to print value
+ 497:main.c        ****         printf("%d %d %d \r\n", X_AXIS_G, Y_AXIS_G, Z_AXIS_G);
+ 498:main.c        ****         CyDelay(50);
+ 499:main.c        ****     }
+ 500:main.c        **** }   
+ 501:main.c        **** //*/
+ 502:main.c        **** 
+ 503:main.c        **** 
+ 504:main.c        **** /*//magnetometer//
+ 505:main.c        **** int main()
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 26
+
+
+ 506:main.c        **** {
+ 507:main.c        ****     CyGlobalIntEnable; 
+ 508:main.c        ****     UART_1_Start();
+ 509:main.c        ****   
+ 510:main.c        ****     I2C_Start();
+ 511:main.c        ****    
+ 512:main.c        ****     uint8 X_L_M, X_H_M, Y_L_M, Y_H_M, Z_L_M, Z_H_M;
+ 513:main.c        ****     int16 X_AXIS, Y_AXIS, Z_AXIS;
+ 514:main.c        ****     
+ 515:main.c        ****     I2C_write(GYRO_ADDR, GYRO_CTRL1_REG, 0x0F);             // set gyroscope into active mode
+ 516:main.c        ****     I2C_write(GYRO_ADDR, GYRO_CTRL4_REG, 0x30);             // set full scale selection to 2000dps
+ 517:main.c        ****     I2C_write(ACCEL_MAG_ADDR, ACCEL_CTRL1_REG, 0x37);           // set accelerometer & magnetometer
+ 518:main.c        ****     I2C_write(ACCEL_MAG_ADDR, ACCEL_CTRL7_REG, 0x22);
+ 519:main.c        ****     
+ 520:main.c        ****     
+ 521:main.c        ****     for(;;)
+ 522:main.c        ****     {
+ 523:main.c        ****         X_L_M = I2C_read(ACCEL_MAG_ADDR, OUT_X_L_M);
+ 524:main.c        ****         X_H_M = I2C_read(ACCEL_MAG_ADDR, OUT_X_H_M);
+ 525:main.c        ****         X_AXIS = convert_raw(X_L_M, X_H_M);
+ 526:main.c        ****         
+ 527:main.c        ****         Y_L_M = I2C_read(ACCEL_MAG_ADDR, OUT_Y_L_M);
+ 528:main.c        ****         Y_H_M = I2C_read(ACCEL_MAG_ADDR, OUT_Y_H_M);
+ 529:main.c        ****         Y_AXIS = convert_raw(Y_L_M, Y_H_M);
+ 530:main.c        ****         
+ 531:main.c        ****         Z_L_M = I2C_read(ACCEL_MAG_ADDR, OUT_Z_L_M);
+ 532:main.c        ****         Z_H_M = I2C_read(ACCEL_MAG_ADDR, OUT_Z_H_M);
+ 533:main.c        ****         Z_AXIS = convert_raw(Z_L_M, Z_H_M);
+ 534:main.c        ****         
+ 535:main.c        ****         heading(X_AXIS, Y_AXIS);
+ 536:main.c        ****         printf("MAGNET: %d %d %d %d %d %d \r\n", X_L_M, X_H_M, Y_L_M, Y_H_M, Z_L_M, Z_H_M);
+ 537:main.c        ****         printf("%d %d %d \r\n", X_AXIS,Y_AXIS, Z_AXIS);
+ 538:main.c        ****         CyDelay(50);      
+ 539:main.c        ****     }
+ 540:main.c        **** }   
+ 541:main.c        **** //*/
+ 542:main.c        **** 
+ 543:main.c        **** 
+ 544:main.c        **** #if 0
+ 545:main.c        **** int rread(void)
+ 546:main.c        **** {
+ 547:main.c        ****     SC0_SetDriveMode(PIN_DM_STRONG);
+ 548:main.c        ****     SC0_Write(1);
+ 549:main.c        ****     CyDelayUs(10);
+ 550:main.c        ****     SC0_SetDriveMode(PIN_DM_DIG_HIZ);
+ 551:main.c        ****     Timer_1_Start();
+ 552:main.c        ****     uint16_t start = Timer_1_ReadCounter();
+ 553:main.c        ****     uint16_t end = 0;
+ 554:main.c        ****     while(!(Timer_1_ReadStatusRegister() & Timer_1_STATUS_TC)) {
+ 555:main.c        ****         if(SC0_Read() == 0 && end == 0) {
+ 556:main.c        ****             end = Timer_1_ReadCounter();
+ 557:main.c        ****         }
+ 558:main.c        ****     }
+ 559:main.c        ****     Timer_1_Stop();
+ 560:main.c        ****     
+ 561:main.c        ****     return (start - end);
+ 562:main.c        **** }
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 27
+
+
+ 563:main.c        **** #endif
+ 564:main.c        **** 
+ 565:main.c        **** /* Don't remove the functions below */
+ 566:main.c        **** int _write(int file, char *ptr, int len)
+ 567:main.c        **** {
+ 839              		.loc 1 567 0
+ 840              		.cfi_startproc
+ 841              		@ args = 0, pretend = 0, frame = 0
+ 842              		@ frame_needed = 0, uses_anonymous_args = 0
+ 843              	.LVL134:
+ 844 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 845              		.cfi_def_cfa_offset 24
+ 846              		.cfi_offset 3, -24
+ 847              		.cfi_offset 4, -20
+ 848              		.cfi_offset 5, -16
+ 849              		.cfi_offset 6, -12
+ 850              		.cfi_offset 7, -8
+ 851              		.cfi_offset 14, -4
+ 852 0002 0C46     		mov	r4, r1
+ 853 0004 1746     		mov	r7, r2
+ 854              	.LVL135:
+ 568:main.c        ****     (void)file; /* Parameter is not used, suppress unused argument warning */
+ 569:main.c        **** 	int n;
+ 570:main.c        **** 	for(n = 0; n < len; n++) {
+ 855              		.loc 1 570 0
+ 856 0006 0025     		movs	r5, #0
+ 857 0008 0BE0     		b	.L61
+ 858              	.LVL136:
+ 859              	.L63:
+ 571:main.c        ****         if(*ptr == '\n') UART_1_PutChar('\r');
+ 860              		.loc 1 571 0
+ 861 000a 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 862 000c 0A2B     		cmp	r3, #10
+ 863 000e 02D1     		bne	.L62
+ 864              		.loc 1 571 0 is_stmt 0 discriminator 1
+ 865 0010 0D20     		movs	r0, #13
+ 866 0012 FFF7FEFF 		bl	UART_1_PutChar
+ 867              	.LVL137:
+ 868              	.L62:
+ 572:main.c        **** 		UART_1_PutChar(*ptr++);
+ 869              		.loc 1 572 0 is_stmt 1 discriminator 2
+ 870 0016 661C     		adds	r6, r4, #1
+ 871              	.LVL138:
+ 872 0018 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ 873 001a FFF7FEFF 		bl	UART_1_PutChar
+ 874              	.LVL139:
+ 570:main.c        ****         if(*ptr == '\n') UART_1_PutChar('\r');
+ 875              		.loc 1 570 0 discriminator 2
+ 876 001e 0135     		adds	r5, r5, #1
+ 877              	.LVL140:
+ 878              		.loc 1 572 0 discriminator 2
+ 879 0020 3446     		mov	r4, r6
+ 880              	.LVL141:
+ 881              	.L61:
+ 570:main.c        ****         if(*ptr == '\n') UART_1_PutChar('\r');
+ 882              		.loc 1 570 0 discriminator 1
+ 883 0022 BD42     		cmp	r5, r7
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 28
+
+
+ 884 0024 F1DB     		blt	.L63
+ 573:main.c        **** 	}
+ 574:main.c        **** 	return len;
+ 575:main.c        **** }
+ 885              		.loc 1 575 0
+ 886 0026 3846     		mov	r0, r7
+ 887 0028 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 888              		.cfi_endproc
+ 889              	.LFE68:
+ 890              		.size	_write, .-_write
+ 891 002a 00BF     		.section	.text._read,"ax",%progbits
+ 892              		.align	2
+ 893              		.global	_read
+ 894              		.thumb
+ 895              		.thumb_func
+ 896              		.type	_read, %function
+ 897              	_read:
+ 898              	.LFB69:
+ 576:main.c        **** 
+ 577:main.c        **** int _read (int file, char *ptr, int count)
+ 578:main.c        **** {
+ 899              		.loc 1 578 0
+ 900              		.cfi_startproc
+ 901              		@ args = 0, pretend = 0, frame = 0
+ 902              		@ frame_needed = 0, uses_anonymous_args = 0
+ 903              	.LVL142:
+ 904 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 905              		.cfi_def_cfa_offset 24
+ 906              		.cfi_offset 3, -24
+ 907              		.cfi_offset 4, -20
+ 908              		.cfi_offset 5, -16
+ 909              		.cfi_offset 6, -12
+ 910              		.cfi_offset 7, -8
+ 911              		.cfi_offset 14, -4
+ 912 0002 0F46     		mov	r7, r1
+ 913 0004 1446     		mov	r4, r2
+ 914              	.LVL143:
+ 579:main.c        ****     int chs = 0;
+ 915              		.loc 1 579 0
+ 916 0006 0026     		movs	r6, #0
+ 580:main.c        ****     char ch;
+ 581:main.c        ****  
+ 582:main.c        ****     (void)file; /* Parameter is not used, suppress unused argument warning */
+ 583:main.c        ****     while(count > 0) {
+ 917              		.loc 1 583 0
+ 918 0008 12E0     		b	.L67
+ 919              	.LVL144:
+ 920              	.L70:
+ 584:main.c        ****         ch = UART_1_GetChar();
+ 921              		.loc 1 584 0
+ 922 000a FFF7FEFF 		bl	UART_1_GetChar
+ 923              	.LVL145:
+ 585:main.c        ****         if(ch != 0) {
+ 924              		.loc 1 585 0
+ 925 000e 0546     		mov	r5, r0
+ 926 0010 70B1     		cbz	r0, .L67
+ 586:main.c        ****             UART_1_PutChar(ch);
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 29
+
+
+ 927              		.loc 1 586 0
+ 928 0012 FFF7FEFF 		bl	UART_1_PutChar
+ 929              	.LVL146:
+ 587:main.c        ****             chs++;
+ 930              		.loc 1 587 0
+ 931 0016 0136     		adds	r6, r6, #1
+ 932              	.LVL147:
+ 588:main.c        ****             if(ch == '\r') {
+ 933              		.loc 1 588 0
+ 934 0018 0D2D     		cmp	r5, #13
+ 935 001a 03D1     		bne	.L68
+ 936              	.LVL148:
+ 589:main.c        ****                 ch = '\n';
+ 590:main.c        ****                 UART_1_PutChar(ch);
+ 937              		.loc 1 590 0
+ 938 001c 0A20     		movs	r0, #10
+ 939 001e FFF7FEFF 		bl	UART_1_PutChar
+ 940              	.LVL149:
+ 589:main.c        ****                 ch = '\n';
+ 941              		.loc 1 589 0
+ 942 0022 0A25     		movs	r5, #10
+ 943              	.LVL150:
+ 944              	.L68:
+ 591:main.c        ****             }
+ 592:main.c        ****             *ptr++ = ch;
+ 945              		.loc 1 592 0
+ 946 0024 7B1C     		adds	r3, r7, #1
+ 947              	.LVL151:
+ 948 0026 3D70     		strb	r5, [r7]
+ 593:main.c        ****             count--;
+ 949              		.loc 1 593 0
+ 950 0028 013C     		subs	r4, r4, #1
+ 951              	.LVL152:
+ 594:main.c        ****             if(ch == '\n') break;
+ 952              		.loc 1 594 0
+ 953 002a 0A2D     		cmp	r5, #10
+ 954 002c 02D0     		beq	.L69
+ 592:main.c        ****             count--;
+ 955              		.loc 1 592 0
+ 956 002e 1F46     		mov	r7, r3
+ 957              	.LVL153:
+ 958              	.L67:
+ 583:main.c        ****         ch = UART_1_GetChar();
+ 959              		.loc 1 583 0
+ 960 0030 002C     		cmp	r4, #0
+ 961 0032 EADC     		bgt	.L70
+ 962              	.LVL154:
+ 963              	.L69:
+ 595:main.c        ****         }
+ 596:main.c        ****     }
+ 597:main.c        ****     return chs;
+ 598:main.c        **** }
+ 964              		.loc 1 598 0
+ 965 0034 3046     		mov	r0, r6
+ 966 0036 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 967              		.cfi_endproc
+ 968              	.LFE69:
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 30
+
+
+ 969              		.size	_read, .-_read
+ 970              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 971              		.align	2
+ 972              	.LC0:
+ 973 0000 56626174 		.ascii	"Vbat: %.6f\012\000"
+ 973      3A20252E 
+ 973      36660A00 
+ 974              	.LC1:
+ 975 000c 6C696E65 		.ascii	"line: %i    \000"
+ 975      3A202569 
+ 975      20202020 
+ 975      00
+ 976 0019 000000   		.space	3
+ 977              	.LC2:
+ 978 001c 6C3A2566 		.ascii	"l:%f r:%f\012\000"
+ 978      20723A25 
+ 978      660A00
+ 979 0027 00       		.space	1
+ 980              	.LC3:
+ 981 0028 0A426F6F 		.ascii	"\012Boot\000"
+ 981      7400
+ 982              		.text
+ 983              	.Letext0:
+ 984              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 985              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 986              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 987              		.file 5 ".\\ZumoLibrary/Reflectance.h"
+ 988              		.file 6 "Generated_Source\\PSoC5/ADC_Battery.h"
+ 989              		.file 7 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 990              		.file 8 "Generated_Source\\PSoC5/BatteryLed.h"
+ 991              		.file 9 "Generated_Source\\PSoC5/CyLib.h"
+ 992              		.file 10 ".\\ZumoLibrary/Beep.h"
+ 993              		.file 11 ".\\ZumoLibrary/Motor.h"
+ 994              		.file 12 "Generated_Source\\PSoC5/UART_1.h"
+ 995              		.file 13 "Generated_Source\\PSoC5/sensor_isr.h"
+ 996              		.file 14 "Generated_Source\\PSoC5/IR_led.h"
+ 997              		.file 15 "Generated_Source\\PSoC5/SW1.h"
+ 998              		.file 16 "Generated_Source\\PSoC5/core_cm3.h"
+ 999              		.file 17 "<built-in>"
+ 1000              		.section	.debug_info,"",%progbits
+ 1001              	.Ldebug_info0:
+ 1002 0000 E3080000 		.4byte	0x8e3
+ 1003 0004 0400     		.2byte	0x4
+ 1004 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1005 000a 04       		.byte	0x4
+ 1006 000b 01       		.uleb128 0x1
+ 1007 000c 84030000 		.4byte	.LASF76
+ 1008 0010 0C       		.byte	0xc
+ 1009 0011 87020000 		.4byte	.LASF77
+ 1010 0015 82000000 		.4byte	.LASF78
+ 1011 0019 18000000 		.4byte	.Ldebug_ranges0+0x18
+ 1012 001d 00000000 		.4byte	0
+ 1013 0021 00000000 		.4byte	.Ldebug_line0
+ 1014 0025 02       		.uleb128 0x2
+ 1015 0026 04       		.byte	0x4
+ 1016 0027 04       		.byte	0x4
+ 1017 0028 3B010000 		.4byte	.LASF0
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 31
+
+
+ 1018 002c 02       		.uleb128 0x2
+ 1019 002d 02       		.byte	0x2
+ 1020 002e 07       		.byte	0x7
+ 1021 002f 2B020000 		.4byte	.LASF1
+ 1022 0033 02       		.uleb128 0x2
+ 1023 0034 01       		.byte	0x1
+ 1024 0035 06       		.byte	0x6
+ 1025 0036 B2010000 		.4byte	.LASF2
+ 1026 003a 02       		.uleb128 0x2
+ 1027 003b 01       		.byte	0x1
+ 1028 003c 08       		.byte	0x8
+ 1029 003d 99010000 		.4byte	.LASF3
+ 1030 0041 02       		.uleb128 0x2
+ 1031 0042 02       		.byte	0x2
+ 1032 0043 05       		.byte	0x5
+ 1033 0044 49000000 		.4byte	.LASF4
+ 1034 0048 03       		.uleb128 0x3
+ 1035 0049 AE000000 		.4byte	.LASF5
+ 1036 004d 02       		.byte	0x2
+ 1037 004e 2B       		.byte	0x2b
+ 1038 004f 2C000000 		.4byte	0x2c
+ 1039 0053 03       		.uleb128 0x3
+ 1040 0054 FA020000 		.4byte	.LASF6
+ 1041 0058 02       		.byte	0x2
+ 1042 0059 3F       		.byte	0x3f
+ 1043 005a 5E000000 		.4byte	0x5e
+ 1044 005e 02       		.uleb128 0x2
+ 1045 005f 04       		.byte	0x4
+ 1046 0060 05       		.byte	0x5
+ 1047 0061 48010000 		.4byte	.LASF7
+ 1048 0065 02       		.uleb128 0x2
+ 1049 0066 04       		.byte	0x4
+ 1050 0067 07       		.byte	0x7
+ 1051 0068 8E020000 		.4byte	.LASF8
+ 1052 006c 02       		.uleb128 0x2
+ 1053 006d 08       		.byte	0x8
+ 1054 006e 05       		.byte	0x5
+ 1055 006f 67000000 		.4byte	.LASF9
+ 1056 0073 02       		.uleb128 0x2
+ 1057 0074 08       		.byte	0x8
+ 1058 0075 07       		.byte	0x7
+ 1059 0076 BE010000 		.4byte	.LASF10
+ 1060 007a 04       		.uleb128 0x4
+ 1061 007b 04       		.byte	0x4
+ 1062 007c 05       		.byte	0x5
+ 1063 007d 696E7400 		.ascii	"int\000"
+ 1064 0081 02       		.uleb128 0x2
+ 1065 0082 04       		.byte	0x4
+ 1066 0083 07       		.byte	0x7
+ 1067 0084 EA010000 		.4byte	.LASF11
+ 1068 0088 03       		.uleb128 0x3
+ 1069 0089 F7010000 		.4byte	.LASF12
+ 1070 008d 03       		.byte	0x3
+ 1071 008e 24       		.byte	0x24
+ 1072 008f 48000000 		.4byte	0x48
+ 1073 0093 03       		.uleb128 0x3
+ 1074 0094 5C020000 		.4byte	.LASF13
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 32
+
+
+ 1075 0098 03       		.byte	0x3
+ 1076 0099 2C       		.byte	0x2c
+ 1077 009a 53000000 		.4byte	0x53
+ 1078 009e 05       		.uleb128 0x5
+ 1079 009f E1000000 		.4byte	.LASF14
+ 1080 00a3 04       		.byte	0x4
+ 1081 00a4 9201     		.2byte	0x192
+ 1082 00a6 3A000000 		.4byte	0x3a
+ 1083 00aa 05       		.uleb128 0x5
+ 1084 00ab C9000000 		.4byte	.LASF15
+ 1085 00af 04       		.byte	0x4
+ 1086 00b0 9301     		.2byte	0x193
+ 1087 00b2 2C000000 		.4byte	0x2c
+ 1088 00b6 02       		.uleb128 0x2
+ 1089 00b7 08       		.byte	0x8
+ 1090 00b8 04       		.byte	0x4
+ 1091 00b9 6B030000 		.4byte	.LASF16
+ 1092 00bd 02       		.uleb128 0x2
+ 1093 00be 01       		.byte	0x1
+ 1094 00bf 08       		.byte	0x8
+ 1095 00c0 4C020000 		.4byte	.LASF17
+ 1096 00c4 02       		.uleb128 0x2
+ 1097 00c5 08       		.byte	0x8
+ 1098 00c6 04       		.byte	0x4
+ 1099 00c7 8D010000 		.4byte	.LASF18
+ 1100 00cb 02       		.uleb128 0x2
+ 1101 00cc 04       		.byte	0x4
+ 1102 00cd 07       		.byte	0x7
+ 1103 00ce 5E000000 		.4byte	.LASF19
+ 1104 00d2 06       		.uleb128 0x6
+ 1105 00d3 04       		.byte	0x4
+ 1106 00d4 BD000000 		.4byte	0xbd
+ 1107 00d8 07       		.uleb128 0x7
+ 1108 00d9 75020000 		.4byte	.LASF79
+ 1109 00dd 08       		.byte	0x8
+ 1110 00de 05       		.byte	0x5
+ 1111 00df 11       		.byte	0x11
+ 1112 00e0 11010000 		.4byte	0x111
+ 1113 00e4 08       		.uleb128 0x8
+ 1114 00e5 6C3300   		.ascii	"l3\000"
+ 1115 00e8 05       		.byte	0x5
+ 1116 00e9 12       		.byte	0x12
+ 1117 00ea 88000000 		.4byte	0x88
+ 1118 00ee 00       		.byte	0
+ 1119 00ef 08       		.uleb128 0x8
+ 1120 00f0 6C3100   		.ascii	"l1\000"
+ 1121 00f3 05       		.byte	0x5
+ 1122 00f4 14       		.byte	0x14
+ 1123 00f5 88000000 		.4byte	0x88
+ 1124 00f9 02       		.byte	0x2
+ 1125 00fa 08       		.uleb128 0x8
+ 1126 00fb 723100   		.ascii	"r1\000"
+ 1127 00fe 05       		.byte	0x5
+ 1128 00ff 15       		.byte	0x15
+ 1129 0100 88000000 		.4byte	0x88
+ 1130 0104 04       		.byte	0x4
+ 1131 0105 08       		.uleb128 0x8
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 33
+
+
+ 1132 0106 723300   		.ascii	"r3\000"
+ 1133 0109 05       		.byte	0x5
+ 1134 010a 17       		.byte	0x17
+ 1135 010b 88000000 		.4byte	0x88
+ 1136 010f 06       		.byte	0x6
+ 1137 0110 00       		.byte	0
+ 1138 0111 09       		.uleb128 0x9
+ 1139 0112 D5010000 		.4byte	.LASF23
+ 1140 0116 01       		.byte	0x1
+ 1141 0117 C8       		.byte	0xc8
+ 1142 0118 81010000 		.4byte	0x181
+ 1143 011c 00000000 		.4byte	.LFB65
+ 1144 0120 58000000 		.4byte	.LFE65-.LFB65
+ 1145 0124 01       		.uleb128 0x1
+ 1146 0125 9C       		.byte	0x9c
+ 1147 0126 81010000 		.4byte	0x181
+ 1148 012a 0A       		.uleb128 0xa
+ 1149 012b 54030000 		.4byte	.LASF20
+ 1150 012f 01       		.byte	0x1
+ 1151 0130 C9       		.byte	0xc9
+ 1152 0131 AA000000 		.4byte	0xaa
+ 1153 0135 00000000 		.4byte	.LLST0
+ 1154 0139 0A       		.uleb128 0xa
+ 1155 013a BC020000 		.4byte	.LASF21
+ 1156 013e 01       		.byte	0x1
+ 1157 013f CA       		.byte	0xca
+ 1158 0140 25000000 		.4byte	0x25
+ 1159 0144 2B000000 		.4byte	.LLST1
+ 1160 0148 0B       		.uleb128 0xb
+ 1161 0149 06000000 		.4byte	.LVL1
+ 1162 014d F2070000 		.4byte	0x7f2
+ 1163 0151 0C       		.uleb128 0xc
+ 1164 0152 0C000000 		.4byte	.LVL2
+ 1165 0156 FD070000 		.4byte	0x7fd
+ 1166 015a 64010000 		.4byte	0x164
+ 1167 015e 0D       		.uleb128 0xd
+ 1168 015f 01       		.uleb128 0x1
+ 1169 0160 50       		.byte	0x50
+ 1170 0161 01       		.uleb128 0x1
+ 1171 0162 30       		.byte	0x30
+ 1172 0163 00       		.byte	0
+ 1173 0164 0B       		.uleb128 0xb
+ 1174 0165 12000000 		.4byte	.LVL3
+ 1175 0169 08080000 		.4byte	0x808
+ 1176 016d 0E       		.uleb128 0xe
+ 1177 016e 36000000 		.4byte	.LVL9
+ 1178 0172 13080000 		.4byte	0x813
+ 1179 0176 0D       		.uleb128 0xd
+ 1180 0177 01       		.uleb128 0x1
+ 1181 0178 50       		.byte	0x50
+ 1182 0179 05       		.uleb128 0x5
+ 1183 017a 03       		.byte	0x3
+ 1184 017b 00000000 		.4byte	.LC0
+ 1185 017f 00       		.byte	0
+ 1186 0180 00       		.byte	0
+ 1187 0181 02       		.uleb128 0x2
+ 1188 0182 01       		.byte	0x1
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 34
+
+
+ 1189 0183 02       		.byte	0x2
+ 1190 0184 51020000 		.4byte	.LASF22
+ 1191 0188 0F       		.uleb128 0xf
+ 1192 0189 1D030000 		.4byte	.LASF24
+ 1193 018d 01       		.byte	0x1
+ 1194 018e D8       		.byte	0xd8
+ 1195 018f 00000000 		.4byte	.LFB66
+ 1196 0193 6A000000 		.4byte	.LFE66-.LFB66
+ 1197 0197 01       		.uleb128 0x1
+ 1198 0198 9C       		.byte	0x9c
+ 1199 0199 00020000 		.4byte	0x200
+ 1200 019d 10       		.uleb128 0x10
+ 1201 019e 6F6E00   		.ascii	"on\000"
+ 1202 01a1 01       		.byte	0x1
+ 1203 01a2 D9       		.byte	0xd9
+ 1204 01a3 81010000 		.4byte	0x181
+ 1205 01a7 7F000000 		.4byte	.LLST2
+ 1206 01ab 0A       		.uleb128 0xa
+ 1207 01ac 7C000000 		.4byte	.LASF25
+ 1208 01b0 01       		.byte	0x1
+ 1209 01b1 DA       		.byte	0xda
+ 1210 01b2 7A000000 		.4byte	0x7a
+ 1211 01b6 CC000000 		.4byte	.LLST3
+ 1212 01ba 0A       		.uleb128 0xa
+ 1213 01bb 46030000 		.4byte	.LASF26
+ 1214 01bf 01       		.byte	0x1
+ 1215 01c0 DB       		.byte	0xdb
+ 1216 01c1 7A000000 		.4byte	0x7a
+ 1217 01c5 ED000000 		.4byte	.LLST4
+ 1218 01c9 0C       		.uleb128 0xc
+ 1219 01ca 12000000 		.4byte	.LVL17
+ 1220 01ce 1E080000 		.4byte	0x81e
+ 1221 01d2 DC010000 		.4byte	0x1dc
+ 1222 01d6 0D       		.uleb128 0xd
+ 1223 01d7 01       		.uleb128 0x1
+ 1224 01d8 50       		.byte	0x50
+ 1225 01d9 01       		.uleb128 0x1
+ 1226 01da 31       		.byte	0x31
+ 1227 01db 00       		.byte	0
+ 1228 01dc 0C       		.uleb128 0xc
+ 1229 01dd 1C000000 		.4byte	.LVL19
+ 1230 01e1 1E080000 		.4byte	0x81e
+ 1231 01e5 EF010000 		.4byte	0x1ef
+ 1232 01e9 0D       		.uleb128 0xd
+ 1233 01ea 01       		.uleb128 0x1
+ 1234 01eb 50       		.byte	0x50
+ 1235 01ec 01       		.uleb128 0x1
+ 1236 01ed 30       		.byte	0x30
+ 1237 01ee 00       		.byte	0
+ 1238 01ef 0E       		.uleb128 0xe
+ 1239 01f0 68000000 		.4byte	.LVL30
+ 1240 01f4 29080000 		.4byte	0x829
+ 1241 01f8 0D       		.uleb128 0xd
+ 1242 01f9 01       		.uleb128 0x1
+ 1243 01fa 50       		.byte	0x50
+ 1244 01fb 02       		.uleb128 0x2
+ 1245 01fc 74       		.byte	0x74
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 35
+
+
+ 1246 01fd 00       		.sleb128 0
+ 1247 01fe 00       		.byte	0
+ 1248 01ff 00       		.byte	0
+ 1249 0200 11       		.uleb128 0x11
+ 1250 0201 78010000 		.4byte	.LASF27
+ 1251 0205 01       		.byte	0x1
+ 1252 0206 FD       		.byte	0xfd
+ 1253 0207 00000000 		.4byte	.LFB67
+ 1254 020b 48010000 		.4byte	.LFE67-.LFB67
+ 1255 020f 01       		.uleb128 0x1
+ 1256 0210 9C       		.byte	0x9c
+ 1257 0211 7F030000 		.4byte	0x37f
+ 1258 0215 12       		.uleb128 0x12
+ 1259 0216 72656600 		.ascii	"ref\000"
+ 1260 021a 01       		.byte	0x1
+ 1261 021b FD       		.byte	0xfd
+ 1262 021c D8000000 		.4byte	0xd8
+ 1263 0220 03       		.uleb128 0x3
+ 1264 0221 91       		.byte	0x91
+ 1265 0222 B07E     		.sleb128 -208
+ 1266 0224 13       		.uleb128 0x13
+ 1267 0225 00000000 		.4byte	.LASF28
+ 1268 0229 01       		.byte	0x1
+ 1269 022a FD       		.byte	0xfd
+ 1270 022b 7F030000 		.4byte	0x37f
+ 1271 022f 22010000 		.4byte	.LLST5
+ 1272 0233 14       		.uleb128 0x14
+ 1273 0234 6C3100   		.ascii	"l1\000"
+ 1274 0237 01       		.byte	0x1
+ 1275 0238 FF       		.byte	0xff
+ 1276 0239 85030000 		.4byte	0x385
+ 1277 023d 03       		.uleb128 0x3
+ 1278 023e 91       		.byte	0x91
+ 1279 023f B07F     		.sleb128 -80
+ 1280 0241 15       		.uleb128 0x15
+ 1281 0242 723100   		.ascii	"r1\000"
+ 1282 0245 01       		.byte	0x1
+ 1283 0246 0001     		.2byte	0x100
+ 1284 0248 85030000 		.4byte	0x385
+ 1285 024c 03       		.uleb128 0x3
+ 1286 024d 91       		.byte	0x91
+ 1287 024e 887F     		.sleb128 -120
+ 1288 0250 15       		.uleb128 0x15
+ 1289 0251 6C3300   		.ascii	"l3\000"
+ 1290 0254 01       		.byte	0x1
+ 1291 0255 0101     		.2byte	0x101
+ 1292 0257 85030000 		.4byte	0x385
+ 1293 025b 03       		.uleb128 0x3
+ 1294 025c 91       		.byte	0x91
+ 1295 025d E07E     		.sleb128 -160
+ 1296 025f 15       		.uleb128 0x15
+ 1297 0260 723300   		.ascii	"r3\000"
+ 1298 0263 01       		.byte	0x1
+ 1299 0264 0201     		.2byte	0x102
+ 1300 0266 85030000 		.4byte	0x385
+ 1301 026a 03       		.uleb128 0x3
+ 1302 026b 91       		.byte	0x91
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 36
+
+
+ 1303 026c B87E     		.sleb128 -200
+ 1304 026e 16       		.uleb128 0x16
+ 1305 026f D0000000 		.4byte	.LASF29
+ 1306 0273 01       		.byte	0x1
+ 1307 0274 0301     		.2byte	0x103
+ 1308 0276 7A000000 		.4byte	0x7a
+ 1309 027a 4E010000 		.4byte	.LLST6
+ 1310 027e 17       		.uleb128 0x17
+ 1311 027f 6900     		.ascii	"i\000"
+ 1312 0281 01       		.byte	0x1
+ 1313 0282 0401     		.2byte	0x104
+ 1314 0284 7A000000 		.4byte	0x7a
+ 1315 0288 6D010000 		.4byte	.LLST7
+ 1316 028c 0C       		.uleb128 0xc
+ 1317 028d 1A000000 		.4byte	.LVL33
+ 1318 0291 34080000 		.4byte	0x834
+ 1319 0295 AC020000 		.4byte	0x2ac
+ 1320 0299 0D       		.uleb128 0xd
+ 1321 029a 01       		.uleb128 0x1
+ 1322 029b 50       		.byte	0x50
+ 1323 029c 03       		.uleb128 0x3
+ 1324 029d 91       		.byte	0x91
+ 1325 029e B07F     		.sleb128 -80
+ 1326 02a0 0D       		.uleb128 0xd
+ 1327 02a1 01       		.uleb128 0x1
+ 1328 02a2 51       		.byte	0x51
+ 1329 02a3 01       		.uleb128 0x1
+ 1330 02a4 30       		.byte	0x30
+ 1331 02a5 0D       		.uleb128 0xd
+ 1332 02a6 01       		.uleb128 0x1
+ 1333 02a7 52       		.byte	0x52
+ 1334 02a8 02       		.uleb128 0x2
+ 1335 02a9 74       		.byte	0x74
+ 1336 02aa 00       		.sleb128 0
+ 1337 02ab 00       		.byte	0
+ 1338 02ac 0C       		.uleb128 0xc
+ 1339 02ad 24000000 		.4byte	.LVL34
+ 1340 02b1 34080000 		.4byte	0x834
+ 1341 02b5 CC020000 		.4byte	0x2cc
+ 1342 02b9 0D       		.uleb128 0xd
+ 1343 02ba 01       		.uleb128 0x1
+ 1344 02bb 50       		.byte	0x50
+ 1345 02bc 03       		.uleb128 0x3
+ 1346 02bd 91       		.byte	0x91
+ 1347 02be 887F     		.sleb128 -120
+ 1348 02c0 0D       		.uleb128 0xd
+ 1349 02c1 01       		.uleb128 0x1
+ 1350 02c2 51       		.byte	0x51
+ 1351 02c3 01       		.uleb128 0x1
+ 1352 02c4 30       		.byte	0x30
+ 1353 02c5 0D       		.uleb128 0xd
+ 1354 02c6 01       		.uleb128 0x1
+ 1355 02c7 52       		.byte	0x52
+ 1356 02c8 02       		.uleb128 0x2
+ 1357 02c9 74       		.byte	0x74
+ 1358 02ca 00       		.sleb128 0
+ 1359 02cb 00       		.byte	0
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 37
+
+
+ 1360 02cc 0C       		.uleb128 0xc
+ 1361 02cd 2E000000 		.4byte	.LVL35
+ 1362 02d1 34080000 		.4byte	0x834
+ 1363 02d5 EC020000 		.4byte	0x2ec
+ 1364 02d9 0D       		.uleb128 0xd
+ 1365 02da 01       		.uleb128 0x1
+ 1366 02db 50       		.byte	0x50
+ 1367 02dc 03       		.uleb128 0x3
+ 1368 02dd 91       		.byte	0x91
+ 1369 02de E07E     		.sleb128 -160
+ 1370 02e0 0D       		.uleb128 0xd
+ 1371 02e1 01       		.uleb128 0x1
+ 1372 02e2 51       		.byte	0x51
+ 1373 02e3 01       		.uleb128 0x1
+ 1374 02e4 30       		.byte	0x30
+ 1375 02e5 0D       		.uleb128 0xd
+ 1376 02e6 01       		.uleb128 0x1
+ 1377 02e7 52       		.byte	0x52
+ 1378 02e8 02       		.uleb128 0x2
+ 1379 02e9 74       		.byte	0x74
+ 1380 02ea 00       		.sleb128 0
+ 1381 02eb 00       		.byte	0
+ 1382 02ec 0C       		.uleb128 0xc
+ 1383 02ed 38000000 		.4byte	.LVL36
+ 1384 02f1 34080000 		.4byte	0x834
+ 1385 02f5 0C030000 		.4byte	0x30c
+ 1386 02f9 0D       		.uleb128 0xd
+ 1387 02fa 01       		.uleb128 0x1
+ 1388 02fb 50       		.byte	0x50
+ 1389 02fc 03       		.uleb128 0x3
+ 1390 02fd 91       		.byte	0x91
+ 1391 02fe B87E     		.sleb128 -200
+ 1392 0300 0D       		.uleb128 0xd
+ 1393 0301 01       		.uleb128 0x1
+ 1394 0302 51       		.byte	0x51
+ 1395 0303 01       		.uleb128 0x1
+ 1396 0304 30       		.byte	0x30
+ 1397 0305 0D       		.uleb128 0xd
+ 1398 0306 01       		.uleb128 0x1
+ 1399 0307 52       		.byte	0x52
+ 1400 0308 02       		.uleb128 0x2
+ 1401 0309 74       		.byte	0x74
+ 1402 030a 00       		.sleb128 0
+ 1403 030b 00       		.byte	0
+ 1404 030c 0C       		.uleb128 0xc
+ 1405 030d 48000000 		.4byte	.LVL38
+ 1406 0311 3D080000 		.4byte	0x83d
+ 1407 0315 21030000 		.4byte	0x321
+ 1408 0319 0D       		.uleb128 0xd
+ 1409 031a 01       		.uleb128 0x1
+ 1410 031b 50       		.byte	0x50
+ 1411 031c 03       		.uleb128 0x3
+ 1412 031d 91       		.byte	0x91
+ 1413 031e B07E     		.sleb128 -208
+ 1414 0320 00       		.byte	0
+ 1415 0321 0C       		.uleb128 0xc
+ 1416 0322 D6000000 		.4byte	.LVL51
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 38
+
+
+ 1417 0326 13080000 		.4byte	0x813
+ 1418 032a 3E030000 		.4byte	0x33e
+ 1419 032e 0D       		.uleb128 0xd
+ 1420 032f 01       		.uleb128 0x1
+ 1421 0330 50       		.byte	0x50
+ 1422 0331 05       		.uleb128 0x5
+ 1423 0332 03       		.byte	0x3
+ 1424 0333 0C000000 		.4byte	.LC1
+ 1425 0337 0D       		.uleb128 0xd
+ 1426 0338 01       		.uleb128 0x1
+ 1427 0339 51       		.byte	0x51
+ 1428 033a 02       		.uleb128 0x2
+ 1429 033b 77       		.byte	0x77
+ 1430 033c 00       		.sleb128 0
+ 1431 033d 00       		.byte	0
+ 1432 033e 0C       		.uleb128 0xc
+ 1433 033f F4000000 		.4byte	.LVL54
+ 1434 0343 13080000 		.4byte	0x813
+ 1435 0347 55030000 		.4byte	0x355
+ 1436 034b 0D       		.uleb128 0xd
+ 1437 034c 01       		.uleb128 0x1
+ 1438 034d 50       		.byte	0x50
+ 1439 034e 05       		.uleb128 0x5
+ 1440 034f 03       		.byte	0x3
+ 1441 0350 1C000000 		.4byte	.LC2
+ 1442 0354 00       		.byte	0
+ 1443 0355 0C       		.uleb128 0xc
+ 1444 0356 FE000000 		.4byte	.LVL57
+ 1445 035a 29080000 		.4byte	0x829
+ 1446 035e 69030000 		.4byte	0x369
+ 1447 0362 0D       		.uleb128 0xd
+ 1448 0363 01       		.uleb128 0x1
+ 1449 0364 50       		.byte	0x50
+ 1450 0365 02       		.uleb128 0x2
+ 1451 0366 08       		.byte	0x8
+ 1452 0367 64       		.byte	0x64
+ 1453 0368 00       		.byte	0
+ 1454 0369 0E       		.uleb128 0xe
+ 1455 036a 36010000 		.4byte	.LVL62
+ 1456 036e 48080000 		.4byte	0x848
+ 1457 0372 0D       		.uleb128 0xd
+ 1458 0373 01       		.uleb128 0x1
+ 1459 0374 50       		.byte	0x50
+ 1460 0375 01       		.uleb128 0x1
+ 1461 0376 49       		.byte	0x49
+ 1462 0377 0D       		.uleb128 0xd
+ 1463 0378 01       		.uleb128 0x1
+ 1464 0379 51       		.byte	0x51
+ 1465 037a 02       		.uleb128 0x2
+ 1466 037b 09       		.byte	0x9
+ 1467 037c C8       		.byte	0xc8
+ 1468 037d 00       		.byte	0
+ 1469 037e 00       		.byte	0
+ 1470 037f 06       		.uleb128 0x6
+ 1471 0380 04       		.byte	0x4
+ 1472 0381 25000000 		.4byte	0x25
+ 1473 0385 18       		.uleb128 0x18
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 39
+
+
+ 1474 0386 25000000 		.4byte	0x25
+ 1475 038a 95030000 		.4byte	0x395
+ 1476 038e 19       		.uleb128 0x19
+ 1477 038f CB000000 		.4byte	0xcb
+ 1478 0393 09       		.byte	0x9
+ 1479 0394 00       		.byte	0
+ 1480 0395 1A       		.uleb128 0x1a
+ 1481 0396 57020000 		.4byte	.LASF51
+ 1482 039a 01       		.byte	0x1
+ 1483 039b 42       		.byte	0x42
+ 1484 039c 7A000000 		.4byte	0x7a
+ 1485 03a0 00000000 		.4byte	.LFB64
+ 1486 03a4 18020000 		.4byte	.LFE64-.LFB64
+ 1487 03a8 01       		.uleb128 0x1
+ 1488 03a9 9C       		.byte	0x9c
+ 1489 03aa C6060000 		.4byte	0x6c6
+ 1490 03ae 1B       		.uleb128 0x1b
+ 1491 03af BC020000 		.4byte	.LASF21
+ 1492 03b3 01       		.byte	0x1
+ 1493 03b4 4A       		.byte	0x4a
+ 1494 03b5 25000000 		.4byte	0x25
+ 1495 03b9 04       		.byte	0x4
+ 1496 03ba 00000000 		.4byte	0
+ 1497 03be 0A       		.uleb128 0xa
+ 1498 03bf 58010000 		.4byte	.LASF30
+ 1499 03c3 01       		.byte	0x1
+ 1500 03c4 4B       		.byte	0x4b
+ 1501 03c5 9E000000 		.4byte	0x9e
+ 1502 03c9 8C010000 		.4byte	.LLST8
+ 1503 03cd 0A       		.uleb128 0xa
+ 1504 03ce 00020000 		.4byte	.LASF31
+ 1505 03d2 01       		.byte	0x1
+ 1506 03d3 4C       		.byte	0x4c
+ 1507 03d4 9E000000 		.4byte	0x9e
+ 1508 03d8 B6010000 		.4byte	.LLST9
+ 1509 03dc 0A       		.uleb128 0xa
+ 1510 03dd D6000000 		.4byte	.LASF32
+ 1511 03e1 01       		.byte	0x1
+ 1512 03e2 4D       		.byte	0x4d
+ 1513 03e3 9E000000 		.4byte	0x9e
+ 1514 03e7 D5010000 		.4byte	.LLST10
+ 1515 03eb 0A       		.uleb128 0xa
+ 1516 03ec 72030000 		.4byte	.LASF33
+ 1517 03f0 01       		.byte	0x1
+ 1518 03f1 4E       		.byte	0x4e
+ 1519 03f2 AA000000 		.4byte	0xaa
+ 1520 03f6 FF010000 		.4byte	.LLST11
+ 1521 03fa 0A       		.uleb128 0xa
+ 1522 03fb 28000000 		.4byte	.LASF34
+ 1523 03ff 01       		.byte	0x1
+ 1524 0400 4F       		.byte	0x4f
+ 1525 0401 9E000000 		.4byte	0x9e
+ 1526 0405 22020000 		.4byte	.LLST12
+ 1527 0409 0A       		.uleb128 0xa
+ 1528 040a 2B040000 		.4byte	.LASF35
+ 1529 040e 01       		.byte	0x1
+ 1530 040f 50       		.byte	0x50
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 40
+
+
+ 1531 0410 9E000000 		.4byte	0x9e
+ 1532 0414 43020000 		.4byte	.LLST13
+ 1533 0418 10       		.uleb128 0x10
+ 1534 0419 6C315700 		.ascii	"l1W\000"
+ 1535 041d 01       		.byte	0x1
+ 1536 041e 51       		.byte	0x51
+ 1537 041f AA000000 		.4byte	0xaa
+ 1538 0423 8F020000 		.4byte	.LLST14
+ 1539 0427 1C       		.uleb128 0x1c
+ 1540 0428 6C314200 		.ascii	"l1B\000"
+ 1541 042c 01       		.byte	0x1
+ 1542 042d 51       		.byte	0x51
+ 1543 042e AA000000 		.4byte	0xaa
+ 1544 0432 BF5D     		.2byte	0x5dbf
+ 1545 0434 10       		.uleb128 0x10
+ 1546 0435 6C335700 		.ascii	"l3W\000"
+ 1547 0439 01       		.byte	0x1
+ 1548 043a 51       		.byte	0x51
+ 1549 043b AA000000 		.4byte	0xaa
+ 1550 043f B0020000 		.4byte	.LLST15
+ 1551 0443 1C       		.uleb128 0x1c
+ 1552 0444 6C334200 		.ascii	"l3B\000"
+ 1553 0448 01       		.byte	0x1
+ 1554 0449 51       		.byte	0x51
+ 1555 044a AA000000 		.4byte	0xaa
+ 1556 044e BF5D     		.2byte	0x5dbf
+ 1557 0450 10       		.uleb128 0x10
+ 1558 0451 72315700 		.ascii	"r1W\000"
+ 1559 0455 01       		.byte	0x1
+ 1560 0456 51       		.byte	0x51
+ 1561 0457 AA000000 		.4byte	0xaa
+ 1562 045b DA020000 		.4byte	.LLST16
+ 1563 045f 1C       		.uleb128 0x1c
+ 1564 0460 72314200 		.ascii	"r1B\000"
+ 1565 0464 01       		.byte	0x1
+ 1566 0465 51       		.byte	0x51
+ 1567 0466 AA000000 		.4byte	0xaa
+ 1568 046a BF5D     		.2byte	0x5dbf
+ 1569 046c 10       		.uleb128 0x10
+ 1570 046d 72335700 		.ascii	"r3W\000"
+ 1571 0471 01       		.byte	0x1
+ 1572 0472 51       		.byte	0x51
+ 1573 0473 AA000000 		.4byte	0xaa
+ 1574 0477 FB020000 		.4byte	.LLST17
+ 1575 047b 1C       		.uleb128 0x1c
+ 1576 047c 72334200 		.ascii	"r3B\000"
+ 1577 0480 01       		.byte	0x1
+ 1578 0481 51       		.byte	0x51
+ 1579 0482 AA000000 		.4byte	0xaa
+ 1580 0486 BF5D     		.2byte	0x5dbf
+ 1581 0488 1D       		.uleb128 0x1d
+ 1582 0489 00000000 		.4byte	.LASF28
+ 1583 048d 01       		.byte	0x1
+ 1584 048e 52       		.byte	0x52
+ 1585 048f C6060000 		.4byte	0x6c6
+ 1586 0493 02       		.uleb128 0x2
+ 1587 0494 91       		.byte	0x91
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 41
+
+
+ 1588 0495 44       		.sleb128 -60
+ 1589 0496 0A       		.uleb128 0xa
+ 1590 0497 82010000 		.4byte	.LASF36
+ 1591 049b 01       		.byte	0x1
+ 1592 049c 53       		.byte	0x53
+ 1593 049d 81010000 		.4byte	0x181
+ 1594 04a1 25030000 		.4byte	.LLST18
+ 1595 04a5 0A       		.uleb128 0xa
+ 1596 04a6 3E030000 		.4byte	.LASF37
+ 1597 04aa 01       		.byte	0x1
+ 1598 04ab 54       		.byte	0x54
+ 1599 04ac 9E000000 		.4byte	0x9e
+ 1600 04b0 5F030000 		.4byte	.LLST19
+ 1601 04b4 0A       		.uleb128 0xa
+ 1602 04b5 A0020000 		.4byte	.LASF38
+ 1603 04b9 01       		.byte	0x1
+ 1604 04ba 55       		.byte	0x55
+ 1605 04bb 9E000000 		.4byte	0x9e
+ 1606 04bf 8D030000 		.4byte	.LLST20
+ 1607 04c3 14       		.uleb128 0x14
+ 1608 04c4 72656600 		.ascii	"ref\000"
+ 1609 04c8 01       		.byte	0x1
+ 1610 04c9 60       		.byte	0x60
+ 1611 04ca D8000000 		.4byte	0xd8
+ 1612 04ce 03       		.uleb128 0x3
+ 1613 04cf 91       		.byte	0x91
+ 1614 04d0 BC7F     		.sleb128 -68
+ 1615 04d2 0A       		.uleb128 0xa
+ 1616 04d3 65030000 		.4byte	.LASF39
+ 1617 04d7 01       		.byte	0x1
+ 1618 04d8 68       		.byte	0x68
+ 1619 04d9 25000000 		.4byte	0x25
+ 1620 04dd B7030000 		.4byte	.LLST21
+ 1621 04e1 1B       		.uleb128 0x1b
+ 1622 04e2 5F010000 		.4byte	.LASF40
+ 1623 04e6 01       		.byte	0x1
+ 1624 04e7 69       		.byte	0x69
+ 1625 04e8 25000000 		.4byte	0x25
+ 1626 04ec 04       		.byte	0x4
+ 1627 04ed 00000000 		.4byte	0
+ 1628 04f1 1B       		.uleb128 0x1b
+ 1629 04f2 BE000000 		.4byte	.LASF41
+ 1630 04f6 01       		.byte	0x1
+ 1631 04f7 6A       		.byte	0x6a
+ 1632 04f8 25000000 		.4byte	0x25
+ 1633 04fc 04       		.byte	0x4
+ 1634 04fd 00000000 		.4byte	0
+ 1635 0501 1B       		.uleb128 0x1b
+ 1636 0502 5E030000 		.4byte	.LASF42
+ 1637 0506 01       		.byte	0x1
+ 1638 0507 6B       		.byte	0x6b
+ 1639 0508 25000000 		.4byte	0x25
+ 1640 050c 04       		.byte	0x4
+ 1641 050d 00000000 		.4byte	0
+ 1642 0511 0A       		.uleb128 0xa
+ 1643 0512 1E000000 		.4byte	.LASF43
+ 1644 0516 01       		.byte	0x1
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 42
+
+
+ 1645 0517 6C       		.byte	0x6c
+ 1646 0518 25000000 		.4byte	0x25
+ 1647 051c F4030000 		.4byte	.LLST22
+ 1648 0520 1E       		.uleb128 0x1e
+ 1649 0521 00000000 		.4byte	.Ldebug_ranges0+0
+ 1650 0525 C5050000 		.4byte	0x5c5
+ 1651 0529 1F       		.uleb128 0x1f
+ 1652 052a 16000000 		.4byte	.LASF46
+ 1653 052e 01       		.byte	0x1
+ 1654 052f 85       		.byte	0x85
+ 1655 0530 25000000 		.4byte	0x25
+ 1656 0534 0A       		.uleb128 0xa
+ 1657 0535 DA020000 		.4byte	.LASF44
+ 1658 0539 01       		.byte	0x1
+ 1659 053a 86       		.byte	0x86
+ 1660 053b 25000000 		.4byte	0x25
+ 1661 053f 47040000 		.4byte	.LLST23
+ 1662 0543 0A       		.uleb128 0xa
+ 1663 0544 E2010000 		.4byte	.LASF45
+ 1664 0548 01       		.byte	0x1
+ 1665 0549 87       		.byte	0x87
+ 1666 054a 25000000 		.4byte	0x25
+ 1667 054e 65040000 		.4byte	.LLST24
+ 1668 0552 1F       		.uleb128 0x1f
+ 1669 0553 F6000000 		.4byte	.LASF47
+ 1670 0557 01       		.byte	0x1
+ 1671 0558 88       		.byte	0x88
+ 1672 0559 25000000 		.4byte	0x25
+ 1673 055d 0A       		.uleb128 0xa
+ 1674 055e 53000000 		.4byte	.LASF48
+ 1675 0562 01       		.byte	0x1
+ 1676 0563 8B       		.byte	0x8b
+ 1677 0564 25000000 		.4byte	0x25
+ 1678 0568 83040000 		.4byte	.LLST25
+ 1679 056c 0A       		.uleb128 0xa
+ 1680 056d 2C010000 		.4byte	.LASF49
+ 1681 0571 01       		.byte	0x1
+ 1682 0572 8E       		.byte	0x8e
+ 1683 0573 25000000 		.4byte	0x25
+ 1684 0577 A1040000 		.4byte	.LLST26
+ 1685 057b 0A       		.uleb128 0xa
+ 1686 057c 68010000 		.4byte	.LASF50
+ 1687 0580 01       		.byte	0x1
+ 1688 0581 91       		.byte	0x91
+ 1689 0582 25000000 		.4byte	0x25
+ 1690 0586 CA040000 		.4byte	.LLST27
+ 1691 058a 0C       		.uleb128 0xc
+ 1692 058b B0000000 		.4byte	.LVL87
+ 1693 058f 3D080000 		.4byte	0x83d
+ 1694 0593 9F050000 		.4byte	0x59f
+ 1695 0597 0D       		.uleb128 0xd
+ 1696 0598 01       		.uleb128 0x1
+ 1697 0599 50       		.byte	0x50
+ 1698 059a 03       		.uleb128 0x3
+ 1699 059b 91       		.byte	0x91
+ 1700 059c BC7F     		.sleb128 -68
+ 1701 059e 00       		.byte	0
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 43
+
+
+ 1702 059f 0E       		.uleb128 0xe
+ 1703 05a0 8C010000 		.4byte	.LVL121
+ 1704 05a4 53080000 		.4byte	0x853
+ 1705 05a8 0D       		.uleb128 0xd
+ 1706 05a9 01       		.uleb128 0x1
+ 1707 05aa 50       		.byte	0x50
+ 1708 05ab 05       		.uleb128 0x5
+ 1709 05ac 91       		.byte	0x91
+ 1710 05ad A87F     		.sleb128 -88
+ 1711 05af 94       		.byte	0x94
+ 1712 05b0 01       		.byte	0x1
+ 1713 05b1 0D       		.uleb128 0xd
+ 1714 05b2 01       		.uleb128 0x1
+ 1715 05b3 51       		.byte	0x51
+ 1716 05b4 02       		.uleb128 0x2
+ 1717 05b5 77       		.byte	0x77
+ 1718 05b6 00       		.sleb128 0
+ 1719 05b7 0D       		.uleb128 0xd
+ 1720 05b8 01       		.uleb128 0x1
+ 1721 05b9 53       		.byte	0x53
+ 1722 05ba 02       		.uleb128 0x2
+ 1723 05bb 78       		.byte	0x78
+ 1724 05bc 00       		.sleb128 0
+ 1725 05bd 0D       		.uleb128 0xd
+ 1726 05be 02       		.uleb128 0x2
+ 1727 05bf 7D       		.byte	0x7d
+ 1728 05c0 00       		.sleb128 0
+ 1729 05c1 01       		.uleb128 0x1
+ 1730 05c2 31       		.byte	0x31
+ 1731 05c3 00       		.byte	0
+ 1732 05c4 00       		.byte	0
+ 1733 05c5 0B       		.uleb128 0xb
+ 1734 05c6 0C000000 		.4byte	.LVL64
+ 1735 05ca 5E080000 		.4byte	0x85e
+ 1736 05ce 0B       		.uleb128 0xb
+ 1737 05cf 10000000 		.4byte	.LVL65
+ 1738 05d3 69080000 		.4byte	0x869
+ 1739 05d7 0C       		.uleb128 0xc
+ 1740 05d8 16000000 		.4byte	.LVL66
+ 1741 05dc 74080000 		.4byte	0x874
+ 1742 05e0 EE050000 		.4byte	0x5ee
+ 1743 05e4 0D       		.uleb128 0xd
+ 1744 05e5 01       		.uleb128 0x1
+ 1745 05e6 50       		.byte	0x50
+ 1746 05e7 05       		.uleb128 0x5
+ 1747 05e8 03       		.byte	0x3
+ 1748 05e9 28000000 		.4byte	.LC3
+ 1749 05ed 00       		.byte	0
+ 1750 05ee 0C       		.uleb128 0xc
+ 1751 05ef 1C000000 		.4byte	.LVL67
+ 1752 05f3 1E080000 		.4byte	0x81e
+ 1753 05f7 01060000 		.4byte	0x601
+ 1754 05fb 0D       		.uleb128 0xd
+ 1755 05fc 01       		.uleb128 0x1
+ 1756 05fd 50       		.byte	0x50
+ 1757 05fe 01       		.uleb128 0x1
+ 1758 05ff 30       		.byte	0x30
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 44
+
+
+ 1759 0600 00       		.byte	0
+ 1760 0601 0B       		.uleb128 0xb
+ 1761 0602 24000000 		.4byte	.LVL68
+ 1762 0606 83080000 		.4byte	0x883
+ 1763 060a 0B       		.uleb128 0xb
+ 1764 060b 28000000 		.4byte	.LVL69
+ 1765 060f 8E080000 		.4byte	0x88e
+ 1766 0613 0C       		.uleb128 0xc
+ 1767 0614 2E000000 		.4byte	.LVL70
+ 1768 0618 99080000 		.4byte	0x899
+ 1769 061c 26060000 		.4byte	0x626
+ 1770 0620 0D       		.uleb128 0xd
+ 1771 0621 01       		.uleb128 0x1
+ 1772 0622 50       		.byte	0x50
+ 1773 0623 01       		.uleb128 0x1
+ 1774 0624 31       		.byte	0x31
+ 1775 0625 00       		.byte	0
+ 1776 0626 0B       		.uleb128 0xb
+ 1777 0627 50000000 		.4byte	.LVL72
+ 1778 062b A4080000 		.4byte	0x8a4
+ 1779 062f 0C       		.uleb128 0xc
+ 1780 0630 68000000 		.4byte	.LVL74
+ 1781 0634 00020000 		.4byte	0x200
+ 1782 0638 43060000 		.4byte	0x643
+ 1783 063c 0D       		.uleb128 0xd
+ 1784 063d 01       		.uleb128 0x1
+ 1785 063e 52       		.byte	0x52
+ 1786 063f 02       		.uleb128 0x2
+ 1787 0640 91       		.byte	0x91
+ 1788 0641 44       		.sleb128 -60
+ 1789 0642 00       		.byte	0
+ 1790 0643 0C       		.uleb128 0xc
+ 1791 0644 96000000 		.4byte	.LVL81
+ 1792 0648 29080000 		.4byte	0x829
+ 1793 064c 58060000 		.4byte	0x658
+ 1794 0650 0D       		.uleb128 0xd
+ 1795 0651 01       		.uleb128 0x1
+ 1796 0652 50       		.byte	0x50
+ 1797 0653 03       		.uleb128 0x3
+ 1798 0654 0A       		.byte	0xa
+ 1799 0655 F401     		.2byte	0x1f4
+ 1800 0657 00       		.byte	0
+ 1801 0658 0B       		.uleb128 0xb
+ 1802 0659 9A000000 		.4byte	.LVL82
+ 1803 065d AF080000 		.4byte	0x8af
+ 1804 0661 0C       		.uleb128 0xc
+ 1805 0662 A0000000 		.4byte	.LVL83
+ 1806 0666 3D080000 		.4byte	0x83d
+ 1807 066a 76060000 		.4byte	0x676
+ 1808 066e 0D       		.uleb128 0xd
+ 1809 066f 01       		.uleb128 0x1
+ 1810 0670 50       		.byte	0x50
+ 1811 0671 03       		.uleb128 0x3
+ 1812 0672 91       		.byte	0x91
+ 1813 0673 BC7F     		.sleb128 -68
+ 1814 0675 00       		.byte	0
+ 1815 0676 0B       		.uleb128 0xb
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 45
+
+
+ 1816 0677 A4000000 		.4byte	.LVL84
+ 1817 067b AF080000 		.4byte	0x8af
+ 1818 067f 0C       		.uleb128 0xc
+ 1819 0680 D6010000 		.4byte	.LVL126
+ 1820 0684 BA080000 		.4byte	0x8ba
+ 1821 0688 97060000 		.4byte	0x697
+ 1822 068c 0D       		.uleb128 0xd
+ 1823 068d 01       		.uleb128 0x1
+ 1824 068e 50       		.byte	0x50
+ 1825 068f 01       		.uleb128 0x1
+ 1826 0690 30       		.byte	0x30
+ 1827 0691 0D       		.uleb128 0xd
+ 1828 0692 01       		.uleb128 0x1
+ 1829 0693 51       		.byte	0x51
+ 1830 0694 01       		.uleb128 0x1
+ 1831 0695 30       		.byte	0x30
+ 1832 0696 00       		.byte	0
+ 1833 0697 0B       		.uleb128 0xb
+ 1834 0698 DA010000 		.4byte	.LVL127
+ 1835 069c C5080000 		.4byte	0x8c5
+ 1836 06a0 0B       		.uleb128 0xb
+ 1837 06a1 EC010000 		.4byte	.LVL129
+ 1838 06a5 11010000 		.4byte	0x111
+ 1839 06a9 0C       		.uleb128 0xc
+ 1840 06aa F8010000 		.4byte	.LVL131
+ 1841 06ae 29080000 		.4byte	0x829
+ 1842 06b2 BC060000 		.4byte	0x6bc
+ 1843 06b6 0D       		.uleb128 0xd
+ 1844 06b7 01       		.uleb128 0x1
+ 1845 06b8 50       		.byte	0x50
+ 1846 06b9 01       		.uleb128 0x1
+ 1847 06ba 44       		.byte	0x44
+ 1848 06bb 00       		.byte	0
+ 1849 06bc 0B       		.uleb128 0xb
+ 1850 06bd 06020000 		.4byte	.LVL133
+ 1851 06c1 88010000 		.4byte	0x188
+ 1852 06c5 00       		.byte	0
+ 1853 06c6 18       		.uleb128 0x18
+ 1854 06c7 25000000 		.4byte	0x25
+ 1855 06cb D6060000 		.4byte	0x6d6
+ 1856 06cf 19       		.uleb128 0x19
+ 1857 06d0 CB000000 		.4byte	0xcb
+ 1858 06d4 04       		.byte	0x4
+ 1859 06d5 00       		.byte	0
+ 1860 06d6 20       		.uleb128 0x20
+ 1861 06d7 75000000 		.4byte	.LASF52
+ 1862 06db 01       		.byte	0x1
+ 1863 06dc 3602     		.2byte	0x236
+ 1864 06de 7A000000 		.4byte	0x7a
+ 1865 06e2 00000000 		.4byte	.LFB68
+ 1866 06e6 2A000000 		.4byte	.LFE68-.LFB68
+ 1867 06ea 01       		.uleb128 0x1
+ 1868 06eb 9C       		.byte	0x9c
+ 1869 06ec 4B070000 		.4byte	0x74b
+ 1870 06f0 21       		.uleb128 0x21
+ 1871 06f1 B9000000 		.4byte	.LASF53
+ 1872 06f5 01       		.byte	0x1
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 46
+
+
+ 1873 06f6 3602     		.2byte	0x236
+ 1874 06f8 7A000000 		.4byte	0x7a
+ 1875 06fc E8040000 		.4byte	.LLST28
+ 1876 0700 22       		.uleb128 0x22
+ 1877 0701 70747200 		.ascii	"ptr\000"
+ 1878 0705 01       		.byte	0x1
+ 1879 0706 3602     		.2byte	0x236
+ 1880 0708 D2000000 		.4byte	0xd2
+ 1881 070c 09050000 		.4byte	.LLST29
+ 1882 0710 22       		.uleb128 0x22
+ 1883 0711 6C656E00 		.ascii	"len\000"
+ 1884 0715 01       		.byte	0x1
+ 1885 0716 3602     		.2byte	0x236
+ 1886 0718 7A000000 		.4byte	0x7a
+ 1887 071c 3D050000 		.4byte	.LLST30
+ 1888 0720 17       		.uleb128 0x17
+ 1889 0721 6E00     		.ascii	"n\000"
+ 1890 0723 01       		.byte	0x1
+ 1891 0724 3902     		.2byte	0x239
+ 1892 0726 7A000000 		.4byte	0x7a
+ 1893 072a 5B050000 		.4byte	.LLST31
+ 1894 072e 0C       		.uleb128 0xc
+ 1895 072f 16000000 		.4byte	.LVL137
+ 1896 0733 D0080000 		.4byte	0x8d0
+ 1897 0737 41070000 		.4byte	0x741
+ 1898 073b 0D       		.uleb128 0xd
+ 1899 073c 01       		.uleb128 0x1
+ 1900 073d 50       		.byte	0x50
+ 1901 073e 01       		.uleb128 0x1
+ 1902 073f 3D       		.byte	0x3d
+ 1903 0740 00       		.byte	0
+ 1904 0741 0B       		.uleb128 0xb
+ 1905 0742 1E000000 		.4byte	.LVL139
+ 1906 0746 D0080000 		.4byte	0x8d0
+ 1907 074a 00       		.byte	0
+ 1908 074b 20       		.uleb128 0x20
+ 1909 074c AC010000 		.4byte	.LASF54
+ 1910 0750 01       		.byte	0x1
+ 1911 0751 4102     		.2byte	0x241
+ 1912 0753 7A000000 		.4byte	0x7a
+ 1913 0757 00000000 		.4byte	.LFB69
+ 1914 075b 38000000 		.4byte	.LFE69-.LFB69
+ 1915 075f 01       		.uleb128 0x1
+ 1916 0760 9C       		.byte	0x9c
+ 1917 0761 E1070000 		.4byte	0x7e1
+ 1918 0765 21       		.uleb128 0x21
+ 1919 0766 B9000000 		.4byte	.LASF53
+ 1920 076a 01       		.byte	0x1
+ 1921 076b 4102     		.2byte	0x241
+ 1922 076d 7A000000 		.4byte	0x7a
+ 1923 0771 7A050000 		.4byte	.LLST32
+ 1924 0775 22       		.uleb128 0x22
+ 1925 0776 70747200 		.ascii	"ptr\000"
+ 1926 077a 01       		.byte	0x1
+ 1927 077b 4102     		.2byte	0x241
+ 1928 077d D2000000 		.4byte	0xd2
+ 1929 0781 9B050000 		.4byte	.LLST33
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 47
+
+
+ 1930 0785 21       		.uleb128 0x21
+ 1931 0786 E2020000 		.4byte	.LASF55
+ 1932 078a 01       		.byte	0x1
+ 1933 078b 4102     		.2byte	0x241
+ 1934 078d 7A000000 		.4byte	0x7a
+ 1935 0791 CF050000 		.4byte	.LLST34
+ 1936 0795 17       		.uleb128 0x17
+ 1937 0796 63687300 		.ascii	"chs\000"
+ 1938 079a 01       		.byte	0x1
+ 1939 079b 4302     		.2byte	0x243
+ 1940 079d 7A000000 		.4byte	0x7a
+ 1941 07a1 ED050000 		.4byte	.LLST35
+ 1942 07a5 17       		.uleb128 0x17
+ 1943 07a6 636800   		.ascii	"ch\000"
+ 1944 07a9 01       		.byte	0x1
+ 1945 07aa 4402     		.2byte	0x244
+ 1946 07ac BD000000 		.4byte	0xbd
+ 1947 07b0 0C060000 		.4byte	.LLST36
+ 1948 07b4 0B       		.uleb128 0xb
+ 1949 07b5 0E000000 		.4byte	.LVL145
+ 1950 07b9 DB080000 		.4byte	0x8db
+ 1951 07bd 0C       		.uleb128 0xc
+ 1952 07be 16000000 		.4byte	.LVL146
+ 1953 07c2 D0080000 		.4byte	0x8d0
+ 1954 07c6 D1070000 		.4byte	0x7d1
+ 1955 07ca 0D       		.uleb128 0xd
+ 1956 07cb 01       		.uleb128 0x1
+ 1957 07cc 50       		.byte	0x50
+ 1958 07cd 02       		.uleb128 0x2
+ 1959 07ce 75       		.byte	0x75
+ 1960 07cf 00       		.sleb128 0
+ 1961 07d0 00       		.byte	0
+ 1962 07d1 0E       		.uleb128 0xe
+ 1963 07d2 22000000 		.4byte	.LVL149
+ 1964 07d6 D0080000 		.4byte	0x8d0
+ 1965 07da 0D       		.uleb128 0xd
+ 1966 07db 01       		.uleb128 0x1
+ 1967 07dc 50       		.byte	0x50
+ 1968 07dd 01       		.uleb128 0x1
+ 1969 07de 3A       		.byte	0x3a
+ 1970 07df 00       		.byte	0
+ 1971 07e0 00       		.byte	0
+ 1972 07e1 23       		.uleb128 0x23
+ 1973 07e2 CD020000 		.4byte	.LASF80
+ 1974 07e6 10       		.byte	0x10
+ 1975 07e7 9606     		.2byte	0x696
+ 1976 07e9 ED070000 		.4byte	0x7ed
+ 1977 07ed 24       		.uleb128 0x24
+ 1978 07ee 93000000 		.4byte	0x93
+ 1979 07f2 25       		.uleb128 0x25
+ 1980 07f3 04030000 		.4byte	.LASF56
+ 1981 07f7 04030000 		.4byte	.LASF56
+ 1982 07fb 06       		.byte	0x6
+ 1983 07fc D1       		.byte	0xd1
+ 1984 07fd 25       		.uleb128 0x25
+ 1985 07fe 0A020000 		.4byte	.LASF57
+ 1986 0802 0A020000 		.4byte	.LASF57
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 48
+
+
+ 1987 0806 06       		.byte	0x6
+ 1988 0807 39       		.byte	0x39
+ 1989 0808 25       		.uleb128 0x25
+ 1990 0809 26030000 		.4byte	.LASF58
+ 1991 080d 26030000 		.4byte	.LASF58
+ 1992 0811 06       		.byte	0x6
+ 1993 0812 3B       		.byte	0x3b
+ 1994 0813 25       		.uleb128 0x25
+ 1995 0814 51010000 		.4byte	.LASF59
+ 1996 0818 51010000 		.4byte	.LASF59
+ 1997 081c 07       		.byte	0x7
+ 1998 081d BB       		.byte	0xbb
+ 1999 081e 25       		.uleb128 0x25
+ 2000 081f 64020000 		.4byte	.LASF60
+ 2001 0823 64020000 		.4byte	.LASF60
+ 2002 0827 08       		.byte	0x8
+ 2003 0828 26       		.byte	0x26
+ 2004 0829 25       		.uleb128 0x25
+ 2005 082a 12040000 		.4byte	.LASF61
+ 2006 082e 12040000 		.4byte	.LASF61
+ 2007 0832 09       		.byte	0x9
+ 2008 0833 76       		.byte	0x76
+ 2009 0834 26       		.uleb128 0x26
+ 2010 0835 41010000 		.4byte	.LASF81
+ 2011 0839 41010000 		.4byte	.LASF81
+ 2012 083d 25       		.uleb128 0x25
+ 2013 083e 1A040000 		.4byte	.LASF62
+ 2014 0842 1A040000 		.4byte	.LASF62
+ 2015 0846 05       		.byte	0x5
+ 2016 0847 1B       		.byte	0x1b
+ 2017 0848 25       		.uleb128 0x25
+ 2018 0849 A7010000 		.4byte	.LASF63
+ 2019 084d A7010000 		.4byte	.LASF63
+ 2020 0851 0A       		.byte	0xa
+ 2021 0852 04       		.byte	0x4
+ 2022 0853 25       		.uleb128 0x25
+ 2023 0854 3D000000 		.4byte	.LASF64
+ 2024 0858 3D000000 		.4byte	.LASF64
+ 2025 085c 0B       		.byte	0xb
+ 2026 085d 16       		.byte	0x16
+ 2027 085e 25       		.uleb128 0x25
+ 2028 085f 10010000 		.4byte	.LASF65
+ 2029 0863 10010000 		.4byte	.LASF65
+ 2030 0867 0C       		.byte	0xc
+ 2031 0868 54       		.byte	0x54
+ 2032 0869 25       		.uleb128 0x25
+ 2033 086a E8020000 		.4byte	.LASF66
+ 2034 086e E8020000 		.4byte	.LASF66
+ 2035 0872 06       		.byte	0x6
+ 2036 0873 34       		.byte	0x34
+ 2037 0874 27       		.uleb128 0x27
+ 2038 0875 26020000 		.4byte	.LASF82
+ 2039 0879 07000000 		.4byte	.LASF83
+ 2040 087d 11       		.byte	0x11
+ 2041 087e 00       		.byte	0
+ 2042 087f 26020000 		.4byte	.LASF82
+ 2043 0883 25       		.uleb128 0x25
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 49
+
+
+ 2044 0884 A9020000 		.4byte	.LASF67
+ 2045 0888 A9020000 		.4byte	.LASF67
+ 2046 088c 0D       		.byte	0xd
+ 2047 088d 18       		.byte	0x18
+ 2048 088e 25       		.uleb128 0x25
+ 2049 088f FE000000 		.4byte	.LASF68
+ 2050 0893 FE000000 		.4byte	.LASF68
+ 2051 0897 05       		.byte	0x5
+ 2052 0898 1A       		.byte	0x1a
+ 2053 0899 25       		.uleb128 0x25
+ 2054 089a 35040000 		.4byte	.LASF69
+ 2055 089e 35040000 		.4byte	.LASF69
+ 2056 08a2 0E       		.byte	0xe
+ 2057 08a3 26       		.byte	0x26
+ 2058 08a4 25       		.uleb128 0x25
+ 2059 08a5 7E020000 		.4byte	.LASF70
+ 2060 08a9 7E020000 		.4byte	.LASF70
+ 2061 08ad 0F       		.byte	0xf
+ 2062 08ae 29       		.byte	0x29
+ 2063 08af 25       		.uleb128 0x25
+ 2064 08b0 C1020000 		.4byte	.LASF71
+ 2065 08b4 C1020000 		.4byte	.LASF71
+ 2066 08b8 0B       		.byte	0xb
+ 2067 08b9 0B       		.byte	0xb
+ 2068 08ba 25       		.uleb128 0x25
+ 2069 08bb 3E020000 		.4byte	.LASF72
+ 2070 08bf 3E020000 		.4byte	.LASF72
+ 2071 08c3 0B       		.byte	0xb
+ 2072 08c4 0F       		.byte	0xf
+ 2073 08c5 25       		.uleb128 0x25
+ 2074 08c6 32000000 		.4byte	.LASF73
+ 2075 08ca 32000000 		.4byte	.LASF73
+ 2076 08ce 0B       		.byte	0xb
+ 2077 08cf 0C       		.byte	0xc
+ 2078 08d0 25       		.uleb128 0x25
+ 2079 08d1 1D010000 		.4byte	.LASF74
+ 2080 08d5 1D010000 		.4byte	.LASF74
+ 2081 08d9 0C       		.byte	0xc
+ 2082 08da 8A       		.byte	0x8a
+ 2083 08db 25       		.uleb128 0x25
+ 2084 08dc E7000000 		.4byte	.LASF75
+ 2085 08e0 E7000000 		.4byte	.LASF75
+ 2086 08e4 0C       		.byte	0xc
+ 2087 08e5 71       		.byte	0x71
+ 2088 08e6 00       		.byte	0
+ 2089              		.section	.debug_abbrev,"",%progbits
+ 2090              	.Ldebug_abbrev0:
+ 2091 0000 01       		.uleb128 0x1
+ 2092 0001 11       		.uleb128 0x11
+ 2093 0002 01       		.byte	0x1
+ 2094 0003 25       		.uleb128 0x25
+ 2095 0004 0E       		.uleb128 0xe
+ 2096 0005 13       		.uleb128 0x13
+ 2097 0006 0B       		.uleb128 0xb
+ 2098 0007 03       		.uleb128 0x3
+ 2099 0008 0E       		.uleb128 0xe
+ 2100 0009 1B       		.uleb128 0x1b
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 50
+
+
+ 2101 000a 0E       		.uleb128 0xe
+ 2102 000b 55       		.uleb128 0x55
+ 2103 000c 17       		.uleb128 0x17
+ 2104 000d 11       		.uleb128 0x11
+ 2105 000e 01       		.uleb128 0x1
+ 2106 000f 10       		.uleb128 0x10
+ 2107 0010 17       		.uleb128 0x17
+ 2108 0011 00       		.byte	0
+ 2109 0012 00       		.byte	0
+ 2110 0013 02       		.uleb128 0x2
+ 2111 0014 24       		.uleb128 0x24
+ 2112 0015 00       		.byte	0
+ 2113 0016 0B       		.uleb128 0xb
+ 2114 0017 0B       		.uleb128 0xb
+ 2115 0018 3E       		.uleb128 0x3e
+ 2116 0019 0B       		.uleb128 0xb
+ 2117 001a 03       		.uleb128 0x3
+ 2118 001b 0E       		.uleb128 0xe
+ 2119 001c 00       		.byte	0
+ 2120 001d 00       		.byte	0
+ 2121 001e 03       		.uleb128 0x3
+ 2122 001f 16       		.uleb128 0x16
+ 2123 0020 00       		.byte	0
+ 2124 0021 03       		.uleb128 0x3
+ 2125 0022 0E       		.uleb128 0xe
+ 2126 0023 3A       		.uleb128 0x3a
+ 2127 0024 0B       		.uleb128 0xb
+ 2128 0025 3B       		.uleb128 0x3b
+ 2129 0026 0B       		.uleb128 0xb
+ 2130 0027 49       		.uleb128 0x49
+ 2131 0028 13       		.uleb128 0x13
+ 2132 0029 00       		.byte	0
+ 2133 002a 00       		.byte	0
+ 2134 002b 04       		.uleb128 0x4
+ 2135 002c 24       		.uleb128 0x24
+ 2136 002d 00       		.byte	0
+ 2137 002e 0B       		.uleb128 0xb
+ 2138 002f 0B       		.uleb128 0xb
+ 2139 0030 3E       		.uleb128 0x3e
+ 2140 0031 0B       		.uleb128 0xb
+ 2141 0032 03       		.uleb128 0x3
+ 2142 0033 08       		.uleb128 0x8
+ 2143 0034 00       		.byte	0
+ 2144 0035 00       		.byte	0
+ 2145 0036 05       		.uleb128 0x5
+ 2146 0037 16       		.uleb128 0x16
+ 2147 0038 00       		.byte	0
+ 2148 0039 03       		.uleb128 0x3
+ 2149 003a 0E       		.uleb128 0xe
+ 2150 003b 3A       		.uleb128 0x3a
+ 2151 003c 0B       		.uleb128 0xb
+ 2152 003d 3B       		.uleb128 0x3b
+ 2153 003e 05       		.uleb128 0x5
+ 2154 003f 49       		.uleb128 0x49
+ 2155 0040 13       		.uleb128 0x13
+ 2156 0041 00       		.byte	0
+ 2157 0042 00       		.byte	0
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 51
+
+
+ 2158 0043 06       		.uleb128 0x6
+ 2159 0044 0F       		.uleb128 0xf
+ 2160 0045 00       		.byte	0
+ 2161 0046 0B       		.uleb128 0xb
+ 2162 0047 0B       		.uleb128 0xb
+ 2163 0048 49       		.uleb128 0x49
+ 2164 0049 13       		.uleb128 0x13
+ 2165 004a 00       		.byte	0
+ 2166 004b 00       		.byte	0
+ 2167 004c 07       		.uleb128 0x7
+ 2168 004d 13       		.uleb128 0x13
+ 2169 004e 01       		.byte	0x1
+ 2170 004f 03       		.uleb128 0x3
+ 2171 0050 0E       		.uleb128 0xe
+ 2172 0051 0B       		.uleb128 0xb
+ 2173 0052 0B       		.uleb128 0xb
+ 2174 0053 3A       		.uleb128 0x3a
+ 2175 0054 0B       		.uleb128 0xb
+ 2176 0055 3B       		.uleb128 0x3b
+ 2177 0056 0B       		.uleb128 0xb
+ 2178 0057 01       		.uleb128 0x1
+ 2179 0058 13       		.uleb128 0x13
+ 2180 0059 00       		.byte	0
+ 2181 005a 00       		.byte	0
+ 2182 005b 08       		.uleb128 0x8
+ 2183 005c 0D       		.uleb128 0xd
+ 2184 005d 00       		.byte	0
+ 2185 005e 03       		.uleb128 0x3
+ 2186 005f 08       		.uleb128 0x8
+ 2187 0060 3A       		.uleb128 0x3a
+ 2188 0061 0B       		.uleb128 0xb
+ 2189 0062 3B       		.uleb128 0x3b
+ 2190 0063 0B       		.uleb128 0xb
+ 2191 0064 49       		.uleb128 0x49
+ 2192 0065 13       		.uleb128 0x13
+ 2193 0066 38       		.uleb128 0x38
+ 2194 0067 0B       		.uleb128 0xb
+ 2195 0068 00       		.byte	0
+ 2196 0069 00       		.byte	0
+ 2197 006a 09       		.uleb128 0x9
+ 2198 006b 2E       		.uleb128 0x2e
+ 2199 006c 01       		.byte	0x1
+ 2200 006d 3F       		.uleb128 0x3f
+ 2201 006e 19       		.uleb128 0x19
+ 2202 006f 03       		.uleb128 0x3
+ 2203 0070 0E       		.uleb128 0xe
+ 2204 0071 3A       		.uleb128 0x3a
+ 2205 0072 0B       		.uleb128 0xb
+ 2206 0073 3B       		.uleb128 0x3b
+ 2207 0074 0B       		.uleb128 0xb
+ 2208 0075 49       		.uleb128 0x49
+ 2209 0076 13       		.uleb128 0x13
+ 2210 0077 11       		.uleb128 0x11
+ 2211 0078 01       		.uleb128 0x1
+ 2212 0079 12       		.uleb128 0x12
+ 2213 007a 06       		.uleb128 0x6
+ 2214 007b 40       		.uleb128 0x40
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 52
+
+
+ 2215 007c 18       		.uleb128 0x18
+ 2216 007d 9642     		.uleb128 0x2116
+ 2217 007f 19       		.uleb128 0x19
+ 2218 0080 01       		.uleb128 0x1
+ 2219 0081 13       		.uleb128 0x13
+ 2220 0082 00       		.byte	0
+ 2221 0083 00       		.byte	0
+ 2222 0084 0A       		.uleb128 0xa
+ 2223 0085 34       		.uleb128 0x34
+ 2224 0086 00       		.byte	0
+ 2225 0087 03       		.uleb128 0x3
+ 2226 0088 0E       		.uleb128 0xe
+ 2227 0089 3A       		.uleb128 0x3a
+ 2228 008a 0B       		.uleb128 0xb
+ 2229 008b 3B       		.uleb128 0x3b
+ 2230 008c 0B       		.uleb128 0xb
+ 2231 008d 49       		.uleb128 0x49
+ 2232 008e 13       		.uleb128 0x13
+ 2233 008f 02       		.uleb128 0x2
+ 2234 0090 17       		.uleb128 0x17
+ 2235 0091 00       		.byte	0
+ 2236 0092 00       		.byte	0
+ 2237 0093 0B       		.uleb128 0xb
+ 2238 0094 898201   		.uleb128 0x4109
+ 2239 0097 00       		.byte	0
+ 2240 0098 11       		.uleb128 0x11
+ 2241 0099 01       		.uleb128 0x1
+ 2242 009a 31       		.uleb128 0x31
+ 2243 009b 13       		.uleb128 0x13
+ 2244 009c 00       		.byte	0
+ 2245 009d 00       		.byte	0
+ 2246 009e 0C       		.uleb128 0xc
+ 2247 009f 898201   		.uleb128 0x4109
+ 2248 00a2 01       		.byte	0x1
+ 2249 00a3 11       		.uleb128 0x11
+ 2250 00a4 01       		.uleb128 0x1
+ 2251 00a5 31       		.uleb128 0x31
+ 2252 00a6 13       		.uleb128 0x13
+ 2253 00a7 01       		.uleb128 0x1
+ 2254 00a8 13       		.uleb128 0x13
+ 2255 00a9 00       		.byte	0
+ 2256 00aa 00       		.byte	0
+ 2257 00ab 0D       		.uleb128 0xd
+ 2258 00ac 8A8201   		.uleb128 0x410a
+ 2259 00af 00       		.byte	0
+ 2260 00b0 02       		.uleb128 0x2
+ 2261 00b1 18       		.uleb128 0x18
+ 2262 00b2 9142     		.uleb128 0x2111
+ 2263 00b4 18       		.uleb128 0x18
+ 2264 00b5 00       		.byte	0
+ 2265 00b6 00       		.byte	0
+ 2266 00b7 0E       		.uleb128 0xe
+ 2267 00b8 898201   		.uleb128 0x4109
+ 2268 00bb 01       		.byte	0x1
+ 2269 00bc 11       		.uleb128 0x11
+ 2270 00bd 01       		.uleb128 0x1
+ 2271 00be 31       		.uleb128 0x31
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 53
+
+
+ 2272 00bf 13       		.uleb128 0x13
+ 2273 00c0 00       		.byte	0
+ 2274 00c1 00       		.byte	0
+ 2275 00c2 0F       		.uleb128 0xf
+ 2276 00c3 2E       		.uleb128 0x2e
+ 2277 00c4 01       		.byte	0x1
+ 2278 00c5 3F       		.uleb128 0x3f
+ 2279 00c6 19       		.uleb128 0x19
+ 2280 00c7 03       		.uleb128 0x3
+ 2281 00c8 0E       		.uleb128 0xe
+ 2282 00c9 3A       		.uleb128 0x3a
+ 2283 00ca 0B       		.uleb128 0xb
+ 2284 00cb 3B       		.uleb128 0x3b
+ 2285 00cc 0B       		.uleb128 0xb
+ 2286 00cd 8701     		.uleb128 0x87
+ 2287 00cf 19       		.uleb128 0x19
+ 2288 00d0 11       		.uleb128 0x11
+ 2289 00d1 01       		.uleb128 0x1
+ 2290 00d2 12       		.uleb128 0x12
+ 2291 00d3 06       		.uleb128 0x6
+ 2292 00d4 40       		.uleb128 0x40
+ 2293 00d5 18       		.uleb128 0x18
+ 2294 00d6 9742     		.uleb128 0x2117
+ 2295 00d8 19       		.uleb128 0x19
+ 2296 00d9 01       		.uleb128 0x1
+ 2297 00da 13       		.uleb128 0x13
+ 2298 00db 00       		.byte	0
+ 2299 00dc 00       		.byte	0
+ 2300 00dd 10       		.uleb128 0x10
+ 2301 00de 34       		.uleb128 0x34
+ 2302 00df 00       		.byte	0
+ 2303 00e0 03       		.uleb128 0x3
+ 2304 00e1 08       		.uleb128 0x8
+ 2305 00e2 3A       		.uleb128 0x3a
+ 2306 00e3 0B       		.uleb128 0xb
+ 2307 00e4 3B       		.uleb128 0x3b
+ 2308 00e5 0B       		.uleb128 0xb
+ 2309 00e6 49       		.uleb128 0x49
+ 2310 00e7 13       		.uleb128 0x13
+ 2311 00e8 02       		.uleb128 0x2
+ 2312 00e9 17       		.uleb128 0x17
+ 2313 00ea 00       		.byte	0
+ 2314 00eb 00       		.byte	0
+ 2315 00ec 11       		.uleb128 0x11
+ 2316 00ed 2E       		.uleb128 0x2e
+ 2317 00ee 01       		.byte	0x1
+ 2318 00ef 3F       		.uleb128 0x3f
+ 2319 00f0 19       		.uleb128 0x19
+ 2320 00f1 03       		.uleb128 0x3
+ 2321 00f2 0E       		.uleb128 0xe
+ 2322 00f3 3A       		.uleb128 0x3a
+ 2323 00f4 0B       		.uleb128 0xb
+ 2324 00f5 3B       		.uleb128 0x3b
+ 2325 00f6 0B       		.uleb128 0xb
+ 2326 00f7 27       		.uleb128 0x27
+ 2327 00f8 19       		.uleb128 0x19
+ 2328 00f9 11       		.uleb128 0x11
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 54
+
+
+ 2329 00fa 01       		.uleb128 0x1
+ 2330 00fb 12       		.uleb128 0x12
+ 2331 00fc 06       		.uleb128 0x6
+ 2332 00fd 40       		.uleb128 0x40
+ 2333 00fe 18       		.uleb128 0x18
+ 2334 00ff 9642     		.uleb128 0x2116
+ 2335 0101 19       		.uleb128 0x19
+ 2336 0102 01       		.uleb128 0x1
+ 2337 0103 13       		.uleb128 0x13
+ 2338 0104 00       		.byte	0
+ 2339 0105 00       		.byte	0
+ 2340 0106 12       		.uleb128 0x12
+ 2341 0107 05       		.uleb128 0x5
+ 2342 0108 00       		.byte	0
+ 2343 0109 03       		.uleb128 0x3
+ 2344 010a 08       		.uleb128 0x8
+ 2345 010b 3A       		.uleb128 0x3a
+ 2346 010c 0B       		.uleb128 0xb
+ 2347 010d 3B       		.uleb128 0x3b
+ 2348 010e 0B       		.uleb128 0xb
+ 2349 010f 49       		.uleb128 0x49
+ 2350 0110 13       		.uleb128 0x13
+ 2351 0111 02       		.uleb128 0x2
+ 2352 0112 18       		.uleb128 0x18
+ 2353 0113 00       		.byte	0
+ 2354 0114 00       		.byte	0
+ 2355 0115 13       		.uleb128 0x13
+ 2356 0116 05       		.uleb128 0x5
+ 2357 0117 00       		.byte	0
+ 2358 0118 03       		.uleb128 0x3
+ 2359 0119 0E       		.uleb128 0xe
+ 2360 011a 3A       		.uleb128 0x3a
+ 2361 011b 0B       		.uleb128 0xb
+ 2362 011c 3B       		.uleb128 0x3b
+ 2363 011d 0B       		.uleb128 0xb
+ 2364 011e 49       		.uleb128 0x49
+ 2365 011f 13       		.uleb128 0x13
+ 2366 0120 02       		.uleb128 0x2
+ 2367 0121 17       		.uleb128 0x17
+ 2368 0122 00       		.byte	0
+ 2369 0123 00       		.byte	0
+ 2370 0124 14       		.uleb128 0x14
+ 2371 0125 34       		.uleb128 0x34
+ 2372 0126 00       		.byte	0
+ 2373 0127 03       		.uleb128 0x3
+ 2374 0128 08       		.uleb128 0x8
+ 2375 0129 3A       		.uleb128 0x3a
+ 2376 012a 0B       		.uleb128 0xb
+ 2377 012b 3B       		.uleb128 0x3b
+ 2378 012c 0B       		.uleb128 0xb
+ 2379 012d 49       		.uleb128 0x49
+ 2380 012e 13       		.uleb128 0x13
+ 2381 012f 02       		.uleb128 0x2
+ 2382 0130 18       		.uleb128 0x18
+ 2383 0131 00       		.byte	0
+ 2384 0132 00       		.byte	0
+ 2385 0133 15       		.uleb128 0x15
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 55
+
+
+ 2386 0134 34       		.uleb128 0x34
+ 2387 0135 00       		.byte	0
+ 2388 0136 03       		.uleb128 0x3
+ 2389 0137 08       		.uleb128 0x8
+ 2390 0138 3A       		.uleb128 0x3a
+ 2391 0139 0B       		.uleb128 0xb
+ 2392 013a 3B       		.uleb128 0x3b
+ 2393 013b 05       		.uleb128 0x5
+ 2394 013c 49       		.uleb128 0x49
+ 2395 013d 13       		.uleb128 0x13
+ 2396 013e 02       		.uleb128 0x2
+ 2397 013f 18       		.uleb128 0x18
+ 2398 0140 00       		.byte	0
+ 2399 0141 00       		.byte	0
+ 2400 0142 16       		.uleb128 0x16
+ 2401 0143 34       		.uleb128 0x34
+ 2402 0144 00       		.byte	0
+ 2403 0145 03       		.uleb128 0x3
+ 2404 0146 0E       		.uleb128 0xe
+ 2405 0147 3A       		.uleb128 0x3a
+ 2406 0148 0B       		.uleb128 0xb
+ 2407 0149 3B       		.uleb128 0x3b
+ 2408 014a 05       		.uleb128 0x5
+ 2409 014b 49       		.uleb128 0x49
+ 2410 014c 13       		.uleb128 0x13
+ 2411 014d 02       		.uleb128 0x2
+ 2412 014e 17       		.uleb128 0x17
+ 2413 014f 00       		.byte	0
+ 2414 0150 00       		.byte	0
+ 2415 0151 17       		.uleb128 0x17
+ 2416 0152 34       		.uleb128 0x34
+ 2417 0153 00       		.byte	0
+ 2418 0154 03       		.uleb128 0x3
+ 2419 0155 08       		.uleb128 0x8
+ 2420 0156 3A       		.uleb128 0x3a
+ 2421 0157 0B       		.uleb128 0xb
+ 2422 0158 3B       		.uleb128 0x3b
+ 2423 0159 05       		.uleb128 0x5
+ 2424 015a 49       		.uleb128 0x49
+ 2425 015b 13       		.uleb128 0x13
+ 2426 015c 02       		.uleb128 0x2
+ 2427 015d 17       		.uleb128 0x17
+ 2428 015e 00       		.byte	0
+ 2429 015f 00       		.byte	0
+ 2430 0160 18       		.uleb128 0x18
+ 2431 0161 01       		.uleb128 0x1
+ 2432 0162 01       		.byte	0x1
+ 2433 0163 49       		.uleb128 0x49
+ 2434 0164 13       		.uleb128 0x13
+ 2435 0165 01       		.uleb128 0x1
+ 2436 0166 13       		.uleb128 0x13
+ 2437 0167 00       		.byte	0
+ 2438 0168 00       		.byte	0
+ 2439 0169 19       		.uleb128 0x19
+ 2440 016a 21       		.uleb128 0x21
+ 2441 016b 00       		.byte	0
+ 2442 016c 49       		.uleb128 0x49
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 56
+
+
+ 2443 016d 13       		.uleb128 0x13
+ 2444 016e 2F       		.uleb128 0x2f
+ 2445 016f 0B       		.uleb128 0xb
+ 2446 0170 00       		.byte	0
+ 2447 0171 00       		.byte	0
+ 2448 0172 1A       		.uleb128 0x1a
+ 2449 0173 2E       		.uleb128 0x2e
+ 2450 0174 01       		.byte	0x1
+ 2451 0175 3F       		.uleb128 0x3f
+ 2452 0176 19       		.uleb128 0x19
+ 2453 0177 03       		.uleb128 0x3
+ 2454 0178 0E       		.uleb128 0xe
+ 2455 0179 3A       		.uleb128 0x3a
+ 2456 017a 0B       		.uleb128 0xb
+ 2457 017b 3B       		.uleb128 0x3b
+ 2458 017c 0B       		.uleb128 0xb
+ 2459 017d 49       		.uleb128 0x49
+ 2460 017e 13       		.uleb128 0x13
+ 2461 017f 8701     		.uleb128 0x87
+ 2462 0181 19       		.uleb128 0x19
+ 2463 0182 11       		.uleb128 0x11
+ 2464 0183 01       		.uleb128 0x1
+ 2465 0184 12       		.uleb128 0x12
+ 2466 0185 06       		.uleb128 0x6
+ 2467 0186 40       		.uleb128 0x40
+ 2468 0187 18       		.uleb128 0x18
+ 2469 0188 9642     		.uleb128 0x2116
+ 2470 018a 19       		.uleb128 0x19
+ 2471 018b 01       		.uleb128 0x1
+ 2472 018c 13       		.uleb128 0x13
+ 2473 018d 00       		.byte	0
+ 2474 018e 00       		.byte	0
+ 2475 018f 1B       		.uleb128 0x1b
+ 2476 0190 34       		.uleb128 0x34
+ 2477 0191 00       		.byte	0
+ 2478 0192 03       		.uleb128 0x3
+ 2479 0193 0E       		.uleb128 0xe
+ 2480 0194 3A       		.uleb128 0x3a
+ 2481 0195 0B       		.uleb128 0xb
+ 2482 0196 3B       		.uleb128 0x3b
+ 2483 0197 0B       		.uleb128 0xb
+ 2484 0198 49       		.uleb128 0x49
+ 2485 0199 13       		.uleb128 0x13
+ 2486 019a 1C       		.uleb128 0x1c
+ 2487 019b 0A       		.uleb128 0xa
+ 2488 019c 00       		.byte	0
+ 2489 019d 00       		.byte	0
+ 2490 019e 1C       		.uleb128 0x1c
+ 2491 019f 34       		.uleb128 0x34
+ 2492 01a0 00       		.byte	0
+ 2493 01a1 03       		.uleb128 0x3
+ 2494 01a2 08       		.uleb128 0x8
+ 2495 01a3 3A       		.uleb128 0x3a
+ 2496 01a4 0B       		.uleb128 0xb
+ 2497 01a5 3B       		.uleb128 0x3b
+ 2498 01a6 0B       		.uleb128 0xb
+ 2499 01a7 49       		.uleb128 0x49
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 57
+
+
+ 2500 01a8 13       		.uleb128 0x13
+ 2501 01a9 1C       		.uleb128 0x1c
+ 2502 01aa 05       		.uleb128 0x5
+ 2503 01ab 00       		.byte	0
+ 2504 01ac 00       		.byte	0
+ 2505 01ad 1D       		.uleb128 0x1d
+ 2506 01ae 34       		.uleb128 0x34
+ 2507 01af 00       		.byte	0
+ 2508 01b0 03       		.uleb128 0x3
+ 2509 01b1 0E       		.uleb128 0xe
+ 2510 01b2 3A       		.uleb128 0x3a
+ 2511 01b3 0B       		.uleb128 0xb
+ 2512 01b4 3B       		.uleb128 0x3b
+ 2513 01b5 0B       		.uleb128 0xb
+ 2514 01b6 49       		.uleb128 0x49
+ 2515 01b7 13       		.uleb128 0x13
+ 2516 01b8 02       		.uleb128 0x2
+ 2517 01b9 18       		.uleb128 0x18
+ 2518 01ba 00       		.byte	0
+ 2519 01bb 00       		.byte	0
+ 2520 01bc 1E       		.uleb128 0x1e
+ 2521 01bd 0B       		.uleb128 0xb
+ 2522 01be 01       		.byte	0x1
+ 2523 01bf 55       		.uleb128 0x55
+ 2524 01c0 17       		.uleb128 0x17
+ 2525 01c1 01       		.uleb128 0x1
+ 2526 01c2 13       		.uleb128 0x13
+ 2527 01c3 00       		.byte	0
+ 2528 01c4 00       		.byte	0
+ 2529 01c5 1F       		.uleb128 0x1f
+ 2530 01c6 34       		.uleb128 0x34
+ 2531 01c7 00       		.byte	0
+ 2532 01c8 03       		.uleb128 0x3
+ 2533 01c9 0E       		.uleb128 0xe
+ 2534 01ca 3A       		.uleb128 0x3a
+ 2535 01cb 0B       		.uleb128 0xb
+ 2536 01cc 3B       		.uleb128 0x3b
+ 2537 01cd 0B       		.uleb128 0xb
+ 2538 01ce 49       		.uleb128 0x49
+ 2539 01cf 13       		.uleb128 0x13
+ 2540 01d0 00       		.byte	0
+ 2541 01d1 00       		.byte	0
+ 2542 01d2 20       		.uleb128 0x20
+ 2543 01d3 2E       		.uleb128 0x2e
+ 2544 01d4 01       		.byte	0x1
+ 2545 01d5 3F       		.uleb128 0x3f
+ 2546 01d6 19       		.uleb128 0x19
+ 2547 01d7 03       		.uleb128 0x3
+ 2548 01d8 0E       		.uleb128 0xe
+ 2549 01d9 3A       		.uleb128 0x3a
+ 2550 01da 0B       		.uleb128 0xb
+ 2551 01db 3B       		.uleb128 0x3b
+ 2552 01dc 05       		.uleb128 0x5
+ 2553 01dd 27       		.uleb128 0x27
+ 2554 01de 19       		.uleb128 0x19
+ 2555 01df 49       		.uleb128 0x49
+ 2556 01e0 13       		.uleb128 0x13
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 58
+
+
+ 2557 01e1 11       		.uleb128 0x11
+ 2558 01e2 01       		.uleb128 0x1
+ 2559 01e3 12       		.uleb128 0x12
+ 2560 01e4 06       		.uleb128 0x6
+ 2561 01e5 40       		.uleb128 0x40
+ 2562 01e6 18       		.uleb128 0x18
+ 2563 01e7 9742     		.uleb128 0x2117
+ 2564 01e9 19       		.uleb128 0x19
+ 2565 01ea 01       		.uleb128 0x1
+ 2566 01eb 13       		.uleb128 0x13
+ 2567 01ec 00       		.byte	0
+ 2568 01ed 00       		.byte	0
+ 2569 01ee 21       		.uleb128 0x21
+ 2570 01ef 05       		.uleb128 0x5
+ 2571 01f0 00       		.byte	0
+ 2572 01f1 03       		.uleb128 0x3
+ 2573 01f2 0E       		.uleb128 0xe
+ 2574 01f3 3A       		.uleb128 0x3a
+ 2575 01f4 0B       		.uleb128 0xb
+ 2576 01f5 3B       		.uleb128 0x3b
+ 2577 01f6 05       		.uleb128 0x5
+ 2578 01f7 49       		.uleb128 0x49
+ 2579 01f8 13       		.uleb128 0x13
+ 2580 01f9 02       		.uleb128 0x2
+ 2581 01fa 17       		.uleb128 0x17
+ 2582 01fb 00       		.byte	0
+ 2583 01fc 00       		.byte	0
+ 2584 01fd 22       		.uleb128 0x22
+ 2585 01fe 05       		.uleb128 0x5
+ 2586 01ff 00       		.byte	0
+ 2587 0200 03       		.uleb128 0x3
+ 2588 0201 08       		.uleb128 0x8
+ 2589 0202 3A       		.uleb128 0x3a
+ 2590 0203 0B       		.uleb128 0xb
+ 2591 0204 3B       		.uleb128 0x3b
+ 2592 0205 05       		.uleb128 0x5
+ 2593 0206 49       		.uleb128 0x49
+ 2594 0207 13       		.uleb128 0x13
+ 2595 0208 02       		.uleb128 0x2
+ 2596 0209 17       		.uleb128 0x17
+ 2597 020a 00       		.byte	0
+ 2598 020b 00       		.byte	0
+ 2599 020c 23       		.uleb128 0x23
+ 2600 020d 34       		.uleb128 0x34
+ 2601 020e 00       		.byte	0
+ 2602 020f 03       		.uleb128 0x3
+ 2603 0210 0E       		.uleb128 0xe
+ 2604 0211 3A       		.uleb128 0x3a
+ 2605 0212 0B       		.uleb128 0xb
+ 2606 0213 3B       		.uleb128 0x3b
+ 2607 0214 05       		.uleb128 0x5
+ 2608 0215 49       		.uleb128 0x49
+ 2609 0216 13       		.uleb128 0x13
+ 2610 0217 3F       		.uleb128 0x3f
+ 2611 0218 19       		.uleb128 0x19
+ 2612 0219 3C       		.uleb128 0x3c
+ 2613 021a 19       		.uleb128 0x19
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 59
+
+
+ 2614 021b 00       		.byte	0
+ 2615 021c 00       		.byte	0
+ 2616 021d 24       		.uleb128 0x24
+ 2617 021e 35       		.uleb128 0x35
+ 2618 021f 00       		.byte	0
+ 2619 0220 49       		.uleb128 0x49
+ 2620 0221 13       		.uleb128 0x13
+ 2621 0222 00       		.byte	0
+ 2622 0223 00       		.byte	0
+ 2623 0224 25       		.uleb128 0x25
+ 2624 0225 2E       		.uleb128 0x2e
+ 2625 0226 00       		.byte	0
+ 2626 0227 3F       		.uleb128 0x3f
+ 2627 0228 19       		.uleb128 0x19
+ 2628 0229 3C       		.uleb128 0x3c
+ 2629 022a 19       		.uleb128 0x19
+ 2630 022b 6E       		.uleb128 0x6e
+ 2631 022c 0E       		.uleb128 0xe
+ 2632 022d 03       		.uleb128 0x3
+ 2633 022e 0E       		.uleb128 0xe
+ 2634 022f 3A       		.uleb128 0x3a
+ 2635 0230 0B       		.uleb128 0xb
+ 2636 0231 3B       		.uleb128 0x3b
+ 2637 0232 0B       		.uleb128 0xb
+ 2638 0233 00       		.byte	0
+ 2639 0234 00       		.byte	0
+ 2640 0235 26       		.uleb128 0x26
+ 2641 0236 2E       		.uleb128 0x2e
+ 2642 0237 00       		.byte	0
+ 2643 0238 3F       		.uleb128 0x3f
+ 2644 0239 19       		.uleb128 0x19
+ 2645 023a 3C       		.uleb128 0x3c
+ 2646 023b 19       		.uleb128 0x19
+ 2647 023c 6E       		.uleb128 0x6e
+ 2648 023d 0E       		.uleb128 0xe
+ 2649 023e 03       		.uleb128 0x3
+ 2650 023f 0E       		.uleb128 0xe
+ 2651 0240 00       		.byte	0
+ 2652 0241 00       		.byte	0
+ 2653 0242 27       		.uleb128 0x27
+ 2654 0243 2E       		.uleb128 0x2e
+ 2655 0244 00       		.byte	0
+ 2656 0245 3F       		.uleb128 0x3f
+ 2657 0246 19       		.uleb128 0x19
+ 2658 0247 3C       		.uleb128 0x3c
+ 2659 0248 19       		.uleb128 0x19
+ 2660 0249 6E       		.uleb128 0x6e
+ 2661 024a 0E       		.uleb128 0xe
+ 2662 024b 03       		.uleb128 0x3
+ 2663 024c 0E       		.uleb128 0xe
+ 2664 024d 3A       		.uleb128 0x3a
+ 2665 024e 0B       		.uleb128 0xb
+ 2666 024f 3B       		.uleb128 0x3b
+ 2667 0250 0B       		.uleb128 0xb
+ 2668 0251 6E       		.uleb128 0x6e
+ 2669 0252 0E       		.uleb128 0xe
+ 2670 0253 00       		.byte	0
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 60
+
+
+ 2671 0254 00       		.byte	0
+ 2672 0255 00       		.byte	0
+ 2673              		.section	.debug_loc,"",%progbits
+ 2674              	.Ldebug_loc0:
+ 2675              	.LLST0:
+ 2676 0000 02000000 		.4byte	.LVL0
+ 2677 0004 12000000 		.4byte	.LVL3
+ 2678 0008 0200     		.2byte	0x2
+ 2679 000a 30       		.byte	0x30
+ 2680 000b 9F       		.byte	0x9f
+ 2681 000c 12000000 		.4byte	.LVL3
+ 2682 0010 17000000 		.4byte	.LVL4-1
+ 2683 0014 0100     		.2byte	0x1
+ 2684 0016 50       		.byte	0x50
+ 2685 0017 38000000 		.4byte	.LVL10
+ 2686 001b 3A000000 		.4byte	.LVL11
+ 2687 001f 0200     		.2byte	0x2
+ 2688 0021 30       		.byte	0x30
+ 2689 0022 9F       		.byte	0x9f
+ 2690 0023 00000000 		.4byte	0
+ 2691 0027 00000000 		.4byte	0
+ 2692              	.LLST1:
+ 2693 002b 02000000 		.4byte	.LVL0
+ 2694 002f 1E000000 		.4byte	.LVL5
+ 2695 0033 0600     		.2byte	0x6
+ 2696 0035 9E       		.byte	0x9e
+ 2697 0036 04       		.uleb128 0x4
+ 2698 0037 00000000 		.4byte	0
+ 2699 003b 1E000000 		.4byte	.LVL5
+ 2700 003f 25000000 		.4byte	.LVL6-1
+ 2701 0043 0100     		.2byte	0x1
+ 2702 0045 50       		.byte	0x50
+ 2703 0046 28000000 		.4byte	.LVL7
+ 2704 004a 2B000000 		.4byte	.LVL8-1
+ 2705 004e 0100     		.2byte	0x1
+ 2706 0050 50       		.byte	0x50
+ 2707 0051 2B000000 		.4byte	.LVL8-1
+ 2708 0055 38000000 		.4byte	.LVL10
+ 2709 0059 0100     		.2byte	0x1
+ 2710 005b 54       		.byte	0x54
+ 2711 005c 38000000 		.4byte	.LVL10
+ 2712 0060 3A000000 		.4byte	.LVL11
+ 2713 0064 0600     		.2byte	0x6
+ 2714 0066 9E       		.byte	0x9e
+ 2715 0067 04       		.uleb128 0x4
+ 2716 0068 00000000 		.4byte	0
+ 2717 006c 3A000000 		.4byte	.LVL11
+ 2718 0070 4E000000 		.4byte	.LVL14
+ 2719 0074 0100     		.2byte	0x1
+ 2720 0076 54       		.byte	0x54
+ 2721 0077 00000000 		.4byte	0
+ 2722 007b 00000000 		.4byte	0
+ 2723              	.LLST2:
+ 2724 007f 02000000 		.4byte	.LVL15
+ 2725 0083 0A000000 		.4byte	.LVL16
+ 2726 0087 0200     		.2byte	0x2
+ 2727 0089 30       		.byte	0x30
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 61
+
+
+ 2728 008a 9F       		.byte	0x9f
+ 2729 008b 0A000000 		.4byte	.LVL16
+ 2730 008f 12000000 		.4byte	.LVL17
+ 2731 0093 0100     		.2byte	0x1
+ 2732 0095 56       		.byte	0x56
+ 2733 0096 12000000 		.4byte	.LVL17
+ 2734 009a 16000000 		.4byte	.LVL18
+ 2735 009e 0200     		.2byte	0x2
+ 2736 00a0 31       		.byte	0x31
+ 2737 00a1 9F       		.byte	0x9f
+ 2738 00a2 16000000 		.4byte	.LVL18
+ 2739 00a6 1C000000 		.4byte	.LVL19
+ 2740 00aa 0100     		.2byte	0x1
+ 2741 00ac 56       		.byte	0x56
+ 2742 00ad 1C000000 		.4byte	.LVL19
+ 2743 00b1 1E000000 		.4byte	.LVL20
+ 2744 00b5 0200     		.2byte	0x2
+ 2745 00b7 30       		.byte	0x30
+ 2746 00b8 9F       		.byte	0x9f
+ 2747 00b9 1E000000 		.4byte	.LVL20
+ 2748 00bd 6A000000 		.4byte	.LFE66
+ 2749 00c1 0100     		.2byte	0x1
+ 2750 00c3 56       		.byte	0x56
+ 2751 00c4 00000000 		.4byte	0
+ 2752 00c8 00000000 		.4byte	0
+ 2753              	.LLST3:
+ 2754 00cc 02000000 		.4byte	.LVL15
+ 2755 00d0 0A000000 		.4byte	.LVL16
+ 2756 00d4 0400     		.2byte	0x4
+ 2757 00d6 0A       		.byte	0xa
+ 2758 00d7 DB01     		.2byte	0x1db
+ 2759 00d9 9F       		.byte	0x9f
+ 2760 00da 0A000000 		.4byte	.LVL16
+ 2761 00de 6A000000 		.4byte	.LFE66
+ 2762 00e2 0100     		.2byte	0x1
+ 2763 00e4 54       		.byte	0x54
+ 2764 00e5 00000000 		.4byte	0
+ 2765 00e9 00000000 		.4byte	0
+ 2766              	.LLST4:
+ 2767 00ed 02000000 		.4byte	.LVL15
+ 2768 00f1 0A000000 		.4byte	.LVL16
+ 2769 00f5 0200     		.2byte	0x2
+ 2770 00f7 3A       		.byte	0x3a
+ 2771 00f8 9F       		.byte	0x9f
+ 2772 00f9 0A000000 		.4byte	.LVL16
+ 2773 00fd 40000000 		.4byte	.LVL23
+ 2774 0101 0100     		.2byte	0x1
+ 2775 0103 55       		.byte	0x55
+ 2776 0104 42000000 		.4byte	.LVL24
+ 2777 0108 5A000000 		.4byte	.LVL26
+ 2778 010c 0100     		.2byte	0x1
+ 2779 010e 55       		.byte	0x55
+ 2780 010f 5C000000 		.4byte	.LVL27
+ 2781 0113 6A000000 		.4byte	.LFE66
+ 2782 0117 0100     		.2byte	0x1
+ 2783 0119 55       		.byte	0x55
+ 2784 011a 00000000 		.4byte	0
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 62
+
+
+ 2785 011e 00000000 		.4byte	0
+ 2786              	.LLST5:
+ 2787 0122 00000000 		.4byte	.LVL31
+ 2788 0126 12000000 		.4byte	.LVL32
+ 2789 012a 0100     		.2byte	0x1
+ 2790 012c 52       		.byte	0x52
+ 2791 012d 12000000 		.4byte	.LVL32
+ 2792 0131 3C010000 		.4byte	.LVL63
+ 2793 0135 0100     		.2byte	0x1
+ 2794 0137 55       		.byte	0x55
+ 2795 0138 3C010000 		.4byte	.LVL63
+ 2796 013c 48010000 		.4byte	.LFE67
+ 2797 0140 0400     		.2byte	0x4
+ 2798 0142 F3       		.byte	0xf3
+ 2799 0143 01       		.uleb128 0x1
+ 2800 0144 52       		.byte	0x52
+ 2801 0145 9F       		.byte	0x9f
+ 2802 0146 00000000 		.4byte	0
+ 2803 014a 00000000 		.4byte	0
+ 2804              	.LLST6:
+ 2805 014e 38000000 		.4byte	.LVL36
+ 2806 0152 3E000000 		.4byte	.LVL37
+ 2807 0156 0200     		.2byte	0x2
+ 2808 0158 30       		.byte	0x30
+ 2809 0159 9F       		.byte	0x9f
+ 2810 015a 3E000000 		.4byte	.LVL37
+ 2811 015e 3C010000 		.4byte	.LVL63
+ 2812 0162 0100     		.2byte	0x1
+ 2813 0164 54       		.byte	0x54
+ 2814 0165 00000000 		.4byte	0
+ 2815 0169 00000000 		.4byte	0
+ 2816              	.LLST7:
+ 2817 016d 38000000 		.4byte	.LVL36
+ 2818 0171 3E000000 		.4byte	.LVL37
+ 2819 0175 0200     		.2byte	0x2
+ 2820 0177 30       		.byte	0x30
+ 2821 0178 9F       		.byte	0x9f
+ 2822 0179 3E000000 		.4byte	.LVL37
+ 2823 017d 3C010000 		.4byte	.LVL63
+ 2824 0181 0100     		.2byte	0x1
+ 2825 0183 57       		.byte	0x57
+ 2826 0184 00000000 		.4byte	0
+ 2827 0188 00000000 		.4byte	0
+ 2828              	.LLST8:
+ 2829 018c 50000000 		.4byte	.LVL72
+ 2830 0190 64000000 		.4byte	.LVL73
+ 2831 0194 0100     		.2byte	0x1
+ 2832 0196 50       		.byte	0x50
+ 2833 0197 7C000000 		.4byte	.LVL78
+ 2834 019b 80000000 		.4byte	.LVL79
+ 2835 019f 0200     		.2byte	0x2
+ 2836 01a1 31       		.byte	0x31
+ 2837 01a2 9F       		.byte	0x9f
+ 2838 01a3 80000000 		.4byte	.LVL79
+ 2839 01a7 88000000 		.4byte	.LVL80
+ 2840 01ab 0100     		.2byte	0x1
+ 2841 01ad 53       		.byte	0x53
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 63
+
+
+ 2842 01ae 00000000 		.4byte	0
+ 2843 01b2 00000000 		.4byte	0
+ 2844              	.LLST9:
+ 2845 01b6 1C000000 		.4byte	.LVL67
+ 2846 01ba 4C000000 		.4byte	.LVL71
+ 2847 01be 0200     		.2byte	0x2
+ 2848 01c0 44       		.byte	0x44
+ 2849 01c1 9F       		.byte	0x9f
+ 2850 01c2 4C010000 		.4byte	.LVL114
+ 2851 01c6 8B010000 		.4byte	.LVL121-1
+ 2852 01ca 0100     		.2byte	0x1
+ 2853 01cc 52       		.byte	0x52
+ 2854 01cd 00000000 		.4byte	0
+ 2855 01d1 00000000 		.4byte	0
+ 2856              	.LLST10:
+ 2857 01d5 1C000000 		.4byte	.LVL67
+ 2858 01d9 4C000000 		.4byte	.LVL71
+ 2859 01dd 0200     		.2byte	0x2
+ 2860 01df 44       		.byte	0x44
+ 2861 01e0 9F       		.byte	0x9f
+ 2862 01e1 A6000000 		.4byte	.LVL85
+ 2863 01e5 AA000000 		.4byte	.LVL86
+ 2864 01e9 0100     		.2byte	0x1
+ 2865 01eb 58       		.byte	0x58
+ 2866 01ec 44010000 		.4byte	.LVL112
+ 2867 01f0 DE010000 		.4byte	.LVL128
+ 2868 01f4 0100     		.2byte	0x1
+ 2869 01f6 58       		.byte	0x58
+ 2870 01f7 00000000 		.4byte	0
+ 2871 01fb 00000000 		.4byte	0
+ 2872              	.LLST11:
+ 2873 01ff 1C000000 		.4byte	.LVL67
+ 2874 0203 4C000000 		.4byte	.LVL71
+ 2875 0207 0400     		.2byte	0x4
+ 2876 0209 0A       		.byte	0xa
+ 2877 020a 8813     		.2byte	0x1388
+ 2878 020c 9F       		.byte	0x9f
+ 2879 020d 4C000000 		.4byte	.LVL71
+ 2880 0211 18020000 		.4byte	.LFE64
+ 2881 0215 0300     		.2byte	0x3
+ 2882 0217 91       		.byte	0x91
+ 2883 0218 AC7F     		.sleb128 -84
+ 2884 021a 00000000 		.4byte	0
+ 2885 021e 00000000 		.4byte	0
+ 2886              	.LLST12:
+ 2887 0222 1C000000 		.4byte	.LVL67
+ 2888 0226 4C000000 		.4byte	.LVL71
+ 2889 022a 0200     		.2byte	0x2
+ 2890 022c 30       		.byte	0x30
+ 2891 022d 9F       		.byte	0x9f
+ 2892 022e 4C000000 		.4byte	.LVL71
+ 2893 0232 18020000 		.4byte	.LFE64
+ 2894 0236 0300     		.2byte	0x3
+ 2895 0238 91       		.byte	0x91
+ 2896 0239 B07F     		.sleb128 -80
+ 2897 023b 00000000 		.4byte	0
+ 2898 023f 00000000 		.4byte	0
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 64
+
+
+ 2899              	.LLST13:
+ 2900 0243 1C000000 		.4byte	.LVL67
+ 2901 0247 4C000000 		.4byte	.LVL71
+ 2902 024b 0200     		.2byte	0x2
+ 2903 024d 30       		.byte	0x30
+ 2904 024e 9F       		.byte	0x9f
+ 2905 024f 4C000000 		.4byte	.LVL71
+ 2906 0253 A6000000 		.4byte	.LVL85
+ 2907 0257 0100     		.2byte	0x1
+ 2908 0259 54       		.byte	0x54
+ 2909 025a AA000000 		.4byte	.LVL86
+ 2910 025e 8E010000 		.4byte	.LVL122
+ 2911 0262 0100     		.2byte	0x1
+ 2912 0264 54       		.byte	0x54
+ 2913 0265 90010000 		.4byte	.LVL123
+ 2914 0269 CA010000 		.4byte	.LVL124
+ 2915 026d 0100     		.2byte	0x1
+ 2916 026f 54       		.byte	0x54
+ 2917 0270 CA010000 		.4byte	.LVL124
+ 2918 0274 CE010000 		.4byte	.LVL125
+ 2919 0278 0200     		.2byte	0x2
+ 2920 027a 30       		.byte	0x30
+ 2921 027b 9F       		.byte	0x9f
+ 2922 027c CE010000 		.4byte	.LVL125
+ 2923 0280 18020000 		.4byte	.LFE64
+ 2924 0284 0100     		.2byte	0x1
+ 2925 0286 54       		.byte	0x54
+ 2926 0287 00000000 		.4byte	0
+ 2927 028b 00000000 		.4byte	0
+ 2928              	.LLST14:
+ 2929 028f 1C000000 		.4byte	.LVL67
+ 2930 0293 4C000000 		.4byte	.LVL71
+ 2931 0297 0400     		.2byte	0x4
+ 2932 0299 0A       		.byte	0xa
+ 2933 029a B80B     		.2byte	0xbb8
+ 2934 029c 9F       		.byte	0x9f
+ 2935 029d 4C000000 		.4byte	.LVL71
+ 2936 02a1 18020000 		.4byte	.LFE64
+ 2937 02a5 0100     		.2byte	0x1
+ 2938 02a7 5A       		.byte	0x5a
+ 2939 02a8 00000000 		.4byte	0
+ 2940 02ac 00000000 		.4byte	0
+ 2941              	.LLST15:
+ 2942 02b0 1C000000 		.4byte	.LVL67
+ 2943 02b4 4C000000 		.4byte	.LVL71
+ 2944 02b8 0400     		.2byte	0x4
+ 2945 02ba 0A       		.byte	0xa
+ 2946 02bb 9411     		.2byte	0x1194
+ 2947 02bd 9F       		.byte	0x9f
+ 2948 02be 7C000000 		.4byte	.LVL78
+ 2949 02c2 80000000 		.4byte	.LVL79
+ 2950 02c6 0A00     		.2byte	0xa
+ 2951 02c8 91       		.byte	0x91
+ 2952 02c9 50       		.sleb128 -48
+ 2953 02ca F6       		.byte	0xf6
+ 2954 02cb 04       		.byte	0x4
+ 2955 02cc 25       		.uleb128 0x25
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 65
+
+
+ 2956 02cd F7       		.byte	0xf7
+ 2957 02ce 2C       		.uleb128 0x2c
+ 2958 02cf F7       		.byte	0xf7
+ 2959 02d0 00       		.uleb128 0
+ 2960 02d1 9F       		.byte	0x9f
+ 2961 02d2 00000000 		.4byte	0
+ 2962 02d6 00000000 		.4byte	0
+ 2963              	.LLST16:
+ 2964 02da 1C000000 		.4byte	.LVL67
+ 2965 02de 4C000000 		.4byte	.LVL71
+ 2966 02e2 0400     		.2byte	0x4
+ 2967 02e4 0A       		.byte	0xa
+ 2968 02e5 E40C     		.2byte	0xce4
+ 2969 02e7 9F       		.byte	0x9f
+ 2970 02e8 4C000000 		.4byte	.LVL71
+ 2971 02ec 18020000 		.4byte	.LFE64
+ 2972 02f0 0100     		.2byte	0x1
+ 2973 02f2 5B       		.byte	0x5b
+ 2974 02f3 00000000 		.4byte	0
+ 2975 02f7 00000000 		.4byte	0
+ 2976              	.LLST17:
+ 2977 02fb 1C000000 		.4byte	.LVL67
+ 2978 02ff 4C000000 		.4byte	.LVL71
+ 2979 0303 0400     		.2byte	0x4
+ 2980 0305 0A       		.byte	0xa
+ 2981 0306 6C20     		.2byte	0x206c
+ 2982 0308 9F       		.byte	0x9f
+ 2983 0309 7C000000 		.4byte	.LVL78
+ 2984 030d 80000000 		.4byte	.LVL79
+ 2985 0311 0A00     		.2byte	0xa
+ 2986 0313 91       		.byte	0x91
+ 2987 0314 54       		.sleb128 -44
+ 2988 0315 F6       		.byte	0xf6
+ 2989 0316 04       		.byte	0x4
+ 2990 0317 25       		.uleb128 0x25
+ 2991 0318 F7       		.byte	0xf7
+ 2992 0319 2C       		.uleb128 0x2c
+ 2993 031a F7       		.byte	0xf7
+ 2994 031b 00       		.uleb128 0
+ 2995 031c 9F       		.byte	0x9f
+ 2996 031d 00000000 		.4byte	0
+ 2997 0321 00000000 		.4byte	0
+ 2998              	.LLST18:
+ 2999 0325 1C000000 		.4byte	.LVL67
+ 3000 0329 4C000000 		.4byte	.LVL71
+ 3001 032d 0200     		.2byte	0x2
+ 3002 032f 30       		.byte	0x30
+ 3003 0330 9F       		.byte	0x9f
+ 3004 0331 4C000000 		.4byte	.LVL71
+ 3005 0335 7C000000 		.4byte	.LVL78
+ 3006 0339 0300     		.2byte	0x3
+ 3007 033b 91       		.byte	0x91
+ 3008 033c B47F     		.sleb128 -76
+ 3009 033e 7C000000 		.4byte	.LVL78
+ 3010 0342 80000000 		.4byte	.LVL79
+ 3011 0346 0200     		.2byte	0x2
+ 3012 0348 31       		.byte	0x31
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 66
+
+
+ 3013 0349 9F       		.byte	0x9f
+ 3014 034a 80000000 		.4byte	.LVL79
+ 3015 034e 18020000 		.4byte	.LFE64
+ 3016 0352 0300     		.2byte	0x3
+ 3017 0354 91       		.byte	0x91
+ 3018 0355 B47F     		.sleb128 -76
+ 3019 0357 00000000 		.4byte	0
+ 3020 035b 00000000 		.4byte	0
+ 3021              	.LLST19:
+ 3022 035f 1C000000 		.4byte	.LVL67
+ 3023 0363 4C000000 		.4byte	.LVL71
+ 3024 0367 0200     		.2byte	0x2
+ 3025 0369 31       		.byte	0x31
+ 3026 036a 9F       		.byte	0x9f
+ 3027 036b 4C000000 		.4byte	.LVL71
+ 3028 036f 66010000 		.4byte	.LVL117
+ 3029 0373 0300     		.2byte	0x3
+ 3030 0375 91       		.byte	0x91
+ 3031 0376 A87F     		.sleb128 -88
+ 3032 0378 68010000 		.4byte	.LVL118
+ 3033 037c 18020000 		.4byte	.LFE64
+ 3034 0380 0300     		.2byte	0x3
+ 3035 0382 91       		.byte	0x91
+ 3036 0383 A87F     		.sleb128 -88
+ 3037 0385 00000000 		.4byte	0
+ 3038 0389 00000000 		.4byte	0
+ 3039              	.LLST20:
+ 3040 038d 1C000000 		.4byte	.LVL67
+ 3041 0391 4C000000 		.4byte	.LVL71
+ 3042 0395 0200     		.2byte	0x2
+ 3043 0397 31       		.byte	0x31
+ 3044 0398 9F       		.byte	0x9f
+ 3045 0399 4C000000 		.4byte	.LVL71
+ 3046 039d 56010000 		.4byte	.LVL115
+ 3047 03a1 0100     		.2byte	0x1
+ 3048 03a3 57       		.byte	0x57
+ 3049 03a4 5A010000 		.4byte	.LVL116
+ 3050 03a8 18020000 		.4byte	.LFE64
+ 3051 03ac 0100     		.2byte	0x1
+ 3052 03ae 57       		.byte	0x57
+ 3053 03af 00000000 		.4byte	0
+ 3054 03b3 00000000 		.4byte	0
+ 3055              	.LLST21:
+ 3056 03b7 2E000000 		.4byte	.LVL70
+ 3057 03bb 4C000000 		.4byte	.LVL71
+ 3058 03bf 0600     		.2byte	0x6
+ 3059 03c1 9E       		.byte	0x9e
+ 3060 03c2 04       		.uleb128 0x4
+ 3061 03c3 00000000 		.4byte	0
+ 3062 03c7 A6000000 		.4byte	.LVL85
+ 3063 03cb AA000000 		.4byte	.LVL86
+ 3064 03cf 0300     		.2byte	0x3
+ 3065 03d1 91       		.byte	0x91
+ 3066 03d2 A47F     		.sleb128 -92
+ 3067 03d4 EC000000 		.4byte	.LVL96
+ 3068 03d8 F3000000 		.4byte	.LVL97-1
+ 3069 03dc 0100     		.2byte	0x1
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 67
+
+
+ 3070 03de 50       		.byte	0x50
+ 3071 03df F3000000 		.4byte	.LVL97-1
+ 3072 03e3 DE010000 		.4byte	.LVL128
+ 3073 03e7 0300     		.2byte	0x3
+ 3074 03e9 91       		.byte	0x91
+ 3075 03ea A47F     		.sleb128 -92
+ 3076 03ec 00000000 		.4byte	0
+ 3077 03f0 00000000 		.4byte	0
+ 3078              	.LLST22:
+ 3079 03f4 2E000000 		.4byte	.LVL70
+ 3080 03f8 4C000000 		.4byte	.LVL71
+ 3081 03fc 0600     		.2byte	0x6
+ 3082 03fe 9E       		.byte	0x9e
+ 3083 03ff 04       		.uleb128 0x4
+ 3084 0400 00000000 		.4byte	0
+ 3085 0404 4C000000 		.4byte	.LVL71
+ 3086 0408 A6000000 		.4byte	.LVL85
+ 3087 040c 0100     		.2byte	0x1
+ 3088 040e 58       		.byte	0x58
+ 3089 040f A6000000 		.4byte	.LVL85
+ 3090 0413 AA000000 		.4byte	.LVL86
+ 3091 0417 0300     		.2byte	0x3
+ 3092 0419 91       		.byte	0x91
+ 3093 041a A47F     		.sleb128 -92
+ 3094 041c AA000000 		.4byte	.LVL86
+ 3095 0420 10010000 		.4byte	.LVL102
+ 3096 0424 0100     		.2byte	0x1
+ 3097 0426 58       		.byte	0x58
+ 3098 0427 10010000 		.4byte	.LVL102
+ 3099 042b DE010000 		.4byte	.LVL128
+ 3100 042f 0300     		.2byte	0x3
+ 3101 0431 91       		.byte	0x91
+ 3102 0432 A47F     		.sleb128 -92
+ 3103 0434 DE010000 		.4byte	.LVL128
+ 3104 0438 18020000 		.4byte	.LFE64
+ 3105 043c 0100     		.2byte	0x1
+ 3106 043e 58       		.byte	0x58
+ 3107 043f 00000000 		.4byte	0
+ 3108 0443 00000000 		.4byte	0
+ 3109              	.LLST23:
+ 3110 0447 CA000000 		.4byte	.LVL90
+ 3111 044b CE000000 		.4byte	.LVL91
+ 3112 044f 0100     		.2byte	0x1
+ 3113 0451 50       		.byte	0x50
+ 3114 0452 CE000000 		.4byte	.LVL91
+ 3115 0456 F6000000 		.4byte	.LVL98
+ 3116 045a 0100     		.2byte	0x1
+ 3117 045c 59       		.byte	0x59
+ 3118 045d 00000000 		.4byte	0
+ 3119 0461 00000000 		.4byte	0
+ 3120              	.LLST24:
+ 3121 0465 DE000000 		.4byte	.LVL93
+ 3122 0469 E6000000 		.4byte	.LVL94
+ 3123 046d 0100     		.2byte	0x1
+ 3124 046f 50       		.byte	0x50
+ 3125 0470 E6000000 		.4byte	.LVL94
+ 3126 0474 E9000000 		.4byte	.LVL95-1
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 68
+
+
+ 3127 0478 0100     		.2byte	0x1
+ 3128 047a 51       		.byte	0x51
+ 3129 047b 00000000 		.4byte	0
+ 3130 047f 00000000 		.4byte	0
+ 3131              	.LLST25:
+ 3132 0483 10010000 		.4byte	.LVL102
+ 3133 0487 15010000 		.4byte	.LVL103-1
+ 3134 048b 0100     		.2byte	0x1
+ 3135 048d 50       		.byte	0x50
+ 3136 048e 15010000 		.4byte	.LVL103-1
+ 3137 0492 2E010000 		.4byte	.LVL108
+ 3138 0496 0100     		.2byte	0x1
+ 3139 0498 58       		.byte	0x58
+ 3140 0499 00000000 		.4byte	0
+ 3141 049d 00000000 		.4byte	0
+ 3142              	.LLST26:
+ 3143 04a1 A6000000 		.4byte	.LVL85
+ 3144 04a5 AA000000 		.4byte	.LVL86
+ 3145 04a9 0100     		.2byte	0x1
+ 3146 04ab 59       		.byte	0x59
+ 3147 04ac 18010000 		.4byte	.LVL104
+ 3148 04b0 1D010000 		.4byte	.LVL105-1
+ 3149 04b4 0100     		.2byte	0x1
+ 3150 04b6 50       		.byte	0x50
+ 3151 04b7 1D010000 		.4byte	.LVL105-1
+ 3152 04bb DE010000 		.4byte	.LVL128
+ 3153 04bf 0100     		.2byte	0x1
+ 3154 04c1 59       		.byte	0x59
+ 3155 04c2 00000000 		.4byte	0
+ 3156 04c6 00000000 		.4byte	0
+ 3157              	.LLST27:
+ 3158 04ca 2E010000 		.4byte	.LVL108
+ 3159 04ce 33010000 		.4byte	.LVL109-1
+ 3160 04d2 0100     		.2byte	0x1
+ 3161 04d4 50       		.byte	0x50
+ 3162 04d5 33010000 		.4byte	.LVL109-1
+ 3163 04d9 44010000 		.4byte	.LVL112
+ 3164 04dd 0100     		.2byte	0x1
+ 3165 04df 58       		.byte	0x58
+ 3166 04e0 00000000 		.4byte	0
+ 3167 04e4 00000000 		.4byte	0
+ 3168              	.LLST28:
+ 3169 04e8 00000000 		.4byte	.LVL134
+ 3170 04ec 0A000000 		.4byte	.LVL136
+ 3171 04f0 0100     		.2byte	0x1
+ 3172 04f2 50       		.byte	0x50
+ 3173 04f3 0A000000 		.4byte	.LVL136
+ 3174 04f7 2A000000 		.4byte	.LFE68
+ 3175 04fb 0400     		.2byte	0x4
+ 3176 04fd F3       		.byte	0xf3
+ 3177 04fe 01       		.uleb128 0x1
+ 3178 04ff 50       		.byte	0x50
+ 3179 0500 9F       		.byte	0x9f
+ 3180 0501 00000000 		.4byte	0
+ 3181 0505 00000000 		.4byte	0
+ 3182              	.LLST29:
+ 3183 0509 00000000 		.4byte	.LVL134
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 69
+
+
+ 3184 050d 0A000000 		.4byte	.LVL136
+ 3185 0511 0100     		.2byte	0x1
+ 3186 0513 51       		.byte	0x51
+ 3187 0514 0A000000 		.4byte	.LVL136
+ 3188 0518 18000000 		.4byte	.LVL138
+ 3189 051c 0100     		.2byte	0x1
+ 3190 051e 54       		.byte	0x54
+ 3191 051f 18000000 		.4byte	.LVL138
+ 3192 0523 22000000 		.4byte	.LVL141
+ 3193 0527 0100     		.2byte	0x1
+ 3194 0529 56       		.byte	0x56
+ 3195 052a 22000000 		.4byte	.LVL141
+ 3196 052e 2A000000 		.4byte	.LFE68
+ 3197 0532 0100     		.2byte	0x1
+ 3198 0534 54       		.byte	0x54
+ 3199 0535 00000000 		.4byte	0
+ 3200 0539 00000000 		.4byte	0
+ 3201              	.LLST30:
+ 3202 053d 00000000 		.4byte	.LVL134
+ 3203 0541 0A000000 		.4byte	.LVL136
+ 3204 0545 0100     		.2byte	0x1
+ 3205 0547 52       		.byte	0x52
+ 3206 0548 0A000000 		.4byte	.LVL136
+ 3207 054c 2A000000 		.4byte	.LFE68
+ 3208 0550 0100     		.2byte	0x1
+ 3209 0552 57       		.byte	0x57
+ 3210 0553 00000000 		.4byte	0
+ 3211 0557 00000000 		.4byte	0
+ 3212              	.LLST31:
+ 3213 055b 06000000 		.4byte	.LVL135
+ 3214 055f 0A000000 		.4byte	.LVL136
+ 3215 0563 0200     		.2byte	0x2
+ 3216 0565 30       		.byte	0x30
+ 3217 0566 9F       		.byte	0x9f
+ 3218 0567 0A000000 		.4byte	.LVL136
+ 3219 056b 2A000000 		.4byte	.LFE68
+ 3220 056f 0100     		.2byte	0x1
+ 3221 0571 55       		.byte	0x55
+ 3222 0572 00000000 		.4byte	0
+ 3223 0576 00000000 		.4byte	0
+ 3224              	.LLST32:
+ 3225 057a 00000000 		.4byte	.LVL142
+ 3226 057e 0A000000 		.4byte	.LVL144
+ 3227 0582 0100     		.2byte	0x1
+ 3228 0584 50       		.byte	0x50
+ 3229 0585 0A000000 		.4byte	.LVL144
+ 3230 0589 38000000 		.4byte	.LFE69
+ 3231 058d 0400     		.2byte	0x4
+ 3232 058f F3       		.byte	0xf3
+ 3233 0590 01       		.uleb128 0x1
+ 3234 0591 50       		.byte	0x50
+ 3235 0592 9F       		.byte	0x9f
+ 3236 0593 00000000 		.4byte	0
+ 3237 0597 00000000 		.4byte	0
+ 3238              	.LLST33:
+ 3239 059b 00000000 		.4byte	.LVL142
+ 3240 059f 0A000000 		.4byte	.LVL144
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 70
+
+
+ 3241 05a3 0100     		.2byte	0x1
+ 3242 05a5 51       		.byte	0x51
+ 3243 05a6 0A000000 		.4byte	.LVL144
+ 3244 05aa 26000000 		.4byte	.LVL151
+ 3245 05ae 0100     		.2byte	0x1
+ 3246 05b0 57       		.byte	0x57
+ 3247 05b1 26000000 		.4byte	.LVL151
+ 3248 05b5 30000000 		.4byte	.LVL153
+ 3249 05b9 0100     		.2byte	0x1
+ 3250 05bb 53       		.byte	0x53
+ 3251 05bc 30000000 		.4byte	.LVL153
+ 3252 05c0 34000000 		.4byte	.LVL154
+ 3253 05c4 0100     		.2byte	0x1
+ 3254 05c6 57       		.byte	0x57
+ 3255 05c7 00000000 		.4byte	0
+ 3256 05cb 00000000 		.4byte	0
+ 3257              	.LLST34:
+ 3258 05cf 00000000 		.4byte	.LVL142
+ 3259 05d3 0A000000 		.4byte	.LVL144
+ 3260 05d7 0100     		.2byte	0x1
+ 3261 05d9 52       		.byte	0x52
+ 3262 05da 0A000000 		.4byte	.LVL144
+ 3263 05de 38000000 		.4byte	.LFE69
+ 3264 05e2 0100     		.2byte	0x1
+ 3265 05e4 54       		.byte	0x54
+ 3266 05e5 00000000 		.4byte	0
+ 3267 05e9 00000000 		.4byte	0
+ 3268              	.LLST35:
+ 3269 05ed 06000000 		.4byte	.LVL143
+ 3270 05f1 0A000000 		.4byte	.LVL144
+ 3271 05f5 0200     		.2byte	0x2
+ 3272 05f7 30       		.byte	0x30
+ 3273 05f8 9F       		.byte	0x9f
+ 3274 05f9 0A000000 		.4byte	.LVL144
+ 3275 05fd 38000000 		.4byte	.LFE69
+ 3276 0601 0100     		.2byte	0x1
+ 3277 0603 56       		.byte	0x56
+ 3278 0604 00000000 		.4byte	0
+ 3279 0608 00000000 		.4byte	0
+ 3280              	.LLST36:
+ 3281 060c 0E000000 		.4byte	.LVL145
+ 3282 0610 15000000 		.4byte	.LVL146-1
+ 3283 0614 0100     		.2byte	0x1
+ 3284 0616 50       		.byte	0x50
+ 3285 0617 1C000000 		.4byte	.LVL148
+ 3286 061b 24000000 		.4byte	.LVL150
+ 3287 061f 0200     		.2byte	0x2
+ 3288 0621 3A       		.byte	0x3a
+ 3289 0622 9F       		.byte	0x9f
+ 3290 0623 24000000 		.4byte	.LVL150
+ 3291 0627 30000000 		.4byte	.LVL153
+ 3292 062b 0100     		.2byte	0x1
+ 3293 062d 55       		.byte	0x55
+ 3294 062e 00000000 		.4byte	0
+ 3295 0632 00000000 		.4byte	0
+ 3296              		.section	.debug_aranges,"",%progbits
+ 3297 0000 44000000 		.4byte	0x44
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 71
+
+
+ 3298 0004 0200     		.2byte	0x2
+ 3299 0006 00000000 		.4byte	.Ldebug_info0
+ 3300 000a 04       		.byte	0x4
+ 3301 000b 00       		.byte	0
+ 3302 000c 0000     		.2byte	0
+ 3303 000e 0000     		.2byte	0
+ 3304 0010 00000000 		.4byte	.LFB65
+ 3305 0014 58000000 		.4byte	.LFE65-.LFB65
+ 3306 0018 00000000 		.4byte	.LFB66
+ 3307 001c 6A000000 		.4byte	.LFE66-.LFB66
+ 3308 0020 00000000 		.4byte	.LFB67
+ 3309 0024 48010000 		.4byte	.LFE67-.LFB67
+ 3310 0028 00000000 		.4byte	.LFB64
+ 3311 002c 18020000 		.4byte	.LFE64-.LFB64
+ 3312 0030 00000000 		.4byte	.LFB68
+ 3313 0034 2A000000 		.4byte	.LFE68-.LFB68
+ 3314 0038 00000000 		.4byte	.LFB69
+ 3315 003c 38000000 		.4byte	.LFE69-.LFB69
+ 3316 0040 00000000 		.4byte	0
+ 3317 0044 00000000 		.4byte	0
+ 3318              		.section	.debug_ranges,"",%progbits
+ 3319              	.Ldebug_ranges0:
+ 3320 0000 AA000000 		.4byte	.LBB2
+ 3321 0004 CE010000 		.4byte	.LBE2
+ 3322 0008 DA010000 		.4byte	.LBB3
+ 3323 000c DE010000 		.4byte	.LBE3
+ 3324 0010 00000000 		.4byte	0
+ 3325 0014 00000000 		.4byte	0
+ 3326 0018 00000000 		.4byte	.LFB65
+ 3327 001c 58000000 		.4byte	.LFE65
+ 3328 0020 00000000 		.4byte	.LFB66
+ 3329 0024 6A000000 		.4byte	.LFE66
+ 3330 0028 00000000 		.4byte	.LFB67
+ 3331 002c 48010000 		.4byte	.LFE67
+ 3332 0030 00000000 		.4byte	.LFB64
+ 3333 0034 18020000 		.4byte	.LFE64
+ 3334 0038 00000000 		.4byte	.LFB68
+ 3335 003c 2A000000 		.4byte	.LFE68
+ 3336 0040 00000000 		.4byte	.LFB69
+ 3337 0044 38000000 		.4byte	.LFE69
+ 3338 0048 00000000 		.4byte	0
+ 3339 004c 00000000 		.4byte	0
+ 3340              		.section	.debug_line,"",%progbits
+ 3341              	.Ldebug_line0:
+ 3342 0000 C5030000 		.section	.debug_str,"MS",%progbits,1
+ 3342      02005E02 
+ 3342      00000201 
+ 3342      FB0E0D00 
+ 3342      01010101 
+ 3343              	.LASF28:
+ 3344 0000 72657375 		.ascii	"result\000"
+ 3344      6C7400
+ 3345              	.LASF83:
+ 3346 0007 5F5F6275 		.ascii	"__builtin_puts\000"
+ 3346      696C7469 
+ 3346      6E5F7075 
+ 3346      747300
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 72
+
+
+ 3347              	.LASF46:
+ 3348 0016 6C335363 		.ascii	"l3Scale\000"
+ 3348      616C6500 
+ 3349              	.LASF43:
+ 3350 001e 6C617374 		.ascii	"lastError\000"
+ 3350      4572726F 
+ 3350      7200
+ 3351              	.LASF34:
+ 3352 0028 626C6163 		.ascii	"blackLine\000"
+ 3352      6B4C696E 
+ 3352      6500
+ 3353              	.LASF73:
+ 3354 0032 6D6F746F 		.ascii	"motor_stop\000"
+ 3354      725F7374 
+ 3354      6F7000
+ 3355              	.LASF64:
+ 3356 003d 6D6F746F 		.ascii	"motor_drive\000"
+ 3356      725F6472 
+ 3356      69766500 
+ 3357              	.LASF4:
+ 3358 0049 73686F72 		.ascii	"short int\000"
+ 3358      7420696E 
+ 3358      7400
+ 3359              	.LASF48:
+ 3360 0053 6D6F746F 		.ascii	"motorSpeed\000"
+ 3360      72537065 
+ 3360      656400
+ 3361              	.LASF19:
+ 3362 005e 73697A65 		.ascii	"sizetype\000"
+ 3362      74797065 
+ 3362      00
+ 3363              	.LASF9:
+ 3364 0067 6C6F6E67 		.ascii	"long long int\000"
+ 3364      206C6F6E 
+ 3364      6720696E 
+ 3364      7400
+ 3365              	.LASF52:
+ 3366 0075 5F777269 		.ascii	"_write\000"
+ 3366      746500
+ 3367              	.LASF25:
+ 3368 007c 64656C61 		.ascii	"delay\000"
+ 3368      7900
+ 3369              	.LASF78:
+ 3370 0082 433A5C55 		.ascii	"C:\\Users\\nikla\\Desktop\\Zumo01\\ZumoBot.cydsn\000"
+ 3370      73657273 
+ 3370      5C6E696B 
+ 3370      6C615C44 
+ 3370      65736B74 
+ 3371              	.LASF5:
+ 3372 00ae 5F5F7569 		.ascii	"__uint16_t\000"
+ 3372      6E743136 
+ 3372      5F7400
+ 3373              	.LASF53:
+ 3374 00b9 66696C65 		.ascii	"file\000"
+ 3374      00
+ 3375              	.LASF41:
+ 3376 00be 64657269 		.ascii	"derivative\000"
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 73
+
+
+ 3376      76617469 
+ 3376      766500
+ 3377              	.LASF15:
+ 3378 00c9 75696E74 		.ascii	"uint16\000"
+ 3378      313600
+ 3379              	.LASF29:
+ 3380 00d0 74696D65 		.ascii	"timer\000"
+ 3380      7200
+ 3381              	.LASF32:
+ 3382 00d6 72696768 		.ascii	"rightMotor\000"
+ 3382      744D6F74 
+ 3382      6F7200
+ 3383              	.LASF14:
+ 3384 00e1 75696E74 		.ascii	"uint8\000"
+ 3384      3800
+ 3385              	.LASF75:
+ 3386 00e7 55415254 		.ascii	"UART_1_GetChar\000"
+ 3386      5F315F47 
+ 3386      65744368 
+ 3386      617200
+ 3387              	.LASF47:
+ 3388 00f6 72335363 		.ascii	"r3Scale\000"
+ 3388      616C6500 
+ 3389              	.LASF68:
+ 3390 00fe 7265666C 		.ascii	"reflectance_start\000"
+ 3390      65637461 
+ 3390      6E63655F 
+ 3390      73746172 
+ 3390      7400
+ 3391              	.LASF65:
+ 3392 0110 55415254 		.ascii	"UART_1_Start\000"
+ 3392      5F315F53 
+ 3392      74617274 
+ 3392      00
+ 3393              	.LASF74:
+ 3394 011d 55415254 		.ascii	"UART_1_PutChar\000"
+ 3394      5F315F50 
+ 3394      75744368 
+ 3394      617200
+ 3395              	.LASF49:
+ 3396 012c 6C656674 		.ascii	"leftMotorSpeed\000"
+ 3396      4D6F746F 
+ 3396      72537065 
+ 3396      656400
+ 3397              	.LASF0:
+ 3398 013b 666C6F61 		.ascii	"float\000"
+ 3398      7400
+ 3399              	.LASF81:
+ 3400 0141 6D656D73 		.ascii	"memset\000"
+ 3400      657400
+ 3401              	.LASF7:
+ 3402 0148 6C6F6E67 		.ascii	"long int\000"
+ 3402      20696E74 
+ 3402      00
+ 3403              	.LASF59:
+ 3404 0151 7072696E 		.ascii	"printf\000"
+ 3404      746600
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 74
+
+
+ 3405              	.LASF30:
+ 3406 0158 62757474 		.ascii	"button\000"
+ 3406      6F6E00
+ 3407              	.LASF40:
+ 3408 015f 696E7465 		.ascii	"integral\000"
+ 3408      6772616C 
+ 3408      00
+ 3409              	.LASF50:
+ 3410 0168 72696768 		.ascii	"rightMotorSpeed\000"
+ 3410      744D6F74 
+ 3410      6F725370 
+ 3410      65656400 
+ 3411              	.LASF27:
+ 3412 0178 63616C69 		.ascii	"calibrate\000"
+ 3412      62726174 
+ 3412      6500
+ 3413              	.LASF36:
+ 3414 0182 63616C69 		.ascii	"calibrated\000"
+ 3414      62726174 
+ 3414      656400
+ 3415              	.LASF18:
+ 3416 018d 6C6F6E67 		.ascii	"long double\000"
+ 3416      20646F75 
+ 3416      626C6500 
+ 3417              	.LASF3:
+ 3418 0199 756E7369 		.ascii	"unsigned char\000"
+ 3418      676E6564 
+ 3418      20636861 
+ 3418      7200
+ 3419              	.LASF63:
+ 3420 01a7 42656570 		.ascii	"Beep\000"
+ 3420      00
+ 3421              	.LASF54:
+ 3422 01ac 5F726561 		.ascii	"_read\000"
+ 3422      6400
+ 3423              	.LASF2:
+ 3424 01b2 7369676E 		.ascii	"signed char\000"
+ 3424      65642063 
+ 3424      68617200 
+ 3425              	.LASF10:
+ 3426 01be 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3426      206C6F6E 
+ 3426      6720756E 
+ 3426      7369676E 
+ 3426      65642069 
+ 3427              	.LASF23:
+ 3428 01d5 63686563 		.ascii	"checkVoltage\000"
+ 3428      6B566F6C 
+ 3428      74616765 
+ 3428      00
+ 3429              	.LASF45:
+ 3430 01e2 6C315363 		.ascii	"l1Scale\000"
+ 3430      616C6500 
+ 3431              	.LASF11:
+ 3432 01ea 756E7369 		.ascii	"unsigned int\000"
+ 3432      676E6564 
+ 3432      20696E74 
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 75
+
+
+ 3432      00
+ 3433              	.LASF12:
+ 3434 01f7 75696E74 		.ascii	"uint16_t\000"
+ 3434      31365F74 
+ 3434      00
+ 3435              	.LASF31:
+ 3436 0200 6C656674 		.ascii	"leftMotor\000"
+ 3436      4D6F746F 
+ 3436      7200
+ 3437              	.LASF57:
+ 3438 020a 4144435F 		.ascii	"ADC_Battery_IsEndConversion\000"
+ 3438      42617474 
+ 3438      6572795F 
+ 3438      4973456E 
+ 3438      64436F6E 
+ 3439              	.LASF82:
+ 3440 0226 70757473 		.ascii	"puts\000"
+ 3440      00
+ 3441              	.LASF1:
+ 3442 022b 73686F72 		.ascii	"short unsigned int\000"
+ 3442      7420756E 
+ 3442      7369676E 
+ 3442      65642069 
+ 3442      6E7400
+ 3443              	.LASF72:
+ 3444 023e 6D6F746F 		.ascii	"motor_forward\000"
+ 3444      725F666F 
+ 3444      72776172 
+ 3444      6400
+ 3445              	.LASF17:
+ 3446 024c 63686172 		.ascii	"char\000"
+ 3446      00
+ 3447              	.LASF22:
+ 3448 0251 5F426F6F 		.ascii	"_Bool\000"
+ 3448      6C00
+ 3449              	.LASF51:
+ 3450 0257 6D61696E 		.ascii	"main\000"
+ 3450      00
+ 3451              	.LASF13:
+ 3452 025c 696E7433 		.ascii	"int32_t\000"
+ 3452      325F7400 
+ 3453              	.LASF60:
+ 3454 0264 42617474 		.ascii	"BatteryLed_Write\000"
+ 3454      6572794C 
+ 3454      65645F57 
+ 3454      72697465 
+ 3454      00
+ 3455              	.LASF79:
+ 3456 0275 73656E73 		.ascii	"sensors_\000"
+ 3456      6F72735F 
+ 3456      00
+ 3457              	.LASF70:
+ 3458 027e 5357315F 		.ascii	"SW1_Read\000"
+ 3458      52656164 
+ 3458      00
+ 3459              	.LASF77:
+ 3460 0287 6D61696E 		.ascii	"main.c\000"
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 76
+
+
+ 3460      2E6300
+ 3461              	.LASF8:
+ 3462 028e 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3462      20756E73 
+ 3462      69676E65 
+ 3462      6420696E 
+ 3462      7400
+ 3463              	.LASF38:
+ 3464 02a0 72696768 		.ascii	"rightDir\000"
+ 3464      74446972 
+ 3464      00
+ 3465              	.LASF67:
+ 3466 02a9 73656E73 		.ascii	"sensor_isr_StartEx\000"
+ 3466      6F725F69 
+ 3466      73725F53 
+ 3466      74617274 
+ 3466      457800
+ 3467              	.LASF21:
+ 3468 02bc 76626174 		.ascii	"vbat\000"
+ 3468      00
+ 3469              	.LASF71:
+ 3470 02c1 6D6F746F 		.ascii	"motor_start\000"
+ 3470      725F7374 
+ 3470      61727400 
+ 3471              	.LASF80:
+ 3472 02cd 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 3472      52784275 
+ 3472      66666572 
+ 3472      00
+ 3473              	.LASF44:
+ 3474 02da 72315363 		.ascii	"r1Scale\000"
+ 3474      616C6500 
+ 3475              	.LASF55:
+ 3476 02e2 636F756E 		.ascii	"count\000"
+ 3476      7400
+ 3477              	.LASF66:
+ 3478 02e8 4144435F 		.ascii	"ADC_Battery_Start\000"
+ 3478      42617474 
+ 3478      6572795F 
+ 3478      53746172 
+ 3478      7400
+ 3479              	.LASF6:
+ 3480 02fa 5F5F696E 		.ascii	"__int32_t\000"
+ 3480      7433325F 
+ 3480      7400
+ 3481              	.LASF56:
+ 3482 0304 4144435F 		.ascii	"ADC_Battery_StartConvert\000"
+ 3482      42617474 
+ 3482      6572795F 
+ 3482      53746172 
+ 3482      74436F6E 
+ 3483              	.LASF24:
+ 3484 031d 666C6173 		.ascii	"flashLED\000"
+ 3484      684C4544 
+ 3484      00
+ 3485              	.LASF58:
+ 3486 0326 4144435F 		.ascii	"ADC_Battery_GetResult16\000"
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 77
+
+
+ 3486      42617474 
+ 3486      6572795F 
+ 3486      47657452 
+ 3486      6573756C 
+ 3487              	.LASF37:
+ 3488 033e 6C656674 		.ascii	"leftDir\000"
+ 3488      44697200 
+ 3489              	.LASF26:
+ 3490 0346 64656C61 		.ascii	"delaySubtract\000"
+ 3490      79537562 
+ 3490      74726163 
+ 3490      7400
+ 3491              	.LASF20:
+ 3492 0354 61646372 		.ascii	"adcresult\000"
+ 3492      6573756C 
+ 3492      7400
+ 3493              	.LASF42:
+ 3494 035e 6F757470 		.ascii	"output\000"
+ 3494      757400
+ 3495              	.LASF39:
+ 3496 0365 6572726F 		.ascii	"error\000"
+ 3496      7200
+ 3497              	.LASF16:
+ 3498 036b 646F7562 		.ascii	"double\000"
+ 3498      6C6500
+ 3499              	.LASF33:
+ 3500 0372 63686563 		.ascii	"checkVoltageDelay\000"
+ 3500      6B566F6C 
+ 3500      74616765 
+ 3500      44656C61 
+ 3500      7900
+ 3501              	.LASF76:
+ 3502 0384 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 3502      43313120 
+ 3502      352E342E 
+ 3502      31203230 
+ 3502      31363036 
+ 3503 03b7 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 3503      20726576 
+ 3503      6973696F 
+ 3503      6E203233 
+ 3503      37373135 
+ 3504 03ea 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 3504      66756E63 
+ 3504      74696F6E 
+ 3504      2D736563 
+ 3504      74696F6E 
+ 3505              	.LASF61:
+ 3506 0412 43794465 		.ascii	"CyDelay\000"
+ 3506      6C617900 
+ 3507              	.LASF62:
+ 3508 041a 7265666C 		.ascii	"reflectance_read\000"
+ 3508      65637461 
+ 3508      6E63655F 
+ 3508      72656164 
+ 3508      00
+ 3509              	.LASF35:
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccmEeDF7.s 			page 78
+
+
+ 3510 042b 6C696E65 		.ascii	"lineDelay\000"
+ 3510      44656C61 
+ 3510      7900
+ 3511              	.LASF69:
+ 3512 0435 49525F6C 		.ascii	"IR_led_Write\000"
+ 3512      65645F57 
+ 3512      72697465 
+ 3512      00
+ 3513              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+>>>>>>> Stashed changes

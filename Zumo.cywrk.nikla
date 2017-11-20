@@ -262,6 +262,7 @@
 <Unloaded />
 <OpenDocs>
 <name v=".\ZumoBot.cydsn\main.c" />
+<name v=".\ZumoBot.cydsn\ZumoLibrary\Motor.c" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -269,7 +270,11 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
+<<<<<<< Updated upstream
 --><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="965, 480" SelectedTabbedMdiWindow="2b2e5c8c-c516-471d-890b-a4df7bedef1a"><DocumentWindow Key="C:\Users\nikla\Desktop\Zumo01\ZumoBot.cydsn\main.c" Guid="2b2e5c8c-c516-471d-890b-a4df7bedef1a" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+=======
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1164, 480" SelectedTabbedMdiWindow="dc224d3e-6dfe-463b-a688-06129612c65f"><DocumentWindow Key="C:\Users\nikla\Desktop\Zumo01\ZumoBot.cydsn\main.c" Guid="dc224d3e-6dfe-463b-a688-06129612c65f" /><DocumentWindow Key="C:\Users\nikla\Desktop\Zumo01\ZumoBot.cydsn\ZumoLibrary\Motor.c" Guid="8cae3122-1a3b-4a42-ac5a-b2ae4fd54b5c" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+>>>>>>> Stashed changes
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
