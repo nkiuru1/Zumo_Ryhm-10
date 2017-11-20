@@ -46,8 +46,6 @@
 #include "Beep.h"
 
 int rread(void);
-void motor_hard_turn_left(uint32 delay);
-void motor_hard_turn_right(uint32 delay);
 
 uint8 const MAX_SPEED = 255;
 uint8 const MIN_SPEED = 25;
@@ -75,6 +73,8 @@ int main()
     uint8 lineDelay = 0;
     uint16 l1W,l1B,l3W,l3B,r1W,r1B,r3W,r3B;
     float expo = 1;
+    uint8 leftDir = 1;
+    uint8 rightDir = 1;
     
     l3W = 4500;
     l3B = 23999;
@@ -100,11 +100,11 @@ int main()
         if(button == 0){
             CyDelay(500);
             motor_start();
-            reflectance_read(&ref);
-            if(ref.l3 > 22000 && ref.l1 > 22000 && ref.r1 > 22000 && ref.r3 > 22000){
+            //reflectance_read(&ref);
+            //if(ref.l3 > 22000 && ref.l1 > 22000 && ref.r1 > 22000 && ref.r3 > 22000)
+            {
                 blackLine++;               
                 motor_start();
-                motor_forward(255,250);
                 for(;;){
                     reflectance_read(&ref);
                     //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);   
@@ -127,14 +127,27 @@ int main()
                     
                     rightMotor = rightMotorSpeed;
                     leftMotor = leftMotorSpeed;
-                    if(ref.r3 >= r3B-200){
-                        motor_hard_turn_right(1);
-                    }
-                    if(ref.l3 >= l3B-200){
-                        motor_hard_turn_left(1);
-                    }
                     
-                    motor_turn(leftMotor,rightMotor,1);
+                    if(ref.r3 >= r3B-4000){
+                        rightDir = 1;
+                        rightMotor = 100;
+                    }
+                    if(ref.l3 >= l3B-4000){
+                       leftDir = 1; 
+                        leftMotor = 100;
+                    }
+                    if(ref.r3 < r3B-4000)
+                    {
+                        rightDir = 0;
+                    }
+                    if(ref.l3 < l3B-4000)
+                    {
+                        leftDir = 0;
+                    }
+                    printf("%i\n",leftDir);
+
+                    motor_drive(leftDir,rightDir,leftMotor,rightMotor,1);
+
                     
                     
                     lineDelay ++;
@@ -207,20 +220,6 @@ int main()
     }
  }   
 
-void motor_hard_turn_right(uint32 delay){
-    MotorDirLeft_Write(0);      // set LeftMotor forward mode
-    MotorDirRight_Write(1);     // set RightMotor back mode
-    PWM_WriteCompare1(255); 
-    PWM_WriteCompare2(50); 
-    CyDelay(delay);
-}
-void motor_hard_turn_left(uint32 delay){
-    MotorDirLeft_Write(1);      // set LeftMotor back mode
-    MotorDirRight_Write(0);     // set RightMotor forward mode
-    PWM_WriteCompare1(50); 
-    PWM_WriteCompare2(255); 
-    CyDelay(delay);
-}
 //*/
 
 
