@@ -50,7 +50,6 @@
 #define Kp 128
 #define Kd 8
 int rread(void);
-<<<<<<< Updated upstream
 
 uint8 MAX_SPEED = 255;
 =======
@@ -59,8 +58,6 @@ void motor_hard_turn_right(uint32 delay);
 bool checkVoltage();
 void flashLED();
 void calibrate(struct sensors_ ref, float * result);
-
->>>>>>> Stashed changes
 /**
  * @file    main.c
  * @brief   
@@ -77,16 +74,11 @@ int main()
     ADC_Battery_Start();         
     printf("\nBoot\n");
     BatteryLed_Write(0); // Switch led off 
-    
-<<<<<<< Updated upstream
-    int16 adcresult =0;
-=======
->>>>>>> Stashed changes
     float vbat = 0.0; 
     uint8 button;
     uint8 leftMotor = 20;
     uint8 rightMotor = 20;
-=======
+
     uint16 checkVoltageDelay = 5000;
     uint8 blackLine = 0;
     uint8 lineDelay = 0;
@@ -104,7 +96,6 @@ int main()
     r1B = 23999;
     r3W = 8300;
     r3B = 23999;
->>>>>>> Stashed changes
     
     struct sensors_ ref;
     CyGlobalIntEnable; 
@@ -123,8 +114,6 @@ int main()
         button = SW1_Read();
         //reflectance_read(&ref);
         if(button == 0){
-
-=======
             if(!calibrated){
                 calibrate(ref, result);
                 l1W = result[0];
@@ -201,7 +190,6 @@ int main()
         if(checkVoltageDelay >= 5000){
             if(!checkVoltage()){
                 break;
->>>>>>> Stashed changes
             }
             checkVoltageDelay = 0;
         }
@@ -209,6 +197,19 @@ int main()
         checkVoltageDelay +=20;
     }
     flashLED();
+ }   
+
+bool checkVoltage(){
+    uint16 adcresult = 0;
+    float vbat = 0;
+    ADC_Battery_StartConvert();
+    if(ADC_Battery_IsEndConversion(ADC_Battery_WAIT_FOR_RESULT)) {   // wait for get ADC converted value
+        adcresult = ADC_Battery_GetResult16();
+        vbat = (float)adcresult/(float)819;
+        vbat *=1.5;
+        printf("Vbat: %.6f\n", vbat);
+    }
+    }
  }   
 
 bool checkVoltage(){
@@ -261,9 +262,7 @@ void flashLED(){
         delay-=delaySubtract;
         CyDelay(delay);
     }
-<<<<<<< Updated upstream
  }   
-=======
 }
 
 
@@ -303,7 +302,6 @@ void calibrate(struct sensors_ ref, float *result)
     result[3] /= 10;
     Beep(25,200);
 }
->>>>>>> Stashed changes
 //*/
 
 
