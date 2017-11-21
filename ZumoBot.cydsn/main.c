@@ -47,8 +47,10 @@
 
 #define MAX_SPEED 255
 #define BASE_SPEED 255
-#define Kp 128
-#define Kd 8
+#define Kp 45
+#define Kd 128
+
+struct sensors_ ref;
 int rread(void);
 
 void motor_hard_turn_left(uint32 delay);
@@ -56,17 +58,16 @@ void motor_hard_turn_right(uint32 delay);
 bool checkVoltage();
 void flashLED();
 void calibrate(struct sensors_ ref, float * result);
+bool isOnBlackLine();
 /**
  * @file    main.c
  * @brief   
  * @details  ** You should enable global interrupt for operating properly. **<br>&nbsp;&nbsp;&nbsp;CyGlobalIntEnable;<br>
 */
 
-
-//battery level//
 int main()
 {
-    //Time 00:14:40
+    //Time 00:13:00. Somewhat reliable
     CyGlobalIntEnable; 
     UART_1_Start();
     ADC_Battery_Start();         
@@ -82,8 +83,8 @@ int main()
     uint16 l1W,l1B,l3W,l3B,r1W,r1B,r3W,r3B;
     float result[5];
     bool calibrated = false;
-    uint8 leftDir = 1;
-    uint8 rightDir = 1;
+    uint8 leftDir = 0;
+    uint8 rightDir = 0;
     
     l3W = 4500;
     l3B = 23999;
@@ -94,7 +95,6 @@ int main()
     r3W = 8300;
     r3B = 23999;
     
-    struct sensors_ ref;
     CyGlobalIntEnable; 
     sensor_isr_StartEx(sensor_isr_handler);
     
@@ -106,7 +106,7 @@ int main()
     for(;;)
     {
         button = SW1_Read();
-        //reflectance_read(&ref);
+        //Calibrated on white line
         if(button == 0){
             if(!calibrated){
                 calibrate(ref, result);
@@ -117,12 +117,24 @@ int main()
                 calibrated = true;
                 button = 1;
                 //printf("Left 1: %i     Right 1: %i\n", l1W,r1W);
-            }       
+            }
+            //Robot placed on track & if calibrated, moves forward untill a perpendicular black line.
             if(button == 0 && calibrated){
                 CyDelay(500);
-                motor_start();
-                reflectance_read(&ref);           
-                    motor_start();
+                reflectance_read(&ref);
+                if(!isOnBlackLine()){
+                    for(;;){
+                        motor_start();
+                        motor_forward(100,1);
+                        reflectance_read(&ref);
+                        if(isOnBlackLine()){
+                            motor_forward(0,0);
+                            button = 1;
+                            break;
+                        }
+                    }
+                }
+                if(button == 0){
                     for(;;){
                         reflectance_read(&ref);
                         //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);  
@@ -146,19 +158,19 @@ int main()
                     
                         rightMotor = rightMotorSpeed;
                         leftMotor = leftMotorSpeed;
-                        if(ref.r3 >= r3B-4000){
+                        if(ref.r3 >= r3B-r3W && !isOnBlackLine()){
                             rightDir = 1;
                             rightMotor = 125;
                         }
-                        if(ref.l3 >= l3B-4000){
+                        if(ref.l3 >= l3B-l3W && !isOnBlackLine()){
                             leftDir = 1; 
                             leftMotor = 125;
                         }
-                        if(ref.r3 < r3B-4000)
+                        if(ref.r3 < r3B-r3W && !isOnBlackLine())
                         {
                             rightDir = 0;
                         }
-                        if(ref.l3 < l3B-4000)
+                        if(ref.l3 < l3B-l3W && !isOnBlackLine())
                         {
                             leftDir = 0;
                         }
@@ -167,18 +179,21 @@ int main()
                         lineDelay ++;
                         //printf("left : %f   %f    right : %f    %f\n",l1Scale ,l3Scale,r1Scale,r3Scale);
                         //printf("error: %f       motorSpeed: %f\n", error, motorSpeed);
-                        //printf("L:%i R:%i\n", leftMotorSpeed,rightMotorSpeed);
+                        //printf("L:%f R:%f\n", leftMotorSpeed,rightMotorSpeed);
+                     
                         //checks if passed black line every 20ms
-                        if(ref.l3 > 20000 && ref.l1 > 20000 && ref.r1 > 20000 && ref.r3 > 20000 && lineDelay > 20){
-                            if(blackLine > 2){
+                        if(lineDelay > 20){
+                            if(isOnBlackLine()){
+                                blackLine++;
+                            }
+                            if(blackLine > 3){
                                 break;
                             }
-                            blackLine++;
                             lineDelay = 0;
                         }
                     }
                     motor_forward(0,0);
-                    motor_stop();               // motor stop
+                    }
             }
         }
         if(checkVoltageDelay >= 5000){
@@ -191,7 +206,15 @@ int main()
         checkVoltageDelay +=20;
     }
     flashLED();
+    motor_stop();
  }   
+
+bool isOnBlackLine(){
+    if(ref.l3 > 20000 && ref.l1 > 20000 && ref.r1 > 20000 && ref.r3 > 20000){
+        return true;
+    }
+    return false;
+}
 
 bool checkVoltage(){
     uint16 adcresult = 0;
