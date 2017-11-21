@@ -18,6 +18,7 @@
 <v>Zumo</v>
 <v>Zumo\ZumoBot</v>
 <v>Zumo\ZumoBot\TopDesign</v>
+<v>Zumo\ZumoBot\ZumoBot.cydwr</v>
 <v>Zumo\ZumoBot\ZumoBot.cydwr\Pins</v>
 <v>Zumo\ZumoBot\ZumoBot.cydwr\Analog</v>
 <v>Zumo\ZumoBot\ZumoBot.cydwr\Clocks</v>
@@ -52,13 +53,15 @@
 <v>Zumo\ZumoBot\Source Files\Nunchuk.c</v>
 <v>Zumo\ZumoBot\Source Files\Reflectance.c</v>
 <v>Zumo\ZumoBot\Source Files\Ultra.c</v>
+<v>Zumo\ZumoBot\Generated_Source</v>
 <v>Zumo\ZumoBot\Generated_Source\PSoC5</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
-<v>Zumo</v>
-<v>Zumo\ZumoBot</v>
-<v>Zumo\ZumoBot\TopDesign</v>
-<v>Zumo\ZumoBot\ZumoBot.cydwr</v>
+<v>Zumo\ZumoBot\ZumoBot.cydwr\DMA</v>
+<v>Zumo\ZumoBot\ZumoBot.cydwr\System</v>
+<v>Zumo\ZumoBot\ZumoBot.cydwr\Directives</v>
+<v>Zumo\ZumoBot\ZumoBot.cydwr\Flash Security</v>
+<v>Zumo\ZumoBot\ZumoBot.cydwr\EEPROM</v>
 <v>Zumo\ZumoBot\Header Files</v>
 <v>Zumo\ZumoBot\Header Files\Accel_magnet.h</v>
 <v>Zumo\ZumoBot\Header Files\Ambient.h</v>
@@ -80,9 +83,13 @@
 <v>Zumo\ZumoBot\Source Files\IR.c</v>
 <v>Zumo\ZumoBot\Source Files\Magnet.c</v>
 <v>Zumo\ZumoBot\Source Files\main.c</v>
+<v>Zumo\ZumoBot\Source Files\Motor.c</v>
+<v>Zumo\ZumoBot\Source Files\Nunchuk.c</v>
+<v>Zumo\ZumoBot\Source Files\Reflectance.c</v>
+<v>Zumo\ZumoBot\Source Files\Ultra.c</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Zumo\ZumoBot\TopDesign\TopDesign.cysch">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
 <v>Zumo</v>
 <v>Zumo\ZumoBot</v>
@@ -260,25 +267,7 @@
 </userData>
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
-<OpenDocs>
-<name v=".\ZumoBot.cydsn\main.c" />
-<name v=".\ZumoBot.cydsn\ZumoLibrary\Motor.c" />
-</OpenDocs>
-<OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
-
-  Actipro Docking/MDI for WinForms
-  Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
-  http://www.actiprosoftware.com
-
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="965, 480" SelectedTabbedMdiWindow="2b2e5c8c-c516-471d-890b-a4df7bedef1a"><DocumentWindow Key="C:\Users\nikla\Desktop\Zumo01\ZumoBot.cydsn\main.c" Guid="2b2e5c8c-c516-471d-890b-a4df7bedef1a" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
-=======
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1164, 480" SelectedTabbedMdiWindow="dc224d3e-6dfe-463b-a688-06129612c65f"><DocumentWindow Key="C:\Users\nikla\Desktop\Zumo01\ZumoBot.cydsn\main.c" Guid="dc224d3e-6dfe-463b-a688-06129612c65f" /><DocumentWindow Key="C:\Users\nikla\Desktop\Zumo01\ZumoBot.cydsn\ZumoLibrary\Motor.c" Guid="8cae3122-1a3b-4a42-ac5a-b2ae4fd54b5c" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
->>>>>>> Stashed changes
-=======
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1164, 480" SelectedTabbedMdiWindow="dc224d3e-6dfe-463b-a688-06129612c65f"><DocumentWindow Key="C:\Users\nikla\Desktop\Zumo01\ZumoBot.cydsn\main.c" Guid="dc224d3e-6dfe-463b-a688-06129612c65f" /><DocumentWindow Key="C:\Users\nikla\Desktop\Zumo01\ZumoBot.cydsn\ZumoLibrary\Motor.c" Guid="8cae3122-1a3b-4a42-ac5a-b2ae4fd54b5c" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
->>>>>>> Stashed changes
+<OpenDocs />
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

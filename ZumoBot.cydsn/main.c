@@ -51,8 +51,6 @@
 #define Kd 8
 int rread(void);
 
-uint8 MAX_SPEED = 255;
-=======
 void motor_hard_turn_left(uint32 delay);
 void motor_hard_turn_right(uint32 delay);
 bool checkVoltage();
@@ -74,7 +72,6 @@ int main()
     ADC_Battery_Start();         
     printf("\nBoot\n");
     BatteryLed_Write(0); // Switch led off 
-    float vbat = 0.0; 
     uint8 button;
     uint8 leftMotor = 20;
     uint8 rightMotor = 20;
@@ -105,9 +102,6 @@ int main()
     IR_led_Write(1);
     
     float error = 0;
-    float integral = 0;
-    float derivative = 0;
-    float output = 0;
     float lastError = 0;
     for(;;)
     {
@@ -132,10 +126,10 @@ int main()
                     for(;;){
                         reflectance_read(&ref);
                         //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);  
-                        float l3Scale = (float)l3B/(ref.l3 - l3W);
+                        //float l3Scale = (float)l3B/(ref.l3 - l3W);
                         float r1Scale = (float)r1B/(ref.l1 - l1W);
                         float l1Scale = (float)l1B/(ref.r1 - r1W);
-                        float r3Scale = (float)r3B/(ref.r3 - r3W);
+                        //float r3Scale = (float)r3B/(ref.r3 - r3W);
                         
                         error = (r1Scale) - (l1Scale);
                         float motorSpeed = Kp * error + Kd * (error - lastError);
@@ -188,7 +182,7 @@ int main()
             }
         }
         if(checkVoltageDelay >= 5000){
-            if(!checkVoltage()){
+            if(checkVoltage()){
                 break;
             }
             checkVoltageDelay = 0;
@@ -209,24 +203,8 @@ bool checkVoltage(){
         vbat *=1.5;
         printf("Vbat: %.6f\n", vbat);
     }
-    }
+    return vbat < 4.00;
  }   
-
-bool checkVoltage(){
-    uint16 adcresult = 0;
-    float vbat = 0;
-    ADC_Battery_StartConvert();
-    if(ADC_Battery_IsEndConversion(ADC_Battery_WAIT_FOR_RESULT)) {   // wait for get ADC converted value
-        adcresult = ADC_Battery_GetResult16();
-        vbat = (float)adcresult/(float)819;
-        vbat *=1.5;
-        printf("Vbat: %.6f\n", vbat);
-    }
-    if(vbat < 4.000){
-        return false;
-    }
-    return true;
-}
 
 void flashLED(){
     bool on = false;  
@@ -261,8 +239,7 @@ void flashLED(){
         }
         delay-=delaySubtract;
         CyDelay(delay);
-    }
- }   
+    }  
 }
 
 
