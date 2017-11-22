@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccbnDlU0.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
   28:Generated_Source\PSoC5/Timer_1_PM.c **** * Summary:
   29:Generated_Source\PSoC5/Timer_1_PM.c **** *     Save the current user configuration
   30:Generated_Source\PSoC5/Timer_1_PM.c **** *
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 2
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccbnDlU0.s 			page 2
 
 
   31:Generated_Source\PSoC5/Timer_1_PM.c **** * Parameters:
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
   59              		.align	2
   60              		.global	Timer_1_RestoreConfig
   61              		.thumb
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 3
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccbnDlU0.s 			page 3
 
 
   62              		.thumb_func
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
   87:Generated_Source\PSoC5/Timer_1_PM.c ****         #if(!Timer_1_UDB_CONTROL_REG_REMOVED)
   88:Generated_Source\PSoC5/Timer_1_PM.c ****             Timer_1_WriteControlRegister(Timer_1_backup.TimerControlRegister);
   83              		.loc 1 88 0
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 4
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccbnDlU0.s 			page 4
 
 
   84 0010 E078     		ldrb	r0, [r4, #3]	@ zero_extendqisi2
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
  115:Generated_Source\PSoC5/Timer_1_PM.c ****         /* Save Counter's enable state */
  116:Generated_Source\PSoC5/Timer_1_PM.c ****         if(Timer_1_CTRL_ENABLE == (Timer_1_CONTROL & Timer_1_CTRL_ENABLE))
  112              		.loc 1 116 0
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 5
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccbnDlU0.s 			page 5
 
 
  113 0002 084B     		ldr	r3, .L13
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
  133:Generated_Source\PSoC5/Timer_1_PM.c **** * Function Name: Timer_1_Wakeup
  134:Generated_Source\PSoC5/Timer_1_PM.c **** ********************************************************************************
  135:Generated_Source\PSoC5/Timer_1_PM.c **** *
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 6
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccbnDlU0.s 			page 6
 
 
  136:Generated_Source\PSoC5/Timer_1_PM.c **** * Summary:
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
  184              	Timer_1_backup:
  185 0000 00000000 		.space	4
  186              		.text
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 7
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccbnDlU0.s 			page 7
 
 
  187              	.Letext0:
@@ -371,45 +371,45 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
  194 0006 00000000 		.4byte	.Ldebug_abbrev0
  195 000a 04       		.byte	0x4
  196 000b 01       		.uleb128 0x1
- 197 000c B9000000 		.4byte	.LASF31
+ 197 000c 8D000000 		.4byte	.LASF31
  198 0010 0C       		.byte	0xc
- 199 0011 87000000 		.4byte	.LASF32
- 200 0015 26000000 		.4byte	.LASF33
+ 199 0011 5B000000 		.4byte	.LASF32
+ 200 0015 2D020000 		.4byte	.LASF33
  201 0019 00000000 		.4byte	.Ldebug_ranges0+0
  202 001d 00000000 		.4byte	0
  203 0021 00000000 		.4byte	.Ldebug_line0
  204 0025 02       		.uleb128 0x2
  205 0026 01       		.byte	0x1
  206 0027 06       		.byte	0x6
- 207 0028 7D020000 		.4byte	.LASF0
+ 207 0028 83020000 		.4byte	.LASF0
  208 002c 02       		.uleb128 0x2
  209 002d 01       		.byte	0x1
  210 002e 08       		.byte	0x8
- 211 002f AB000000 		.4byte	.LASF1
+ 211 002f 7F000000 		.4byte	.LASF1
  212 0033 02       		.uleb128 0x2
  213 0034 02       		.byte	0x2
  214 0035 05       		.byte	0x5
- 215 0036 4F020000 		.4byte	.LASF2
+ 215 0036 23020000 		.4byte	.LASF2
  216 003a 02       		.uleb128 0x2
  217 003b 02       		.byte	0x2
  218 003c 07       		.byte	0x7
- 219 003d 52000000 		.4byte	.LASF3
+ 219 003d 26000000 		.4byte	.LASF3
  220 0041 02       		.uleb128 0x2
  221 0042 04       		.byte	0x4
  222 0043 05       		.byte	0x5
- 223 0044 59020000 		.4byte	.LASF4
+ 223 0044 5F020000 		.4byte	.LASF4
  224 0048 02       		.uleb128 0x2
  225 0049 04       		.byte	0x4
  226 004a 07       		.byte	0x7
- 227 004b 4C010000 		.4byte	.LASF5
+ 227 004b 20010000 		.4byte	.LASF5
  228 004f 02       		.uleb128 0x2
  229 0050 08       		.byte	0x8
  230 0051 05       		.byte	0x5
- 231 0052 19020000 		.4byte	.LASF6
+ 231 0052 ED010000 		.4byte	.LASF6
  232 0056 02       		.uleb128 0x2
  233 0057 08       		.byte	0x8
  234 0058 07       		.byte	0x7
- 235 0059 CE010000 		.4byte	.LASF7
+ 235 0059 A2010000 		.4byte	.LASF7
  236 005d 03       		.uleb128 0x3
  237 005e 04       		.byte	0x4
  238 005f 05       		.byte	0x5
@@ -417,29 +417,29 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
  240 0064 02       		.uleb128 0x2
  241 0065 04       		.byte	0x4
  242 0066 07       		.byte	0x7
- 243 0067 C1010000 		.4byte	.LASF8
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 8
+ 243 0067 95010000 		.4byte	.LASF8
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccbnDlU0.s 			page 8
 
 
  244 006b 04       		.uleb128 0x4
- 245 006c 6C010000 		.4byte	.LASF12
+ 245 006c 40010000 		.4byte	.LASF12
  246 0070 02       		.byte	0x2
  247 0071 9201     		.2byte	0x192
  248 0073 2C000000 		.4byte	0x2c
  249 0077 02       		.uleb128 0x2
  250 0078 04       		.byte	0x4
  251 0079 04       		.byte	0x4
- 252 007a 81000000 		.4byte	.LASF9
+ 252 007a 55000000 		.4byte	.LASF9
  253 007e 02       		.uleb128 0x2
  254 007f 08       		.byte	0x8
  255 0080 04       		.byte	0x4
- 256 0081 81010000 		.4byte	.LASF10
+ 256 0081 55010000 		.4byte	.LASF10
  257 0085 02       		.uleb128 0x2
  258 0086 01       		.byte	0x1
  259 0087 08       		.byte	0x8
- 260 0088 27020000 		.4byte	.LASF11
+ 260 0088 FB010000 		.4byte	.LASF11
  261 008c 04       		.uleb128 0x4
- 262 008d 47010000 		.4byte	.LASF13
+ 262 008d 1B010000 		.4byte	.LASF13
  263 0091 02       		.byte	0x2
  264 0092 3C02     		.2byte	0x23c
  265 0094 98000000 		.4byte	0x98
@@ -448,11 +448,11 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
  268 009d 02       		.uleb128 0x2
  269 009e 08       		.byte	0x8
  270 009f 04       		.byte	0x4
- 271 00a0 71020000 		.4byte	.LASF14
+ 271 00a0 77020000 		.4byte	.LASF14
  272 00a4 02       		.uleb128 0x2
  273 00a5 04       		.byte	0x4
  274 00a6 07       		.byte	0x7
- 275 00a7 10020000 		.4byte	.LASF15
+ 275 00a7 E4010000 		.4byte	.LASF15
  276 00ab 06       		.uleb128 0x6
  277 00ac 04       		.byte	0x4
  278 00ad 03       		.byte	0x3
@@ -465,20 +465,20 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
  285 00ba 6B000000 		.4byte	0x6b
  286 00be 00       		.byte	0
  287 00bf 07       		.uleb128 0x7
- 288 00c0 78000000 		.4byte	.LASF17
+ 288 00c0 4C000000 		.4byte	.LASF17
  289 00c4 03       		.byte	0x3
  290 00c5 48       		.byte	0x48
  291 00c6 6B000000 		.4byte	0x6b
  292 00ca 01       		.byte	0x1
  293 00cb 07       		.uleb128 0x7
- 294 00cc 96020000 		.4byte	.LASF18
+ 294 00cc 9C020000 		.4byte	.LASF18
  295 00d0 03       		.byte	0x3
  296 00d1 49       		.byte	0x49
  297 00d2 6B000000 		.4byte	0x6b
  298 00d6 02       		.byte	0x2
  299 00d7 07       		.uleb128 0x7
- 300 00d8 A9020000 		.4byte	.LASF19
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 9
+ 300 00d8 AF020000 		.4byte	.LASF19
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccbnDlU0.s 			page 9
 
 
  301 00dc 03       		.byte	0x3
@@ -492,7 +492,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
  309 00ea 53       		.byte	0x53
  310 00eb AB000000 		.4byte	0xab
  311 00ef 09       		.uleb128 0x9
- 312 00f0 65000000 		.4byte	.LASF21
+ 312 00f0 39000000 		.4byte	.LASF21
  313 00f4 01       		.byte	0x1
  314 00f5 2B       		.byte	0x2b
  315 00f6 00000000 		.4byte	.LFB0
@@ -508,7 +508,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
  325 0112 AB010000 		.4byte	0x1ab
  326 0116 00       		.byte	0
  327 0117 09       		.uleb128 0x9
- 328 0118 FA010000 		.4byte	.LASF22
+ 328 0118 CE010000 		.4byte	.LASF22
  329 011c 01       		.byte	0x1
  330 011d 4D       		.byte	0x4d
  331 011e 00000000 		.4byte	.LFB1
@@ -524,7 +524,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
  341 013a C1010000 		.4byte	0x1c1
  342 013e 00       		.byte	0
  343 013f 09       		.uleb128 0x9
- 344 0140 5E010000 		.4byte	.LASF23
+ 344 0140 32010000 		.4byte	.LASF23
  345 0144 01       		.byte	0x1
  346 0145 70       		.byte	0x70
  347 0146 00000000 		.4byte	.LFB2
@@ -538,12 +538,12 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
  355 015d 0A       		.uleb128 0xa
  356 015e 22000000 		.4byte	.LVL5
  357 0162 EF000000 		.4byte	0xef
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 10
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccbnDlU0.s 			page 10
 
 
  358 0166 00       		.byte	0
  359 0167 09       		.uleb128 0x9
- 360 0168 62020000 		.4byte	.LASF24
+ 360 0168 68020000 		.4byte	.LASF24
  361 016c 01       		.byte	0x1
  362 016d 96       		.byte	0x96
  363 016e 00000000 		.4byte	.LFB3
@@ -559,7 +559,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
  373 018a D7010000 		.4byte	0x1d7
  374 018e 00       		.byte	0
  375 018f 0B       		.uleb128 0xb
- 376 0190 40020000 		.4byte	.LASF34
+ 376 0190 14020000 		.4byte	.LASF34
  377 0194 01       		.byte	0x1
  378 0195 15       		.byte	0x15
  379 0196 E4000000 		.4byte	0xe4
@@ -567,38 +567,38 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
  381 019b 03       		.byte	0x3
  382 019c 00000000 		.4byte	Timer_1_backup
  383 01a0 0C       		.uleb128 0xc
- 384 01a1 2C020000 		.4byte	.LASF25
- 385 01a5 2C020000 		.4byte	.LASF25
+ 384 01a1 00020000 		.4byte	.LASF25
+ 385 01a5 00020000 		.4byte	.LASF25
  386 01a9 03       		.byte	0x3
  387 01aa 69       		.byte	0x69
  388 01ab 0C       		.uleb128 0xc
- 389 01ac A5010000 		.4byte	.LASF26
- 390 01b0 A5010000 		.4byte	.LASF26
+ 389 01ac 79010000 		.4byte	.LASF26
+ 390 01b0 79010000 		.4byte	.LASF26
  391 01b4 03       		.byte	0x3
  392 01b5 63       		.byte	0x63
  393 01b6 0C       		.uleb128 0xc
- 394 01b7 E5010000 		.4byte	.LASF27
- 395 01bb E5010000 		.4byte	.LASF27
+ 394 01b7 B9010000 		.4byte	.LASF27
+ 395 01bb B9010000 		.4byte	.LASF27
  396 01bf 03       		.byte	0x3
  397 01c0 6A       		.byte	0x6a
  398 01c1 0C       		.uleb128 0xc
- 399 01c2 88010000 		.4byte	.LASF28
- 400 01c6 88010000 		.4byte	.LASF28
+ 399 01c2 5C010000 		.4byte	.LASF28
+ 400 01c6 5C010000 		.4byte	.LASF28
  401 01ca 03       		.byte	0x3
  402 01cb 64       		.byte	0x64
  403 01cc 0C       		.uleb128 0xc
- 404 01cd 89020000 		.4byte	.LASF29
- 405 01d1 89020000 		.4byte	.LASF29
+ 404 01cd 8F020000 		.4byte	.LASF29
+ 405 01d1 8F020000 		.4byte	.LASF29
  406 01d5 03       		.byte	0x3
  407 01d6 5B       		.byte	0x5b
  408 01d7 0C       		.uleb128 0xc
- 409 01d8 72010000 		.4byte	.LASF30
- 410 01dc 72010000 		.4byte	.LASF30
+ 409 01d8 46010000 		.4byte	.LASF30
+ 410 01dc 46010000 		.4byte	.LASF30
  411 01e0 03       		.byte	0x3
  412 01e1 8B       		.byte	0x8b
  413 01e2 00       		.byte	0
  414              		.section	.debug_abbrev,"",%progbits
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 11
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccbnDlU0.s 			page 11
 
 
  415              	.Ldebug_abbrev0:
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
  469 0035 00       		.byte	0
  470 0036 05       		.uleb128 0x5
  471 0037 35       		.uleb128 0x35
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 12
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccbnDlU0.s 			page 12
 
 
  472 0038 00       		.byte	0
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
  526 006e 0B       		.uleb128 0xb
  527 006f 3B       		.uleb128 0x3b
  528 0070 0B       		.uleb128 0xb
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 13
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccbnDlU0.s 			page 13
 
 
  529 0071 27       		.uleb128 0x27
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
  583 00aa 00       		.byte	0
  584 00ab 00       		.byte	0
  585              		.section	.debug_aranges,"",%progbits
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 14
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccbnDlU0.s 			page 14
 
 
  586 0000 34000000 		.4byte	0x34
@@ -829,186 +829,187 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 1
  621      6261636B 
  621      75705374 
  621      72756374 
- 622              	.LASF33:
- 623 0026 433A5C55 		.ascii	"C:\\Users\\nikla\\Desktop\\Zumo01\\ZumoBot.cydsn\000"
- 623      73657273 
- 623      5C6E696B 
- 623      6C615C44 
- 623      65736B74 
- 624              	.LASF3:
- 625 0052 73686F72 		.ascii	"short unsigned int\000"
- 625      7420756E 
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 15
+ 622              	.LASF3:
+ 623 0026 73686F72 		.ascii	"short unsigned int\000"
+ 623      7420756E 
+ 623      7369676E 
+ 623      65642069 
+ 623      6E7400
+ 624              	.LASF21:
+ 625 0039 54696D65 		.ascii	"Timer_1_SaveConfig\000"
+ 625      725F315F 
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccbnDlU0.s 			page 15
 
 
- 625      7369676E 
- 625      65642069 
- 625      6E7400
- 626              	.LASF21:
- 627 0065 54696D65 		.ascii	"Timer_1_SaveConfig\000"
- 627      725F315F 
- 627      53617665 
- 627      436F6E66 
- 627      696700
- 628              	.LASF17:
- 629 0078 54696D65 		.ascii	"TimerUdb\000"
- 629      72556462 
- 629      00
- 630              	.LASF9:
- 631 0081 666C6F61 		.ascii	"float\000"
- 631      7400
- 632              	.LASF32:
- 633 0087 47656E65 		.ascii	"Generated_Source\\PSoC5\\Timer_1_PM.c\000"
- 633      72617465 
- 633      645F536F 
- 633      75726365 
- 633      5C50536F 
- 634              	.LASF1:
- 635 00ab 756E7369 		.ascii	"unsigned char\000"
- 635      676E6564 
- 635      20636861 
- 635      7200
- 636              	.LASF31:
- 637 00b9 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 637      43313120 
- 637      352E342E 
- 637      31203230 
- 637      31363036 
- 638 00ec 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 638      20726576 
- 638      6973696F 
- 638      6E203233 
- 638      37373135 
- 639 011f 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 639      66756E63 
- 639      74696F6E 
- 639      2D736563 
- 639      74696F6E 
- 640              	.LASF13:
- 641 0147 72656738 		.ascii	"reg8\000"
- 641      00
- 642              	.LASF5:
- 643 014c 6C6F6E67 		.ascii	"long unsigned int\000"
- 643      20756E73 
- 643      69676E65 
- 643      6420696E 
- 643      7400
- 644              	.LASF23:
- 645 015e 54696D65 		.ascii	"Timer_1_Sleep\000"
- 645      725F315F 
- 645      536C6565 
- 645      7000
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 16
+ 625      53617665 
+ 625      436F6E66 
+ 625      696700
+ 626              	.LASF17:
+ 627 004c 54696D65 		.ascii	"TimerUdb\000"
+ 627      72556462 
+ 627      00
+ 628              	.LASF9:
+ 629 0055 666C6F61 		.ascii	"float\000"
+ 629      7400
+ 630              	.LASF32:
+ 631 005b 47656E65 		.ascii	"Generated_Source\\PSoC5\\Timer_1_PM.c\000"
+ 631      72617465 
+ 631      645F536F 
+ 631      75726365 
+ 631      5C50536F 
+ 632              	.LASF1:
+ 633 007f 756E7369 		.ascii	"unsigned char\000"
+ 633      676E6564 
+ 633      20636861 
+ 633      7200
+ 634              	.LASF31:
+ 635 008d 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 635      43313120 
+ 635      352E342E 
+ 635      31203230 
+ 635      31363036 
+ 636 00c0 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 636      20726576 
+ 636      6973696F 
+ 636      6E203233 
+ 636      37373135 
+ 637 00f3 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 637      66756E63 
+ 637      74696F6E 
+ 637      2D736563 
+ 637      74696F6E 
+ 638              	.LASF13:
+ 639 011b 72656738 		.ascii	"reg8\000"
+ 639      00
+ 640              	.LASF5:
+ 641 0120 6C6F6E67 		.ascii	"long unsigned int\000"
+ 641      20756E73 
+ 641      69676E65 
+ 641      6420696E 
+ 641      7400
+ 642              	.LASF23:
+ 643 0132 54696D65 		.ascii	"Timer_1_Sleep\000"
+ 643      725F315F 
+ 643      536C6565 
+ 643      7000
+ 644              	.LASF12:
+ 645 0140 75696E74 		.ascii	"uint8\000"
+ 645      3800
+ 646              	.LASF30:
+ 647 0146 54696D65 		.ascii	"Timer_1_Enable\000"
+ 647      725F315F 
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccbnDlU0.s 			page 16
 
 
- 646              	.LASF12:
- 647 016c 75696E74 		.ascii	"uint8\000"
- 647      3800
- 648              	.LASF30:
- 649 0172 54696D65 		.ascii	"Timer_1_Enable\000"
- 649      725F315F 
- 649      456E6162 
+ 647      456E6162 
+ 647      6C6500
+ 648              	.LASF10:
+ 649 0155 646F7562 		.ascii	"double\000"
  649      6C6500
- 650              	.LASF10:
- 651 0181 646F7562 		.ascii	"double\000"
- 651      6C6500
- 652              	.LASF28:
- 653 0188 54696D65 		.ascii	"Timer_1_WriteControlRegister\000"
+ 650              	.LASF28:
+ 651 015c 54696D65 		.ascii	"Timer_1_WriteControlRegister\000"
+ 651      725F315F 
+ 651      57726974 
+ 651      65436F6E 
+ 651      74726F6C 
+ 652              	.LASF26:
+ 653 0179 54696D65 		.ascii	"Timer_1_ReadControlRegister\000"
  653      725F315F 
- 653      57726974 
- 653      65436F6E 
- 653      74726F6C 
- 654              	.LASF26:
- 655 01a5 54696D65 		.ascii	"Timer_1_ReadControlRegister\000"
- 655      725F315F 
- 655      52656164 
- 655      436F6E74 
- 655      726F6C52 
- 656              	.LASF8:
- 657 01c1 756E7369 		.ascii	"unsigned int\000"
- 657      676E6564 
- 657      20696E74 
- 657      00
- 658              	.LASF7:
- 659 01ce 6C6F6E67 		.ascii	"long long unsigned int\000"
- 659      206C6F6E 
- 659      6720756E 
- 659      7369676E 
- 659      65642069 
- 660              	.LASF27:
- 661 01e5 54696D65 		.ascii	"Timer_1_WriteCounter\000"
+ 653      52656164 
+ 653      436F6E74 
+ 653      726F6C52 
+ 654              	.LASF8:
+ 655 0195 756E7369 		.ascii	"unsigned int\000"
+ 655      676E6564 
+ 655      20696E74 
+ 655      00
+ 656              	.LASF7:
+ 657 01a2 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 657      206C6F6E 
+ 657      6720756E 
+ 657      7369676E 
+ 657      65642069 
+ 658              	.LASF27:
+ 659 01b9 54696D65 		.ascii	"Timer_1_WriteCounter\000"
+ 659      725F315F 
+ 659      57726974 
+ 659      65436F75 
+ 659      6E746572 
+ 660              	.LASF22:
+ 661 01ce 54696D65 		.ascii	"Timer_1_RestoreConfig\000"
  661      725F315F 
- 661      57726974 
- 661      65436F75 
- 661      6E746572 
- 662              	.LASF22:
- 663 01fa 54696D65 		.ascii	"Timer_1_RestoreConfig\000"
- 663      725F315F 
- 663      52657374 
- 663      6F726543 
- 663      6F6E6669 
- 664              	.LASF15:
- 665 0210 73697A65 		.ascii	"sizetype\000"
- 665      74797065 
- 665      00
- 666              	.LASF6:
- 667 0219 6C6F6E67 		.ascii	"long long int\000"
- 667      206C6F6E 
- 667      6720696E 
- 667      7400
- 668              	.LASF11:
- 669 0227 63686172 		.ascii	"char\000"
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccGNaqlt.s 			page 17
+ 661      52657374 
+ 661      6F726543 
+ 661      6F6E6669 
+ 662              	.LASF15:
+ 663 01e4 73697A65 		.ascii	"sizetype\000"
+ 663      74797065 
+ 663      00
+ 664              	.LASF6:
+ 665 01ed 6C6F6E67 		.ascii	"long long int\000"
+ 665      206C6F6E 
+ 665      6720696E 
+ 665      7400
+ 666              	.LASF11:
+ 667 01fb 63686172 		.ascii	"char\000"
+ 667      00
+ 668              	.LASF25:
+ 669 0200 54696D65 		.ascii	"Timer_1_ReadCounter\000"
+ 669      725F315F 
+ 669      52656164 
+ 669      436F756E 
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccbnDlU0.s 			page 17
 
 
- 669      00
- 670              	.LASF25:
- 671 022c 54696D65 		.ascii	"Timer_1_ReadCounter\000"
+ 669      74657200 
+ 670              	.LASF34:
+ 671 0214 54696D65 		.ascii	"Timer_1_backup\000"
  671      725F315F 
- 671      52656164 
- 671      436F756E 
- 671      74657200 
- 672              	.LASF34:
- 673 0240 54696D65 		.ascii	"Timer_1_backup\000"
- 673      725F315F 
- 673      6261636B 
- 673      757000
- 674              	.LASF2:
- 675 024f 73686F72 		.ascii	"short int\000"
- 675      7420696E 
- 675      7400
- 676              	.LASF4:
- 677 0259 6C6F6E67 		.ascii	"long int\000"
- 677      20696E74 
- 677      00
- 678              	.LASF24:
- 679 0262 54696D65 		.ascii	"Timer_1_Wakeup\000"
- 679      725F315F 
- 679      57616B65 
- 679      757000
- 680              	.LASF14:
- 681 0271 6C6F6E67 		.ascii	"long double\000"
- 681      20646F75 
- 681      626C6500 
- 682              	.LASF0:
- 683 027d 7369676E 		.ascii	"signed char\000"
- 683      65642063 
- 683      68617200 
- 684              	.LASF29:
- 685 0289 54696D65 		.ascii	"Timer_1_Stop\000"
- 685      725F315F 
- 685      53746F70 
- 685      00
- 686              	.LASF18:
- 687 0296 496E7465 		.ascii	"InterruptMaskValue\000"
- 687      72727570 
- 687      744D6173 
- 687      6B56616C 
- 687      756500
- 688              	.LASF19:
- 689 02a9 54696D65 		.ascii	"TimerControlRegister\000"
- 689      72436F6E 
- 689      74726F6C 
- 689      52656769 
- 689      73746572 
- 690              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 671      6261636B 
+ 671      757000
+ 672              	.LASF2:
+ 673 0223 73686F72 		.ascii	"short int\000"
+ 673      7420696E 
+ 673      7400
+ 674              	.LASF33:
+ 675 022d 433A5C55 		.ascii	"C:\\Users\\leevi\\Desktop\\Zumo_Ryhm-10\\ZumoBot.cy"
+ 675      73657273 
+ 675      5C6C6565 
+ 675      76695C44 
+ 675      65736B74 
+ 676 025b 64736E00 		.ascii	"dsn\000"
+ 677              	.LASF4:
+ 678 025f 6C6F6E67 		.ascii	"long int\000"
+ 678      20696E74 
+ 678      00
+ 679              	.LASF24:
+ 680 0268 54696D65 		.ascii	"Timer_1_Wakeup\000"
+ 680      725F315F 
+ 680      57616B65 
+ 680      757000
+ 681              	.LASF14:
+ 682 0277 6C6F6E67 		.ascii	"long double\000"
+ 682      20646F75 
+ 682      626C6500 
+ 683              	.LASF0:
+ 684 0283 7369676E 		.ascii	"signed char\000"
+ 684      65642063 
+ 684      68617200 
+ 685              	.LASF29:
+ 686 028f 54696D65 		.ascii	"Timer_1_Stop\000"
+ 686      725F315F 
+ 686      53746F70 
+ 686      00
+ 687              	.LASF18:
+ 688 029c 496E7465 		.ascii	"InterruptMaskValue\000"
+ 688      72727570 
+ 688      744D6173 
+ 688      6B56616C 
+ 688      756500
+ 689              	.LASF19:
+ 690 02af 54696D65 		.ascii	"TimerControlRegister\000"
+ 690      72436F6E 
+ 690      74726F6C 
+ 690      52656769 
+ 690      73746572 
+ 691              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

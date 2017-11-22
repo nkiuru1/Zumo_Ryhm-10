@@ -59,6 +59,7 @@ bool checkVoltage();
 void flashLED();
 void calibrate(struct sensors_ ref, float * result);
 bool isOnBlackLine();
+void rick_roll();
 /**
  * @file    main.c
  * @brief   
@@ -193,6 +194,7 @@ int main()
                         }
                     }
                     motor_forward(0,0);
+                    rick_roll();
                     }
             }
         }
@@ -207,7 +209,67 @@ int main()
     }
     flashLED();
     motor_stop();
- }   
+}
+void rick_roll(){
+        Beep(140,153);
+        CyDelay(10);
+        Beep(140,136);
+        CyDelay(10);
+        Beep(140,114);
+        CyDelay(10);
+        Beep(140,136);
+        CyDelay(10);
+        Beep(340,91);
+        CyDelay(10);
+        Beep(100,91);
+        Beep(290,91);
+        CyDelay(10);
+        Beep(300,102);
+        Beep(590,102);
+        CyDelay(10);
+        Beep(140,153);
+        CyDelay(10);
+        Beep(140,136);
+        CyDelay(10);
+        Beep(140,121);
+        CyDelay(10);
+        Beep(140,153);
+        CyDelay(10);
+        Beep(340,102);
+        CyDelay(10);
+        Beep(100,102);
+        Beep(290,102);
+        CyDelay(10);
+        Beep(300,114);
+        Beep(150,114);
+        Beep(150,121);
+        Beep(290,136);
+        CyDelay(10);
+        Beep(140,153);
+        CyDelay(10);
+        Beep(140,136);
+        CyDelay(10);
+        Beep(140,114);
+        CyDelay(10);
+        Beep(140,136);
+        CyDelay(10);
+        Beep(590,114);
+        CyDelay(10);
+        Beep(290,102);
+        CyDelay(10);
+        Beep(300,121);
+        Beep(140,136);
+        CyDelay(10);
+        Beep(290,153);
+        CyDelay(10);
+        Beep(140,153);
+        CyDelay(10);
+        Beep(590,102);
+        CyDelay(10);
+        Beep(590,114);
+        CyDelay(10);
+        
+        }
 
 bool isOnBlackLine(){
     if(ref.l3 > 20000 && ref.l1 > 20000 && ref.r1 > 20000 && ref.r3 > 20000){
