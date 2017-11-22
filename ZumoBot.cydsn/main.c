@@ -47,8 +47,8 @@
 
 #define MAX_SPEED 255
 #define BASE_SPEED 255
-#define Kp 45
-#define Kd 128
+#define Kp 64
+#define Kd 500
 
 struct sensors_ ref;
 int rread(void);
@@ -153,40 +153,41 @@ int main()
                         float rightMotorSpeed = BASE_SPEED - motorSpeed;
                         if(rightMotorSpeed > MAX_SPEED) rightMotorSpeed = MAX_SPEED;
                 
-                        //if (rightMotorSpeed < -255) rightMotorSpeed = -255; 
-                        //if (leftMotorSpeed < -255) leftMotorSpeed = -255;
-                    
+                        if (rightMotorSpeed < 0) rightMotorSpeed = 0; 
+                        if (leftMotorSpeed < 0) leftMotorSpeed = 0;
+                        if (rightMotorSpeed < leftMotorSpeed) leftMotorSpeed = MAX_SPEED; 
+                        if (leftMotorSpeed < rightMotorSpeed) rightMotorSpeed = MAX_SPEED;
+                        
                         rightMotor = rightMotorSpeed;
                         leftMotor = leftMotorSpeed;
-                        if(ref.r3 >= r3B-r3W && !isOnBlackLine()){
+                        
+                        if(ref.r3 >= r3B-5000 && !isOnBlackLine()){
                             rightDir = 1;
-                            rightMotor = 125;
+                            leftDir= 0;
+                            rightMotor = 255;
+                            leftMotor= 255;
                         }
-                        if(ref.l3 >= l3B-l3W && !isOnBlackLine()){
+                        else if(ref.l3 >= l3B-5000 && !isOnBlackLine()){
                             leftDir = 1; 
-                            leftMotor = 125;
-                        }
-                        if(ref.r3 < r3B-r3W && !isOnBlackLine())
-                        {
                             rightDir = 0;
+                            leftMotor = 255;
+                            rightMotor = 255;
                         }
-                        if(ref.l3 < l3B-l3W && !isOnBlackLine())
-                        {
-                            leftDir = 0;
+                        else{
+                          leftDir = 0;
+                          rightDir = 0;
                         }
+
                         motor_drive(leftDir,rightDir,leftMotor,rightMotor,1);
 
                         lineDelay ++;
-                        //printf("left : %f   %f    right : %f    %f\n",l1Scale ,l3Scale,r1Scale,r3Scale);
-                        //printf("error: %f       motorSpeed: %f\n", error, motorSpeed);
-                        //printf("L:%f R:%f\n", leftMotorSpeed,rightMotorSpeed);
                      
                         //checks if passed black line every 20ms
                         if(lineDelay > 20){
                             if(isOnBlackLine()){
                                 blackLine++;
                             }
-                            if(blackLine > 3){
+                            if(blackLine > 2){
                                 break;
                             }
                             lineDelay = 0;
@@ -287,8 +288,8 @@ void calibrate(struct sensors_ ref, float *result)
         result[1] += r1[i];
         result[2] += l3[i];
         result[3] += r3[i];
-        printf("line: %i    ", i);
-        printf("l:%f r:%f\n",l1[i],r1[i]);
+        //printf("line: %i    ", i);
+        printf("l:%f r:%f\n",l3[i],r3[i]);
         i++;
         }
         
