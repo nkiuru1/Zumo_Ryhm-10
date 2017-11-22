@@ -1,4 +1,4 @@
---------------- Build Started: 11/22/2017 10:26:17 Project: ZumoBot, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+--------------- Build Started: 11/22/2017 10:58:49 Project: ZumoBot, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
 The code generation step is up to date.
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I.\ZumoLibrary -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/main.lst -g -D DEBUG -Wall -ffunction-sections -ffat-lto-objects -Og -c main.c -o .\CortexM3\ARM_GCC_541\Debug\main.o
 main.c: In function 'main':
@@ -13,6 +13,6 @@ arm-none-eabi-ar.exe: creating .\CortexM3\ARM_GCC_541\Debug\ZumoBot.a
 arm-none-eabi-gcc.exe -Wl,--start-group -o C:\Users\nikla\Desktop\Zumo01\ZumoBot.cydsn\CortexM3\ARM_GCC_541\Debug\ZumoBot.elf .\CortexM3\ARM_GCC_541\Debug\main.o .\CortexM3\ARM_GCC_541\Debug\Accel.o .\CortexM3\ARM_GCC_541\Debug\Ambient.o .\CortexM3\ARM_GCC_541\Debug\Gyro.o .\CortexM3\ARM_GCC_541\Debug\I2C_made.o .\CortexM3\ARM_GCC_541\Debug\IR.o .\CortexM3\ARM_GCC_541\Debug\Magnet.o .\CortexM3\ARM_GCC_541\Debug\Motor.o .\CortexM3\ARM_GCC_541\Debug\Nunchuk.o .\CortexM3\ARM_GCC_541\Debug\Reflectance.o .\CortexM3\ARM_GCC_541\Debug\Ultra.o .\CortexM3\ARM_GCC_541\Debug\Beep.o .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o .\CortexM3\ARM_GCC_541\Debug\cymetadata.o .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o .\CortexM3\ARM_GCC_541\Debug\ZumoBot.a "C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_541\Debug\CyComponentLibrary.a" -mcpu=cortex-m3 -mthumb -l m -L Generated_Source\PSoC5 -Wl,-Map,.\CortexM3\ARM_GCC_541\Debug/ZumoBot.map -T Generated_Source\PSoC5\cm3gcc.ld -u _printf_float -Wl,--gc-sections -g -ffunction-sections -Og -ffat-lto-objects -Wl,--end-group
 cyelftool.exe -C C:\Users\nikla\Desktop\Zumo01\ZumoBot.cydsn\CortexM3\ARM_GCC_541\Debug\ZumoBot.elf --flash_row_size 256 --flash_size 262144 --flash_offset 0x00000000
 cyelftool.exe -S C:\Users\nikla\Desktop\Zumo01\ZumoBot.cydsn\CortexM3\ARM_GCC_541\Debug\ZumoBot.elf
-Flash used: 32160 of 262144 bytes (12,3 %).
+Flash used: 32312 of 262144 bytes (12,3 %).
 SRAM used: 6657 of 65536 bytes (10,2 %). Stack: 2048 bytes. Heap: 2048 bytes.
---------------- Build Succeeded: 11/22/2017 10:26:19 ---------------
+--------------- Build Succeeded: 11/22/2017 10:58:50 ---------------

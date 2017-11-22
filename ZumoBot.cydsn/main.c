@@ -177,23 +177,25 @@ int main()
                           leftDir = 0;
                           rightDir = 0;
                         }
-
                         motor_drive(leftDir,rightDir,leftMotor,rightMotor,1);
 
-                        lineDelay ++;
+                        lineDelay++;
                      
                         //checks if passed black line every 20ms
                         if(lineDelay > 20){
                             if(isOnBlackLine()){
                                 blackLine++;
                             }
-                            if(blackLine > 2){
+                            if(blackLine > 3){
                                 break;
                             }
                             lineDelay = 0;
                         }
                     }
                     motor_forward(0,0);
+                    for(int i = 0; i < 75; i++){
+                        Beep(50,rand() % 255 +1);
+                    }
                     }
             }
         }
@@ -211,7 +213,7 @@ int main()
  }   
 
 bool isOnBlackLine(){
-    if(ref.l3 > 20000 && ref.l1 > 20000 && ref.r1 > 20000 && ref.r3 > 20000){
+    if(ref.l3 > 22000 && ref.l1 > 22000 && ref.r1 > 22000 && ref.r3 > 22000){
         return true;
     }
     return false;
@@ -302,6 +304,11 @@ void calibrate(struct sensors_ ref, float *result)
     result[2] /= 10;
     result[3] /= 10;
     Beep(25,200);
+    Beep(25,255);
+    Beep(25,10);
+    Beep(25,50);
+    Beep(25,100);
+    Beep(25,150);
 }
 //*/
 
