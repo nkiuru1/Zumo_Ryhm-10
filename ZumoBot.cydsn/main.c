@@ -69,44 +69,61 @@ int main()
     //Time 00:13:00. Somewhat reliable
     CyGlobalIntEnable; 
     UART_1_Start();
-    ADC_Battery_Start();         
+    ADC_Battery_Start();   
+    Ultra_Start(); 
     printf("\nBoot\n");
     BatteryLed_Write(0); // Switch led off 
     uint8 button;
-    uint8 leftMotor = 20;
-    uint8 rightMotor = 20;
-
+    float distance = 0;
     uint16 checkVoltageDelay = 5000;
-    uint8 blackLine = 0;
-    uint8 lineDelay = 0;
-    uint16 l1W,l1B,l3W,l3B,r1W,r1B,r3W,r3B;
-    float result[5];
-    bool calibrated = false;
-    uint8 leftDir = 0;
-    uint8 rightDir = 0;
-    
-    l3W = 4500;
-    l3B = 23999;
-    l1W = 3000;
-    l1B = 23999;
-    r1W = 3300;
-    r1B = 23999;
-    r3W = 8300;
-    r3B = 23999;
-    
+
     CyGlobalIntEnable; 
     sensor_isr_StartEx(sensor_isr_handler);
     
     reflectance_start();
     IR_led_Write(1);
+    int turnDirection = 0;
     
     for(;;)
     {
         button = SW1_Read();
         if(button == 0){
+            motor_start();
+            motor_drive(0,0,255,255,800);
             for(;;){
-                motor_drive(1,1,255,255,100);
-            
+                distance = Ultra_GetDistance();
+                printf("distance = %5.0f\r\n", Ultra_GetDistance());
+                
+                if(distance < 40){
+                    motor_drive(0,0,255,255,1);
+                    if(turnDirection == 0){
+                        turnDirection = 1;
+                    }else{
+                        turnDirection = 0;
+                    }
+                    
+                }
+                if(distance > 40 && turnDirection == 0){
+                    motor_drive(1,0,100,100,1);
+                    
+                }
+                else if(distance > 40 && turnDirection == 1){
+                    motor_drive(0,1,100,100,1);
+                }
+                
+                reflectance_read(&ref);
+                if(ref.l1 > 20000 && ref.r1 > 20000){
+                    motor_drive(1,1,255,255,500);
+                }
+                else if(ref.l3 > 20000){
+                    motor_drive(1,1,255,125,750);
+                    turnDirection = 0;
+                }
+                else if(ref.r3 > 20000){
+                    motor_drive(1,1,125,255,750);
+                    turnDirection = 1;
+                }
+                
             }
         }
         if(checkVoltageDelay >= 5000){
@@ -119,7 +136,7 @@ int main()
         checkVoltageDelay +=20;
     }
     flashLED();
-    motor_stop();
+    //motor_stop();
 }
 void rick_roll(){
         Beep(140,153);
