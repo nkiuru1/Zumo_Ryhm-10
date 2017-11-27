@@ -53,8 +53,6 @@
 struct sensors_ ref;
 int rread(void);
 
-void motor_hard_turn_left(uint32 delay);
-void motor_hard_turn_right(uint32 delay);
 bool checkVoltage();
 void flashLED();
 void calibrate(struct sensors_ ref, float * result);
@@ -102,106 +100,13 @@ int main()
     reflectance_start();
     IR_led_Write(1);
     
-    float error = 0;
-    float lastError = 0;
     for(;;)
     {
         button = SW1_Read();
-        //Calibrated on white line
         if(button == 0){
-            if(!calibrated){
-                calibrate(ref, result);
-                l1W = result[0];
-                r1W = result[1];
-                l3W = result[3];
-                r3W = result[4];
-                calibrated = true;
-                button = 1;
-                //printf("Left 1: %i     Right 1: %i\n", l1W,r1W);
-            }
-            //Robot placed on track & if calibrated, moves forward untill a perpendicular black line.
-            if(button == 0 && calibrated){
-                CyDelay(500);
-                reflectance_read(&ref);
-                if(!isOnBlackLine()){
-                    for(;;){
-                        motor_start();
-                        motor_forward(100,1);
-                        reflectance_read(&ref);
-                        if(isOnBlackLine()){
-                            motor_forward(0,0);
-                            button = 1;
-                            break;
-                        }
-                    }
-                }
-                if(button == 0){
-                    for(;;){
-                        reflectance_read(&ref);
-                        //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);  
-                        //float l3Scale = (float)l3B/(ref.l3 - l3W);
-                        float r1Scale = (float)r1B/(ref.l1 - l1W);
-                        float l1Scale = (float)l1B/(ref.r1 - r1W);
-                        //float r3Scale = (float)r3B/(ref.r3 - r3W);
-                        
-                        error = (r1Scale) - (l1Scale);
-                        float motorSpeed = Kp * error + Kd * (error - lastError);
-                        lastError = error;
-                        
-                        float leftMotorSpeed = BASE_SPEED + motorSpeed;
-                        if(leftMotorSpeed > MAX_SPEED) leftMotorSpeed = MAX_SPEED;
-        
-                        float rightMotorSpeed = BASE_SPEED - motorSpeed;
-                        if(rightMotorSpeed > MAX_SPEED) rightMotorSpeed = MAX_SPEED;
-                
-                        if (rightMotorSpeed < 0) rightMotorSpeed = 0; 
-                        if (leftMotorSpeed < 0) leftMotorSpeed = 0;
-                        if (rightMotorSpeed < leftMotorSpeed) leftMotorSpeed = MAX_SPEED; 
-                        if (leftMotorSpeed < rightMotorSpeed) rightMotorSpeed = MAX_SPEED;
-                        
-                        rightMotor = rightMotorSpeed;
-                        leftMotor = leftMotorSpeed;
-                        
-                        if(ref.r3 >= r3B-5000 && !isOnBlackLine()){
-                            rightDir = 1;
-                            leftDir= 0;
-                            rightMotor = 255;
-                            leftMotor= 255;
-                        }
-                        else if(ref.l3 >= l3B-5000 && !isOnBlackLine()){
-                            leftDir = 1; 
-                            rightDir = 0;
-                            leftMotor = 255;
-                            rightMotor = 255;
-                        }
-                        else{
-                          leftDir = 0;
-                          rightDir = 0;
-                        }
-                        motor_drive(leftDir,rightDir,leftMotor,rightMotor,1);
-
-                        lineDelay++;
-                     
-                        //checks if passed black line every 20ms
-                        if(lineDelay > 20){
-                            if(isOnBlackLine()){
-                                blackLine++;
-                            }
-                            if(blackLine > 3){
-                                break;
-                            }
-                            lineDelay = 0;
-                        }
-                    }
-                    motor_forward(0,0);
-<<<<<<< HEAD
-                    rick_roll();
-=======
-                    for(int i = 0; i < 75; i++){
-                        Beep(50,rand() % 255 +1);
-                    }
->>>>>>> 6f20310a53321de9d41baf6713c5f34459afb971
-                    }
+            for(;;){
+                motor_drive(1,1,255,255,100);
+            
             }
         }
         if(checkVoltageDelay >= 5000){
