@@ -88,6 +88,20 @@ int main()
     for(;;)
     {
         button = SW1_Read();
+        if(button == 0){
+            reflectance_read(&ref);
+            if(!isOnBlackLine()){
+                for(;;){
+                    motor_start();
+                    motor_forward(100,1);
+                    reflectance_read(&ref);
+                    if(isOnBlackLine()){
+                        motor_forward(0,0);
+                        button = 1;
+                        break;
+                    }
+                }
+            }
         IR_val = get_IR();
         if(IR_val != 1){
             motor_start();
@@ -106,33 +120,37 @@ int main()
                     
                 }
                 if(distance > 40 && turnDirection == 0){
-                    motor_drive(1,0,100,100,1);
+                    motor_drive(1,0,150,150,1);
                     
                 }
                 else if(distance > 40 && turnDirection == 1){
-                    motor_drive(0,1,100,100,1);
+                    motor_drive(0,1,150,150,1);
                 }
                 
                 reflectance_read(&ref);
-                if(ref.l1 > 20000 && ref.r1 > 20000){
+                if(ref.l1 > 21000 && ref.r1 > 21000){
                     motor_drive(1,1,255,255,500);
+                    motor_drive(1,1,0,0,25);
                 }
-                else if(ref.l3 > 20000){
-                    motor_drive(1,1,255,125,750);
+                else if(ref.l3 > 22500){
+                    motor_drive(1,1,255,125,550);
                     turnDirection = 0;
+                    motor_drive(1,1,0,0,25);
                 }
-                else if(ref.r3 > 20000){
-                    motor_drive(1,1,125,255,750);
+                else if(ref.r3 > 22500){
+                    motor_drive(1,1,125,255,550);
                     turnDirection = 1;
+                    motor_drive(1,1,0,0,25);
                 }
-                IR_val = get_IR();
+                /*IR_val = get_IR();
                 if(IR_val != 1){
                     motor_stop();
                     break;
-                }
+                }*/
                 
             }
         }
+                    }
         if(checkVoltageDelay >= 5000){
             if(checkVoltage()){
                 break;
