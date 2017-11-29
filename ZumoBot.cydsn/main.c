@@ -76,6 +76,7 @@ int main()
     uint8 button;
     float distance = 0;
     uint16 checkVoltageDelay = 5000;
+    uint IR_val;
 
     CyGlobalIntEnable; 
     sensor_isr_StartEx(sensor_isr_handler);
@@ -87,7 +88,8 @@ int main()
     for(;;)
     {
         button = SW1_Read();
-        if(button == 0){
+        IR_val = get_IR();
+        if(IR_val != 1){
             motor_start();
             motor_drive(0,0,255,255,800);
             for(;;){
@@ -122,6 +124,11 @@ int main()
                 else if(ref.r3 > 20000){
                     motor_drive(1,1,125,255,750);
                     turnDirection = 1;
+                }
+                IR_val = get_IR();
+                if(IR_val != 1){
+                    motor_stop();
+                    break;
                 }
                 
             }
