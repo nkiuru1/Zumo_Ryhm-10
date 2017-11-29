@@ -86,6 +86,9 @@ int main()
     bool calibrated = false;
     uint8 leftDir = 0;
     uint8 rightDir = 0;
+    unsigned int IR_val; 
+    
+    
     
     l3W = 4500;
     l3B = 23999;
@@ -108,6 +111,9 @@ int main()
     {
         button = SW1_Read();
         //Calibrated on white line
+        
+            
+        
         if(button == 0){
             if(!calibrated){
                 calibrate(ref, result);
@@ -135,7 +141,8 @@ int main()
                         }
                     }
                 }
-                if(button == 0){
+                IR_val = get_IR();
+                if(IR_val != 1){
                     for(;;){
                         reflectance_read(&ref);
                         //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);  
@@ -194,13 +201,7 @@ int main()
                         }
                     }
                     motor_forward(0,0);
-<<<<<<< HEAD
-                    rick_roll();
-=======
-                    for(int i = 0; i < 75; i++){
-                        Beep(50,rand() % 255 +1);
-                    }
->>>>>>> 6f20310a53321de9d41baf6713c5f34459afb971
+                    //rick_roll();
                     }
             }
         }
