@@ -47,8 +47,8 @@
 
 #define MAX_SPEED 255
 #define BASE_SPEED 255
-#define Kp 64
-#define Kd 500
+#define Kp 85
+#define Kd 600
 
 struct sensors_ ref;
 int rread(void);
@@ -60,6 +60,8 @@ void flashLED();
 void calibrate(struct sensors_ ref, float * result);
 bool isOnBlackLine();
 void rick_roll();
+void stop();
+
 /**
  * @file    main.c
  * @brief   
@@ -186,22 +188,16 @@ int main()
                           rightDir = 0;
                         }
                         motor_drive(leftDir,rightDir,leftMotor,rightMotor,1);
-
-                        lineDelay++;
+                        
+                        if(lineDelay <= 100){
+                            lineDelay++;
+                        }
                      
                         //checks if passed black line every 20ms
-                        if(lineDelay > 20){
-                            if(isOnBlackLine()){
-                                blackLine++;
-                            }
-                            if(blackLine > 3){
-                                break;
-                            }
-                            lineDelay = 0;
+                        if(isOnBlackLine() && lineDelay > 100){
+                            stop();
                         }
                     }
-                    motor_forward(0,0);
-                    //rick_roll();
                     }
             }
         }
@@ -216,6 +212,24 @@ int main()
     }
     flashLED();
     motor_stop();
+}
+
+void stop(){
+    for(;;){
+    reflectance_read(&ref);
+    motor_forward(255,1);
+    if(ref.l3 < 20000 && ref.r3 < 20000){
+        for(;;){
+            reflectance_read(&ref);
+            motor_forward(255,1);
+            if(isOnBlackLine()){
+                motor_forward(0,0);
+                motor_stop();
+                rick_roll();
+            }
+        }
+    }
+}
 }
 void rick_roll(){
         Beep(140,153);
