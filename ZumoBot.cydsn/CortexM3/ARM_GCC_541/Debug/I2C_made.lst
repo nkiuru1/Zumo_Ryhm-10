@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
   38              		.cfi_def_cfa_offset 16
   39 0004 0446     		mov	r4, r0
   18:ZumoLibrary/I2C_made.c ****     uint8 write_buf[2] = {};
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 2
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 2
 
 
   19:ZumoLibrary/I2C_made.c ****     write_buf[0] = Reg;                //register address that you want to write
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
   37:ZumoLibrary/I2C_made.c **** {
   76              		.loc 1 37 0
   77              		.cfi_startproc
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 3
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 3
 
 
   78              		@ args = 0, pretend = 0, frame = 8
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  120 0036 FFF7FEFF 		bl	I2C_MasterClearStatus
  121              	.LVL10:
   50:ZumoLibrary/I2C_made.c ****     I2C_MasterReadBuf(device_addr, read_buf, 1, I2C_MODE_COMPLETE_XFER);
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 4
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 4
 
 
  122              		.loc 1 50 0
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
   69:ZumoLibrary/I2C_made.c **** }
  158              		.loc 1 69 0
  159 0000 40EA0120 		orr	r0, r0, r1, lsl #8
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 5
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 5
 
 
  160              	.LVL14:
@@ -261,53 +261,53 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  177 0006 00000000 		.4byte	.Ldebug_abbrev0
  178 000a 04       		.byte	0x4
  179 000b 01       		.uleb128 0x1
- 180 000c 34010000 		.4byte	.LASF30
+ 180 000c 08010000 		.4byte	.LASF30
  181 0010 0C       		.byte	0xc
- 182 0011 F7010000 		.4byte	.LASF31
- 183 0015 0C000000 		.4byte	.LASF32
+ 182 0011 CB010000 		.4byte	.LASF31
+ 183 0015 F1010000 		.4byte	.LASF32
  184 0019 00000000 		.4byte	.Ldebug_ranges0+0
  185 001d 00000000 		.4byte	0
  186 0021 00000000 		.4byte	.Ldebug_line0
  187 0025 02       		.uleb128 0x2
  188 0026 01       		.byte	0x1
  189 0027 06       		.byte	0x6
- 190 0028 32020000 		.4byte	.LASF0
+ 190 0028 38020000 		.4byte	.LASF0
  191 002c 02       		.uleb128 0x2
  192 002d 01       		.byte	0x1
  193 002e 08       		.byte	0x8
- 194 002f 8C000000 		.4byte	.LASF1
+ 194 002f 60000000 		.4byte	.LASF1
  195 0033 02       		.uleb128 0x2
  196 0034 02       		.byte	0x2
  197 0035 05       		.byte	0x5
- 198 0036 EC000000 		.4byte	.LASF2
+ 198 0036 C0000000 		.4byte	.LASF2
  199 003a 02       		.uleb128 0x2
  200 003b 02       		.byte	0x2
  201 003c 07       		.byte	0x7
- 202 003d C5000000 		.4byte	.LASF3
+ 202 003d 99000000 		.4byte	.LASF3
  203 0041 03       		.uleb128 0x3
- 204 0042 3E000000 		.4byte	.LASF9
+ 204 0042 12000000 		.4byte	.LASF9
  205 0046 02       		.byte	0x2
  206 0047 3F       		.byte	0x3f
  207 0048 4C000000 		.4byte	0x4c
  208 004c 02       		.uleb128 0x2
  209 004d 04       		.byte	0x4
  210 004e 05       		.byte	0x5
- 211 004f 1D020000 		.4byte	.LASF4
+ 211 004f 23020000 		.4byte	.LASF4
  212 0053 02       		.uleb128 0x2
  213 0054 04       		.byte	0x4
  214 0055 07       		.byte	0x7
- 215 0056 B3000000 		.4byte	.LASF5
+ 215 0056 87000000 		.4byte	.LASF5
  216 005a 02       		.uleb128 0x2
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 6
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 6
 
 
  217 005b 08       		.byte	0x8
  218 005c 05       		.byte	0x5
- 219 005d D3010000 		.4byte	.LASF6
+ 219 005d A7010000 		.4byte	.LASF6
  220 0061 02       		.uleb128 0x2
  221 0062 08       		.byte	0x8
  222 0063 07       		.byte	0x7
- 223 0064 14010000 		.4byte	.LASF7
+ 223 0064 E8000000 		.4byte	.LASF7
  224 0068 04       		.uleb128 0x4
  225 0069 04       		.byte	0x4
  226 006a 05       		.byte	0x5
@@ -315,50 +315,50 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  228 006f 02       		.uleb128 0x2
  229 0070 04       		.byte	0x4
  230 0071 07       		.byte	0x7
- 231 0072 07010000 		.4byte	.LASF8
+ 231 0072 DB000000 		.4byte	.LASF8
  232 0076 03       		.uleb128 0x3
- 233 0077 C2010000 		.4byte	.LASF10
+ 233 0077 96010000 		.4byte	.LASF10
  234 007b 03       		.byte	0x3
  235 007c 2C       		.byte	0x2c
  236 007d 41000000 		.4byte	0x41
  237 0081 05       		.uleb128 0x5
- 238 0082 17020000 		.4byte	.LASF11
+ 238 0082 EB010000 		.4byte	.LASF11
  239 0086 04       		.byte	0x4
  240 0087 9201     		.2byte	0x192
  241 0089 2C000000 		.4byte	0x2c
  242 008d 05       		.uleb128 0x5
- 243 008e F6000000 		.4byte	.LASF12
+ 243 008e CA000000 		.4byte	.LASF12
  244 0092 04       		.byte	0x4
  245 0093 9301     		.2byte	0x193
  246 0095 3A000000 		.4byte	0x3a
  247 0099 05       		.uleb128 0x5
- 248 009a AD000000 		.4byte	.LASF13
+ 248 009a 81000000 		.4byte	.LASF13
  249 009e 04       		.byte	0x4
  250 009f 9601     		.2byte	0x196
  251 00a1 33000000 		.4byte	0x33
  252 00a5 02       		.uleb128 0x2
  253 00a6 04       		.byte	0x4
  254 00a7 04       		.byte	0x4
- 255 00a8 7A000000 		.4byte	.LASF14
+ 255 00a8 4E000000 		.4byte	.LASF14
  256 00ac 02       		.uleb128 0x2
  257 00ad 08       		.byte	0x8
  258 00ae 04       		.byte	0x4
- 259 00af E5000000 		.4byte	.LASF15
+ 259 00af B9000000 		.4byte	.LASF15
  260 00b3 02       		.uleb128 0x2
  261 00b4 01       		.byte	0x1
  262 00b5 08       		.byte	0x8
- 263 00b6 E1010000 		.4byte	.LASF16
+ 263 00b6 B5010000 		.4byte	.LASF16
  264 00ba 02       		.uleb128 0x2
  265 00bb 08       		.byte	0x8
  266 00bc 04       		.byte	0x4
- 267 00bd 26020000 		.4byte	.LASF17
+ 267 00bd 2C020000 		.4byte	.LASF17
  268 00c1 02       		.uleb128 0x2
  269 00c2 04       		.byte	0x4
  270 00c3 07       		.byte	0x7
- 271 00c4 CA010000 		.4byte	.LASF18
+ 271 00c4 9E010000 		.4byte	.LASF18
  272 00c8 06       		.uleb128 0x6
- 273 00c9 48000000 		.4byte	.LASF33
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 7
+ 273 00c9 1C000000 		.4byte	.LASF33
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 7
 
 
  274 00cd 01       		.byte	0x1
@@ -381,13 +381,13 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  291 00f3 81000000 		.4byte	0x81
  292 00f7 21000000 		.4byte	.LLST1
  293 00fb 07       		.uleb128 0x7
- 294 00fc 38000000 		.4byte	.LASF20
+ 294 00fc 0C000000 		.4byte	.LASF20
  295 0100 01       		.byte	0x1
  296 0101 10       		.byte	0x10
  297 0102 81000000 		.4byte	0x81
  298 0106 42000000 		.4byte	.LLST2
  299 010a 09       		.uleb128 0x9
- 300 010b FD000000 		.4byte	.LASF21
+ 300 010b D1000000 		.4byte	.LASF21
  301 010f 01       		.byte	0x1
  302 0110 12       		.byte	0x12
  303 0111 4F010000 		.4byte	0x14f
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  328 013c 52       		.byte	0x52
  329 013d 01       		.uleb128 0x1
  330 013e 32       		.byte	0x32
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 8
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 8
 
 
  331 013f 0C       		.uleb128 0xc
@@ -439,7 +439,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  346 015d 01       		.byte	0x1
  347 015e 00       		.byte	0
  348 015f 0F       		.uleb128 0xf
- 349 0160 0E020000 		.4byte	.LASF23
+ 349 0160 E2010000 		.4byte	.LASF23
  350 0164 01       		.byte	0x1
  351 0165 24       		.byte	0x24
  352 0166 81000000 		.4byte	0x81
@@ -461,7 +461,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  368 018e 81000000 		.4byte	0x81
  369 0192 84000000 		.4byte	.LLST4
  370 0196 09       		.uleb128 0x9
- 371 0197 FD000000 		.4byte	.LASF21
+ 371 0197 D1000000 		.4byte	.LASF21
  372 019b 01       		.byte	0x1
  373 019c 27       		.byte	0x27
  374 019d 49020000 		.4byte	0x249
@@ -469,7 +469,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  376 01a2 91       		.byte	0x91
  377 01a3 6C       		.sleb128 -20
  378 01a4 09       		.uleb128 0x9
- 379 01a5 2B010000 		.4byte	.LASF22
+ 379 01a5 FF000000 		.4byte	.LASF22
  380 01a9 01       		.byte	0x1
  381 01aa 2A       		.byte	0x2a
  382 01ab 49020000 		.4byte	0x249
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  385 01b1 68       		.sleb128 -24
  386 01b2 0A       		.uleb128 0xa
  387 01b3 14000000 		.4byte	.LVL5
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 9
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 9
 
 
  388 01b7 AB020000 		.4byte	0x2ab
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  442 0211 0A       		.uleb128 0xa
  443 0212 3A000000 		.4byte	.LVL10
  444 0216 AB020000 		.4byte	0x2ab
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 10
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 10
 
 
  445 021a 0B       		.uleb128 0xb
@@ -581,7 +581,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  482 0257 00       		.byte	0
  483 0258 00       		.byte	0
  484 0259 0F       		.uleb128 0xf
- 485 025a 80000000 		.4byte	.LASF24
+ 485 025a 54000000 		.4byte	.LASF24
  486 025e 01       		.byte	0x1
  487 025f 3F       		.byte	0x3f
  488 0260 8D000000 		.4byte	0x8d
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  499 027b A5000000 		.4byte	.LLST5
  500 027f 10       		.uleb128 0x10
  501 0280 4800     		.ascii	"H\000"
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 11
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 11
 
 
  502 0282 01       		.byte	0x1
@@ -614,35 +614,35 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  512 0295 C6000000 		.4byte	.LLST6
  513 0299 00       		.byte	0
  514 029a 12       		.uleb128 0x12
- 515 029b D8000000 		.4byte	.LASF34
+ 515 029b AC000000 		.4byte	.LASF34
  516 029f 07       		.byte	0x7
  517 02a0 9606     		.2byte	0x696
  518 02a2 A6020000 		.4byte	0x2a6
  519 02a6 13       		.uleb128 0x13
  520 02a7 76000000 		.4byte	0x76
  521 02ab 14       		.uleb128 0x14
- 522 02ac 52000000 		.4byte	.LASF25
- 523 02b0 52000000 		.4byte	.LASF25
+ 522 02ac 26000000 		.4byte	.LASF25
+ 523 02b0 26000000 		.4byte	.LASF25
  524 02b4 05       		.byte	0x5
  525 02b5 A4       		.byte	0xa4
  526 02b6 14       		.uleb128 0x14
- 527 02b7 9A000000 		.4byte	.LASF26
- 528 02bb 9A000000 		.4byte	.LASF26
+ 527 02b7 6E000000 		.4byte	.LASF26
+ 528 02bb 6E000000 		.4byte	.LASF26
  529 02bf 05       		.byte	0x5
  530 02c0 A7       		.byte	0xa7
  531 02c1 14       		.uleb128 0x14
- 532 02c2 E6010000 		.4byte	.LASF27
- 533 02c6 E6010000 		.4byte	.LASF27
+ 532 02c2 BA010000 		.4byte	.LASF27
+ 533 02c6 BA010000 		.4byte	.LASF27
  534 02ca 05       		.byte	0x5
  535 02cb A3       		.byte	0xa3
  536 02cc 14       		.uleb128 0x14
- 537 02cd 3E020000 		.4byte	.LASF28
- 538 02d1 3E020000 		.4byte	.LASF28
+ 537 02cd 44020000 		.4byte	.LASF28
+ 538 02d1 44020000 		.4byte	.LASF28
  539 02d5 06       		.byte	0x6
  540 02d6 76       		.byte	0x76
  541 02d7 14       		.uleb128 0x14
- 542 02d8 68000000 		.4byte	.LASF29
- 543 02dc 68000000 		.4byte	.LASF29
+ 542 02d8 3C000000 		.4byte	.LASF29
+ 543 02dc 3C000000 		.4byte	.LASF29
  544 02e0 05       		.byte	0x5
  545 02e1 A9       		.byte	0xa9
  546 02e2 00       		.byte	0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  556 0007 03       		.uleb128 0x3
  557 0008 0E       		.uleb128 0xe
  558 0009 1B       		.uleb128 0x1b
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 12
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 12
 
 
  559 000a 0E       		.uleb128 0xe
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  613 0040 13       		.uleb128 0x13
  614 0041 00       		.byte	0
  615 0042 00       		.byte	0
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 13
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 13
 
 
  616 0043 06       		.uleb128 0x6
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  670 007a 00       		.byte	0
  671 007b 09       		.uleb128 0x9
  672 007c 34       		.uleb128 0x34
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 14
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 14
 
 
  673 007d 00       		.byte	0
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  727 00ba 49       		.uleb128 0x49
  728 00bb 13       		.uleb128 0x13
  729 00bc 2F       		.uleb128 0x2f
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 15
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 15
 
 
  730 00bd 0B       		.uleb128 0xb
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  784 00f4 49       		.uleb128 0x49
  785 00f5 13       		.uleb128 0x13
  786 00f6 02       		.uleb128 0x2
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 16
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 16
 
 
  787 00f7 17       		.uleb128 0x17
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  841 0013 0400     		.2byte	0x4
  842 0015 F3       		.byte	0xf3
  843 0016 01       		.uleb128 0x1
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 17
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 17
 
 
  844 0017 50       		.byte	0x50
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  898 0099 F3       		.byte	0xf3
  899 009a 01       		.uleb128 0x1
  900 009b 51       		.byte	0x51
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 18
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 18
 
 
  901 009c 9F       		.byte	0x9f
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  955 0014 06000000 		.4byte	.LFE66
  956 0018 00000000 		.4byte	0
  957 001c 00000000 		.4byte	0
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 19
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 19
 
 
  958              		.section	.debug_line,"",%progbits
@@ -1092,174 +1092,175 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 1
  962 0000 64657669 		.ascii	"device_addr\000"
  962      63655F61 
  962      64647200 
- 963              	.LASF32:
- 964 000c 433A5C55 		.ascii	"C:\\Users\\nikla\\Desktop\\Zumo01\\ZumoBot.cydsn\000"
- 964      73657273 
- 964      5C6E696B 
- 964      6C615C44 
- 964      65736B74 
- 965              	.LASF20:
- 966 0038 76616C75 		.ascii	"value\000"
- 966      6500
- 967              	.LASF9:
- 968 003e 5F5F696E 		.ascii	"__int32_t\000"
- 968      7433325F 
- 968      7400
- 969              	.LASF33:
- 970 0048 4932435F 		.ascii	"I2C_write\000"
- 970      77726974 
- 970      6500
- 971              	.LASF25:
- 972 0052 4932435F 		.ascii	"I2C_MasterClearStatus\000"
+ 963              	.LASF20:
+ 964 000c 76616C75 		.ascii	"value\000"
+ 964      6500
+ 965              	.LASF9:
+ 966 0012 5F5F696E 		.ascii	"__int32_t\000"
+ 966      7433325F 
+ 966      7400
+ 967              	.LASF33:
+ 968 001c 4932435F 		.ascii	"I2C_write\000"
+ 968      77726974 
+ 968      6500
+ 969              	.LASF25:
+ 970 0026 4932435F 		.ascii	"I2C_MasterClearStatus\000"
+ 970      4D617374 
+ 970      6572436C 
+ 970      65617253 
+ 970      74617475 
+ 971              	.LASF29:
+ 972 003c 4932435F 		.ascii	"I2C_MasterReadBuf\000"
  972      4D617374 
- 972      6572436C 
- 972      65617253 
- 972      74617475 
- 973              	.LASF29:
- 974 0068 4932435F 		.ascii	"I2C_MasterReadBuf\000"
- 974      4D617374 
- 974      65725265 
- 974      61644275 
- 974      6600
- 975              	.LASF14:
- 976 007a 666C6F61 		.ascii	"float\000"
- 976      7400
- 977              	.LASF24:
- 978 0080 636F6E76 		.ascii	"convert_raw\000"
- 978      6572745F 
- 978      72617700 
- 979              	.LASF1:
- 980 008c 756E7369 		.ascii	"unsigned char\000"
- 980      676E6564 
- 980      20636861 
- 980      7200
- 981              	.LASF26:
- 982 009a 4932435F 		.ascii	"I2C_MasterWriteBuf\000"
- 982      4D617374 
- 982      65725772 
- 982      69746542 
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 20
+ 972      65725265 
+ 972      61644275 
+ 972      6600
+ 973              	.LASF14:
+ 974 004e 666C6F61 		.ascii	"float\000"
+ 974      7400
+ 975              	.LASF24:
+ 976 0054 636F6E76 		.ascii	"convert_raw\000"
+ 976      6572745F 
+ 976      72617700 
+ 977              	.LASF1:
+ 978 0060 756E7369 		.ascii	"unsigned char\000"
+ 978      676E6564 
+ 978      20636861 
+ 978      7200
+ 979              	.LASF26:
+ 980 006e 4932435F 		.ascii	"I2C_MasterWriteBuf\000"
+ 980      4D617374 
+ 980      65725772 
+ 980      69746542 
+ 980      756600
+ 981              	.LASF13:
+ 982 0081 696E7431 		.ascii	"int16\000"
+ 982      3600
+ 983              	.LASF5:
+ 984 0087 6C6F6E67 		.ascii	"long unsigned int\000"
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 20
 
 
- 982      756600
- 983              	.LASF13:
- 984 00ad 696E7431 		.ascii	"int16\000"
- 984      3600
- 985              	.LASF5:
- 986 00b3 6C6F6E67 		.ascii	"long unsigned int\000"
- 986      20756E73 
- 986      69676E65 
- 986      6420696E 
- 986      7400
- 987              	.LASF3:
- 988 00c5 73686F72 		.ascii	"short unsigned int\000"
- 988      7420756E 
- 988      7369676E 
- 988      65642069 
- 988      6E7400
- 989              	.LASF34:
- 990 00d8 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 990      52784275 
- 990      66666572 
- 990      00
- 991              	.LASF15:
- 992 00e5 646F7562 		.ascii	"double\000"
- 992      6C6500
- 993              	.LASF2:
- 994 00ec 73686F72 		.ascii	"short int\000"
- 994      7420696E 
- 994      7400
- 995              	.LASF12:
- 996 00f6 75696E74 		.ascii	"uint16\000"
- 996      313600
- 997              	.LASF21:
- 998 00fd 77726974 		.ascii	"write_buf\000"
- 998      655F6275 
- 998      6600
- 999              	.LASF8:
- 1000 0107 756E7369 		.ascii	"unsigned int\000"
- 1000      676E6564 
- 1000      20696E74 
- 1000      00
- 1001              	.LASF7:
- 1002 0114 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1002      206C6F6E 
- 1002      6720756E 
- 1002      7369676E 
- 1002      65642069 
- 1003              	.LASF22:
- 1004 012b 72656164 		.ascii	"read_buf\000"
- 1004      5F627566 
- 1004      00
- 1005              	.LASF30:
- 1006 0134 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1006      43313120 
- 1006      352E342E 
- 1006      31203230 
- 1006      31363036 
- 1007 0167 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 21
+ 984      20756E73 
+ 984      69676E65 
+ 984      6420696E 
+ 984      7400
+ 985              	.LASF3:
+ 986 0099 73686F72 		.ascii	"short unsigned int\000"
+ 986      7420756E 
+ 986      7369676E 
+ 986      65642069 
+ 986      6E7400
+ 987              	.LASF34:
+ 988 00ac 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 988      52784275 
+ 988      66666572 
+ 988      00
+ 989              	.LASF15:
+ 990 00b9 646F7562 		.ascii	"double\000"
+ 990      6C6500
+ 991              	.LASF2:
+ 992 00c0 73686F72 		.ascii	"short int\000"
+ 992      7420696E 
+ 992      7400
+ 993              	.LASF12:
+ 994 00ca 75696E74 		.ascii	"uint16\000"
+ 994      313600
+ 995              	.LASF21:
+ 996 00d1 77726974 		.ascii	"write_buf\000"
+ 996      655F6275 
+ 996      6600
+ 997              	.LASF8:
+ 998 00db 756E7369 		.ascii	"unsigned int\000"
+ 998      676E6564 
+ 998      20696E74 
+ 998      00
+ 999              	.LASF7:
+ 1000 00e8 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1000      206C6F6E 
+ 1000      6720756E 
+ 1000      7369676E 
+ 1000      65642069 
+ 1001              	.LASF22:
+ 1002 00ff 72656164 		.ascii	"read_buf\000"
+ 1002      5F627566 
+ 1002      00
+ 1003              	.LASF30:
+ 1004 0108 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1004      43313120 
+ 1004      352E342E 
+ 1004      31203230 
+ 1004      31363036 
+ 1005 013b 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1005      20726576 
+ 1005      6973696F 
+ 1005      6E203233 
+ 1005      37373135 
+ 1006 016e 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1006      66756E63 
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 21
 
 
- 1007      20726576 
- 1007      6973696F 
- 1007      6E203233 
- 1007      37373135 
- 1008 019a 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 1008      66756E63 
- 1008      74696F6E 
- 1008      2D736563 
- 1008      74696F6E 
- 1009              	.LASF10:
- 1010 01c2 696E7433 		.ascii	"int32_t\000"
- 1010      325F7400 
- 1011              	.LASF18:
- 1012 01ca 73697A65 		.ascii	"sizetype\000"
- 1012      74797065 
- 1012      00
- 1013              	.LASF6:
- 1014 01d3 6C6F6E67 		.ascii	"long long int\000"
- 1014      206C6F6E 
- 1014      6720696E 
- 1014      7400
- 1015              	.LASF16:
- 1016 01e1 63686172 		.ascii	"char\000"
+ 1006      74696F6E 
+ 1006      2D736563 
+ 1006      74696F6E 
+ 1007              	.LASF10:
+ 1008 0196 696E7433 		.ascii	"int32_t\000"
+ 1008      325F7400 
+ 1009              	.LASF18:
+ 1010 019e 73697A65 		.ascii	"sizetype\000"
+ 1010      74797065 
+ 1010      00
+ 1011              	.LASF6:
+ 1012 01a7 6C6F6E67 		.ascii	"long long int\000"
+ 1012      206C6F6E 
+ 1012      6720696E 
+ 1012      7400
+ 1013              	.LASF16:
+ 1014 01b5 63686172 		.ascii	"char\000"
+ 1014      00
+ 1015              	.LASF27:
+ 1016 01ba 4932435F 		.ascii	"I2C_MasterStatus\000"
+ 1016      4D617374 
+ 1016      65725374 
+ 1016      61747573 
  1016      00
- 1017              	.LASF27:
- 1018 01e6 4932435F 		.ascii	"I2C_MasterStatus\000"
- 1018      4D617374 
- 1018      65725374 
- 1018      61747573 
- 1018      00
- 1019              	.LASF31:
- 1020 01f7 5A756D6F 		.ascii	"ZumoLibrary\\I2C_made.c\000"
- 1020      4C696272 
- 1020      6172795C 
- 1020      4932435F 
- 1020      6D616465 
- 1021              	.LASF23:
- 1022 020e 4932435F 		.ascii	"I2C_read\000"
- 1022      72656164 
- 1022      00
- 1023              	.LASF11:
- 1024 0217 75696E74 		.ascii	"uint8\000"
- 1024      3800
- 1025              	.LASF4:
- 1026 021d 6C6F6E67 		.ascii	"long int\000"
- 1026      20696E74 
- 1026      00
- 1027              	.LASF17:
- 1028 0226 6C6F6E67 		.ascii	"long double\000"
- 1028      20646F75 
- 1028      626C6500 
- 1029              	.LASF0:
- 1030 0232 7369676E 		.ascii	"signed char\000"
- 1030      65642063 
- 1030      68617200 
- 1031              	.LASF28:
- 1032 023e 43794465 		.ascii	"CyDelay\000"
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccMkyWcT.s 			page 22
+ 1017              	.LASF31:
+ 1018 01cb 5A756D6F 		.ascii	"ZumoLibrary\\I2C_made.c\000"
+ 1018      4C696272 
+ 1018      6172795C 
+ 1018      4932435F 
+ 1018      6D616465 
+ 1019              	.LASF23:
+ 1020 01e2 4932435F 		.ascii	"I2C_read\000"
+ 1020      72656164 
+ 1020      00
+ 1021              	.LASF11:
+ 1022 01eb 75696E74 		.ascii	"uint8\000"
+ 1022      3800
+ 1023              	.LASF32:
+ 1024 01f1 433A5C55 		.ascii	"C:\\Users\\leevi\\Desktop\\Zumo_Ryhm-10\\ZumoBot.cy"
+ 1024      73657273 
+ 1024      5C6C6565 
+ 1024      76695C44 
+ 1024      65736B74 
+ 1025 021f 64736E00 		.ascii	"dsn\000"
+ 1026              	.LASF4:
+ 1027 0223 6C6F6E67 		.ascii	"long int\000"
+ 1027      20696E74 
+ 1027      00
+ 1028              	.LASF17:
+ 1029 022c 6C6F6E67 		.ascii	"long double\000"
+ 1029      20646F75 
+ 1029      626C6500 
+ 1030              	.LASF0:
+ 1031 0238 7369676E 		.ascii	"signed char\000"
+ 1031      65642063 
+ 1031      68617200 
+ 1032              	.LASF28:
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccvpUYhu.s 			page 22
 
 
- 1032      6C617900 
- 1033              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1033 0244 43794465 		.ascii	"CyDelay\000"
+ 1033      6C617900 
+ 1034              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

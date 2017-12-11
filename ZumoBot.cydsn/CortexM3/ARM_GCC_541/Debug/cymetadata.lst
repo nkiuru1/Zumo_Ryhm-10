@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
   55 001a 01       		.byte	1
   56 001b 40       		.byte	64
   57 001c 01       		.byte	1
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 2
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 2
 
 
   58 001d 05       		.byte	5
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  112 0053 40       		.byte	64
  113 0054 59       		.byte	89
  114 0055 1A       		.byte	26
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 3
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 3
 
 
  115 0056 01       		.byte	1
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  169 008c 0A       		.byte	10
  170 008d 50       		.byte	80
  171 008e 01       		.byte	1
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 4
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 4
 
 
  172 008f 40       		.byte	64
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  226 00c5 04       		.byte	4
  227 00c6 10       		.byte	16
  228 00c7 3F       		.byte	63
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 5
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 5
 
 
  229 00c8 14       		.byte	20
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  283 00fe 87       		.byte	-121
  284 00ff 14       		.byte	20
  285 0100 8A       		.byte	-118
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 6
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 6
 
 
  286 0101 01       		.byte	1
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  340 0137 B0       		.byte	-80
  341 0138 C7       		.byte	-57
  342 0139 0C       		.byte	12
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 7
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 7
 
 
  343 013a C8       		.byte	-56
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  397 0170 0C       		.byte	12
  398 0171 90       		.byte	-112
  399 0172 0D       		.byte	13
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 8
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 8
 
 
  400 0173 01       		.byte	1
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  454 01a9 22       		.byte	34
  455 01aa 5A       		.byte	90
  456 01ab 88       		.byte	-120
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 9
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 9
 
 
  457 01ac 5E       		.byte	94
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  511 01e2 B8       		.byte	-72
  512 01e3 80       		.byte	-128
  513 01e4 BE       		.byte	-66
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 10
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 10
 
 
  514 01e5 40       		.byte	64
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  568 021b 02       		.byte	2
  569 021c 32       		.byte	50
  570 021d 02       		.byte	2
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 11
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 11
 
 
  571 021e 33       		.byte	51
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  625 0254 68       		.byte	104
  626 0255 80       		.byte	-128
  627 0256 6A       		.byte	106
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 12
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 12
 
 
  628 0257 80       		.byte	-128
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  682 028d 0F       		.byte	15
  683 028e B1       		.byte	-79
  684 028f 1F       		.byte	31
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 13
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 13
 
 
  685 0290 B2       		.byte	-78
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  739 02c6 E4       		.byte	-28
  740 02c7 40       		.byte	64
  741 02c8 E5       		.byte	-27
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 14
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 14
 
 
  742 02c9 40       		.byte	64
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  796 02ff 08       		.byte	8
  797 0300 2F       		.byte	47
  798 0301 10       		.byte	16
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 15
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 15
 
 
  799 0302 30       		.byte	48
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  853 0338 CE       		.byte	-50
  854 0339 2D       		.byte	45
  855 033a D0       		.byte	-48
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 16
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 16
 
 
  856 033b 81       		.byte	-127
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  910 0371 01       		.byte	1
  911 0372 27       		.byte	39
  912 0373 06       		.byte	6
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 17
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 17
 
 
  913 0374 31       		.byte	49
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  967 03aa 65       		.byte	101
  968 03ab 40       		.byte	64
  969 03ac 66       		.byte	102
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 18
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 18
 
 
  970 03ad C0       		.byte	-64
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  1024 03e3 08       		.byte	8
  1025 03e4 BE       		.byte	-66
  1026 03e5 44       		.byte	68
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 19
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 19
 
 
  1027 03e6 BF       		.byte	-65
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  1081 041c EA       		.byte	-22
  1082 041d C0       		.byte	-64
  1083 041e EC       		.byte	-20
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 20
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 20
 
 
  1084 041f C0       		.byte	-64
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  1138 0455 02       		.byte	2
  1139 0456 3B       		.byte	59
  1140 0457 04       		.byte	4
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 21
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 21
 
 
  1141 0458 40       		.byte	64
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  1195 048e CC       		.byte	-52
  1196 048f C7       		.byte	-57
  1197 0490 CE       		.byte	-50
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 22
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 22
 
 
  1198 0491 02       		.byte	2
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  1252 04c7 3F       		.byte	63
  1253 04c8 28       		.byte	40
  1254 04c9 01       		.byte	1
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 23
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 23
 
 
  1255 04ca 2B       		.byte	43
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  1309 0500 5D       		.byte	93
  1310 0501 15       		.byte	21
  1311 0502 5F       		.byte	95
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 24
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 24
 
 
  1312 0503 01       		.byte	1
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  1366 0539 20       		.byte	32
  1367 053a CE       		.byte	-50
  1368 053b F0       		.byte	-16
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 25
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 25
 
 
  1369 053c CF       		.byte	-49
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  1423 0572 27       		.byte	39
  1424 0573 01       		.byte	1
  1425 0574 2C       		.byte	44
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 26
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 26
 
 
  1426 0575 81       		.byte	-127
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  1480 05ab 80       		.byte	-128
  1481 05ac 76       		.byte	118
  1482 05ad 18       		.byte	24
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 27
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 27
 
 
  1483 05ae 80       		.byte	-128
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  1537 05e4 AB       		.byte	-85
  1538 05e5 08       		.byte	8
  1539 05e6 AC       		.byte	-84
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 28
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 28
 
 
  1540 05e7 28       		.byte	40
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  1594 061d 0C       		.byte	12
  1595 061e 0B       		.byte	11
  1596 061f 0E       		.byte	14
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 29
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 29
 
 
  1597 0620 0D       		.byte	13
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  1651 0656 5D       		.byte	93
  1652 0657 50       		.byte	80
  1653 0658 5F       		.byte	95
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 30
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 30
 
 
  1654 0659 01       		.byte	1
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  1708 068f 30       		.byte	48
  1709 0690 C9       		.byte	-55
  1710 0691 FF       		.byte	-1
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 31
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 31
 
 
  1711 0692 CA       		.byte	-54
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  1765 06c8 06       		.byte	6
  1766 06c9 04       		.byte	4
  1767 06ca 07       		.byte	7
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 32
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 32
 
 
  1768 06cb 40       		.byte	64
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  1822 0701 04       		.byte	4
  1823 0702 4D       		.byte	77
  1824 0703 10       		.byte	16
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 33
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 33
 
 
  1825 0704 55       		.byte	85
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  1879 073a A1       		.byte	-95
  1880 073b 08       		.byte	8
  1881 073c A3       		.byte	-93
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 34
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 34
 
 
  1882 073d 10       		.byte	16
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  1936 0773 08       		.byte	8
  1937 0774 A7       		.byte	-89
  1938 0775 88       		.byte	-120
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 35
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 35
 
 
  1939 0776 E6       		.byte	-26
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  1993 07ac 88       		.byte	-120
  1994 07ad 20       		.byte	32
  1995 07ae A0       		.byte	-96
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 36
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 36
 
 
  1996 07af 20       		.byte	32
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  2050 07e5 80       		.byte	-128
  2051 07e6 DA       		.byte	-38
  2052 07e7 C0       		.byte	-64
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 37
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 37
 
 
  2053 07e8 DC       		.byte	-36
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  2107 081e C4       		.byte	-60
  2108 081f 30       		.byte	48
  2109 0820 D6       		.byte	-42
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 38
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 38
 
 
  2110 0821 C0       		.byte	-64
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  2164 0857 80       		.byte	-128
  2165 0858 98       		.byte	-104
  2166 0859 50       		.byte	80
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 39
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 39
 
 
  2167 085a AB       		.byte	-85
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  2221 0890 00       		.byte	0
  2222 0891 00       		.byte	0
  2223 0892 04       		.byte	4
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 40
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 40
 
 
  2224 0893 00       		.byte	0
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  2278 0000 BC       		.byte	-68
  2279 0001 90       		.byte	-112
  2280 0002 AC       		.byte	-84
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 41
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 41
 
 
  2281 0003 AF       		.byte	-81
@@ -2450,18 +2450,18 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  2323 0006 00000000 		.4byte	.Ldebug_abbrev0
  2324 000a 04       		.byte	0x4
  2325 000b 01       		.uleb128 0x1
- 2326 000c 50000000 		.4byte	.LASF17
+ 2326 000c 24000000 		.4byte	.LASF17
  2327 0010 0C       		.byte	0xc
- 2328 0011 AA010000 		.4byte	.LASF18
- 2329 0015 0A000000 		.4byte	.LASF19
+ 2328 0011 B0010000 		.4byte	.LASF18
+ 2329 0015 69010000 		.4byte	.LASF19
  2330 0019 00000000 		.4byte	.Ldebug_line0
  2331 001d 02       		.uleb128 0x2
  2332 001e 01       		.byte	0x1
  2333 001f 06       		.byte	0x6
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 42
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 42
 
 
- 2334 0020 9E010000 		.4byte	.LASF0
+ 2334 0020 A4010000 		.4byte	.LASF0
  2335 0024 03       		.uleb128 0x3
  2336 0025 00000000 		.4byte	.LASF9
  2337 0029 01       		.byte	0x1
@@ -2470,31 +2470,31 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  2340 002f 02       		.uleb128 0x2
  2341 0030 01       		.byte	0x1
  2342 0031 08       		.byte	0x8
- 2343 0032 42000000 		.4byte	.LASF1
+ 2343 0032 16000000 		.4byte	.LASF1
  2344 0036 02       		.uleb128 0x2
  2345 0037 02       		.byte	0x2
  2346 0038 05       		.byte	0x5
- 2347 0039 8B010000 		.4byte	.LASF2
+ 2347 0039 5F010000 		.4byte	.LASF2
  2348 003d 02       		.uleb128 0x2
  2349 003e 02       		.byte	0x2
  2350 003f 07       		.byte	0x7
- 2351 0040 F0000000 		.4byte	.LASF3
+ 2351 0040 C4000000 		.4byte	.LASF3
  2352 0044 02       		.uleb128 0x2
  2353 0045 04       		.byte	0x4
  2354 0046 05       		.byte	0x5
- 2355 0047 95010000 		.4byte	.LASF4
+ 2355 0047 9B010000 		.4byte	.LASF4
  2356 004b 02       		.uleb128 0x2
  2357 004c 04       		.byte	0x4
  2358 004d 07       		.byte	0x7
- 2359 004e DE000000 		.4byte	.LASF5
+ 2359 004e B2000000 		.4byte	.LASF5
  2360 0052 02       		.uleb128 0x2
  2361 0053 08       		.byte	0x8
  2362 0054 05       		.byte	0x5
- 2363 0055 7D010000 		.4byte	.LASF6
+ 2363 0055 51010000 		.4byte	.LASF6
  2364 0059 02       		.uleb128 0x2
  2365 005a 08       		.byte	0x8
  2366 005b 07       		.byte	0x7
- 2367 005c 32010000 		.4byte	.LASF7
+ 2367 005c 06010000 		.4byte	.LASF7
  2368 0060 04       		.uleb128 0x4
  2369 0061 04       		.byte	0x4
  2370 0062 05       		.byte	0x5
@@ -2502,9 +2502,9 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  2372 0067 02       		.uleb128 0x2
  2373 0068 04       		.byte	0x4
  2374 0069 07       		.byte	0x7
- 2375 006a 25010000 		.4byte	.LASF8
+ 2375 006a F9000000 		.4byte	.LASF8
  2376 006e 03       		.uleb128 0x3
- 2377 006f 49010000 		.4byte	.LASF10
+ 2377 006f 1D010000 		.4byte	.LASF10
  2378 0073 02       		.byte	0x2
  2379 0074 18       		.byte	0x18
  2380 0075 24000000 		.4byte	0x24
@@ -2518,14 +2518,14 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  2388 008a 02       		.uleb128 0x2
  2389 008b 04       		.byte	0x4
  2390 008c 07       		.byte	0x7
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 43
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 43
 
 
- 2391 008d 74010000 		.4byte	.LASF11
+ 2391 008d 48010000 		.4byte	.LASF11
  2392 0091 07       		.uleb128 0x7
  2393 0092 6E000000 		.4byte	0x6e
  2394 0096 08       		.uleb128 0x8
- 2395 0097 13010000 		.4byte	.LASF12
+ 2395 0097 E7000000 		.4byte	.LASF12
  2396 009b 03       		.byte	0x3
  2397 009c 1F       		.byte	0x1f
  2398 009d A7000000 		.4byte	0xa7
@@ -2542,7 +2542,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  2409 00ba 03       		.byte	0x3
  2410 00bb 00       		.byte	0
  2411 00bc 0A       		.uleb128 0xa
- 2412 00bd 03010000 		.4byte	.LASF13
+ 2412 00bd D7000000 		.4byte	.LASF13
  2413 00c1 03       		.byte	0x3
  2414 00c2 4501     		.2byte	0x145
  2415 00c4 CE000000 		.4byte	0xce
@@ -2552,7 +2552,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  2419 00ce 07       		.uleb128 0x7
  2420 00cf AC000000 		.4byte	0xac
  2421 00d3 0A       		.uleb128 0xa
- 2422 00d4 66010000 		.4byte	.LASF14
+ 2422 00d4 3A010000 		.4byte	.LASF14
  2423 00d8 03       		.byte	0x3
  2424 00d9 5301     		.2byte	0x153
  2425 00db E5000000 		.4byte	0xe5
@@ -2569,7 +2569,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  2436 00f8 FF       		.byte	0xff
  2437 00f9 00       		.byte	0
  2438 00fa 0A       		.uleb128 0xa
- 2439 00fb 51010000 		.4byte	.LASF15
+ 2439 00fb 25010000 		.4byte	.LASF15
  2440 00ff 03       		.byte	0x3
  2441 0100 6101     		.2byte	0x161
  2442 0102 0C010000 		.4byte	0x10c
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  2445 0108 00000000 		.4byte	cy_meta_flashprotect
  2446 010c 07       		.uleb128 0x7
  2447 010d EA000000 		.4byte	0xea
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 44
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 44
 
 
  2448 0111 05       		.uleb128 0x5
@@ -2589,7 +2589,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  2453 011f 0B       		.byte	0xb
  2454 0120 00       		.byte	0
  2455 0121 0A       		.uleb128 0xa
- 2456 0122 36000000 		.4byte	.LASF16
+ 2456 0122 0A000000 		.4byte	.LASF16
  2457 0126 03       		.byte	0x3
  2458 0127 8E01     		.2byte	0x18e
  2459 0129 33010000 		.4byte	0x133
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  2502 0022 0B       		.uleb128 0xb
  2503 0023 49       		.uleb128 0x49
  2504 0024 13       		.uleb128 0x13
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 45
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 45
 
 
  2505 0025 00       		.byte	0
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  2559 005b 00       		.byte	0
  2560 005c 09       		.uleb128 0x9
  2561 005d 21       		.uleb128 0x21
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 46
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 46
 
 
  2562 005e 00       		.byte	0
@@ -2747,116 +2747,117 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 1
  2601 0000 5F5F7569 		.ascii	"__uint8_t\000"
  2601      6E74385F 
  2601      7400
- 2602              	.LASF19:
- 2603 000a 433A5C55 		.ascii	"C:\\Users\\nikla\\Desktop\\Zumo01\\ZumoBot.cydsn\000"
- 2603      73657273 
- 2603      5C6E696B 
- 2603      6C615C44 
- 2603      65736B74 
- 2604              	.LASF16:
- 2605 0036 63795F6D 		.ascii	"cy_metadata\000"
- 2605      65746164 
- 2605      61746100 
- 2606              	.LASF1:
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 47
+ 2602              	.LASF16:
+ 2603 000a 63795F6D 		.ascii	"cy_metadata\000"
+ 2603      65746164 
+ 2603      61746100 
+ 2604              	.LASF1:
+ 2605 0016 756E7369 		.ascii	"unsigned char\000"
+ 2605      676E6564 
+ 2605      20636861 
+ 2605      7200
+ 2606              	.LASF17:
+ 2607 0024 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 47
 
 
- 2607 0042 756E7369 		.ascii	"unsigned char\000"
- 2607      676E6564 
- 2607      20636861 
- 2607      7200
- 2608              	.LASF17:
- 2609 0050 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 2609      43313120 
- 2609      352E342E 
- 2609      31203230 
- 2609      31363036 
- 2610 0083 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 2610      20726576 
- 2610      6973696F 
- 2610      6E203233 
- 2610      37373135 
- 2611 00b6 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 2611      66756E63 
- 2611      74696F6E 
- 2611      2D736563 
- 2611      74696F6E 
- 2612              	.LASF5:
- 2613 00de 6C6F6E67 		.ascii	"long unsigned int\000"
- 2613      20756E73 
- 2613      69676E65 
- 2613      6420696E 
- 2613      7400
- 2614              	.LASF3:
- 2615 00f0 73686F72 		.ascii	"short unsigned int\000"
- 2615      7420756E 
- 2615      7369676E 
- 2615      65642069 
- 2615      6E7400
- 2616              	.LASF13:
- 2617 0103 63795F6D 		.ascii	"cy_meta_custnvl\000"
+ 2607      43313120 
+ 2607      352E342E 
+ 2607      31203230 
+ 2607      31363036 
+ 2608 0057 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2608      20726576 
+ 2608      6973696F 
+ 2608      6E203233 
+ 2608      37373135 
+ 2609 008a 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2609      66756E63 
+ 2609      74696F6E 
+ 2609      2D736563 
+ 2609      74696F6E 
+ 2610              	.LASF5:
+ 2611 00b2 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2611      20756E73 
+ 2611      69676E65 
+ 2611      6420696E 
+ 2611      7400
+ 2612              	.LASF3:
+ 2613 00c4 73686F72 		.ascii	"short unsigned int\000"
+ 2613      7420756E 
+ 2613      7369676E 
+ 2613      65642069 
+ 2613      6E7400
+ 2614              	.LASF13:
+ 2615 00d7 63795F6D 		.ascii	"cy_meta_custnvl\000"
+ 2615      6574615F 
+ 2615      63757374 
+ 2615      6E766C00 
+ 2616              	.LASF12:
+ 2617 00e7 63795F6D 		.ascii	"cy_meta_configecc\000"
  2617      6574615F 
- 2617      63757374 
- 2617      6E766C00 
- 2618              	.LASF12:
- 2619 0113 63795F6D 		.ascii	"cy_meta_configecc\000"
- 2619      6574615F 
- 2619      636F6E66 
- 2619      69676563 
- 2619      6300
- 2620              	.LASF8:
- 2621 0125 756E7369 		.ascii	"unsigned int\000"
- 2621      676E6564 
- 2621      20696E74 
- 2621      00
- 2622              	.LASF7:
- 2623 0132 6C6F6E67 		.ascii	"long long unsigned int\000"
- 2623      206C6F6E 
- 2623      6720756E 
- 2623      7369676E 
- 2623      65642069 
- 2624              	.LASF10:
- 2625 0149 75696E74 		.ascii	"uint8_t\000"
- 2625      385F7400 
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccOq4sGj.s 			page 48
+ 2617      636F6E66 
+ 2617      69676563 
+ 2617      6300
+ 2618              	.LASF8:
+ 2619 00f9 756E7369 		.ascii	"unsigned int\000"
+ 2619      676E6564 
+ 2619      20696E74 
+ 2619      00
+ 2620              	.LASF7:
+ 2621 0106 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2621      206C6F6E 
+ 2621      6720756E 
+ 2621      7369676E 
+ 2621      65642069 
+ 2622              	.LASF10:
+ 2623 011d 75696E74 		.ascii	"uint8_t\000"
+ 2623      385F7400 
+ 2624              	.LASF15:
+ 2625 0125 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 2625      6574615F 
+ 2625      666C6173 
+ 2625      6870726F 
+ 2625      74656374 
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccMzsybI.s 			page 48
 
 
- 2626              	.LASF15:
- 2627 0151 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 2626              	.LASF14:
+ 2627 013a 63795F6D 		.ascii	"cy_meta_wonvl\000"
  2627      6574615F 
- 2627      666C6173 
- 2627      6870726F 
- 2627      74656374 
- 2628              	.LASF14:
- 2629 0166 63795F6D 		.ascii	"cy_meta_wonvl\000"
- 2629      6574615F 
- 2629      776F6E76 
- 2629      6C00
- 2630              	.LASF11:
- 2631 0174 73697A65 		.ascii	"sizetype\000"
- 2631      74797065 
- 2631      00
- 2632              	.LASF6:
- 2633 017d 6C6F6E67 		.ascii	"long long int\000"
- 2633      206C6F6E 
- 2633      6720696E 
+ 2627      776F6E76 
+ 2627      6C00
+ 2628              	.LASF11:
+ 2629 0148 73697A65 		.ascii	"sizetype\000"
+ 2629      74797065 
+ 2629      00
+ 2630              	.LASF6:
+ 2631 0151 6C6F6E67 		.ascii	"long long int\000"
+ 2631      206C6F6E 
+ 2631      6720696E 
+ 2631      7400
+ 2632              	.LASF2:
+ 2633 015f 73686F72 		.ascii	"short int\000"
+ 2633      7420696E 
  2633      7400
- 2634              	.LASF2:
- 2635 018b 73686F72 		.ascii	"short int\000"
- 2635      7420696E 
- 2635      7400
- 2636              	.LASF4:
- 2637 0195 6C6F6E67 		.ascii	"long int\000"
- 2637      20696E74 
- 2637      00
- 2638              	.LASF0:
- 2639 019e 7369676E 		.ascii	"signed char\000"
- 2639      65642063 
- 2639      68617200 
- 2640              	.LASF18:
- 2641 01aa 47656E65 		.ascii	"Generated_Source\\PSoC5\\cymetadata.c\000"
- 2641      72617465 
- 2641      645F536F 
- 2641      75726365 
- 2641      5C50536F 
- 2642              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 2634              	.LASF19:
+ 2635 0169 433A5C55 		.ascii	"C:\\Users\\leevi\\Desktop\\Zumo_Ryhm-10\\ZumoBot.cy"
+ 2635      73657273 
+ 2635      5C6C6565 
+ 2635      76695C44 
+ 2635      65736B74 
+ 2636 0197 64736E00 		.ascii	"dsn\000"
+ 2637              	.LASF4:
+ 2638 019b 6C6F6E67 		.ascii	"long int\000"
+ 2638      20696E74 
+ 2638      00
+ 2639              	.LASF0:
+ 2640 01a4 7369676E 		.ascii	"signed char\000"
+ 2640      65642063 
+ 2640      68617200 
+ 2641              	.LASF18:
+ 2642 01b0 47656E65 		.ascii	"Generated_Source\\PSoC5\\cymetadata.c\000"
+ 2642      72617465 
+ 2642      645F536F 
+ 2642      75726365 
+ 2642      5C50536F 
+ 2643              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

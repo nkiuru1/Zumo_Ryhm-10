@@ -1,10 +1,10 @@
-C:/Users/nikla/Desktop/Zumo01/ZumoBot.cydsn/CortexM3/ARM_GCC_541/Debug/CyBootAsmGnu.o : C:/Users/nikla/Desktop/Zumo01/ZumoBot.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s C:/Users/nikla/Desktop/Zumo01/ZumoBot.cydsn/Generated_Source/PSoC5/cydevicegnu.inc C:/Users/nikla/Desktop/Zumo01/ZumoBot.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc C:/Users/nikla/Desktop/Zumo01/ZumoBot.cydsn/Generated_Source/PSoC5/cyfittergnu.inc 
+C:/Users/leevi/Desktop/Zumo_Ryhm-10/ZumoBot.cydsn/CortexM3/ARM_GCC_541/Debug/CyBootAsmGnu.o : C:/Users/leevi/Desktop/Zumo_Ryhm-10/ZumoBot.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s C:/Users/leevi/Desktop/Zumo_Ryhm-10/ZumoBot.cydsn/Generated_Source/PSoC5/cydevicegnu.inc C:/Users/leevi/Desktop/Zumo_Ryhm-10/ZumoBot.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc C:/Users/leevi/Desktop/Zumo_Ryhm-10/ZumoBot.cydsn/Generated_Source/PSoC5/cyfittergnu.inc 
 
-C:/Users/nikla/Desktop/Zumo01/ZumoBot.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s : 
+C:/Users/leevi/Desktop/Zumo_Ryhm-10/ZumoBot.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s : 
 
-C:/Users/nikla/Desktop/Zumo01/ZumoBot.cydsn/Generated_Source/PSoC5/cydevicegnu.inc : 
+C:/Users/leevi/Desktop/Zumo_Ryhm-10/ZumoBot.cydsn/Generated_Source/PSoC5/cydevicegnu.inc : 
 
-C:/Users/nikla/Desktop/Zumo01/ZumoBot.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc : 
+C:/Users/leevi/Desktop/Zumo_Ryhm-10/ZumoBot.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc : 
 
-C:/Users/nikla/Desktop/Zumo01/ZumoBot.cydsn/Generated_Source/PSoC5/cyfittergnu.inc : 
+C:/Users/leevi/Desktop/Zumo_Ryhm-10/ZumoBot.cydsn/Generated_Source/PSoC5/cyfittergnu.inc : 
 

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
   35              		.cfi_offset 4, -20
   36              		.cfi_offset 5, -16
   37              		.cfi_offset 6, -12
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 2
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 2
 
 
   38              		.cfi_offset 7, -8
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
   82              	.LVL13:
   83              	.L3:
   31:ZumoLibrary/Reflectance.c ****     }
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 3
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 3
 
 
   32:ZumoLibrary/Reflectance.c ****     
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  125              	.L7:
   45:ZumoLibrary/Reflectance.c ****     }
   46:ZumoLibrary/Reflectance.c ****     
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 4
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 4
 
 
   47:ZumoLibrary/Reflectance.c ****     if(statusL1 & Timer_L1_STATUS_CAPTURE) {
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  167              		.loc 1 59 0
  168 00c0 0120     		movs	r0, #1
  169 00c2 FFF7FEFF 		bl	L3_Write
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 5
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 5
 
 
  170              	.LVL28:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  212              	.LVL40:
  213              	.L12:
  214 0102 00BF     		.align	2
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 6
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 6
 
 
  215              	.L11:
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  255              	.L15:
  256 001c 00000000 		.word	sensor_isr_handler
  257              		.cfi_endproc
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 7
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 7
 
 
  258              	.LFE65:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  101:ZumoLibrary/Reflectance.c **** * @details
  102:ZumoLibrary/Reflectance.c **** */
  103:ZumoLibrary/Reflectance.c **** void reflectance_digital(struct sensors_ *digital)
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 8
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 8
 
 
  104:ZumoLibrary/Reflectance.c **** {
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  338 0030 0C4B     		ldr	r3, .L29
  339 0032 9B88     		ldrh	r3, [r3, #4]
  340 0034 9BB2     		uxth	r3, r3
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 9
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 9
 
 
  341 0036 0C4A     		ldr	r2, .L29+4
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  125:ZumoLibrary/Reflectance.c ****         
  126:ZumoLibrary/Reflectance.c **** }
  127:ZumoLibrary/Reflectance.c **** 
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 10
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 10
 
 
  128:ZumoLibrary/Reflectance.c **** void reflectance_set_threshold(uint16_t l3, uint16_t l1, uint16_t r1, uint16_t r3)
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  433      00000000 
  434              		.type	digital_sensor_value, %object
  435              		.size	digital_sensor_value, 8
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 11
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 11
 
 
  436              	digital_sensor_value:
@@ -628,37 +628,37 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  459 0006 00000000 		.4byte	.Ldebug_abbrev0
  460 000a 04       		.byte	0x4
  461 000b 01       		.uleb128 0x1
- 462 000c 88030000 		.4byte	.LASF61
+ 462 000c 8E030000 		.4byte	.LASF61
  463 0010 0C       		.byte	0xc
- 464 0011 32040000 		.4byte	.LASF62
- 465 0015 78000000 		.4byte	.LASF63
+ 464 0011 38040000 		.4byte	.LASF62
+ 465 0015 2E010000 		.4byte	.LASF63
  466 0019 00000000 		.4byte	.Ldebug_ranges0+0
  467 001d 00000000 		.4byte	0
  468 0021 00000000 		.4byte	.Ldebug_line0
  469 0025 02       		.uleb128 0x2
  470 0026 01       		.byte	0x1
  471 0027 06       		.byte	0x6
- 472 0028 F0010000 		.4byte	.LASF0
+ 472 0028 F6010000 		.4byte	.LASF0
  473 002c 02       		.uleb128 0x2
  474 002d 01       		.byte	0x1
  475 002e 08       		.byte	0x8
- 476 002f B8010000 		.4byte	.LASF1
+ 476 002f BE010000 		.4byte	.LASF1
  477 0033 02       		.uleb128 0x2
  478 0034 02       		.byte	0x2
  479 0035 05       		.byte	0x5
- 480 0036 34000000 		.4byte	.LASF2
+ 480 0036 3E000000 		.4byte	.LASF2
  481 003a 03       		.uleb128 0x3
- 482 003b A4000000 		.4byte	.LASF4
+ 482 003b 82000000 		.4byte	.LASF4
  483 003f 02       		.byte	0x2
  484 0040 2B       		.byte	0x2b
  485 0041 45000000 		.4byte	0x45
  486 0045 02       		.uleb128 0x2
  487 0046 02       		.byte	0x2
  488 0047 07       		.byte	0x7
- 489 0048 3B020000 		.4byte	.LASF3
+ 489 0048 41020000 		.4byte	.LASF3
  490 004c 03       		.uleb128 0x3
- 491 004d 46030000 		.4byte	.LASF5
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 12
+ 491 004d 4C030000 		.4byte	.LASF5
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 12
 
 
  492 0051 02       		.byte	0x2
@@ -667,24 +667,24 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  495 0057 02       		.uleb128 0x2
  496 0058 04       		.byte	0x4
  497 0059 05       		.byte	0x5
- 498 005a 73010000 		.4byte	.LASF6
+ 498 005a 79010000 		.4byte	.LASF6
  499 005e 03       		.uleb128 0x3
- 500 005f 5D000000 		.4byte	.LASF7
+ 500 005f 67000000 		.4byte	.LASF7
  501 0063 02       		.byte	0x2
  502 0064 41       		.byte	0x41
  503 0065 69000000 		.4byte	0x69
  504 0069 02       		.uleb128 0x2
  505 006a 04       		.byte	0x4
  506 006b 07       		.byte	0x7
- 507 006c E6020000 		.4byte	.LASF8
+ 507 006c EC020000 		.4byte	.LASF8
  508 0070 02       		.uleb128 0x2
  509 0071 08       		.byte	0x8
  510 0072 05       		.byte	0x5
- 511 0073 4F000000 		.4byte	.LASF9
+ 511 0073 59000000 		.4byte	.LASF9
  512 0077 02       		.uleb128 0x2
  513 0078 08       		.byte	0x8
  514 0079 07       		.byte	0x7
- 515 007a FC010000 		.4byte	.LASF10
+ 515 007a 02020000 		.4byte	.LASF10
  516 007e 04       		.uleb128 0x4
  517 007f 04       		.byte	0x4
  518 0080 05       		.byte	0x5
@@ -692,52 +692,52 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  520 0085 02       		.uleb128 0x2
  521 0086 04       		.byte	0x4
  522 0087 07       		.byte	0x7
- 523 0088 1C020000 		.4byte	.LASF11
+ 523 0088 22020000 		.4byte	.LASF11
  524 008c 03       		.uleb128 0x3
- 525 008d 29020000 		.4byte	.LASF12
+ 525 008d 2F020000 		.4byte	.LASF12
  526 0091 03       		.byte	0x3
  527 0092 24       		.byte	0x24
  528 0093 3A000000 		.4byte	0x3a
  529 0097 03       		.uleb128 0x3
- 530 0098 8A020000 		.4byte	.LASF13
+ 530 0098 90020000 		.4byte	.LASF13
  531 009c 03       		.byte	0x3
  532 009d 2C       		.byte	0x2c
  533 009e 4C000000 		.4byte	0x4c
  534 00a2 03       		.uleb128 0x3
- 535 00a3 13020000 		.4byte	.LASF14
+ 535 00a3 19020000 		.4byte	.LASF14
  536 00a7 03       		.byte	0x3
  537 00a8 30       		.byte	0x30
  538 00a9 5E000000 		.4byte	0x5e
  539 00ad 05       		.uleb128 0x5
- 540 00ae C1000000 		.4byte	.LASF15
+ 540 00ae 9F000000 		.4byte	.LASF15
  541 00b2 04       		.byte	0x4
  542 00b3 9201     		.2byte	0x192
  543 00b5 2C000000 		.4byte	0x2c
  544 00b9 02       		.uleb128 0x2
  545 00ba 04       		.byte	0x4
  546 00bb 04       		.byte	0x4
- 547 00bc 0A010000 		.4byte	.LASF16
+ 547 00bc E8000000 		.4byte	.LASF16
  548 00c0 02       		.uleb128 0x2
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 13
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 13
 
 
  549 00c1 08       		.byte	0x8
  550 00c2 04       		.byte	0x4
- 551 00c3 74030000 		.4byte	.LASF17
+ 551 00c3 7A030000 		.4byte	.LASF17
  552 00c7 02       		.uleb128 0x2
  553 00c8 01       		.byte	0x1
  554 00c9 08       		.byte	0x8
- 555 00ca 5A010000 		.4byte	.LASF18
+ 555 00ca 60010000 		.4byte	.LASF18
  556 00ce 02       		.uleb128 0x2
  557 00cf 08       		.byte	0x8
  558 00d0 04       		.byte	0x4
- 559 00d1 A2010000 		.4byte	.LASF19
+ 559 00d1 A8010000 		.4byte	.LASF19
  560 00d5 02       		.uleb128 0x2
  561 00d6 04       		.byte	0x4
  562 00d7 07       		.byte	0x7
- 563 00d8 3E000000 		.4byte	.LASF20
+ 563 00d8 48000000 		.4byte	.LASF20
  564 00dc 06       		.uleb128 0x6
- 565 00dd AF000000 		.4byte	.LASF64
+ 565 00dd 8D000000 		.4byte	.LASF64
  566 00e1 08       		.byte	0x8
  567 00e2 05       		.byte	0x5
  568 00e3 11       		.byte	0x11
@@ -768,7 +768,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  593 0113 06       		.byte	0x6
  594 0114 00       		.byte	0
  595 0115 08       		.uleb128 0x8
- 596 0116 50030000 		.4byte	.LASF25
+ 596 0116 56030000 		.4byte	.LASF25
  597 011a 01       		.byte	0x1
  598 011b 13       		.byte	0x13
  599 011c 00000000 		.4byte	.LFB64
@@ -777,8 +777,8 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  602 0125 9C       		.byte	0x9c
  603 0126 12030000 		.4byte	0x312
  604 012a 09       		.uleb128 0x9
- 605 012b B8000000 		.4byte	.LASF21
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 14
+ 605 012b 96000000 		.4byte	.LASF21
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 14
 
 
  606 012f 01       		.byte	0x1
@@ -786,19 +786,19 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  608 0131 A2000000 		.4byte	0xa2
  609 0135 00000000 		.4byte	.LLST0
  610 0139 09       		.uleb128 0x9
- 611 013a C7000000 		.4byte	.LASF22
+ 611 013a A5000000 		.4byte	.LASF22
  612 013e 01       		.byte	0x1
  613 013f 16       		.byte	0x16
  614 0140 A2000000 		.4byte	0xa2
  615 0144 28000000 		.4byte	.LLST1
  616 0148 09       		.uleb128 0x9
- 617 0149 81020000 		.4byte	.LASF23
+ 617 0149 87020000 		.4byte	.LASF23
  618 014d 01       		.byte	0x1
  619 014e 17       		.byte	0x17
  620 014f A2000000 		.4byte	0xa2
  621 0153 40000000 		.4byte	.LLST2
  622 0157 09       		.uleb128 0x9
- 623 0158 0C030000 		.4byte	.LASF24
+ 623 0158 12030000 		.4byte	.LASF24
  624 015c 01       		.byte	0x1
  625 015d 18       		.byte	0x18
  626 015e A2000000 		.4byte	0xa2
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  660 01c5 98040000 		.4byte	0x498
  661 01c9 0A       		.uleb128 0xa
  662 01ca 6E000000 		.4byte	.LVL18
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 15
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 15
 
 
  663 01ce A3040000 		.4byte	0x4a3
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  717 0243 C0000000 		.4byte	.LVL27
  718 0247 F0040000 		.4byte	0x4f0
  719 024b 55020000 		.4byte	0x255
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 16
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 16
 
 
  720 024f 0C       		.uleb128 0xc
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  774 02b2 32       		.byte	0x32
  775 02b3 00       		.byte	0
  776 02b4 0B       		.uleb128 0xb
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 17
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 17
 
 
  777 02b5 E4000000 		.4byte	.LVL33
@@ -1004,7 +1004,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  817 030d 61040000 		.4byte	0x461
  818 0311 00       		.byte	0
  819 0312 08       		.uleb128 0x8
- 820 0313 F8000000 		.4byte	.LASF26
+ 820 0313 D6000000 		.4byte	.LASF26
  821 0317 01       		.byte	0x1
  822 0318 4F       		.byte	0x4f
  823 0319 00000000 		.4byte	.LFB65
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  831 0330 3E030000 		.4byte	0x33e
  832 0334 0C       		.uleb128 0xc
  833 0335 01       		.uleb128 0x1
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 18
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 18
 
 
  834 0336 50       		.byte	0x50
@@ -1040,7 +1040,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  850 035e 53050000 		.4byte	0x553
  851 0362 00       		.byte	0
  852 0363 08       		.uleb128 0x8
- 853 0364 63030000 		.4byte	.LASF27
+ 853 0364 69030000 		.4byte	.LASF27
  854 0368 01       		.byte	0x1
  855 0369 5D       		.byte	0x5d
  856 036a 00000000 		.4byte	.LFB66
@@ -1049,7 +1049,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  859 0373 9C       		.byte	0x9c
  860 0374 88030000 		.4byte	0x388
  861 0378 0D       		.uleb128 0xd
- 862 0379 7C010000 		.4byte	.LASF29
+ 862 0379 82010000 		.4byte	.LASF29
  863 037d 01       		.byte	0x1
  864 037e 5D       		.byte	0x5d
  865 037f 88030000 		.4byte	0x388
@@ -1059,7 +1059,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  869 0389 04       		.byte	0x4
  870 038a DC000000 		.4byte	0xdc
  871 038e 08       		.uleb128 0x8
- 872 038f 3C010000 		.4byte	.LASF28
+ 872 038f 1A010000 		.4byte	.LASF28
  873 0393 01       		.byte	0x1
  874 0394 67       		.byte	0x67
  875 0395 00000000 		.4byte	.LFB67
@@ -1068,7 +1068,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  878 039e 9C       		.byte	0x9c
  879 039f B1030000 		.4byte	0x3b1
  880 03a3 0F       		.uleb128 0xf
- 881 03a4 15030000 		.4byte	.LASF30
+ 881 03a4 1B030000 		.4byte	.LASF30
  882 03a8 01       		.byte	0x1
  883 03a9 67       		.byte	0x67
  884 03aa 88030000 		.4byte	0x388
@@ -1076,9 +1076,9 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  886 03af 50       		.byte	0x50
  887 03b0 00       		.byte	0
  888 03b1 08       		.uleb128 0x8
- 889 03b2 D6010000 		.4byte	.LASF31
+ 889 03b2 DC010000 		.4byte	.LASF31
  890 03b6 01       		.byte	0x1
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 19
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 19
 
 
  891 03b7 80       		.byte	0x80
@@ -1117,7 +1117,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  924 03f5 53       		.byte	0x53
  925 03f6 00       		.byte	0
  926 03f7 11       		.uleb128 0x11
- 927 03f8 47000000 		.4byte	.LASF32
+ 927 03f8 51000000 		.4byte	.LASF32
  928 03fc 01       		.byte	0x1
  929 03fd 0B       		.byte	0xb
  930 03fe 08040000 		.4byte	0x408
@@ -1127,7 +1127,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  934 0408 12       		.uleb128 0x12
  935 0409 DC000000 		.4byte	0xdc
  936 040d 11       		.uleb128 0x11
- 937 040e 63020000 		.4byte	.LASF33
+ 937 040e 69020000 		.4byte	.LASF33
  938 0412 01       		.byte	0x1
  939 0413 0C       		.byte	0xc
  940 0414 08040000 		.4byte	0x408
@@ -1135,10 +1135,10 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  942 0419 03       		.byte	0x3
  943 041a 08000000 		.4byte	digital_sensor_value
  944 041e 11       		.uleb128 0x11
- 945 041f 50010000 		.4byte	.LASF34
+ 945 041f 18000000 		.4byte	.LASF34
  946 0423 01       		.byte	0x1
  947 0424 0D       		.byte	0xd
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 20
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 20
 
 
  948 0425 DC000000 		.4byte	0xdc
@@ -1146,98 +1146,98 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  950 042a 03       		.byte	0x3
  951 042b 00000000 		.4byte	threshold
  952 042f 13       		.uleb128 0x13
- 953 0430 7B030000 		.4byte	.LASF65
+ 953 0430 81030000 		.4byte	.LASF65
  954 0434 10       		.byte	0x10
  955 0435 9606     		.2byte	0x696
  956 0437 3B040000 		.4byte	0x43b
  957 043b 12       		.uleb128 0x12
  958 043c 97000000 		.4byte	0x97
  959 0440 14       		.uleb128 0x14
- 960 0441 20010000 		.4byte	.LASF35
- 961 0445 20010000 		.4byte	.LASF35
+ 960 0441 FE000000 		.4byte	.LASF35
+ 961 0445 FE000000 		.4byte	.LASF35
  962 0449 06       		.byte	0x6
  963 044a 5E       		.byte	0x5e
  964 044b 14       		.uleb128 0x14
- 965 044c CA020000 		.4byte	.LASF36
- 966 0450 CA020000 		.4byte	.LASF36
+ 965 044c D0020000 		.4byte	.LASF36
+ 966 0450 D0020000 		.4byte	.LASF36
  967 0454 07       		.byte	0x7
  968 0455 5E       		.byte	0x5e
  969 0456 14       		.uleb128 0x14
- 970 0457 16040000 		.4byte	.LASF37
- 971 045b 16040000 		.4byte	.LASF37
+ 970 0457 1C040000 		.4byte	.LASF37
+ 971 045b 1C040000 		.4byte	.LASF37
  972 045f 08       		.byte	0x8
  973 0460 5E       		.byte	0x5e
  974 0461 14       		.uleb128 0x14
- 975 0462 18000000 		.4byte	.LASF38
- 976 0466 18000000 		.4byte	.LASF38
+ 975 0462 22000000 		.4byte	.LASF38
+ 976 0466 22000000 		.4byte	.LASF38
  977 046a 09       		.byte	0x9
  978 046b 5E       		.byte	0x5e
  979 046c 14       		.uleb128 0x14
- 980 046d 1D030000 		.4byte	.LASF39
- 981 0471 1D030000 		.4byte	.LASF39
+ 980 046d 23030000 		.4byte	.LASF39
+ 981 0471 23030000 		.4byte	.LASF39
  982 0475 06       		.byte	0x6
  983 0476 67       		.byte	0x67
  984 0477 14       		.uleb128 0x14
- 985 0478 E3000000 		.4byte	.LASF40
- 986 047c E3000000 		.4byte	.LASF40
+ 985 0478 C1000000 		.4byte	.LASF40
+ 986 047c C1000000 		.4byte	.LASF40
  987 0480 06       		.byte	0x6
  988 0481 6B       		.byte	0x6b
  989 0482 14       		.uleb128 0x14
- 990 0483 5F010000 		.4byte	.LASF41
- 991 0487 5F010000 		.4byte	.LASF41
+ 990 0483 65010000 		.4byte	.LASF41
+ 991 0487 65010000 		.4byte	.LASF41
  992 048b 07       		.byte	0x7
  993 048c 67       		.byte	0x67
  994 048d 14       		.uleb128 0x14
- 995 048e 31030000 		.4byte	.LASF42
- 996 0492 31030000 		.4byte	.LASF42
+ 995 048e 37030000 		.4byte	.LASF42
+ 996 0492 37030000 		.4byte	.LASF42
  997 0496 07       		.byte	0x7
  998 0497 6B       		.byte	0x6b
  999 0498 14       		.uleb128 0x14
- 1000 0499 F8020000 		.4byte	.LASF43
- 1001 049d F8020000 		.4byte	.LASF43
+ 1000 0499 FE020000 		.4byte	.LASF43
+ 1001 049d FE020000 		.4byte	.LASF43
  1002 04a1 08       		.byte	0x8
  1003 04a2 67       		.byte	0x67
  1004 04a3 14       		.uleb128 0x14
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 21
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 21
 
 
- 1005 04a4 92020000 		.4byte	.LASF44
- 1006 04a8 92020000 		.4byte	.LASF44
+ 1005 04a4 98020000 		.4byte	.LASF44
+ 1006 04a8 98020000 		.4byte	.LASF44
  1007 04ac 08       		.byte	0x8
  1008 04ad 6B       		.byte	0x6b
  1009 04ae 14       		.uleb128 0x14
- 1010 04af A7020000 		.4byte	.LASF45
- 1011 04b3 A7020000 		.4byte	.LASF45
+ 1010 04af AD020000 		.4byte	.LASF45
+ 1011 04b3 AD020000 		.4byte	.LASF45
  1012 04b7 09       		.byte	0x9
  1013 04b8 67       		.byte	0x67
  1014 04b9 14       		.uleb128 0x14
- 1015 04ba 4E020000 		.4byte	.LASF46
- 1016 04be 4E020000 		.4byte	.LASF46
+ 1015 04ba 54020000 		.4byte	.LASF46
+ 1016 04be 54020000 		.4byte	.LASF46
  1017 04c2 09       		.byte	0x9
  1018 04c3 6B       		.byte	0x6b
  1019 04c4 14       		.uleb128 0x14
- 1020 04c5 C6010000 		.4byte	.LASF47
- 1021 04c9 C6010000 		.4byte	.LASF47
+ 1020 04c5 CC010000 		.4byte	.LASF47
+ 1021 04c9 CC010000 		.4byte	.LASF47
  1022 04cd 0A       		.byte	0xa
  1023 04ce 27       		.byte	0x27
  1024 04cf 14       		.uleb128 0x14
- 1025 04d0 32020000 		.4byte	.LASF48
- 1026 04d4 32020000 		.4byte	.LASF48
+ 1025 04d0 38020000 		.4byte	.LASF48
+ 1026 04d4 38020000 		.4byte	.LASF48
  1027 04d8 0A       		.byte	0xa
  1028 04d9 26       		.byte	0x26
  1029 04da 14       		.uleb128 0x14
- 1030 04db 10010000 		.4byte	.LASF49
- 1031 04df 10010000 		.4byte	.LASF49
+ 1030 04db EE000000 		.4byte	.LASF49
+ 1031 04df EE000000 		.4byte	.LASF49
  1032 04e3 0B       		.byte	0xb
  1033 04e4 27       		.byte	0x27
  1034 04e5 14       		.uleb128 0x14
- 1035 04e6 78020000 		.4byte	.LASF50
- 1036 04ea 78020000 		.4byte	.LASF50
+ 1035 04e6 7E020000 		.4byte	.LASF50
+ 1036 04ea 7E020000 		.4byte	.LASF50
  1037 04ee 0B       		.byte	0xb
  1038 04ef 26       		.byte	0x26
  1039 04f0 14       		.uleb128 0x14
- 1040 04f1 68000000 		.4byte	.LASF51
- 1041 04f5 68000000 		.4byte	.LASF51
+ 1040 04f1 72000000 		.4byte	.LASF51
+ 1041 04f5 72000000 		.4byte	.LASF51
  1042 04f9 0C       		.byte	0xc
  1043 04fa 27       		.byte	0x27
  1044 04fb 14       		.uleb128 0x14
@@ -1246,31 +1246,31 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  1047 0504 0C       		.byte	0xc
  1048 0505 26       		.byte	0x26
  1049 0506 14       		.uleb128 0x14
- 1050 0507 92010000 		.4byte	.LASF53
- 1051 050b 92010000 		.4byte	.LASF53
+ 1050 0507 98010000 		.4byte	.LASF53
+ 1051 050b 98010000 		.4byte	.LASF53
  1052 050f 0D       		.byte	0xd
  1053 0510 27       		.byte	0x27
  1054 0511 14       		.uleb128 0x14
- 1055 0512 5B040000 		.4byte	.LASF54
- 1056 0516 5B040000 		.4byte	.LASF54
+ 1055 0512 61040000 		.4byte	.LASF54
+ 1056 0516 61040000 		.4byte	.LASF54
  1057 051a 0D       		.byte	0xd
  1058 051b 26       		.byte	0x26
  1059 051c 14       		.uleb128 0x14
- 1060 051d AE010000 		.4byte	.LASF55
- 1061 0521 AE010000 		.4byte	.LASF55
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 22
+ 1060 051d B4010000 		.4byte	.LASF55
+ 1061 0521 B4010000 		.4byte	.LASF55
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 22
 
 
  1062 0525 0E       		.byte	0xe
  1063 0526 77       		.byte	0x77
  1064 0527 14       		.uleb128 0x14
- 1065 0528 D0000000 		.4byte	.LASF56
- 1066 052c D0000000 		.4byte	.LASF56
+ 1065 0528 AE000000 		.4byte	.LASF56
+ 1066 052c AE000000 		.4byte	.LASF56
  1067 0530 0F       		.byte	0xf
  1068 0531 18       		.byte	0x18
  1069 0532 14       		.uleb128 0x14
- 1070 0533 4C040000 		.4byte	.LASF57
- 1071 0537 4C040000 		.4byte	.LASF57
+ 1070 0533 52040000 		.4byte	.LASF57
+ 1071 0537 52040000 		.4byte	.LASF57
  1072 053b 06       		.byte	0x6
  1073 053c 5A       		.byte	0x5a
  1074 053d 14       		.uleb128 0x14
@@ -1279,13 +1279,13 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  1077 0546 07       		.byte	0x7
  1078 0547 5A       		.byte	0x5a
  1079 0548 14       		.uleb128 0x14
- 1080 0549 BB020000 		.4byte	.LASF59
- 1081 054d BB020000 		.4byte	.LASF59
+ 1080 0549 C1020000 		.4byte	.LASF59
+ 1081 054d C1020000 		.4byte	.LASF59
  1082 0551 08       		.byte	0x8
  1083 0552 5A       		.byte	0x5a
  1084 0553 14       		.uleb128 0x14
- 1085 0554 83010000 		.4byte	.LASF60
- 1086 0558 83010000 		.4byte	.LASF60
+ 1085 0554 89010000 		.4byte	.LASF60
+ 1086 0558 89010000 		.4byte	.LASF60
  1087 055c 09       		.byte	0x9
  1088 055d 5A       		.byte	0x5a
  1089 055e 00       		.byte	0
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  1116 0018 3E       		.uleb128 0x3e
  1117 0019 0B       		.uleb128 0xb
  1118 001a 03       		.uleb128 0x3
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 23
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 23
 
 
  1119 001b 0E       		.uleb128 0xe
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  1173 0051 00       		.byte	0
  1174 0052 07       		.uleb128 0x7
  1175 0053 0D       		.uleb128 0xd
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 24
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 24
 
 
  1176 0054 00       		.byte	0
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  1230 008b 898201   		.uleb128 0x4109
  1231 008e 00       		.byte	0
  1232 008f 11       		.uleb128 0x11
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 25
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 25
 
 
  1233 0090 01       		.uleb128 0x1
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  1287 00cb 3A       		.uleb128 0x3a
  1288 00cc 0B       		.uleb128 0xb
  1289 00cd 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 26
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 26
 
 
  1290 00ce 0B       		.uleb128 0xb
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  1344 0104 13       		.uleb128 0x13
  1345 0105 3F       		.uleb128 0x3f
  1346 0106 19       		.uleb128 0x19
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 27
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 27
 
 
  1347 0107 3C       		.uleb128 0x3c
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  1401 0037 9F       		.byte	0x9f
  1402 0038 00000000 		.4byte	0
  1403 003c 00000000 		.4byte	0
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 28
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 28
 
 
  1404              	.LLST2:
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  1458 003c 00000000 		.4byte	0
  1459              		.section	.debug_ranges,"",%progbits
  1460              	.Ldebug_ranges0:
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 29
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 29
 
 
  1461 0000 00000000 		.4byte	.LFB64
@@ -1709,341 +1709,342 @@ ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 1
  1479 000f 4C335F57 		.ascii	"L3_Write\000"
  1479      72697465 
  1479      00
- 1480              	.LASF38:
- 1481 0018 54696D65 		.ascii	"Timer_L1_ReadStatusRegister\000"
- 1481      725F4C31 
- 1481      5F526561 
- 1481      64537461 
- 1481      74757352 
- 1482              	.LASF2:
- 1483 0034 73686F72 		.ascii	"short int\000"
- 1483      7420696E 
- 1483      7400
- 1484              	.LASF20:
- 1485 003e 73697A65 		.ascii	"sizetype\000"
- 1485      74797065 
- 1485      00
- 1486              	.LASF32:
- 1487 0047 73656E73 		.ascii	"sensors\000"
- 1487      6F727300 
- 1488              	.LASF9:
- 1489 004f 6C6F6E67 		.ascii	"long long int\000"
- 1489      206C6F6E 
- 1489      6720696E 
- 1489      7400
- 1490              	.LASF7:
- 1491 005d 5F5F7569 		.ascii	"__uint32_t\000"
- 1491      6E743332 
- 1491      5F7400
- 1492              	.LASF51:
- 1493 0068 4C335F53 		.ascii	"L3_SetDriveMode\000"
- 1493      65744472 
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 30
+ 1480              	.LASF34:
+ 1481 0018 74687265 		.ascii	"threshold\000"
+ 1481      73686F6C 
+ 1481      6400
+ 1482              	.LASF38:
+ 1483 0022 54696D65 		.ascii	"Timer_L1_ReadStatusRegister\000"
+ 1483      725F4C31 
+ 1483      5F526561 
+ 1483      64537461 
+ 1483      74757352 
+ 1484              	.LASF2:
+ 1485 003e 73686F72 		.ascii	"short int\000"
+ 1485      7420696E 
+ 1485      7400
+ 1486              	.LASF20:
+ 1487 0048 73697A65 		.ascii	"sizetype\000"
+ 1487      74797065 
+ 1487      00
+ 1488              	.LASF32:
+ 1489 0051 73656E73 		.ascii	"sensors\000"
+ 1489      6F727300 
+ 1490              	.LASF9:
+ 1491 0059 6C6F6E67 		.ascii	"long long int\000"
+ 1491      206C6F6E 
+ 1491      6720696E 
+ 1491      7400
+ 1492              	.LASF7:
+ 1493 0067 5F5F7569 		.ascii	"__uint32_t\000"
+ 1493      6E743332 
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 30
 
 
- 1493      6976654D 
- 1493      6F646500 
- 1494              	.LASF63:
- 1495 0078 433A5C55 		.ascii	"C:\\Users\\nikla\\Desktop\\Zumo01\\ZumoBot.cydsn\000"
- 1495      73657273 
- 1495      5C6E696B 
- 1495      6C615C44 
- 1495      65736B74 
+ 1493      5F7400
+ 1494              	.LASF51:
+ 1495 0072 4C335F53 		.ascii	"L3_SetDriveMode\000"
+ 1495      65744472 
+ 1495      6976654D 
+ 1495      6F646500 
  1496              	.LASF4:
- 1497 00a4 5F5F7569 		.ascii	"__uint16_t\000"
+ 1497 0082 5F5F7569 		.ascii	"__uint16_t\000"
  1497      6E743136 
  1497      5F7400
  1498              	.LASF64:
- 1499 00af 73656E73 		.ascii	"sensors_\000"
+ 1499 008d 73656E73 		.ascii	"sensors_\000"
  1499      6F72735F 
  1499      00
  1500              	.LASF21:
- 1501 00b8 73746174 		.ascii	"statusR1\000"
+ 1501 0096 73746174 		.ascii	"statusR1\000"
  1501      75735231 
  1501      00
  1502              	.LASF15:
- 1503 00c1 75696E74 		.ascii	"uint8\000"
+ 1503 009f 75696E74 		.ascii	"uint8\000"
  1503      3800
  1504              	.LASF22:
- 1505 00c7 73746174 		.ascii	"statusR3\000"
+ 1505 00a5 73746174 		.ascii	"statusR3\000"
  1505      75735233 
  1505      00
  1506              	.LASF56:
- 1507 00d0 73656E73 		.ascii	"sensor_isr_StartEx\000"
+ 1507 00ae 73656E73 		.ascii	"sensor_isr_StartEx\000"
  1507      6F725F69 
  1507      73725F53 
  1507      74617274 
  1507      457800
  1508              	.LASF40:
- 1509 00e3 54696D65 		.ascii	"Timer_R1_ReadCapture\000"
+ 1509 00c1 54696D65 		.ascii	"Timer_R1_ReadCapture\000"
  1509      725F5231 
  1509      5F526561 
  1509      64436170 
  1509      74757265 
  1510              	.LASF26:
- 1511 00f8 7265666C 		.ascii	"reflectance_start\000"
+ 1511 00d6 7265666C 		.ascii	"reflectance_start\000"
  1511      65637461 
  1511      6E63655F 
  1511      73746172 
  1511      7400
  1512              	.LASF16:
- 1513 010a 666C6F61 		.ascii	"float\000"
+ 1513 00e8 666C6F61 		.ascii	"float\000"
  1513      7400
  1514              	.LASF49:
- 1515 0110 52335F53 		.ascii	"R3_SetDriveMode\000"
+ 1515 00ee 52335F53 		.ascii	"R3_SetDriveMode\000"
  1515      65744472 
  1515      6976654D 
  1515      6F646500 
  1516              	.LASF35:
- 1517 0120 54696D65 		.ascii	"Timer_R1_ReadStatusRegister\000"
+ 1517 00fe 54696D65 		.ascii	"Timer_R1_ReadStatusRegister\000"
  1517      725F5231 
  1517      5F526561 
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 31
-
-
  1517      64537461 
  1517      74757352 
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 31
+
+
  1518              	.LASF28:
- 1519 013c 7265666C 		.ascii	"reflectance_digital\000"
+ 1519 011a 7265666C 		.ascii	"reflectance_digital\000"
  1519      65637461 
  1519      6E63655F 
  1519      64696769 
  1519      74616C00 
- 1520              	.LASF34:
- 1521 0150 74687265 		.ascii	"threshold\000"
- 1521      73686F6C 
- 1521      6400
- 1522              	.LASF18:
- 1523 015a 63686172 		.ascii	"char\000"
- 1523      00
- 1524              	.LASF41:
- 1525 015f 54696D65 		.ascii	"Timer_R3_ReadPeriod\000"
- 1525      725F5233 
- 1525      5F526561 
- 1525      64506572 
- 1525      696F6400 
- 1526              	.LASF6:
- 1527 0173 6C6F6E67 		.ascii	"long int\000"
- 1527      20696E74 
- 1527      00
- 1528              	.LASF29:
- 1529 017c 76616C75 		.ascii	"values\000"
- 1529      657300
- 1530              	.LASF60:
- 1531 0183 54696D65 		.ascii	"Timer_L1_Start\000"
- 1531      725F4C31 
- 1531      5F537461 
- 1531      727400
- 1532              	.LASF53:
- 1533 0192 4C315F53 		.ascii	"L1_SetDriveMode\000"
- 1533      65744472 
- 1533      6976654D 
- 1533      6F646500 
- 1534              	.LASF19:
- 1535 01a2 6C6F6E67 		.ascii	"long double\000"
- 1535      20646F75 
- 1535      626C6500 
- 1536              	.LASF55:
- 1537 01ae 43794465 		.ascii	"CyDelayUs\000"
- 1537      6C617955 
- 1537      7300
- 1538              	.LASF1:
- 1539 01b8 756E7369 		.ascii	"unsigned char\000"
- 1539      676E6564 
- 1539      20636861 
- 1539      7200
- 1540              	.LASF47:
- 1541 01c6 52315F53 		.ascii	"R1_SetDriveMode\000"
- 1541      65744472 
- 1541      6976654D 
- 1541      6F646500 
- 1542              	.LASF31:
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 32
+ 1520              	.LASF63:
+ 1521 012e 433A5C55 		.ascii	"C:\\Users\\leevi\\Desktop\\Zumo_Ryhm-10\\ZumoBot.cy"
+ 1521      73657273 
+ 1521      5C6C6565 
+ 1521      76695C44 
+ 1521      65736B74 
+ 1522 015c 64736E00 		.ascii	"dsn\000"
+ 1523              	.LASF18:
+ 1524 0160 63686172 		.ascii	"char\000"
+ 1524      00
+ 1525              	.LASF41:
+ 1526 0165 54696D65 		.ascii	"Timer_R3_ReadPeriod\000"
+ 1526      725F5233 
+ 1526      5F526561 
+ 1526      64506572 
+ 1526      696F6400 
+ 1527              	.LASF6:
+ 1528 0179 6C6F6E67 		.ascii	"long int\000"
+ 1528      20696E74 
+ 1528      00
+ 1529              	.LASF29:
+ 1530 0182 76616C75 		.ascii	"values\000"
+ 1530      657300
+ 1531              	.LASF60:
+ 1532 0189 54696D65 		.ascii	"Timer_L1_Start\000"
+ 1532      725F4C31 
+ 1532      5F537461 
+ 1532      727400
+ 1533              	.LASF53:
+ 1534 0198 4C315F53 		.ascii	"L1_SetDriveMode\000"
+ 1534      65744472 
+ 1534      6976654D 
+ 1534      6F646500 
+ 1535              	.LASF19:
+ 1536 01a8 6C6F6E67 		.ascii	"long double\000"
+ 1536      20646F75 
+ 1536      626C6500 
+ 1537              	.LASF55:
+ 1538 01b4 43794465 		.ascii	"CyDelayUs\000"
+ 1538      6C617955 
+ 1538      7300
+ 1539              	.LASF1:
+ 1540 01be 756E7369 		.ascii	"unsigned char\000"
+ 1540      676E6564 
+ 1540      20636861 
+ 1540      7200
+ 1541              	.LASF47:
+ 1542 01cc 52315F53 		.ascii	"R1_SetDriveMode\000"
+ 1542      65744472 
+ 1542      6976654D 
+ 1542      6F646500 
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 32
 
 
- 1543 01d6 7265666C 		.ascii	"reflectance_set_threshold\000"
- 1543      65637461 
- 1543      6E63655F 
- 1543      7365745F 
- 1543      74687265 
- 1544              	.LASF0:
- 1545 01f0 7369676E 		.ascii	"signed char\000"
- 1545      65642063 
- 1545      68617200 
- 1546              	.LASF10:
- 1547 01fc 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1547      206C6F6E 
- 1547      6720756E 
- 1547      7369676E 
- 1547      65642069 
- 1548              	.LASF14:
- 1549 0213 75696E74 		.ascii	"uint32_t\000"
- 1549      33325F74 
- 1549      00
- 1550              	.LASF11:
- 1551 021c 756E7369 		.ascii	"unsigned int\000"
- 1551      676E6564 
- 1551      20696E74 
- 1551      00
- 1552              	.LASF12:
- 1553 0229 75696E74 		.ascii	"uint16_t\000"
- 1553      31365F74 
- 1553      00
- 1554              	.LASF48:
- 1555 0232 52315F57 		.ascii	"R1_Write\000"
- 1555      72697465 
- 1555      00
- 1556              	.LASF3:
- 1557 023b 73686F72 		.ascii	"short unsigned int\000"
- 1557      7420756E 
- 1557      7369676E 
- 1557      65642069 
- 1557      6E7400
- 1558              	.LASF46:
- 1559 024e 54696D65 		.ascii	"Timer_L1_ReadCapture\000"
- 1559      725F4C31 
- 1559      5F526561 
- 1559      64436170 
- 1559      74757265 
- 1560              	.LASF33:
- 1561 0263 64696769 		.ascii	"digital_sensor_value\000"
- 1561      74616C5F 
- 1561      73656E73 
- 1561      6F725F76 
- 1561      616C7565 
- 1562              	.LASF50:
- 1563 0278 52335F57 		.ascii	"R3_Write\000"
- 1563      72697465 
- 1563      00
- 1564              	.LASF23:
- 1565 0281 73746174 		.ascii	"statusL3\000"
- 1565      75734C33 
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 33
+ 1543              	.LASF31:
+ 1544 01dc 7265666C 		.ascii	"reflectance_set_threshold\000"
+ 1544      65637461 
+ 1544      6E63655F 
+ 1544      7365745F 
+ 1544      74687265 
+ 1545              	.LASF0:
+ 1546 01f6 7369676E 		.ascii	"signed char\000"
+ 1546      65642063 
+ 1546      68617200 
+ 1547              	.LASF10:
+ 1548 0202 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1548      206C6F6E 
+ 1548      6720756E 
+ 1548      7369676E 
+ 1548      65642069 
+ 1549              	.LASF14:
+ 1550 0219 75696E74 		.ascii	"uint32_t\000"
+ 1550      33325F74 
+ 1550      00
+ 1551              	.LASF11:
+ 1552 0222 756E7369 		.ascii	"unsigned int\000"
+ 1552      676E6564 
+ 1552      20696E74 
+ 1552      00
+ 1553              	.LASF12:
+ 1554 022f 75696E74 		.ascii	"uint16_t\000"
+ 1554      31365F74 
+ 1554      00
+ 1555              	.LASF48:
+ 1556 0238 52315F57 		.ascii	"R1_Write\000"
+ 1556      72697465 
+ 1556      00
+ 1557              	.LASF3:
+ 1558 0241 73686F72 		.ascii	"short unsigned int\000"
+ 1558      7420756E 
+ 1558      7369676E 
+ 1558      65642069 
+ 1558      6E7400
+ 1559              	.LASF46:
+ 1560 0254 54696D65 		.ascii	"Timer_L1_ReadCapture\000"
+ 1560      725F4C31 
+ 1560      5F526561 
+ 1560      64436170 
+ 1560      74757265 
+ 1561              	.LASF33:
+ 1562 0269 64696769 		.ascii	"digital_sensor_value\000"
+ 1562      74616C5F 
+ 1562      73656E73 
+ 1562      6F725F76 
+ 1562      616C7565 
+ 1563              	.LASF50:
+ 1564 027e 52335F57 		.ascii	"R3_Write\000"
+ 1564      72697465 
+ 1564      00
+ 1565              	.LASF23:
+ 1566 0287 73746174 		.ascii	"statusL3\000"
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 33
 
 
- 1565      00
- 1566              	.LASF13:
- 1567 028a 696E7433 		.ascii	"int32_t\000"
- 1567      325F7400 
- 1568              	.LASF44:
- 1569 0292 54696D65 		.ascii	"Timer_L3_ReadCapture\000"
- 1569      725F4C33 
- 1569      5F526561 
- 1569      64436170 
- 1569      74757265 
- 1570              	.LASF45:
- 1571 02a7 54696D65 		.ascii	"Timer_L1_ReadPeriod\000"
- 1571      725F4C31 
- 1571      5F526561 
- 1571      64506572 
- 1571      696F6400 
- 1572              	.LASF59:
- 1573 02bb 54696D65 		.ascii	"Timer_L3_Start\000"
- 1573      725F4C33 
- 1573      5F537461 
- 1573      727400
- 1574              	.LASF36:
- 1575 02ca 54696D65 		.ascii	"Timer_R3_ReadStatusRegister\000"
- 1575      725F5233 
- 1575      5F526561 
- 1575      64537461 
- 1575      74757352 
- 1576              	.LASF8:
- 1577 02e6 6C6F6E67 		.ascii	"long unsigned int\000"
- 1577      20756E73 
- 1577      69676E65 
- 1577      6420696E 
- 1577      7400
- 1578              	.LASF43:
- 1579 02f8 54696D65 		.ascii	"Timer_L3_ReadPeriod\000"
- 1579      725F4C33 
- 1579      5F526561 
- 1579      64506572 
- 1579      696F6400 
- 1580              	.LASF24:
- 1581 030c 73746174 		.ascii	"statusL1\000"
- 1581      75734C31 
- 1581      00
- 1582              	.LASF30:
- 1583 0315 64696769 		.ascii	"digital\000"
- 1583      74616C00 
- 1584              	.LASF39:
- 1585 031d 54696D65 		.ascii	"Timer_R1_ReadPeriod\000"
- 1585      725F5231 
- 1585      5F526561 
- 1585      64506572 
- 1585      696F6400 
- 1586              	.LASF42:
- 1587 0331 54696D65 		.ascii	"Timer_R3_ReadCapture\000"
- 1587      725F5233 
- 1587      5F526561 
- 1587      64436170 
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 34
+ 1566      75734C33 
+ 1566      00
+ 1567              	.LASF13:
+ 1568 0290 696E7433 		.ascii	"int32_t\000"
+ 1568      325F7400 
+ 1569              	.LASF44:
+ 1570 0298 54696D65 		.ascii	"Timer_L3_ReadCapture\000"
+ 1570      725F4C33 
+ 1570      5F526561 
+ 1570      64436170 
+ 1570      74757265 
+ 1571              	.LASF45:
+ 1572 02ad 54696D65 		.ascii	"Timer_L1_ReadPeriod\000"
+ 1572      725F4C31 
+ 1572      5F526561 
+ 1572      64506572 
+ 1572      696F6400 
+ 1573              	.LASF59:
+ 1574 02c1 54696D65 		.ascii	"Timer_L3_Start\000"
+ 1574      725F4C33 
+ 1574      5F537461 
+ 1574      727400
+ 1575              	.LASF36:
+ 1576 02d0 54696D65 		.ascii	"Timer_R3_ReadStatusRegister\000"
+ 1576      725F5233 
+ 1576      5F526561 
+ 1576      64537461 
+ 1576      74757352 
+ 1577              	.LASF8:
+ 1578 02ec 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1578      20756E73 
+ 1578      69676E65 
+ 1578      6420696E 
+ 1578      7400
+ 1579              	.LASF43:
+ 1580 02fe 54696D65 		.ascii	"Timer_L3_ReadPeriod\000"
+ 1580      725F4C33 
+ 1580      5F526561 
+ 1580      64506572 
+ 1580      696F6400 
+ 1581              	.LASF24:
+ 1582 0312 73746174 		.ascii	"statusL1\000"
+ 1582      75734C31 
+ 1582      00
+ 1583              	.LASF30:
+ 1584 031b 64696769 		.ascii	"digital\000"
+ 1584      74616C00 
+ 1585              	.LASF39:
+ 1586 0323 54696D65 		.ascii	"Timer_R1_ReadPeriod\000"
+ 1586      725F5231 
+ 1586      5F526561 
+ 1586      64506572 
+ 1586      696F6400 
+ 1587              	.LASF42:
+ 1588 0337 54696D65 		.ascii	"Timer_R3_ReadCapture\000"
+ 1588      725F5233 
+ 1588      5F526561 
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 34
 
 
- 1587      74757265 
- 1588              	.LASF5:
- 1589 0346 5F5F696E 		.ascii	"__int32_t\000"
- 1589      7433325F 
- 1589      7400
- 1590              	.LASF25:
- 1591 0350 73656E73 		.ascii	"sensor_isr_handler\000"
- 1591      6F725F69 
- 1591      73725F68 
- 1591      616E646C 
- 1591      657200
- 1592              	.LASF27:
- 1593 0363 7265666C 		.ascii	"reflectance_read\000"
- 1593      65637461 
- 1593      6E63655F 
- 1593      72656164 
- 1593      00
- 1594              	.LASF17:
- 1595 0374 646F7562 		.ascii	"double\000"
- 1595      6C6500
- 1596              	.LASF65:
- 1597 037b 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 1597      52784275 
- 1597      66666572 
- 1597      00
- 1598              	.LASF61:
- 1599 0388 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1599      43313120 
- 1599      352E342E 
- 1599      31203230 
- 1599      31363036 
- 1600 03bb 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 1600      20726576 
- 1600      6973696F 
- 1600      6E203233 
- 1600      37373135 
- 1601 03ee 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 1601      66756E63 
- 1601      74696F6E 
- 1601      2D736563 
- 1601      74696F6E 
- 1602              	.LASF37:
- 1603 0416 54696D65 		.ascii	"Timer_L3_ReadStatusRegister\000"
- 1603      725F4C33 
- 1603      5F526561 
- 1603      64537461 
- 1603      74757352 
- 1604              	.LASF62:
- 1605 0432 5A756D6F 		.ascii	"ZumoLibrary\\Reflectance.c\000"
- 1605      4C696272 
- 1605      6172795C 
- 1605      5265666C 
- 1605      65637461 
- 1606              	.LASF57:
- 1607 044c 54696D65 		.ascii	"Timer_R1_Start\000"
- 1607      725F5231 
- 1607      5F537461 
-ARM GAS  C:\Users\nikla\AppData\Local\Temp\cczjvTYf.s 			page 35
+ 1588      64436170 
+ 1588      74757265 
+ 1589              	.LASF5:
+ 1590 034c 5F5F696E 		.ascii	"__int32_t\000"
+ 1590      7433325F 
+ 1590      7400
+ 1591              	.LASF25:
+ 1592 0356 73656E73 		.ascii	"sensor_isr_handler\000"
+ 1592      6F725F69 
+ 1592      73725F68 
+ 1592      616E646C 
+ 1592      657200
+ 1593              	.LASF27:
+ 1594 0369 7265666C 		.ascii	"reflectance_read\000"
+ 1594      65637461 
+ 1594      6E63655F 
+ 1594      72656164 
+ 1594      00
+ 1595              	.LASF17:
+ 1596 037a 646F7562 		.ascii	"double\000"
+ 1596      6C6500
+ 1597              	.LASF65:
+ 1598 0381 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1598      52784275 
+ 1598      66666572 
+ 1598      00
+ 1599              	.LASF61:
+ 1600 038e 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1600      43313120 
+ 1600      352E342E 
+ 1600      31203230 
+ 1600      31363036 
+ 1601 03c1 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1601      20726576 
+ 1601      6973696F 
+ 1601      6E203233 
+ 1601      37373135 
+ 1602 03f4 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1602      66756E63 
+ 1602      74696F6E 
+ 1602      2D736563 
+ 1602      74696F6E 
+ 1603              	.LASF37:
+ 1604 041c 54696D65 		.ascii	"Timer_L3_ReadStatusRegister\000"
+ 1604      725F4C33 
+ 1604      5F526561 
+ 1604      64537461 
+ 1604      74757352 
+ 1605              	.LASF62:
+ 1606 0438 5A756D6F 		.ascii	"ZumoLibrary\\Reflectance.c\000"
+ 1606      4C696272 
+ 1606      6172795C 
+ 1606      5265666C 
+ 1606      65637461 
+ 1607              	.LASF57:
+ 1608 0452 54696D65 		.ascii	"Timer_R1_Start\000"
+ 1608      725F5231 
+ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccXROhEh.s 			page 35
 
 
- 1607      727400
- 1608              	.LASF54:
- 1609 045b 4C315F57 		.ascii	"L1_Write\000"
- 1609      72697465 
- 1609      00
- 1610              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1608      5F537461 
+ 1608      727400
+ 1609              	.LASF54:
+ 1610 0461 4C315F57 		.ascii	"L1_Write\000"
+ 1610      72697465 
+ 1610      00
+ 1611              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

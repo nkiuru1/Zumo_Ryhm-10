@@ -1,0 +1,10 @@
+--------------- Rebuild Started: 11/21/2017 09:19:04 Project: main.c, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I.\ZumoLibrary -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/main.lst -g -D DEBUG -Wall -ffunction-sections -ffat-lto-objects -Og -c main.c -o .\CortexM3\ARM_GCC_541\Debug\main.o
+main.c: In function 'main':
+main.c:82:36: warning: variable 'r3W' set but not used [-Wunused-but-set-variable]
+     uint16 l1W,l1B,l3W,l3B,r1W,r1B,r3W,r3B;
+                                    ^
+main.c:82:20: warning: variable 'l3W' set but not used [-Wunused-but-set-variable]
+     uint16 l1W,l1B,l3W,l3B,r1W,r1B,r3W,r3B;
+                    ^
+--------------- Rebuild Succeeded: 11/21/2017 09:19:04 ---------------
