@@ -76,24 +76,21 @@ int main()
     ADC_Battery_Start();         
     printf("\nBoot\n");
     BatteryLed_Write(0); // Switch led off 
-    uint8 button;
-    uint8 leftMotor = 20;
-    uint8 rightMotor = 20;
+    uint8 button; //Button state
+    uint8 leftMotor = 20; //LeftMotor Speed
+    uint8 rightMotor = 20; //RightMotor Speed
 
-    uint16 checkVoltageDelay = 5000;
-    uint8 blackLine = 0;
-    uint8 lineDelay = 0;
-    uint16 l1W,l1B,l3W,l3B,r1W,r1B,r3W,r3B;
-    float result[5];
-    bool calibrated = false;
-    uint8 leftDir = 0;
-    uint8 rightDir = 0;
-    unsigned int IR_val; 
-    
-    
+    uint16 checkVoltageDelay = 5000; //Delay to check voltage every 5 seconds
+    uint8 lineDelay = 0; //Delay to start checking if on black line
+    uint16 l1W,l1B,l3W,l3B,r1W,r1B,r3W,r3B; //Reflectance sensor black and white values
+    float result[5]; //Calibration results
+    bool calibrated = false; //Calibration status
+    uint8 leftDir = 0;//Direction of Left Motor, 0:forward 1:backward.
+    uint8 rightDir = 0;//Direction of Right Motor, 0:forward 1:backward.
+    unsigned int IR_val; //IR value
     
     l3W = 4500;
-    l3B = 23999;
+    l3B = 23999; //Black line sensor value
     l1W = 3000;
     l1B = 23999;
     r1W = 3300;
@@ -109,13 +106,14 @@ int main()
     
     float error = 0;
     float lastError = 0;
+    /*
+    Main loop
+    
+    Calibrates robot & positions it at start line & waits for remote to start
+    */
     for(;;)
     {
         button = SW1_Read();
-        //Calibrated on white line
-        
-            
-        
         if(button == 0){
             if(!calibrated){
                 calibrate(ref, result);
@@ -125,7 +123,6 @@ int main()
                 r3W = result[4];
                 calibrated = true;
                 button = 1;
-                //printf("Left 1: %i     Right 1: %i\n", l1W,r1W);
             }
             //Robot placed on track & if calibrated, moves forward untill a perpendicular black line.
             if(button == 0 && calibrated){
@@ -145,13 +142,18 @@ int main()
                 }
                 IR_val = get_IR();
                 if(IR_val != 1){
+                    /*
+                    Secondary Loop
+                    PD Drive
+                    
+                    Using calibrated sensor values it Determines if it turns left or right.
+                    If outer sensors detect a black line it changes the direction of one of the motors.
+                    Calls isOnBlackLine() to check if all sensors are on the line and stops it accordingly.
+                    */
                     for(;;){
                         reflectance_read(&ref);
-                        //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);  
-                        //float l3Scale = (float)l3B/(ref.l3 - l3W);
                         float r1Scale = (float)r1B/(ref.l1 - l1W);
                         float l1Scale = (float)l1B/(ref.r1 - r1W);
-                        //float r3Scale = (float)r3B/(ref.r3 - r3W);
                         
                         error = (r1Scale) - (l1Scale);
                         float motorSpeed = Kp * error + Kd * (error - lastError);
@@ -193,14 +195,17 @@ int main()
                             lineDelay++;
                         }
                      
-                        //checks if passed black line every 20ms
+                        //checks if passed black line every starting 100ms after starting
                         if(isOnBlackLine() && lineDelay > 100){
                             stop();
                         }
                     }
-                    }
+                }
             }
         }
+        /*
+        Checks voltage & if < 4.0 stops motors & flashes LED.
+        */
         if(checkVoltageDelay >= 5000){
             if(checkVoltage()){
                 break;
@@ -213,7 +218,9 @@ int main()
     flashLED();
     motor_stop();
 }
-
+/*
+Detects black line & stops on the second line and plays a tune
+*/
 void stop(){
     for(;;){
     reflectance_read(&ref);
@@ -231,6 +238,9 @@ void stop(){
     }
 }
 }
+/*
+Plays a fun tune
+*/
 void rick_roll(){
         Beep(140,153);
         CyDelay(10);
@@ -291,14 +301,18 @@ void rick_roll(){
         CyDelay(10);
         
         }
-
+/*
+ If all 4 sensors are mostly on black line, returns true
+*/
 bool isOnBlackLine(){
     if(ref.l3 > 22000 && ref.l1 > 22000 && ref.r1 > 22000 && ref.r3 > 22000){
         return true;
     }
     return false;
 }
-
+/*
+Gets & converts the value from ADC into Volts & returns true if it is over 4.00
+*/
 bool checkVoltage(){
     uint16 adcresult = 0;
     float vbat = 0;
@@ -311,7 +325,9 @@ bool checkVoltage(){
     }
     return vbat < 4.00;
  }   
-
+/*
+ +Flashes LED at increasing or decreasing intervals.
+*/
 void flashLED(){
     bool on = false;  
     int delay = 475;
@@ -347,8 +363,9 @@ void flashLED(){
         CyDelay(delay);
     }  
 }
-
-
+/*
+Gets reflectance value from all 4 sensors over 1 second & returns the average.
+*/
 void calibrate(struct sensors_ ref, float *result)
 {
     float l1[10]={};
