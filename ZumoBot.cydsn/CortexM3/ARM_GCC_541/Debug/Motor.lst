@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
   40              		.cfi_endproc
   41              	.LFE63:
   42              		.size	motor_start, .-motor_start
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 2
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 2
 
 
   43              		.section	.text.motor_stop,"ax",%progbits
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
   76              		@ args = 0, pretend = 0, frame = 0
   77              		@ frame_needed = 0, uses_anonymous_args = 0
   78              	.LVL2:
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 3
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 3
 
 
   79 0000 38B5     		push	{r3, r4, r5, lr}
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
   50:ZumoLibrary/Motor.c **** * @param    uint32 delay : delay time
   51:ZumoLibrary/Motor.c **** */
   52:ZumoLibrary/Motor.c **** void motor_turn(uint8 l_speed, uint8 r_speed, uint32 delay)
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 4
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 4
 
 
   53:ZumoLibrary/Motor.c **** {
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  159              		@ frame_needed = 0, uses_anonymous_args = 0
  160              	.LVL13:
  161 0000 38B5     		push	{r3, r4, r5, lr}
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 5
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 5
 
 
  162              		.cfi_def_cfa_offset 16
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  208              		.cfi_def_cfa_offset 16
  209              		.cfi_offset 4, -16
  210              		.cfi_offset 5, -12
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 6
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 6
 
 
  211              		.cfi_offset 6, -8
@@ -351,53 +351,53 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  253 0006 00000000 		.4byte	.Ldebug_abbrev0
  254 000a 04       		.byte	0x4
  255 000b 01       		.uleb128 0x1
- 256 000c 69000000 		.4byte	.LASF37
+ 256 000c 95000000 		.4byte	.LASF37
  257 0010 0C       		.byte	0xc
- 258 0011 4F010000 		.4byte	.LASF38
- 259 0015 17020000 		.4byte	.LASF39
+ 258 0011 7B010000 		.4byte	.LASF38
+ 259 0015 00000000 		.4byte	.LASF39
  260 0019 00000000 		.4byte	.Ldebug_ranges0+0
  261 001d 00000000 		.4byte	0
  262 0021 00000000 		.4byte	.Ldebug_line0
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 7
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 7
 
 
  263 0025 02       		.uleb128 0x2
  264 0026 01       		.byte	0x1
  265 0027 06       		.byte	0x6
- 266 0028 C6010000 		.4byte	.LASF0
+ 266 0028 F2010000 		.4byte	.LASF0
  267 002c 02       		.uleb128 0x2
  268 002d 01       		.byte	0x1
  269 002e 08       		.byte	0x8
- 270 002f 5B000000 		.4byte	.LASF1
+ 270 002f 87000000 		.4byte	.LASF1
  271 0033 02       		.uleb128 0x2
  272 0034 02       		.byte	0x2
  273 0035 05       		.byte	0x5
- 274 0036 FA010000 		.4byte	.LASF2
+ 274 0036 26020000 		.4byte	.LASF2
  275 003a 02       		.uleb128 0x2
  276 003b 02       		.byte	0x2
  277 003c 07       		.byte	0x7
- 278 003d 69020000 		.4byte	.LASF3
+ 278 003d 63020000 		.4byte	.LASF3
  279 0041 03       		.uleb128 0x3
- 280 0042 00000000 		.4byte	.LASF9
+ 280 0042 2C000000 		.4byte	.LASF9
  281 0046 02       		.byte	0x2
  282 0047 3F       		.byte	0x3f
  283 0048 4C000000 		.4byte	0x4c
  284 004c 02       		.uleb128 0x2
  285 004d 04       		.byte	0x4
  286 004e 05       		.byte	0x5
- 287 004f 49020000 		.4byte	.LASF4
+ 287 004f 43020000 		.4byte	.LASF4
  288 0053 02       		.uleb128 0x2
  289 0054 04       		.byte	0x4
  290 0055 07       		.byte	0x7
- 291 0056 F7000000 		.4byte	.LASF5
+ 291 0056 23010000 		.4byte	.LASF5
  292 005a 02       		.uleb128 0x2
  293 005b 08       		.byte	0x8
  294 005c 05       		.byte	0x5
- 295 005d E7010000 		.4byte	.LASF6
+ 295 005d 13020000 		.4byte	.LASF6
  296 0061 02       		.uleb128 0x2
  297 0062 08       		.byte	0x8
  298 0063 07       		.byte	0x7
- 299 0064 7F010000 		.4byte	.LASF7
+ 299 0064 AB010000 		.4byte	.LASF7
  300 0068 04       		.uleb128 0x4
  301 0069 04       		.byte	0x4
  302 006a 05       		.byte	0x5
@@ -405,20 +405,20 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  304 006f 02       		.uleb128 0x2
  305 0070 04       		.byte	0x4
  306 0071 07       		.byte	0x7
- 307 0072 6A010000 		.4byte	.LASF8
+ 307 0072 96010000 		.4byte	.LASF8
  308 0076 03       		.uleb128 0x3
- 309 0077 3B000000 		.4byte	.LASF10
+ 309 0077 67000000 		.4byte	.LASF10
  310 007b 03       		.byte	0x3
  311 007c 2C       		.byte	0x2c
  312 007d 41000000 		.4byte	0x41
  313 0081 05       		.uleb128 0x5
- 314 0082 35000000 		.4byte	.LASF11
+ 314 0082 61000000 		.4byte	.LASF11
  315 0086 04       		.byte	0x4
  316 0087 9201     		.2byte	0x192
  317 0089 2C000000 		.4byte	0x2c
  318 008d 05       		.uleb128 0x5
- 319 008e 63010000 		.4byte	.LASF12
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 8
+ 319 008e 8F010000 		.4byte	.LASF12
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 8
 
 
  320 0092 04       		.byte	0x4
@@ -427,25 +427,25 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  323 0099 02       		.uleb128 0x2
  324 009a 04       		.byte	0x4
  325 009b 04       		.byte	0x4
- 326 009c 43000000 		.4byte	.LASF13
+ 326 009c 6F000000 		.4byte	.LASF13
  327 00a0 02       		.uleb128 0x2
  328 00a1 08       		.byte	0x8
  329 00a2 04       		.byte	0x4
- 330 00a3 3D010000 		.4byte	.LASF14
+ 330 00a3 69010000 		.4byte	.LASF14
  331 00a7 02       		.uleb128 0x2
  332 00a8 01       		.byte	0x1
  333 00a9 08       		.byte	0x8
- 334 00aa F5010000 		.4byte	.LASF15
+ 334 00aa 21020000 		.4byte	.LASF15
  335 00ae 02       		.uleb128 0x2
  336 00af 08       		.byte	0x8
  337 00b0 04       		.byte	0x4
- 338 00b1 52020000 		.4byte	.LASF16
+ 338 00b1 4C020000 		.4byte	.LASF16
  339 00b5 02       		.uleb128 0x2
  340 00b6 04       		.byte	0x4
  341 00b7 07       		.byte	0x7
- 342 00b8 D8010000 		.4byte	.LASF17
+ 342 00b8 04020000 		.4byte	.LASF17
  343 00bc 06       		.uleb128 0x6
- 344 00bd 96010000 		.4byte	.LASF18
+ 344 00bd C2010000 		.4byte	.LASF18
  345 00c1 01       		.byte	0x1
  346 00c2 0D       		.byte	0xd
  347 00c3 00000000 		.4byte	.LFB63
@@ -458,7 +458,7 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  354 00d6 55030000 		.4byte	0x355
  355 00da 00       		.byte	0
  356 00db 06       		.uleb128 0x6
- 357 00dc 44010000 		.4byte	.LASF19
+ 357 00dc 70010000 		.4byte	.LASF19
  358 00e0 01       		.byte	0x1
  359 00e1 17       		.byte	0x17
  360 00e2 00000000 		.4byte	.LFB64
@@ -471,25 +471,25 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  367 00f5 60030000 		.4byte	0x360
  368 00f9 00       		.byte	0
  369 00fa 08       		.uleb128 0x8
- 370 00fb 2F010000 		.4byte	.LASF22
+ 370 00fb 5B010000 		.4byte	.LASF22
  371 00ff 01       		.byte	0x1
  372 0100 23       		.byte	0x23
  373 0101 00000000 		.4byte	.LFB65
  374 0105 26000000 		.4byte	.LFE65-.LFB65
  375 0109 01       		.uleb128 0x1
  376 010a 9C       		.byte	0x9c
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 9
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 9
 
 
  377 010b 8C010000 		.4byte	0x18c
  378 010f 09       		.uleb128 0x9
- 379 0110 D2010000 		.4byte	.LASF20
+ 379 0110 FE010000 		.4byte	.LASF20
  380 0114 01       		.byte	0x1
  381 0115 23       		.byte	0x23
  382 0116 81000000 		.4byte	0x81
  383 011a 00000000 		.4byte	.LLST0
  384 011e 09       		.uleb128 0x9
- 385 011f 55000000 		.4byte	.LASF21
+ 385 011f 81000000 		.4byte	.LASF21
  386 0123 01       		.byte	0x1
  387 0124 23       		.byte	0x23
  388 0125 8D000000 		.4byte	0x8d
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  431 017a 00       		.byte	0
  432 017b 0C       		.uleb128 0xc
  433 017c 24000000 		.4byte	.LVL8
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 10
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 10
 
 
  434 0180 97030000 		.4byte	0x397
@@ -551,7 +551,7 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  441 018a 00       		.byte	0
  442 018b 00       		.byte	0
  443 018c 08       		.uleb128 0x8
- 444 018d 5E020000 		.4byte	.LASF23
+ 444 018d 58020000 		.4byte	.LASF23
  445 0191 01       		.byte	0x1
  446 0192 34       		.byte	0x34
  447 0193 00000000 		.4byte	.LFB66
@@ -560,19 +560,19 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  450 019c 9C       		.byte	0x9c
  451 019d FC010000 		.4byte	0x1fc
  452 01a1 09       		.uleb128 0x9
- 453 01a2 77010000 		.4byte	.LASF24
+ 453 01a2 A3010000 		.4byte	.LASF24
  454 01a6 01       		.byte	0x1
  455 01a7 34       		.byte	0x34
  456 01a8 81000000 		.4byte	0x81
  457 01ac 3F000000 		.4byte	.LLST2
  458 01b0 09       		.uleb128 0x9
- 459 01b1 19000000 		.4byte	.LASF25
+ 459 01b1 45000000 		.4byte	.LASF25
  460 01b5 01       		.byte	0x1
  461 01b6 34       		.byte	0x34
  462 01b7 81000000 		.4byte	0x81
  463 01bb 60000000 		.4byte	.LLST3
  464 01bf 09       		.uleb128 0x9
- 465 01c0 55000000 		.4byte	.LASF21
+ 465 01c0 81000000 		.4byte	.LASF21
  466 01c4 01       		.byte	0x1
  467 01c5 34       		.byte	0x34
  468 01c6 8D000000 		.4byte	0x8d
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  488 01f5 01       		.uleb128 0x1
  489 01f6 50       		.byte	0x50
  490 01f7 02       		.uleb128 0x2
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 11
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 11
 
 
  491 01f8 74       		.byte	0x74
@@ -606,7 +606,7 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  493 01fa 00       		.byte	0
  494 01fb 00       		.byte	0
  495 01fc 08       		.uleb128 0x8
- 496 01fd 0A000000 		.4byte	.LASF26
+ 496 01fd 36000000 		.4byte	.LASF26
  497 0201 01       		.byte	0x1
  498 0202 42       		.byte	0x42
  499 0203 00000000 		.4byte	.LFB67
@@ -615,13 +615,13 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  502 020c 9C       		.byte	0x9c
  503 020d 8E020000 		.4byte	0x28e
  504 0211 09       		.uleb128 0x9
- 505 0212 D2010000 		.4byte	.LASF20
+ 505 0212 FE010000 		.4byte	.LASF20
  506 0216 01       		.byte	0x1
  507 0217 42       		.byte	0x42
  508 0218 81000000 		.4byte	0x81
  509 021c 9F000000 		.4byte	.LLST5
  510 0220 09       		.uleb128 0x9
- 511 0221 55000000 		.4byte	.LASF21
+ 511 0221 81000000 		.4byte	.LASF21
  512 0225 01       		.byte	0x1
  513 0226 42       		.byte	0x42
  514 0227 8D000000 		.4byte	0x8d
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  545 0267 00       		.sleb128 0
  546 0268 00       		.byte	0
  547 0269 0A       		.uleb128 0xa
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 12
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 12
 
 
  548 026a 1E000000 		.4byte	.LVL18
@@ -683,7 +683,7 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  567 028c 00       		.byte	0
  568 028d 00       		.byte	0
  569 028e 08       		.uleb128 0x8
- 570 028f 49000000 		.4byte	.LASF27
+ 570 028f 75000000 		.4byte	.LASF27
  571 0293 01       		.byte	0x1
  572 0294 4B       		.byte	0x4b
  573 0295 00000000 		.4byte	.LFB68
@@ -692,33 +692,33 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  576 029e 9C       		.byte	0x9c
  577 029f 44030000 		.4byte	0x344
  578 02a3 09       		.uleb128 0x9
- 579 02a4 09010000 		.4byte	.LASF28
+ 579 02a4 35010000 		.4byte	.LASF28
  580 02a8 01       		.byte	0x1
  581 02a9 4B       		.byte	0x4b
  582 02aa 81000000 		.4byte	0x81
  583 02ae DE000000 		.4byte	.LLST7
  584 02b2 09       		.uleb128 0x9
- 585 02b3 E1010000 		.4byte	.LASF29
+ 585 02b3 0D020000 		.4byte	.LASF29
  586 02b7 01       		.byte	0x1
  587 02b8 4B       		.byte	0x4b
  588 02b9 81000000 		.4byte	0x81
  589 02bd FF000000 		.4byte	.LLST8
  590 02c1 09       		.uleb128 0x9
- 591 02c2 77010000 		.4byte	.LASF24
+ 591 02c2 A3010000 		.4byte	.LASF24
  592 02c6 01       		.byte	0x1
  593 02c7 4B       		.byte	0x4b
  594 02c8 81000000 		.4byte	0x81
  595 02cc 20010000 		.4byte	.LLST9
  596 02d0 09       		.uleb128 0x9
- 597 02d1 19000000 		.4byte	.LASF25
+ 597 02d1 45000000 		.4byte	.LASF25
  598 02d5 01       		.byte	0x1
  599 02d6 4B       		.byte	0x4b
  600 02d7 81000000 		.4byte	0x81
  601 02db 41010000 		.4byte	.LLST10
  602 02df 0D       		.uleb128 0xd
- 603 02e0 55000000 		.4byte	.LASF21
+ 603 02e0 81000000 		.4byte	.LASF21
  604 02e4 01       		.byte	0x1
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 13
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 13
 
 
  605 02e5 4B       		.byte	0x4b
@@ -775,48 +775,48 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  656 0342 00       		.byte	0
  657 0343 00       		.byte	0
  658 0344 0E       		.uleb128 0xe
- 659 0345 22010000 		.4byte	.LASF40
+ 659 0345 4E010000 		.4byte	.LASF40
  660 0349 09       		.byte	0x9
  661 034a 9606     		.2byte	0x696
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 14
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 14
 
 
  662 034c 50030000 		.4byte	0x350
  663 0350 0F       		.uleb128 0xf
  664 0351 76000000 		.4byte	0x76
  665 0355 10       		.uleb128 0x10
- 666 0356 04020000 		.4byte	.LASF30
- 667 035a 04020000 		.4byte	.LASF30
+ 666 0356 30020000 		.4byte	.LASF30
+ 667 035a 30020000 		.4byte	.LASF30
  668 035e 05       		.byte	0x5
  669 035f 92       		.byte	0x92
  670 0360 10       		.uleb128 0x10
- 671 0361 0E020000 		.4byte	.LASF31
- 672 0365 0E020000 		.4byte	.LASF31
+ 671 0361 3A020000 		.4byte	.LASF31
+ 672 0365 3A020000 		.4byte	.LASF31
  673 0369 05       		.byte	0x5
  674 036a 93       		.byte	0x93
  675 036b 10       		.uleb128 0x10
- 676 036c 0F010000 		.4byte	.LASF32
- 677 0370 0F010000 		.4byte	.LASF32
+ 676 036c 3B010000 		.4byte	.LASF32
+ 677 0370 3B010000 		.4byte	.LASF32
  678 0374 06       		.byte	0x6
  679 0375 26       		.byte	0x26
  680 0376 10       		.uleb128 0x10
- 681 0377 21000000 		.4byte	.LASF33
- 682 037b 21000000 		.4byte	.LASF33
+ 681 0377 4D000000 		.4byte	.LASF33
+ 682 037b 4D000000 		.4byte	.LASF33
  683 037f 07       		.byte	0x7
  684 0380 26       		.byte	0x26
  685 0381 10       		.uleb128 0x10
- 686 0382 A2010000 		.4byte	.LASF34
- 687 0386 A2010000 		.4byte	.LASF34
+ 686 0382 CE010000 		.4byte	.LASF34
+ 687 0386 CE010000 		.4byte	.LASF34
  688 038a 05       		.byte	0x5
  689 038b C7       		.byte	0xc7
  690 038c 10       		.uleb128 0x10
- 691 038d B4010000 		.4byte	.LASF35
- 692 0391 B4010000 		.4byte	.LASF35
+ 691 038d E0010000 		.4byte	.LASF35
+ 692 0391 E0010000 		.4byte	.LASF35
  693 0395 05       		.byte	0x5
  694 0396 CA       		.byte	0xca
  695 0397 10       		.uleb128 0x10
- 696 0398 7C020000 		.4byte	.LASF36
- 697 039c 7C020000 		.4byte	.LASF36
+ 696 0398 76020000 		.4byte	.LASF36
+ 697 039c 76020000 		.4byte	.LASF36
  698 03a0 08       		.byte	0x8
  699 03a1 76       		.byte	0x76
  700 03a2 00       		.byte	0
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  716 000d 11       		.uleb128 0x11
  717 000e 01       		.uleb128 0x1
  718 000f 10       		.uleb128 0x10
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 15
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 15
 
 
  719 0010 17       		.uleb128 0x17
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  773 0046 3F       		.uleb128 0x3f
  774 0047 19       		.uleb128 0x19
  775 0048 03       		.uleb128 0x3
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 16
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 16
 
 
  776 0049 0E       		.uleb128 0xe
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  830 0083 03       		.uleb128 0x3
  831 0084 0E       		.uleb128 0xe
  832 0085 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 17
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 17
 
 
  833 0086 0B       		.uleb128 0xb
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  887 00c3 34       		.uleb128 0x34
  888 00c4 00       		.byte	0
  889 00c5 03       		.uleb128 0x3
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 18
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 18
 
 
  890 00c6 0E       		.uleb128 0xe
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  944              	.LLST1:
  945 0021 00000000 		.4byte	.LVL2
  946 0025 0B000000 		.4byte	.LVL4-1
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 19
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 19
 
 
  947 0029 0100     		.2byte	0x1
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  1001 00b2 0400     		.2byte	0x4
  1002 00b4 F3       		.byte	0xf3
  1003 00b5 01       		.uleb128 0x1
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 20
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 20
 
 
  1004 00b6 50       		.byte	0x50
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  1058 0138 9F       		.byte	0x9f
  1059 0139 00000000 		.4byte	0
  1060 013d 00000000 		.4byte	0
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 21
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 21
 
 
  1061              	.LLST10:
@@ -1258,206 +1258,205 @@ ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 1
  1115 0000 08020000 		.section	.debug_str,"MS",%progbits,1
  1115      02009201 
  1115      00000201 
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 22
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 22
 
 
  1115      FB0E0D00 
  1115      01010101 
- 1116              	.LASF9:
- 1117 0000 5F5F696E 		.ascii	"__int32_t\000"
- 1117      7433325F 
- 1117      7400
- 1118              	.LASF26:
- 1119 000a 6D6F746F 		.ascii	"motor_backward\000"
- 1119      725F6261 
- 1119      636B7761 
- 1119      726400
- 1120              	.LASF25:
- 1121 0019 725F7370 		.ascii	"r_speed\000"
- 1121      65656400 
- 1122              	.LASF33:
- 1123 0021 4D6F746F 		.ascii	"MotorDirRight_Write\000"
- 1123      72446972 
- 1123      52696768 
- 1123      745F5772 
- 1123      69746500 
- 1124              	.LASF11:
- 1125 0035 75696E74 		.ascii	"uint8\000"
- 1125      3800
- 1126              	.LASF10:
- 1127 003b 696E7433 		.ascii	"int32_t\000"
- 1127      325F7400 
- 1128              	.LASF13:
- 1129 0043 666C6F61 		.ascii	"float\000"
- 1129      7400
- 1130              	.LASF27:
- 1131 0049 6D6F746F 		.ascii	"motor_drive\000"
- 1131      725F6472 
- 1131      69766500 
- 1132              	.LASF21:
- 1133 0055 64656C61 		.ascii	"delay\000"
- 1133      7900
- 1134              	.LASF1:
- 1135 005b 756E7369 		.ascii	"unsigned char\000"
- 1135      676E6564 
- 1135      20636861 
- 1135      7200
- 1136              	.LASF37:
- 1137 0069 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1137      43313120 
- 1137      352E342E 
- 1137      31203230 
- 1137      31363036 
- 1138 009c 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 1138      20726576 
- 1138      6973696F 
- 1138      6E203233 
- 1138      37373135 
- 1139 00cf 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 1139      66756E63 
- 1139      74696F6E 
- 1139      2D736563 
- 1139      74696F6E 
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 23
+ 1116              	.LASF39:
+ 1117 0000 433A5C55 		.ascii	"C:\\Users\\nikla\\Desktop\\Zumo01\\ZumoBot.cydsn\000"
+ 1117      73657273 
+ 1117      5C6E696B 
+ 1117      6C615C44 
+ 1117      65736B74 
+ 1118              	.LASF9:
+ 1119 002c 5F5F696E 		.ascii	"__int32_t\000"
+ 1119      7433325F 
+ 1119      7400
+ 1120              	.LASF26:
+ 1121 0036 6D6F746F 		.ascii	"motor_backward\000"
+ 1121      725F6261 
+ 1121      636B7761 
+ 1121      726400
+ 1122              	.LASF25:
+ 1123 0045 725F7370 		.ascii	"r_speed\000"
+ 1123      65656400 
+ 1124              	.LASF33:
+ 1125 004d 4D6F746F 		.ascii	"MotorDirRight_Write\000"
+ 1125      72446972 
+ 1125      52696768 
+ 1125      745F5772 
+ 1125      69746500 
+ 1126              	.LASF11:
+ 1127 0061 75696E74 		.ascii	"uint8\000"
+ 1127      3800
+ 1128              	.LASF10:
+ 1129 0067 696E7433 		.ascii	"int32_t\000"
+ 1129      325F7400 
+ 1130              	.LASF13:
+ 1131 006f 666C6F61 		.ascii	"float\000"
+ 1131      7400
+ 1132              	.LASF27:
+ 1133 0075 6D6F746F 		.ascii	"motor_drive\000"
+ 1133      725F6472 
+ 1133      69766500 
+ 1134              	.LASF21:
+ 1135 0081 64656C61 		.ascii	"delay\000"
+ 1135      7900
+ 1136              	.LASF1:
+ 1137 0087 756E7369 		.ascii	"unsigned char\000"
+ 1137      676E6564 
+ 1137      20636861 
+ 1137      7200
+ 1138              	.LASF37:
+ 1139 0095 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1139      43313120 
+ 1139      352E342E 
+ 1139      31203230 
+ 1139      31363036 
+ 1140 00c8 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1140      20726576 
+ 1140      6973696F 
+ 1140      6E203233 
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 23
 
 
- 1140              	.LASF5:
- 1141 00f7 6C6F6E67 		.ascii	"long unsigned int\000"
- 1141      20756E73 
- 1141      69676E65 
- 1141      6420696E 
- 1141      7400
- 1142              	.LASF28:
- 1143 0109 6C5F6469 		.ascii	"l_dir\000"
- 1143      7200
- 1144              	.LASF32:
- 1145 010f 4D6F746F 		.ascii	"MotorDirLeft_Write\000"
- 1145      72446972 
- 1145      4C656674 
- 1145      5F577269 
- 1145      746500
- 1146              	.LASF40:
- 1147 0122 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 1147      52784275 
- 1147      66666572 
- 1147      00
- 1148              	.LASF22:
- 1149 012f 6D6F746F 		.ascii	"motor_forward\000"
- 1149      725F666F 
- 1149      72776172 
- 1149      6400
- 1150              	.LASF14:
- 1151 013d 646F7562 		.ascii	"double\000"
- 1151      6C6500
- 1152              	.LASF19:
- 1153 0144 6D6F746F 		.ascii	"motor_stop\000"
- 1153      725F7374 
- 1153      6F7000
- 1154              	.LASF38:
- 1155 014f 5A756D6F 		.ascii	"ZumoLibrary\\Motor.c\000"
- 1155      4C696272 
- 1155      6172795C 
- 1155      4D6F746F 
- 1155      722E6300 
- 1156              	.LASF12:
- 1157 0163 75696E74 		.ascii	"uint32\000"
- 1157      333200
- 1158              	.LASF8:
- 1159 016a 756E7369 		.ascii	"unsigned int\000"
- 1159      676E6564 
- 1159      20696E74 
- 1159      00
- 1160              	.LASF24:
- 1161 0177 6C5F7370 		.ascii	"l_speed\000"
- 1161      65656400 
- 1162              	.LASF7:
- 1163 017f 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1163      206C6F6E 
- 1163      6720756E 
- 1163      7369676E 
- 1163      65642069 
- 1164              	.LASF18:
- 1165 0196 6D6F746F 		.ascii	"motor_start\000"
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 24
+ 1140      37373135 
+ 1141 00fb 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1141      66756E63 
+ 1141      74696F6E 
+ 1141      2D736563 
+ 1141      74696F6E 
+ 1142              	.LASF5:
+ 1143 0123 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1143      20756E73 
+ 1143      69676E65 
+ 1143      6420696E 
+ 1143      7400
+ 1144              	.LASF28:
+ 1145 0135 6C5F6469 		.ascii	"l_dir\000"
+ 1145      7200
+ 1146              	.LASF32:
+ 1147 013b 4D6F746F 		.ascii	"MotorDirLeft_Write\000"
+ 1147      72446972 
+ 1147      4C656674 
+ 1147      5F577269 
+ 1147      746500
+ 1148              	.LASF40:
+ 1149 014e 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1149      52784275 
+ 1149      66666572 
+ 1149      00
+ 1150              	.LASF22:
+ 1151 015b 6D6F746F 		.ascii	"motor_forward\000"
+ 1151      725F666F 
+ 1151      72776172 
+ 1151      6400
+ 1152              	.LASF14:
+ 1153 0169 646F7562 		.ascii	"double\000"
+ 1153      6C6500
+ 1154              	.LASF19:
+ 1155 0170 6D6F746F 		.ascii	"motor_stop\000"
+ 1155      725F7374 
+ 1155      6F7000
+ 1156              	.LASF38:
+ 1157 017b 5A756D6F 		.ascii	"ZumoLibrary\\Motor.c\000"
+ 1157      4C696272 
+ 1157      6172795C 
+ 1157      4D6F746F 
+ 1157      722E6300 
+ 1158              	.LASF12:
+ 1159 018f 75696E74 		.ascii	"uint32\000"
+ 1159      333200
+ 1160              	.LASF8:
+ 1161 0196 756E7369 		.ascii	"unsigned int\000"
+ 1161      676E6564 
+ 1161      20696E74 
+ 1161      00
+ 1162              	.LASF24:
+ 1163 01a3 6C5F7370 		.ascii	"l_speed\000"
+ 1163      65656400 
+ 1164              	.LASF7:
+ 1165 01ab 6C6F6E67 		.ascii	"long long unsigned int\000"
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 24
 
 
- 1165      725F7374 
- 1165      61727400 
- 1166              	.LASF34:
- 1167 01a2 50574D5F 		.ascii	"PWM_WriteCompare1\000"
- 1167      57726974 
- 1167      65436F6D 
- 1167      70617265 
- 1167      3100
- 1168              	.LASF35:
- 1169 01b4 50574D5F 		.ascii	"PWM_WriteCompare2\000"
+ 1165      206C6F6E 
+ 1165      6720756E 
+ 1165      7369676E 
+ 1165      65642069 
+ 1166              	.LASF18:
+ 1167 01c2 6D6F746F 		.ascii	"motor_start\000"
+ 1167      725F7374 
+ 1167      61727400 
+ 1168              	.LASF34:
+ 1169 01ce 50574D5F 		.ascii	"PWM_WriteCompare1\000"
  1169      57726974 
  1169      65436F6D 
  1169      70617265 
- 1169      3200
- 1170              	.LASF0:
- 1171 01c6 7369676E 		.ascii	"signed char\000"
- 1171      65642063 
- 1171      68617200 
- 1172              	.LASF20:
- 1173 01d2 73706565 		.ascii	"speed\000"
- 1173      6400
- 1174              	.LASF17:
- 1175 01d8 73697A65 		.ascii	"sizetype\000"
- 1175      74797065 
- 1175      00
- 1176              	.LASF29:
- 1177 01e1 725F6469 		.ascii	"r_dir\000"
- 1177      7200
- 1178              	.LASF6:
- 1179 01e7 6C6F6E67 		.ascii	"long long int\000"
- 1179      206C6F6E 
- 1179      6720696E 
- 1179      7400
- 1180              	.LASF15:
- 1181 01f5 63686172 		.ascii	"char\000"
- 1181      00
- 1182              	.LASF2:
- 1183 01fa 73686F72 		.ascii	"short int\000"
- 1183      7420696E 
- 1183      7400
- 1184              	.LASF30:
- 1185 0204 50574D5F 		.ascii	"PWM_Start\000"
- 1185      53746172 
+ 1169      3100
+ 1170              	.LASF35:
+ 1171 01e0 50574D5F 		.ascii	"PWM_WriteCompare2\000"
+ 1171      57726974 
+ 1171      65436F6D 
+ 1171      70617265 
+ 1171      3200
+ 1172              	.LASF0:
+ 1173 01f2 7369676E 		.ascii	"signed char\000"
+ 1173      65642063 
+ 1173      68617200 
+ 1174              	.LASF20:
+ 1175 01fe 73706565 		.ascii	"speed\000"
+ 1175      6400
+ 1176              	.LASF17:
+ 1177 0204 73697A65 		.ascii	"sizetype\000"
+ 1177      74797065 
+ 1177      00
+ 1178              	.LASF29:
+ 1179 020d 725F6469 		.ascii	"r_dir\000"
+ 1179      7200
+ 1180              	.LASF6:
+ 1181 0213 6C6F6E67 		.ascii	"long long int\000"
+ 1181      206C6F6E 
+ 1181      6720696E 
+ 1181      7400
+ 1182              	.LASF15:
+ 1183 0221 63686172 		.ascii	"char\000"
+ 1183      00
+ 1184              	.LASF2:
+ 1185 0226 73686F72 		.ascii	"short int\000"
+ 1185      7420696E 
  1185      7400
- 1186              	.LASF31:
- 1187 020e 50574D5F 		.ascii	"PWM_Stop\000"
- 1187      53746F70 
- 1187      00
- 1188              	.LASF39:
- 1189 0217 433A5C55 		.ascii	"C:\\Users\\leevi\\Desktop\\Zumo_Ryhm-10\\ZumoBot.cy"
- 1189      73657273 
- 1189      5C6C6565 
- 1189      76695C44 
- 1189      65736B74 
- 1190 0245 64736E00 		.ascii	"dsn\000"
- 1191              	.LASF4:
- 1192 0249 6C6F6E67 		.ascii	"long int\000"
-ARM GAS  C:\Users\leevi\AppData\Local\Temp\ccPrcMNX.s 			page 25
+ 1186              	.LASF30:
+ 1187 0230 50574D5F 		.ascii	"PWM_Start\000"
+ 1187      53746172 
+ 1187      7400
+ 1188              	.LASF31:
+ 1189 023a 50574D5F 		.ascii	"PWM_Stop\000"
+ 1189      53746F70 
+ 1189      00
+ 1190              	.LASF4:
+ 1191 0243 6C6F6E67 		.ascii	"long int\000"
+ 1191      20696E74 
+ARM GAS  C:\Users\nikla\AppData\Local\Temp\ccpDdRrL.s 			page 25
 
 
- 1192      20696E74 
- 1192      00
- 1193              	.LASF16:
- 1194 0252 6C6F6E67 		.ascii	"long double\000"
- 1194      20646F75 
- 1194      626C6500 
- 1195              	.LASF23:
- 1196 025e 6D6F746F 		.ascii	"motor_turn\000"
- 1196      725F7475 
- 1196      726E00
- 1197              	.LASF3:
- 1198 0269 73686F72 		.ascii	"short unsigned int\000"
- 1198      7420756E 
- 1198      7369676E 
- 1198      65642069 
- 1198      6E7400
- 1199              	.LASF36:
- 1200 027c 43794465 		.ascii	"CyDelay\000"
- 1200      6C617900 
- 1201              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1191      00
+ 1192              	.LASF16:
+ 1193 024c 6C6F6E67 		.ascii	"long double\000"
+ 1193      20646F75 
+ 1193      626C6500 
+ 1194              	.LASF23:
+ 1195 0258 6D6F746F 		.ascii	"motor_turn\000"
+ 1195      725F7475 
+ 1195      726E00
+ 1196              	.LASF3:
+ 1197 0263 73686F72 		.ascii	"short unsigned int\000"
+ 1197      7420756E 
+ 1197      7369676E 
+ 1197      65642069 
+ 1197      6E7400
+ 1198              	.LASF36:
+ 1199 0276 43794465 		.ascii	"CyDelay\000"
+ 1199      6C617900 
+ 1200              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
