@@ -73,18 +73,24 @@ int main()
     Ultra_Start(); 
     printf("\nBoot\n");
     BatteryLed_Write(0); // Switch led off 
-    uint8 button;
-    float distance = 0;
-    uint16 checkVoltageDelay = 5000;
-    uint IR_val;
+    
+    uint8 button; //Button state
+    float distance = 0; //Distance to object
+    uint16 checkVoltageDelay = 5000; // Delay to check voltage every 5 seconds
+    uint IR_val; //IR sensor value
 
     CyGlobalIntEnable; 
     sensor_isr_StartEx(sensor_isr_handler);
     
     reflectance_start();
     IR_led_Write(1);
-    int turnDirection = 0;
+    int turnDirection = 0; //Turning direction when looking for robots
     
+    /*
+    Main loop.
+    
+    Drives forward until horizontal line and stops and waits for remote control command to start
+    */
     for(;;)
     {
         button = SW1_Read();
@@ -106,6 +112,13 @@ int main()
         if(IR_val != 1){
             motor_start();
             motor_drive(0,0,255,255,800);
+            /*
+            Secondary loop
+            
+            1st drives to the center of the circle and then begins to turn in place to look for robots.
+            2nd Drives toward the robot & changes turning direction
+            Depending on which reflectance sensor reads a black line, it either goes straight back or back and turns.
+            */
             for(;;){
                 distance = Ultra_GetDistance();
                 printf("distance = %5.0f\r\n", Ultra_GetDistance());
@@ -141,96 +154,38 @@ int main()
                     motor_drive(1,1,125,255,550);
                     turnDirection = 1;
                     motor_drive(1,1,0,0,25);
-                }
-                /*IR_val = get_IR();
-                if(IR_val != 1){
-                    motor_stop();
-                    break;
-                }*/
-                
+                }                
             }
         }
-                    }
-        if(checkVoltageDelay >= 5000){
-            if(checkVoltage()){
-                break;
-            }
-            checkVoltageDelay = 0;
+    }
+        
+    /*
+    Checks if voltage is under 4V by calling checkVoltage()
+    */
+    if(checkVoltageDelay >= 5000){
+        if(checkVoltage()){
+            break;
         }
-        CyDelay(20);
-        checkVoltageDelay +=20;
+        checkVoltageDelay = 0;
+    }
+    CyDelay(20);
+    checkVoltageDelay +=20;
     }
     flashLED();
     //motor_stop();
 }
-void rick_roll(){
-        Beep(140,153);
-        CyDelay(10);
-        Beep(140,136);
-        CyDelay(10);
-        Beep(140,114);
-        CyDelay(10);
-        Beep(140,136);
-        CyDelay(10);
-        Beep(340,91);
-        CyDelay(10);
-        Beep(100,91);
-        Beep(290,91);
-        CyDelay(10);
-        Beep(300,102);
-        Beep(590,102);
-        CyDelay(10);
-        Beep(140,153);
-        CyDelay(10);
-        Beep(140,136);
-        CyDelay(10);
-        Beep(140,121);
-        CyDelay(10);
-        Beep(140,153);
-        CyDelay(10);
-        Beep(340,102);
-        CyDelay(10);
-        Beep(100,102);
-        Beep(290,102);
-        CyDelay(10);
-        Beep(300,114);
-        Beep(150,114);
-        Beep(150,121);
-        Beep(290,136);
-        CyDelay(10);
-        Beep(140,153);
-        CyDelay(10);
-        Beep(140,136);
-        CyDelay(10);
-        Beep(140,114);
-        CyDelay(10);
-        Beep(140,136);
-        CyDelay(10);
-        Beep(590,114);
-        CyDelay(10);
-        Beep(290,102);
-        CyDelay(10);
-        Beep(300,121);
-        Beep(140,136);
-        CyDelay(10);
-        Beep(290,153);
-        CyDelay(10);
-        Beep(140,153);
-        CyDelay(10);
-        Beep(590,102);
-        CyDelay(10);
-        Beep(590,114);
-        CyDelay(10);
-        
-        }
-
+/*
+If all 4 sensors are mostly on black line, returns true
+*/
 bool isOnBlackLine(){
     if(ref.l3 > 22000 && ref.l1 > 22000 && ref.r1 > 22000 && ref.r3 > 22000){
         return true;
     }
     return false;
 }
-
+/*
+Gets & converts the value from ADC into Volts & returns true if it is over 4.00
+*/
 bool checkVoltage(){
     uint16 adcresult = 0;
     float vbat = 0;
@@ -243,7 +198,9 @@ bool checkVoltage(){
     }
     return vbat < 4.00;
  }   
-
+/*
+Flashes LED at increasing or decreasing intervals.
+*/
 void flashLED(){
     bool on = false;  
     int delay = 475;
@@ -256,7 +213,6 @@ void flashLED(){
             BatteryLed_Write(0);
             on = false;
         }
-        
         if(delay == 0){
             delaySubtract = -1;
         }
@@ -279,8 +235,9 @@ void flashLED(){
         CyDelay(delay);
     }  
 }
-
-
+/*
+Gets reflectance value from all 4 sensors over 1 second & returns the average.
+*/
 void calibrate(struct sensors_ ref, float *result)
 {
     float l1[10]={};
